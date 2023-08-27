@@ -1,6 +1,6 @@
 """Provide a function for bounding node assignment costs with nodewise info."""
 
-from ..matching_utils import feature_disagreements
+from matching_utils import feature_disagreements
 
 
 def nodewise(smp):

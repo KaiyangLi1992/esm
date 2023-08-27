@@ -1,8 +1,8 @@
 """Utility functions and classes for search"""
 import numpy as np
 
-from .. import global_cost_bound
-from .. import local_cost_bound
+import global_cost_bound
+import local_cost_bound
 
 class State:
     """A state for the greedy search algorithm.
@@ -13,9 +13,13 @@ class State:
     cost: float
         Estimated cost of the matching.
     """
-    def __init__(self):
+    def __init__(self,cum_reward=0,num_steps=0):
         self.matching = None
+        self.matching_dict = None
+        self.action_next_list = []
         self.cost = float("inf")
+        self.cum_reward = cum_reward
+        self.num_steps = num_steps
 
     def __lt__(self, other):
         # TODO: Is this function the source of your sorting related time expenditures?
@@ -111,7 +115,7 @@ def iterate_to_convergence(smp, reduce_world=True, nodewise=True,
         Flag for verbose output.
     """
     if changed_cands is None:
-        changed_cands = np.ones((smp.tmplt.n_nodes,), dtype=np.bool)
+        changed_cands = np.ones((smp.tmplt.number_of_nodes(),), dtype=np.bool)
 
     old_candidates = smp.candidates().copy()
     if smp._local_costs is not None:

@@ -5,7 +5,8 @@ import numba
 import os
 import tqdm
 import time
-
+import scipy.sparse as sp
+import networkx as nx
 def iter_adj_pairs(tmplt, world):
     """Generator for pairs of adjacency matrices.
 
@@ -24,10 +25,12 @@ def iter_adj_pairs(tmplt, world):
     (spmatrix, spmatrix)
         A tuple of sparse adjacency matrices
     """
-    for channel, tmplt_adj in tmplt.ch_to_adj.items():
-        world_adj = world.ch_to_adj[channel]
-        yield (tmplt_adj, world_adj)
-        yield (tmplt_adj.T, world_adj.T)
+    # for channel, tmplt_adj in tmplt.ch_to_adj.items():
+    #     world_adj = world.ch_to_adj[channel]
+    tmplt_adj = nx.to_scipy_sparse_matrix(tmplt, dtype=bool)
+    world_adj = nx.to_scipy_sparse_matrix(world, dtype=bool)
+    yield (tmplt_adj, world_adj)
+    yield (tmplt_adj.T, world_adj.T)
 
 def get_src_dst_weights(smp, src_idx, dst_idx):
     """ Returns a tuple of src_weight, dst_weight indicating the weighting for
@@ -130,7 +133,7 @@ def edgewise_no_attrs(smp, candidates, changed_cands=None):
         their neighboring template nodes have to be reevaluated.
     """
     new_local_costs = np.zeros(smp.shape)
-    for src_idx, dst_idx in smp.tmplt.nbr_idx_pairs:
+    for src_idx, dst_idx in smp.tmplt.edges():
         if changed_cands is not None:
             # If neither the source nor destination has changed, there is no
             # point in filtering on this pair of nodes

@@ -16,8 +16,8 @@ def from_local_bounds(smp):
         global_cost_bounds = clap.costs(costs)
         smp.global_costs[:] = global_cost_bounds
     else:
-        tmplt_idx_mask = np.ones(smp.tmplt.n_nodes, dtype=np.bool)
-        world_idx_mask = np.ones(smp.world.n_nodes, dtype=np.bool)
+        tmplt_idx_mask = np.ones(smp.tmplt.number_of_nodes(), dtype=np.bool)
+        world_idx_mask = np.ones(smp.world.number_of_nodes(), dtype=np.bool)
         for tmplt_idx, world_idx in smp.matching:
             tmplt_idx_mask[tmplt_idx] = False
             world_idx_mask[world_idx] = False

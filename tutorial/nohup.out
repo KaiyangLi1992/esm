@@ -1,0 +1,350 @@
+[                                        ] | 0% Completed |  0.0s[########################################] | 100% Completed |  0.1s
+[                                        ] | 0% Completed |  0.0s[########################################] | 100% Completed |  0.1s
+0
+Current state: 0 matches 0 open states current_cost: 0.0 kth cost: inf max cost 1000000.0 solutions found: 0
+100
+Current state: 20 matches 705 open states current_cost: 23.5 kth cost: 25.0 max cost 25.0 solutions found: 1
+200
+Current state: 20 matches 681 open states current_cost: 21.0 kth cost: 23.0 max cost 23.0 solutions found: 1
+300
+Current state: 22 matches 673 open states current_cost: 22.0 kth cost: 23.0 max cost 23.0 solutions found: 1
+400
+Current state: 19 matches 641 open states current_cost: 21.5 kth cost: 23.0 max cost 23.0 solutions found: 1
+500
+Current state: 21 matches 588 open states current_cost: 21.0 kth cost: 22.0 max cost 22.0 solutions found: 1
+600
+Current state: 18 matches 537 open states current_cost: 21.5 kth cost: 22.0 max cost 22.0 solutions found: 1
+700
+Current state: 18 matches 558 open states current_cost: 18.5 kth cost: 22.0 max cost 22.0 solutions found: 1
+800
+Current state: 23 matches 575 open states current_cost: 21.5 kth cost: 22.0 max cost 22.0 solutions found: 1
+900
+Current state: 19 matches 562 open states current_cost: 20.5 kth cost: 22.0 max cost 22.0 solutions found: 1
+1000
+Current state: 20 matches 553 open states current_cost: 20.5 kth cost: 22.0 max cost 22.0 solutions found: 1
+1100
+Current state: 18 matches 542 open states current_cost: 19.0 kth cost: 22.0 max cost 22.0 solutions found: 1
+1200
+Current state: 19 matches 555 open states current_cost: 21.0 kth cost: 22.0 max cost 22.0 solutions found: 1
+1300
+Current state: 17 matches 521 open states current_cost: 20.5 kth cost: 22.0 max cost 22.0 solutions found: 1
+1400
+Current state: 19 matches 546 open states current_cost: 21.5 kth cost: 22.0 max cost 22.0 solutions found: 1
+1500
+Current state: 17 matches 510 open states current_cost: 21.5 kth cost: 22.0 max cost 22.0 solutions found: 1
+1600
+Current state: 16 matches 487 open states current_cost: 19.0 kth cost: 22.0 max cost 22.0 solutions found: 1
+1700
+Current state: 18 matches 471 open states current_cost: 19.0 kth cost: 20.0 max cost 20.0 solutions found: 1
+1800
+Current state: 14 matches 372 open states current_cost: 19.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+1900
+Current state: 20 matches 438 open states current_cost: 18.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+2000
+Current state: 17 matches 413 open states current_cost: 19.0 kth cost: 20.0 max cost 20.0 solutions found: 1
+2100
+Current state: 21 matches 449 open states current_cost: 18.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+2200
+Current state: 20 matches 430 open states current_cost: 18.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+2300
+Current state: 19 matches 415 open states current_cost: 19.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+2400
+Current state: 16 matches 382 open states current_cost: 19.0 kth cost: 20.0 max cost 20.0 solutions found: 1
+2500
+Current state: 19 matches 421 open states current_cost: 19.0 kth cost: 20.0 max cost 20.0 solutions found: 1
+2600
+Current state: 20 matches 407 open states current_cost: 18.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+2700
+Current state: 20 matches 429 open states current_cost: 18.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+2800
+Current state: 21 matches 419 open states current_cost: 17.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+2900
+Current state: 17 matches 390 open states current_cost: 19.0 kth cost: 20.0 max cost 20.0 solutions found: 1
+3000
+Current state: 20 matches 429 open states current_cost: 18.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+3100
+Current state: 18 matches 414 open states current_cost: 18.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+3200
+Current state: 17 matches 379 open states current_cost: 18.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+3300
+Current state: 16 matches 364 open states current_cost: 19.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+3400
+Current state: 20 matches 424 open states current_cost: 18.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+3500
+Current state: 16 matches 380 open states current_cost: 19.0 kth cost: 20.0 max cost 20.0 solutions found: 1
+3600
+Current state: 18 matches 379 open states current_cost: 19.0 kth cost: 20.0 max cost 20.0 solutions found: 1
+3700
+Current state: 19 matches 399 open states current_cost: 19.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+3800
+Current state: 14 matches 346 open states current_cost: 17.0 kth cost: 20.0 max cost 20.0 solutions found: 1
+3900
+Current state: 17 matches 349 open states current_cost: 18.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+4000
+Current state: 15 matches 343 open states current_cost: 18.5 kth cost: 20.0 max cost 20.0 solutions found: 1
+4100
+Current state: 13 matches 292 open states current_cost: 17.0 kth cost: 20.0 max cost 20.0 solutions found: 1
+4200
+Current state: 17 matches 398 open states current_cost: 16.0 kth cost: 19.0 max cost 19.0 solutions found: 1
+4300
+Current state: 19 matches 403 open states current_cost: 15.0 kth cost: 18.0 max cost 18.0 solutions found: 1
+4400
+Current state: 18 matches 352 open states current_cost: 16.5 kth cost: 17.5 max cost 17.5 solutions found: 1
+4500
+Current state: 17 matches 331 open states current_cost: 16.0 kth cost: 17.5 max cost 17.5 solutions found: 1
+4600
+Current state: 15 matches 288 open states current_cost: 16.5 kth cost: 17.5 max cost 17.5 solutions found: 1
+4700
+Current state: 12 matches 227 open states current_cost: 16.0 kth cost: 17.5 max cost 17.5 solutions found: 1
+4800
+Current state: 18 matches 350 open states current_cost: 17.0 kth cost: 17.5 max cost 17.5 solutions found: 1
+4900
+Current state: 16 matches 323 open states current_cost: 16.0 kth cost: 17.5 max cost 17.5 solutions found: 1
+5000
+Current state: 16 matches 276 open states current_cost: 17.0 kth cost: 17.5 max cost 17.5 solutions found: 1
+5100
+Current state: 12 matches 249 open states current_cost: 8.5 kth cost: 17.5 max cost 17.5 solutions found: 1
+5200
+Current state: 15 matches 288 open states current_cost: 16.5 kth cost: 17.5 max cost 17.5 solutions found: 1
+5300
+Current state: 14 matches 276 open states current_cost: 12.0 kth cost: 17.5 max cost 17.5 solutions found: 1
+5400
+Current state: 18 matches 306 open states current_cost: 17.0 kth cost: 17.5 max cost 17.5 solutions found: 1
+5500
+Current state: 12 matches 230 open states current_cost: 14.5 kth cost: 17.5 max cost 17.5 solutions found: 1
+5600
+Current state: 19 matches 351 open states current_cost: 17.0 kth cost: 17.5 max cost 17.5 solutions found: 1
+5700
+Current state: 16 matches 321 open states current_cost: 16.5 kth cost: 17.5 max cost 17.5 solutions found: 1
+5800
+Current state: 16 matches 314 open states current_cost: 15.5 kth cost: 17.5 max cost 17.5 solutions found: 1
+5900
+Current state: 14 matches 272 open states current_cost: 16.5 kth cost: 17.5 max cost 17.5 solutions found: 1
+6000
+Current state: 24 matches 696 open states current_cost: 12.0 kth cost: 17.5 max cost 17.5 solutions found: 1
+6100
+Current state: 11 matches 203 open states current_cost: 7.5 kth cost: 11.0 max cost 11.0 solutions found: 1
+6200
+Current state: 21 matches 267 open states current_cost: 9.0 kth cost: 10.0 max cost 10.0 solutions found: 1
+6300
+Current state: 13 matches 167 open states current_cost: 9.0 kth cost: 10.0 max cost 10.0 solutions found: 1
+6400
+Current state: 17 matches 261 open states current_cost: 6.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+6500
+Current state: 11 matches 172 open states current_cost: 8.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+6600
+Current state: 14 matches 158 open states current_cost: 7.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+6700
+Current state: 11 matches 140 open states current_cost: 7.0 kth cost: 9.0 max cost 9.0 solutions found: 1
+6800
+Current state: 10 matches 121 open states current_cost: 8.0 kth cost: 9.0 max cost 9.0 solutions found: 1
+6900
+Current state: 20 matches 170 open states current_cost: 8.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+7000
+Current state: 12 matches 137 open states current_cost: 8.0 kth cost: 9.0 max cost 9.0 solutions found: 1
+7100
+Current state: 10 matches 119 open states current_cost: 7.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+7200
+Current state: 20 matches 164 open states current_cost: 8.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+7300
+Current state: 13 matches 145 open states current_cost: 6.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+7400
+Current state: 11 matches 126 open states current_cost: 8.0 kth cost: 9.0 max cost 9.0 solutions found: 1
+7500
+Current state: 10 matches 119 open states current_cost: 3.0 kth cost: 9.0 max cost 9.0 solutions found: 1
+7600
+Current state: 18 matches 157 open states current_cost: 7.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+7700
+Current state: 15 matches 150 open states current_cost: 8.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+7800
+Current state: 12 matches 131 open states current_cost: 7.0 kth cost: 9.0 max cost 9.0 solutions found: 1
+7900
+Current state: 10 matches 112 open states current_cost: 7.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+8000
+Current state: 18 matches 153 open states current_cost: 7.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+8100
+Current state: 20 matches 155 open states current_cost: 8.0 kth cost: 9.0 max cost 9.0 solutions found: 1
+8200
+Current state: 14 matches 136 open states current_cost: 8.0 kth cost: 9.0 max cost 9.0 solutions found: 1
+8300
+Current state: 11 matches 117 open states current_cost: 7.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+8400
+Current state: 10 matches 98 open states current_cost: 8.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+8500
+Current state: 19 matches 148 open states current_cost: 8.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+8600
+Current state: 15 matches 141 open states current_cost: 7.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+8700
+Current state: 12 matches 122 open states current_cost: 6.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+8800
+Current state: 10 matches 103 open states current_cost: 5.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+8900
+Current state: 15 matches 121 open states current_cost: 8.0 kth cost: 9.0 max cost 9.0 solutions found: 1
+9000
+Current state: 10 matches 93 open states current_cost: 4.0 kth cost: 9.0 max cost 9.0 solutions found: 1
+9100
+Current state: 10 matches 86 open states current_cost: 8.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+9200
+Current state: 10 matches 85 open states current_cost: 8.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+9300
+Current state: 10 matches 84 open states current_cost: 6.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+9400
+Current state: 11 matches 83 open states current_cost: 8.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+9500
+Current state: 11 matches 82 open states current_cost: 8.0 kth cost: 9.0 max cost 9.0 solutions found: 1
+9600
+Current state: 16 matches 141 open states current_cost: 5.5 kth cost: 9.0 max cost 9.0 solutions found: 1
+9700
+Current state: 14 matches 104 open states current_cost: 6.0 kth cost: 9.0 max cost 9.0 solutions found: 1
+9800
+Current state: 18 matches 356 open states current_cost: 1.5 kth cost: 3.0 max cost 3.0 solutions found: 1
+9900
+Current state: 7 matches 46 open states current_cost: 1.0 kth cost: 3.0 max cost 3.0 solutions found: 1
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+No candidates for given nodes, skipping edge
+{'0': '0', '1': '1', '10': '148', '11': '166', '12': '177', '13': '178', '14': '215', '15': '266', '16': '268', '17': '283', '18': '297', '19': '309', '2': '5', '20': '223', '21': '316', '22': '221', '23': '560', '24': '581', '3': '6', '4': '17', '5': '18', '6': '64', '7': '73', '8': '74', '9': '146'}: 3.0
+There are 25 template nodes and 1005 world nodes.
+15 has 92 candidates: 11, 12, 141, 161, 19, 213, 246, 247, 249, 264, ...
+10 has 49 candidates: 122, 130, 148, 149, 156, 157, 178, 179, 180, 191, ...
+18 has 41 candidates: 0, 1, 120, 17, 177, 18, 215, 218, 219, 220, ...
+20 has 35 candidates: 0, 1, 120, 17, 177, 18, 215, 218, 220, 221, ...
+5 has 33 candidates: 0, 120, 17, 177, 18, 215, 218, 220, 221, 222, ...
+22 has 31 candidates: 0, 17, 177, 18, 215, 218, 220, 221, 222, 223, ...
+13 has 30 candidates: 122, 130, 148, 149, 157, 178, 179, 180, 191, 214, ...
+1 has 27 candidates: 0, 1, 120, 17, 177, 18, 215, 218, 220, 221, ...
+4 has 27 candidates: 0, 120, 17, 177, 18, 215, 218, 221, 222, 223, ...
+19 has 23 candidates: 0, 120, 17, 177, 18, 215, 218, 220, 221, 222, ...
+7 has 23 candidates: 0, 17, 177, 18, 215, 218, 220, 221, 222, 223, ...
+12 has 17 candidates: 0, 120, 17, 177, 18, 215, 218, 222, 223, 225, ...
+21 has 16 candidates: 0, 17, 177, 215, 218, 221, 222, 223, 225, 309, ...
+11 has 15 candidates: 107, 121, 142, 160, 166, 282, 283, 366, 494, 62, ...
+8 has 14 candidates: 0, 17, 177, 215, 218, 221, 222, 223, 225, 308, ...
+17 has 14 candidates: 107, 121, 142, 160, 166, 282, 283, 366, 494, 62, ...
+14 has 14 candidates: 0, 17, 177, 215, 218, 221, 222, 223, 225, 308, ...
+9 has 13 candidates: 146, 184, 187, 188, 189, 418, 467, 473, 480, 549, ...
+24 has 12 candidates: 445, 483, 497, 531, 539, 557, 581, 77, 78, 79, ...
+3 has 6 candidates: 489, 5, 528, 6, 64, 644
+0 has 4 candidates: 0, 215, 316, 74
+16 has 3 candidates: 268, 331, 756
+6 has 3 candidates: 5, 6, 64
+2 has 3 candidates: 5, 6, 64
+23 has 2 candidates: 560, 726

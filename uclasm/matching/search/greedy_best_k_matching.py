@@ -5,12 +5,53 @@ import numpy as np
 import bisect
 import math
 
+import networkx as nx
+
+from .data_structures_search_tree import SearchTree, ActionEdge
 from .search_utils import *
-from ..global_cost_bound import *
-from ..local_cost_bound import *
-from ..matching_problem import MatchingProblem
-from ...utils import one_hot
+from global_cost_bound import *
+from local_cost_bound import *
+from matching_problem import MatchingProblem
+from utils import one_hot
 from heapq import heappush, heappop, heapify
+
+def get_reward(tmplt_idx,cand_idx,smp,state):
+    tmplt_nx = smp.tmplt
+    cand_nx = smp.world
+    neighbors = set([n for n in tmplt_nx[tmplt_idx]])
+    tmplt_matched_nodes = set([n for n in state.matching_dict.keys()])
+    tmplt_node_intersection  = neighbors.intersection(tmplt_matched_nodes)
+    cand_node_intersection = set([state.matching_dict[n] for n in list(tmplt_node_intersection)])
+    neighbors_cand = set([n for n in cand_nx[cand_idx]])
+
+    posi_reward = len(list(neighbors_cand.intersection(cand_node_intersection)))
+    nega_reward = len(list(tmplt_node_intersection)) - posi_reward 
+    reward1 = posi_reward - nega_reward
+
+
+    tmplt_nx = nx.from_scipy_sparse_matrix(nx.to_scipy_sparse_matrix(tmplt_nx).T)
+    cand_nx = nx.from_scipy_sparse_matrix(nx.to_scipy_sparse_matrix(cand_nx).T)
+    neighbors = set([n for n in tmplt_nx[tmplt_idx]])
+    tmplt_matched_nodes = set([n for n in state.matching_dict.keys()])
+    tmplt_node_intersection  = neighbors.intersection(tmplt_matched_nodes)
+    cand_node_intersection = set([state.matching_dict[n] for n in list(tmplt_node_intersection)])
+    neighbors_cand = set([n for n in cand_nx[cand_idx]])
+
+    posi_reward = len(list(neighbors_cand.intersection(cand_node_intersection)))
+    nega_reward = len(list(tmplt_node_intersection)) - posi_reward 
+    reward2 = posi_reward - nega_reward
+
+
+
+    return reward1+reward2
+
+
+
+
+
+    
+
+
 
 def greedy_best_k_matching(smp, k=1, nodewise=True, edgewise=True,
                            verbose=False):
@@ -45,24 +86,28 @@ def greedy_best_k_matching(smp, k=1, nodewise=True, edgewise=True,
 
     # Initialize matching with known matches
     candidates = smp.candidates()
-    for i in range(smp.tmplt.n_nodes):
+    for i in range(smp.tmplt.number_of_nodes()):
         if np.sum(candidates[i]) == 1:
             current_matching[i] = np.argwhere(candidates[i])[0][0]
 
     start_state = State()
+    start_state.matching_dict = current_matching
     start_state.matching = tuple_from_dict(current_matching)
     start_state.cost = smp.global_costs.min()
+    search_tree = SearchTree(start_state)
     cost_map[start_state.matching] = start_state.cost
 
     # Handle the case where we start in a solved state
-    if len(start_state.matching) == smp.tmplt.n_nodes:
+    if len(start_state.matching) == smp.tmplt.number_of_nodes():
         solutions.append(start_state)
         return solutions
 
     heappush(open_list, start_state)
 
+
     # Cost of the kth solution
     kth_cost = float("inf")
+    step = 0
 
     while len(open_list) > 0:
         current_state = heappop(open_list)
@@ -74,11 +119,13 @@ def greedy_best_k_matching(smp, k=1, nodewise=True, edgewise=True,
                       "{} open states".format(len(open_list)), "current_cost:", current_state.cost,
                       "kth cost:", kth_cost, "max cost", smp.global_cost_threshold, "solutions found:", len(solutions))
             continue
-        if verbose:
+        # if verbose and current_state.cost == kth_cost:
+        if step%100==0:
+            print(step)
             print("Current state: {} matches".format(len(current_state.matching)),
                   "{} open states".format(len(open_list)), "current_cost:", current_state.cost,
                   "kth cost:", kth_cost, "max cost", smp.global_cost_threshold, "solutions found:", len(solutions))
-
+        step += 1
         curr_smp = smp.copy()
         curr_smp.enforce_matching(current_state.matching)
         # Do not reduce world as it can mess up the world indices in the matching
@@ -92,9 +139,9 @@ def greedy_best_k_matching(smp, k=1, nodewise=True, edgewise=True,
         cand_counts[list(matching_dict)] = np.max(cand_counts) + 1
         tmplt_idx = np.argmin(cand_counts)
         cand_idxs = np.argwhere(candidates[tmplt_idx]).flatten()
-        if verbose:
-            print("Choosing candidate for", tmplt_idx,
-                  "with {} possibilities".format(len(cand_idxs)))
+        # if verbose:
+        #     print("Choosing candidate for", tmplt_idx,
+        #           "with {} possibilities".format(len(cand_idxs)))
 
         # Only push states that have a total cost bound lower than the threshold
         for cand_idx in cand_idxs:
@@ -103,18 +150,13 @@ def greedy_best_k_matching(smp, k=1, nodewise=True, edgewise=True,
             new_matching_tuple = tuple_from_dict(new_matching)
             if new_matching_tuple not in cost_map:
                 new_state = State()
+                new_state.matching_dict = new_matching 
                 new_state.matching = new_matching_tuple
                 new_state.cost = curr_smp.global_costs[tmplt_idx, cand_idx]
                 if new_state.cost > smp.global_cost_threshold or new_state.cost >= kth_cost:
                     continue
                 cost_map[new_matching_tuple] = new_state.cost
-                if len(new_state.matching) == smp.tmplt.n_nodes:
-                    # temp_smp = curr_smp.copy(copy_graphs=False)
-                    # temp_smp.enforce_matching(new_state.matching)
-                    # # Do not reduce world as it can mess up the world indices in the matching
-                    # iterate_to_convergence(temp_smp, reduce_world=False,
-                    #                        nodewise=nodewise, edgewise=edgewise)
-                    # new_state.cost = temp_smp.global_costs.min()
+                if len(new_state.matching) == smp.tmplt.number_of_nodes():
                     solutions.append(new_state)
                     if k > 0 and len(solutions) > k:
                         solutions.sort()
@@ -127,13 +169,29 @@ def greedy_best_k_matching(smp, k=1, nodewise=True, edgewise=True,
                                                    edgewise=edgewise)
                 else:
                     heappush(open_list, new_state)
+                    reward = get_reward(tmplt_idx,cand_idx,smp,current_state)
+                    new_state.cum_reward = current_state.cum_reward + reward
+                    # print(current_state.matching)
+                    # print((tmplt_idx,cand_idx))
+                    # print(reward)
+                    action_edge = ActionEdge((tmplt_idx,cand_idx),reward)
+                    search_tree.link_states(
+                        current_state, action_edge, new_state, 0, 0)
             else:
                 if verbose:
                     print("Recognized state: ", new_matching)
     if verbose and len(solutions) < 100:
         for solution in solutions:
-            print(solution)
+            solution_ob = {}
+            for mapping in solution.matching:
+                solution_ob[smp.tmplt.nodes[mapping[0]]]= smp.world.nodes[mapping[1]]
+            print(str(solution_ob) + ": " + str(solution.cost))
     return solutions
+
+
+
+
+
 
 def satisfies_cost_threshold(smp, cost):
     # Ignore states whose cost is too high
@@ -163,7 +221,7 @@ def impose_state_assignments_on_smp(smp, tmplt_idx, state, **kwargs):
     # TODO: Bring back reduce_world and modify the changed_cands as needed.
     # TODO: If it makes your life easier, modify the reduce_world functin to give you the index maps you need.
     # Do not reduce world as it can mess up the world indices in the matching
-    changed_cands = np.zeros((smp.tmplt.n_nodes,), dtype=np.bool)
+    changed_cands = np.zeros((smp.tmplt.number_of_nodes(),), dtype=np.bool)
     changed_cands[tmplt_idx] = True
     changed_cands = None
     iterate_to_convergence(smp, changed_cands=changed_cands, **kwargs)
@@ -231,7 +289,7 @@ def next_matchings(smp, state):
 
     cost_min = smp.global_costs.min()
     min_cost_counts = np.sum(smp.global_costs == cost_min, axis=1)
-    for new_tmplt_idx in range(smp.tmplt.n_nodes):
+    for new_tmplt_idx in range(smp.tmplt.number_of_nodes()):
         # if cand_counts[tmplt_idx] >= cand_counts[new_tmplt_idx]:
         if new_tmplt_idx not in matching_dict:
             if min_cost_counts[tmplt_idx] > min_cost_counts[new_tmplt_idx]:
@@ -241,7 +299,7 @@ def next_matchings(smp, state):
     #     # The lower the number the more important the node
     #     # Most important nodes should be chosen first
     #     # Or maybe least important?
-    #     for new_tmplt_idx in range(smp.tmplt.n_nodes):
+    #     for new_tmplt_idx in range(smp.tmplt.number_of_nodes()):
     #         if str(smp.tmplt.nodes[new_tmplt_idx]) not in smp.template_importance:
     #             print("Node missing from template importance:", str(smp.tmplt.nodes[new_tmplt_idx]))
     #             smp.template_importance[str(smp.tmplt.nodes[new_tmplt_idx])] = 1000000
@@ -304,7 +362,7 @@ def _greedy_best_k_matching_recursive(smp, *, current_state, k,
               "current_cost:", current_state.cost,
               "kth cost:", kth_cost,  "max cost", smp.global_cost_threshold,
               "solutions found:", len(solutions))
-        print("Current world size: {} nodes".format(smp.world.n_nodes))
+        print("Current world size: {} nodes".format(smp.world.number_of_nodes()))
 
     # Ignore states whose cost is too high
     if not satisfies_cost_threshold(smp, current_state.cost):
@@ -349,7 +407,7 @@ def _greedy_best_k_matching_recursive(smp, *, current_state, k,
         if not satisfies_cost_threshold(smp, new_state.cost):
             break
 
-        if len(new_state.matching) == smp.tmplt.n_nodes:
+        if len(new_state.matching) == smp.tmplt.number_of_nodes():
             costs_changed = add_new_solution(smp, new_state, tmplt_idx, solutions, k,
                              reduce_world=False, nodewise=nodewise, edgewise=edgewise)
         else:
@@ -420,11 +478,11 @@ def greedy_best_k_matching_recursive(orig_smp, k=1, nodewise=True, edgewise=True
                              default=smp.global_costs.min())
 
     # Handle the case where we start in a solved state
-    if len(current_state.matching) == smp.tmplt.n_nodes and len(solutions) == 0:
+    if len(current_state.matching) == smp.tmplt.number_of_nodes() and len(solutions) == 0:
         solutions.append(current_state)
         return solutions
 
-    changed_cands = np.zeros((smp.tmplt.n_nodes,), dtype=np.bool)
+    changed_cands = np.zeros((smp.tmplt.number_of_nodes(),), dtype=np.bool)
     for tmplt_idx, cand_idx in current_state.matching:
         changed_cands[tmplt_idx] = True
     smp.enforce_matching(current_state.matching)

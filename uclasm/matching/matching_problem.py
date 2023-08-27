@@ -2,9 +2,9 @@
 import numpy as np
 import os
 
-from .matching_utils import inspect_channels, MonotoneArray, \
+from matching_utils import inspect_channels, MonotoneArray, \
     feature_disagreements
-from .global_cost_bound import *
+from global_cost_bound import *
 
 class MatchingProblemBase:
     def __init__(self,
@@ -296,7 +296,7 @@ class InexactMatchingProblem(MatchingProblemBase):
                  missing_edge_cost_fn=None,
                  local_cost_threshold=0,
                  global_cost_threshold=0,
-                 strict_threshold=False,
+                 strict_threshold=True,
                  ground_truth_provided=False,
                  candidate_print_limit=10,
                  cache_path=None,
