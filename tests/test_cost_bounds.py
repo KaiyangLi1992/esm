@@ -69,7 +69,7 @@ class TestEdgewiseCostBound:
     def test_edgewise_cost(self, smp):
         local_cost_bound.edgewise(smp)
         global_cost_bound.from_local_bounds(smp)
-        assert(np.sum(smp.candidates()) == 3)
+        assert(np.sum(smp.get_candidates()) == 3)
 
     def test_edgewise_cost_noisy(self, smp_noisy):
         local_cost_bound.edgewise(smp_noisy)

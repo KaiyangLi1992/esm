@@ -1,7 +1,7 @@
 """Example usage of the uclasm package for finding subgraph isomorphisms."""
 import sys 
-sys.path.append("/root/uclasm/uclasm/") 
-sys.path.append("/root/uclasm/")
+sys.path.append("/home/kli16/ISM_custom/esm/uclasm/") 
+sys.path.append("/home/kli16/ISM_custom/esm/")
 print(sys.path)
 import uclasm
 from uclasm.matching import *

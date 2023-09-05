@@ -50,7 +50,7 @@ def neighborhood(smp):
     nbr_counts = smp.tmplt.is_nbr.sum(axis=1).A.flatten()
 
     # TODO: might want candidates to be sparse in other filters
-    sparse_is_cand = sparse.csr_matrix(smp.candidates())
+    sparse_is_cand = sparse.csr_matrix(smp.get_candidates())
     for tnode_idx, wnode_idx in np.transpose(sparse_is_cand.nonzero()):
         # If the template node has only 1 neighbor, the topology filter is
         # equivalent to the neighborhood filter, so there is no point in

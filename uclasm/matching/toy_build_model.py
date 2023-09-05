@@ -1,9 +1,9 @@
 import pickle
 import sys 
 
-sys.path.append("/root/uclasm/") 
-sys.path.append("/root/uclasm/rlmodel") 
-sys.path.append("/root/uclasm/uclasm/") 
+sys.path.append("/home/kli16/ISM_custom/esm/") 
+sys.path.append("/home/kli16/ISM_custom/esm/rlmodel") 
+sys.path.append("/home/kli16/ISM_custom/esm/uclasm/") 
 print(sys.path)
 from train import run
 from model import Model
@@ -11,7 +11,7 @@ from config import FLAGS
 from saver import saver
 from utils import slack_notify, get_ts, OurTimer
 
-with open('toy_dataset.pkl','rb') as f:
+with open('toy_dataset_toy.pkl','rb') as f:
     toy_dataset = pickle.load(f)
 tm = OurTimer()
 train_test_data = [toy_dataset]

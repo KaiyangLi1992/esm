@@ -1,7 +1,7 @@
 import sys 
-sys.path.append("/root/uclasm/") 
-sys.path.append("/root/uclasm/rlmodel") 
-sys.path.append("/root/uclasm/uclasm/") 
+sys.path.append("/home/kli16/ISM_custom/esm") 
+sys.path.append("/home/kli16/ISM_custom/esm/rlmodel") 
+sys.path.append("/home/kli16/ISM_custom/esm/uclasm/") 
 print(sys.path)
 import uclasm
 import networkx as nx
@@ -43,10 +43,7 @@ def create_directed_graph(edges):
     graph.add_edges_from(edges)
     return graph
 
-# Replace 'edges.csv' with the actual path to your CSV file
-csv_file_path = './tutorial/world_email.csv'
-edges_list = read_csv_edges(csv_file_path)
-world = create_directed_graph(edges_list)
+
 
 # Now you can use 'directed_graph' as a NetworkX DiGraph
 # print("Nodes:", world.nodes())
@@ -63,7 +60,10 @@ def read_txt_file(file_path):
             # Append the list of elements to the data list
             data.append(elements)
     return data
-
+# Replace 'edges.csv' with the actual path to your CSV file
+csv_file_path = './tutorial/world_email.csv'
+edges_list = read_csv_edges(csv_file_path)
+world = create_directed_graph(edges_list)
 # Replace 'your_file_path.txt' with the actual path to your txt file
 file_path = "./tutorial/email-Eu-core-department-labels.txt"
 txt_data = read_txt_file(file_path)
@@ -73,17 +73,18 @@ for line in txt_data:
 
 nx.set_node_attributes(world , attr_dict)
 
-def find_high_density_subgraphs(g, density_threshold, max_nodes_per_subgraph):
+def find_high_density_subgraphs(g, density_threshold, max_nodes_per_subgraph,n):
     high_density_subgraphs = []
 
     # for nodes in g.nodes():
     #     for k in range(2, max_nodes_per_subgraph + 1):
     for subset_nodes in itertools.combinations(g.nodes(), max_nodes_per_subgraph):
-        subgraph = g.subgraph(subset_nodes)
+        subgraph = g.subgraph(subset_nodes).copy()
         density = nx.density(subgraph)
         if density >= density_threshold:
-            high_density_subgraphs.append(subgraph)
-        if len(high_density_subgraphs) >= 100:
+            if subgraph not in high_density_subgraphs:
+                high_density_subgraphs.append(subgraph)
+        if len(high_density_subgraphs) >= n:
             break
 
     return high_density_subgraphs
@@ -119,16 +120,20 @@ def bfs_sample_subgraph(graph, start_node, max_depth):
 world.graph['gid'] = 0
 
 graph_list = []
-graph_list.append(RegularGraph(rename_id(world)))
+high_density_subgraphs = find_high_density_subgraphs(world, 0.5, 10,1)
+world = high_density_subgraphs[0]
+world = rename_id(world)
+graph_list.append(RegularGraph(world))
+# graph_list.append(RegularGraph(rename_id(world)))
 pairs = {}
 
-density_threshold = 0.5  # 设定密度阈值
-max_nodes_per_subgraph = 10  # 子图的最大点数
+density_threshold = 0.4  # 设定密度阈值
+max_nodes_per_subgraph = 8  # 子图的最大点数
 
-high_density_subgraphs = find_high_density_subgraphs(world, density_threshold, max_nodes_per_subgraph)
+high_density_subgraphs = find_high_density_subgraphs(world, density_threshold, max_nodes_per_subgraph,100)
 
-for i in range(100):
-    random_seed = random.choice(list(world.nodes()))
+for i in range(0,10):
+    # random_seed = random.choice(list(world.nodes()))
     # sampled_subgraph = bfs_sample_subgraph(world, start_node=random_seed, max_depth=1)
     sampled_subgraph = high_density_subgraphs[i]
     sampled_subgraph.graph['gid'] = i+1
@@ -149,11 +154,11 @@ our_dataset = OurDataset(name, graph_list, natts, eatts, pairs, tvt, align_metri
 dataset_train, num_node_feat_test = \
             encode_node_features(dataset=our_dataset)
 
-dataset_train = OurModelData(dataset_train, num_node_feat_test )
+dataset_train = OurModelData(dataset_train, num_node_feat_test)
 dataset_trains = [dataset_train]
 toy_dataset = OurCocktailData(dataset_trains,[num_node_feat_test])
 
-with open('toy_dataset.pkl','wb') as f:
+with open('toy_dataset_toy.pkl','wb') as f:
     pickle.dump(toy_dataset,f)
 
 print(num_node_feat_test)

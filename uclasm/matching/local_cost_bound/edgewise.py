@@ -30,7 +30,7 @@ def iter_adj_pairs(tmplt, world):
     tmplt_adj = nx.to_scipy_sparse_matrix(tmplt, dtype=bool)
     world_adj = nx.to_scipy_sparse_matrix(world, dtype=bool)
     yield (tmplt_adj, world_adj)
-    yield (tmplt_adj.T, world_adj.T)
+    # yield (tmplt_adj.T, world_adj.T)
 
 def get_src_dst_weights(smp, src_idx, dst_idx):
     """ Returns a tuple of src_weight, dst_weight indicating the weighting for
@@ -496,7 +496,7 @@ def edgewise(smp, changed_cands=None):
     smp : MatchingProblem
         A subgraph matching problem on which to compute edgewise cost bounds.
     """
-    candidates = smp.candidates() # Avoid recomputing candidates
+    candidates = smp.get_candidates() # Avoid recomputing candidates
     smp.local_costs = edgewise_local_costs(smp, candidates, changed_cands)
     if hasattr(smp.tmplt, 'time_constraints'):
         add_time_costs(smp, candidates, smp.local_costs)

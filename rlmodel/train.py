@@ -30,7 +30,8 @@ def _run_epoch(cur_id, num_iters_total, data, model, optimizer, saver,
                  num_iters_total_limit):
     epoch_timer = OurTimer()
     iter_timer = OurTimer()
-    data_loader = DataLoader(data, batch_size=FLAGS.batch_size, shuffle=FLAGS.shuffle_input)
+    ##########Note: change batch_size here#############
+    data_loader = DataLoader(data, FLAGS.batch_size, shuffle=FLAGS.shuffle_input)
     total_loss = 0
     num_iters = 0
     stop = False

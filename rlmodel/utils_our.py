@@ -164,7 +164,7 @@ def get_branch_names():
 
 
 def extract_config_code():
-    with open('/root/uclasm/uclasm/config.py') as f:
+    with open('/home/kli16/ISM_custom/esm/uclasm/config.py') as f:
         return f.read()
 
 

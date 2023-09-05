@@ -65,10 +65,10 @@ def add_noise(G):
 
 
 if __name__ == "__main__":
-    with open('/root/uclasm/toy_g1.pkl','rb') as f:
+    with open('/home/kli16/ISM_custom/esm/toy_g1.pkl','rb') as f:
         g1 = pickle.load(f)
         g1 = add_noise(g1)
-    with open('/root/uclasm/toy_g2.pkl','rb') as f:
+    with open('/home/kli16/ISM_custom/esm/toy_g2.pkl','rb') as f:
         g2 = pickle.load(f)
     natts2g2nids = defaultdict(lambda: defaultdict(set))
     for nid in range(g1.number_of_nodes()):

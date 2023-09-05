@@ -45,8 +45,9 @@ class BinBuffer:
         return len(self.history)
 
     def filter(self, experiences):
-        good_experiences = [experience for experience in experiences
-                            if not self._is_trivial(experience)]
+        # good_experiences = [experience for experience in experiences
+        #                     if not self._is_trivial(experience)]
+        good_experiences = [experience for experience in experiences]
         return good_experiences[-self.capacity:]
 
     def extend(self, experiences):
@@ -69,9 +70,9 @@ class BinBuffer:
         # add samples to buffer
         for experience in experiences:
             bin_key = self.bin_hash(experience)
-            if FLAGS.no_trivial_pairs:
-                if self._is_trivial(experience):
-                    continue  # TODO: make this code prettier in the future
+            # if FLAGS.no_trivial_pairs:
+            #     if self._is_trivial(experience):
+            #         continue  # TODO: make this code prettier in the future
             self.bins[bin_key].append(experience)
             self.history.append(bin_key)
         # print('len history:',len(self.history))

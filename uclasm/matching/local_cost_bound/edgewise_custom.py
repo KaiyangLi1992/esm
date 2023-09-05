@@ -21,7 +21,7 @@ def edgewise_no_attrs(smp, changed_cands=None):
         changed since the last run of the edgewise filter. Only these nodes and
         their neighboring template nodes have to be reevaluated.
     """
-    candidates = smp.candidates()
+    candidates = smp.get_candidates()
     new_local_costs =  np.zeros([smp.tmplt.number_of_nodes(),smp.world.number_of_nodes()])
     tmplt_adj = sp.csr_matrix(nx.adjacency_matrix(smp.tmplt))
     world_adj = sp.csr_matrix(nx.adjacency_matrix(smp.world))

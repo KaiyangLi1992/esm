@@ -5,10 +5,10 @@ import pickle
 import sys 
 from collections import defaultdict
 
-sys.path.append("/root/uclasm/") 
-sys.path.append("/root/uclasm/rlmodel") 
-sys.path.append("/root/uclasm/uclasm/") 
-sys.path.append("/root/uclasm/uclasm/matching/local_cost_bound") 
+sys.path.append("/home/kli16/ISM_custom/esm/") 
+sys.path.append("/home/kli16/ISM_custom/esm/rlmodel") 
+sys.path.append("/home/kli16/ISM_custom/esm/uclasm/") 
+sys.path.append("/home/kli16/ISM_custom/esm/uclasm/matching/local_cost_bound") 
 print(sys.path)
 from edgewise_custom import edgewise_no_attrs
 from global_cost_bound.from_local_bounds_custom import from_local_bounds
@@ -18,6 +18,15 @@ from matching.matching_utils import inspect_channels, MonotoneArray, \
 from search.greedy_best_k_matching_custom import greedy_best_k_matching_custom
 from matching.global_cost_bound import *
 import random
+import networkx as nx
+
+def swap_source_target(graph):
+    new_graph = nx.DiGraph()
+    
+    for source, target in graph.edges():
+        new_graph.add_edge(target, source)  # 交换源节点和目标节点
+        
+    return new_graph
 
 class MatchingProblemBase:
     def __init__(self,
@@ -33,6 +42,9 @@ class MatchingProblemBase:
         # No longer care about self-edges because they are fixed costs.
         self.tmplt = tmplt
         self.world = world
+        self.reverse_tmplt = swap_source_target(tmplt)
+        self.reverse_world = swap_source_target(world)
+
 
         self._ground_truth_provided = ground_truth_provided
         self._candidate_print_limit = candidate_print_limit
@@ -41,9 +53,9 @@ class MatchingProblemBase:
         self.assigned_tmplt_idxs = set()
         self.prevented_matches = []
 
-    def candidates(self):
-        """Implement for each child class!"""
-        raise Exception("candidates() not implemented for instance of MatchingProblemBase!")
+    # def candidates(self):
+    #     """Implement for each child class!"""
+    #     raise Exception("candidates() not implemented for instance of MatchingProblemBase!")
 
     # def __str__(self):
     #     """Summarize the state of the matching problem.
@@ -276,6 +288,7 @@ class InexactMatchingProblem(MatchingProblemBase):
         if local_costs is None:
             local_costs = np.zeros(self.shape)
 
+
         if global_costs is None:
             global_costs = np.zeros(self.shape)
 
@@ -287,7 +300,7 @@ class InexactMatchingProblem(MatchingProblemBase):
         #     )
         #     self.tmplt = self.tmplt.loopless_subgraph()
         #     self.world = self.world.loopless_subgraph()
-
+        self.candidates = np.zeros(self.shape)
         self.use_monotone = use_monotone
         self.match_fixed_costs = match_fixed_costs
 
@@ -448,7 +461,7 @@ class InexactMatchingProblem(MatchingProblemBase):
     def global_costs(self, value):
         self._global_costs[:] = value
 
-    def candidates(self, tmplt_idx=None):
+    def get_candidates(self, tmplt_idx=None):
         """Get the matrix of compatibility between template and world nodes.
 
         World node j is considered to be a candidate for a template node i if
@@ -468,13 +481,17 @@ class InexactMatchingProblem(MatchingProblemBase):
             # return np.logical_and(self.global_costs < self.global_cost_threshold,
             #                       ~np.isclose(self.global_costs, self.global_cost_threshold))
             if tmplt_idx is not None:
-                return self.global_costs[tmplt_idx] < (self.global_cost_threshold - 1e-8)
-            return self.global_costs < (self.global_cost_threshold - 1e-8) & self.fixed_costs < float("inf")
+                smp.candidates = self.global_costs[tmplt_idx] < (self.global_cost_threshold - 1e-8)
+                return smp.candidates.cooy()
+            smp.candidates = self.global_costs < (self.global_cost_threshold - 1e-8) & self.fixed_costs < float("inf")
+            return smp.candidates.copy()
         # return np.logical_or(self.global_costs <= self.global_cost_threshold,
         #                      np.isclose(self.global_costs, self.global_cost_threshold))
         if tmplt_idx is not None:
-            return self.global_costs[tmplt_idx] <= (self.global_cost_threshold + 1e-8) & self.fixed_costs < float("inf")
-        return np.bitwise_and(self.global_costs <= (self.global_cost_threshold + 1e-8), self.fixed_costs < float("inf"))
+            smp.candidates = self.global_costs[tmplt_idx] <= (self.global_cost_threshold + 1e-8) & self.fixed_costs < float("inf")
+            return smp.candidates.copy()
+        self.candidates = np.bitwise_and(self.global_costs <= (self.global_cost_threshold + 1e-8), self.fixed_costs < float("inf"))
+        return self.candidates.copy()
 
     def reduce_world(self):
         """Reduce the size of the world graph.
@@ -581,7 +598,7 @@ def add_noise(G):
     return G
 
 def create_candidates(g1,g2,natts2g2nids):
-    candidates = np.zeros([len(g1.nodes),len(g2.nodes)],dtype = np.byte).view(MonotoneArray)
+    candidates = np.zeros([len(g1.nodes),len(g2.nodes)],dtype = np.byte)
     for attr in natts2g2nids.keys():
         rows = list(natts2g2nids[attr]['g1'])
         colums = list(natts2g2nids[attr]['g2'])
@@ -590,10 +607,10 @@ def create_candidates(g1,g2,natts2g2nids):
     return candidates                   
 
 if __name__ == "__main__":
-    with open('/root/uclasm/toy_g1.pkl','rb') as f:
+    with open('/home/kli16/ISM_custom/esm/toy_g1.pkl','rb') as f:
         g1 = pickle.load(f)
         g1 = add_noise(g1)
-    with open('/root/uclasm/toy_g2.pkl','rb') as f:
+    with open('/home/kli16/ISM_custom/esm/toy_g2.pkl','rb') as f:
         g2 = pickle.load(f)
     smp = InexactMatchingProblem(g1,g2,global_cost_threshold=3)
     natts2g2nids = defaultdict(lambda: defaultdict(set))
@@ -607,7 +624,7 @@ if __name__ == "__main__":
     smp.prevent_match(tmplt_indices, world_indices)
     edgewise_no_attrs(smp)
     from_local_bounds(smp)
-    candidates  = smp.candidates() 
+    candidates  = smp.get_candidates() 
     search_tree = greedy_best_k_matching_custom(smp,k=1,nodewise=False, verbose=True)
 
 

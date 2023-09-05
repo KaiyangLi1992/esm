@@ -297,6 +297,7 @@ class OurDataset(object):
         rtn = {}
         for i, g in enumerate(self.gs):
             rtn[g.gid()] = i
+            print(g.gid())
         return rtn
 
     def _gen_id_map(self):

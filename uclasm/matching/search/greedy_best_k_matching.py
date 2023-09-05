@@ -85,7 +85,7 @@ def greedy_best_k_matching(smp, k=1, nodewise=True, edgewise=True,
     current_matching = {}
 
     # Initialize matching with known matches
-    candidates = smp.candidates()
+    candidates = smp.get_candidates()
     for i in range(smp.tmplt.number_of_nodes()):
         if np.sum(candidates[i]) == 1:
             current_matching[i] = np.argwhere(candidates[i])[0][0]
@@ -132,7 +132,7 @@ def greedy_best_k_matching(smp, k=1, nodewise=True, edgewise=True,
         iterate_to_convergence(curr_smp, reduce_world=False, nodewise=nodewise,
                                edgewise=edgewise)
         matching_dict = dict_from_tuple(current_state.matching)
-        candidates = curr_smp.candidates()
+        candidates = curr_smp.get_candidates()
         # Identify template node with the least number of candidates
         cand_counts = np.sum(candidates, axis=1)
         # Prevent previously matched template idxs from being chosen
@@ -214,10 +214,10 @@ def create_new_state(smp, tmplt_idx, cand_idx, matching):
     return new_state
 
 def impose_state_assignments_on_smp(smp, tmplt_idx, state, **kwargs):
-    cand_counts = smp.candidates().sum(axis=1)
+    cand_counts = smp.get_candidates().sum(axis=1)
     smp.enforce_matching(state.matching)
     # from_local_bounds(smp) # TODO: There is a chance this call makes the code slower.
-    # changed_cands = smp.candidates().sum(axis=1) != cand_counts
+    # changed_cands = smp.get_candidates().sum(axis=1) != cand_counts
     # TODO: Bring back reduce_world and modify the changed_cands as needed.
     # TODO: If it makes your life easier, modify the reduce_world functin to give you the index maps you need.
     # Do not reduce world as it can mess up the world indices in the matching
@@ -275,7 +275,7 @@ def add_new_solution(smp, solution_state, tmplt_idx, solutions, k, **kwargs):
     return False
 
 def next_matchings(smp, state):
-    candidates = smp.candidates()
+    candidates = smp.get_candidates()
 
     # TODO: Wrap the next few lines into a function in search_utils.py unless you reuse them.
     # Identify template node with the least number of candidates
@@ -380,7 +380,7 @@ def _greedy_best_k_matching_recursive(smp, *, current_state, k,
     del smp._local_costs
     smp._local_costs = None
 
-    # candidates = smp.candidates()
+    # candidates = smp.get_candidates()
     # cand_idxs = list(np.argwhere(candidates[tmplt_idx]).flatten())
     cand_idxs = list(np.argwhere(smp.candidates(tmplt_idx)).flatten())
     if verbose:
@@ -438,7 +438,7 @@ def _greedy_best_k_matching_recursive(smp, *, current_state, k,
                 break
             else:
                 print("Updated current state cost from", old_cost, "to:", current_state.cost)
-            candidates = smp.candidates()
+            candidates = smp.get_candidates()
             if not np.all(np.any(candidates, axis=1)):
                 print("No candidates remaining for template nodes ", list(smp.tmplt.nodes[~np.any(candidates,axis=1)]))
                 break
@@ -469,7 +469,7 @@ def greedy_best_k_matching_recursive(orig_smp, k=1, nodewise=True, edgewise=True
 
     smp = orig_smp.copy(copy_graphs=False)
     current_state = State()  # Consider initializing this at the end of the block with arguments of `matching` and `cost`
-    candidates = smp.candidates()
+    candidates = smp.get_candidates()
 
     matching_dict = matching_dict_from_candidates(candidates)
     current_state.matching = tuple_from_dict(matching_dict)

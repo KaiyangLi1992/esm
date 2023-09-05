@@ -1,5 +1,5 @@
 import networkx as nx
-
+from config import FLAGS
 #########################################################################
 # Double Dictionary
 #########################################################################
@@ -123,3 +123,27 @@ class SearchTree(object):
 
     def assign_val_to_edge(self, eid, key, val):
         self.nxgraph.edges[eid][key] = val
+    def assign_v_search_tree(self, discount):  # , g1, g2):
+        self.root.assign_v(discount)
+
+def get_natts_hash(node):
+    if 'fuzzy_matching' in FLAGS.reward_calculator_mode:
+        natts = []
+    else:
+        natts = FLAGS.node_feats_for_sm
+    natts_hash = tuple([node[natt] for natt in natts])
+    return natts_hash
+
+
+def unroll_bidomains(natts2bds):
+    bidomains = [bd for bds in natts2bds.values() for bd in bds]
+    return bidomains
+class Bidomain(object):
+    def __init__(self, left, right, natts, bid=None):
+        self.left = left
+        self.right = right
+        self.natts = natts
+        self.bid = bid
+
+    def __len__(self):
+        return len(self.left) * len(self.right)

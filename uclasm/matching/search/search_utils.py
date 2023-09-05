@@ -1,9 +1,16 @@
 """Utility functions and classes for search"""
 import numpy as np
-
+from collections import defaultdict
+from .data_structures_search_tree import Bidomain
 import global_cost_bound
 import local_cost_bound
-
+def assign_bids(natts2bds):
+    # to ensure that given the same natts2bds, bid assignment is deterministic => sorted
+    bid = 0
+    for natts in sorted(natts2bds.keys()):
+        for bd in natts2bds[natts]:
+            bd.bid = bid
+            bid += 1
 class State:
     """A state for the greedy search algorithm.
     Attributes
@@ -13,13 +20,32 @@ class State:
     cost: float
         Estimated cost of the matching.
     """
-    def __init__(self,cum_reward=0,num_steps=0):
+    def __init__(self,g1,g2,natts2g2nids,edge_index1,edge_index2,adj_list1,adj_list2,ins_g1,ins_g2,cur_id,
+                 natts2bds={},nn_map_neighbors = {'g1': set(), 'g2': set()},cum_reward=0,num_steps=0,):
         self.matching = None
         self.matching_dict = None
         self.action_next_list = []
         self.cost = float("inf")
         self.cum_reward = cum_reward
         self.num_steps = num_steps
+        self.v_search_tree = 0  # exhausted_q_max_LB
+        self.natts2bds = natts2bds
+        self.natts2g2nids = natts2g2nids
+        self.nn_map_neighbors = nn_map_neighbors
+        self.exhausted_v = set() 
+        self.exhausted_w = set() 
+        self.edge_index1 = edge_index1
+        self.edge_index2 = edge_index2
+        self.adj_list1 = adj_list1
+        self.adj_list2 = adj_list2
+        self.g1 = g1
+        self.g2 = g2
+        self.ins_g1 = ins_g1
+        self.ins_g2 = ins_g2
+        self.cur_id = cur_id
+        
+    
+        
 
     def __lt__(self, other):
         # TODO: Is this function the source of your sorting related time expenditures?
@@ -29,6 +55,58 @@ class State:
 
     def __str__(self):
         return str(self.matching) + ": " + str(self.cost)
+    def assign_v(self, discount):
+        # unrolling the recursive function calls
+        state_stack_order = [self]
+        state_stack_compute = []
+        while len(state_stack_order) != 0:
+            state_popped = state_stack_order.pop()
+            state_stack_compute.append(state_popped)
+            for action_next in state_popped.action_next_list:
+                state_stack_order.append(action_next.state_next)
+
+        # recursively compute LB
+        for state in state_stack_compute[::-1]:
+            for action_next in state.action_next_list:
+                v_max_next_state = action_next.state_next.v_search_tree
+                q_max_cur_state = \
+                    action_next.reward + discount * v_max_next_state
+                state.v_search_tree = max(state.v_search_tree, q_max_cur_state)
+    def get_natts2bds_unexhausted(self, with_bids=True):
+        if len(self.matching_dict) == 0:
+            natts2bds_unexhausted = self.get_natts2bds_ubd_unexhausted()
+        else:
+            natts2bds_unexhausted = self.get_natts2bds_abd_unexhausted()
+        if with_bids:
+            assign_bids(natts2bds_unexhausted)
+        return natts2bds_unexhausted
+    def get_natts2bds_abd_unexhausted(self):
+        natts2bds_unexhausted = defaultdict(list)
+        for natts, bds in self.natts2bds.items():
+            for bd in bds:
+                assert bd.natts == natts
+                if len(bd.left.intersection(self.exhausted_v)) > 0 or \
+                        len(bd.right.intersection(self.exhausted_w)) > 0:
+                    left = bd.left - self.exhausted_v
+                    right = bd.right - self.exhausted_w
+                    if len(left) > 0 and len(right) > 0:
+                        natts2bds_unexhausted[natts].append(
+                            Bidomain(left, right, natts)
+                        )
+                else:
+                    assert len(bd.left) > 0 and len(bd.right) > 0
+                    natts2bds_unexhausted[natts].append(bd)
+        return natts2bds_unexhausted
+    def get_natts2bds_ubd_unexhausted(self):
+        natts2bds_unexhausted = defaultdict(list)
+        for natts, g2nids in self.natts2g2nids.items():
+            left = g2nids['g1'] - self.exhausted_v
+            right = g2nids['g2'] - self.exhausted_w
+            if len(left) > 0 and len(right) > 0:
+                natts2bds_unexhausted[natts].append(
+                    Bidomain(left, right, natts)
+                )
+        return natts2bds_unexhausted
 
 def tuple_from_dict(dict):
     """Turns a dict into a representative sorted tuple of 2-tuples.
@@ -98,7 +176,7 @@ def add_node_attr_costs_identity(smp):
         nonempty_attrs = tmplt_row[1:] != ""
         smp.fixed_costs[tmplt_idx] += (tmplt_row_np[None, 1:][:,nonempty_attrs] != world_nodelist_np[:,1:][:,nonempty_attrs]).sum(axis=1)
 
-def iterate_to_convergence(smp, reduce_world=True, nodewise=True,
+def iterate_to_convergence(smp, reduce_world=True, nodewise=False,
                            edgewise=True, changed_cands=None, verbose=False):
     """Iterates the various cost bounds until the costs converge.
     Parameters
@@ -117,7 +195,7 @@ def iterate_to_convergence(smp, reduce_world=True, nodewise=True,
     if changed_cands is None:
         changed_cands = np.ones((smp.tmplt.number_of_nodes(),), dtype=np.bool)
 
-    old_candidates = smp.candidates().copy()
+    old_candidates = smp.get_candidates().copy()
     if smp._local_costs is not None:
         global_cost_bound.from_local_bounds(smp)
 
@@ -137,7 +215,7 @@ def iterate_to_convergence(smp, reduce_world=True, nodewise=True,
             # local_cost_bound.edgewise(smp, changed_cands=changed_cands)
             local_cost_bound.edgewise(smp)
             global_cost_bound.from_local_bounds(smp)
-        candidates = smp.candidates()
+        candidates = smp.get_candidates()
         if ~np.any(candidates):
             break
         changed_cands = np.any(candidates != old_candidates, axis=1)
@@ -145,7 +223,7 @@ def iterate_to_convergence(smp, reduce_world=True, nodewise=True,
             break
         if reduce_world:
             smp.reduce_world()
-        old_candidates = smp.candidates().copy()
+        old_candidates = smp.get_candidates().copy()
         if smp.match_fixed_costs:
             # Remove non-candidates permanently by setting fixed costs to infinity
             non_cand_mask = np.ones(smp.shape, dtype=np.bool)

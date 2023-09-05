@@ -20,7 +20,7 @@ from copy import deepcopy
 from matching_problem_custom import InexactMatchingProblem,create_candidates
 from local_cost_bound.edgewise_custom import edgewise_no_attrs
 from global_cost_bound.from_local_bounds_custom import from_local_bounds
-from search.greedy_best_k_matching import greedy_best_k_matching_custom
+from search.greedy_best_k_matching_custom import greedy_best_k_matching_custom
 
 PRETRAIN_MODE = 'pr'
 IMITATION_MODE = 'il'
@@ -51,7 +51,12 @@ class McspVec():
         self.ldeg = ldeg
         self.rdeg = rdeg
 
-
+class BufferEntry():
+    def __init__(self, edge, g1, g2, search_tree):
+        self.edge = edge
+        self.g1 = g1
+        self.g2 = g2
+        self.search_tree = search_tree
 
 class SMRLBacktrack(nn.Module):
     def __init__(self, in_dim, tot_num_train_pairs, feat_map, Q_sampling,
@@ -228,7 +233,7 @@ class SMRLBacktrack(nn.Module):
 
     def _forward_single_tree(self, forward_mode, cur_id, pair, state_init):
         g1 = pair.g1.get_nxgraph()
-        g2 = pair.g1.get_nxgraph()
+        g2 = pair.g2.get_nxgraph()
         smp = InexactMatchingProblem(g1,g2)
         natts2g2nids = defaultdict(lambda: defaultdict(set))
         for nid in range(g1.number_of_nodes()):
@@ -242,7 +247,9 @@ class SMRLBacktrack(nn.Module):
         smp.candidates = candidates 
         edgewise_no_attrs(smp)
         from_local_bounds(smp)
-        search_tree = greedy_best_k_matching_custom(smp,k=1,nodewise=False, verbose=True)
+        search_tree,_ = greedy_best_k_matching_custom(smp,state_init,k=1,nodewise=False, verbose=True)
+        self.post_process(search_tree, pair)
+        return search_tree,_
 
 
 
@@ -278,7 +285,7 @@ class SMRLBacktrack(nn.Module):
         #     # update incumbent
         #     if self.is_better_solution(cur_state, len(incumbent)):
         #         # print(f'on iteration {recursion_count}:\t{len(incumbent)}')
-        #         incumbent = deepcopy(cur_state.nn_map)
+        #         incumbent = deepcopy(cur_state.matching_dict)
         #         incumbent_list.append(
         #             [incumbent, recursion_count, timer.get_duration()])
 
@@ -382,7 +389,7 @@ class SMRLBacktrack(nn.Module):
             self.rgrade[w] += min(len(bd.left), len(bd.right))
         # unconnected bidomains: we do this because the unconnected bd is usually too big to fit in memory
         natts2g2abd_sg_nids = \
-            get_natts2g2abd_sg_nids(state.natts2g2nids, state.natts2bds, state.nn_map)
+            get_natts2g2abd_sg_nids(state.natts2g2nids, state.natts2bds, state.matching_dict)
         for natts, g2nids in state.natts2g2nids.items():
             if natts in natts2g2abd_sg_nids:
                 g2abd_sg_nids = natts2g2abd_sg_nids[natts]
@@ -572,7 +579,7 @@ class SMRLBacktrack(nn.Module):
 
                 # get possible node pairs from list of bidomains
                 # all combinations of nodes from bd.left and bd.right for all bds
-                if is_mcsp and len(state.nn_map) == 0:
+                if is_mcsp and len(state.matching_dict) == 0:
                     # bds_pruned_i = invert_bds(natts2bds_pruned, state)
                     action_space = self._get_empty_action_space()
                     break
@@ -775,10 +782,10 @@ class SMRLBacktrack(nn.Module):
             for nid in range(g2.number_of_nodes()):
                 natts2g2nids[get_natts_hash(g2.nodes[nid])]['g2'].add(nid)
             natts2bds = {}
-            with open('toy_g1.pkl','wb') as f:
-                pickle.dump(g1,f)
-            with open('toy_g2.pkl','wb') as f:
-                pickle.dump(g2,f)
+            # with open('toy_g1.pkl','wb') as f:
+            #     pickle.dump(g1,f)
+            # with open('toy_g2.pkl','wb') as f:
+            #     pickle.dump(g2,f)
             
             natts2g2abd_sg_nids = \
                 get_natts2g2abd_sg_nids(natts2g2nids, natts2bds, nn_map)
@@ -857,12 +864,12 @@ class SMRLBacktrack(nn.Module):
         cur_state, promise = search_stack.pop_task(method)
 
         if self.is_better_solution(cur_state, incumbent_local_len):
-            incumbent_local_len = len(cur_state.nn_map)
+            incumbent_local_len = len(cur_state.matching_dict)
             since_last_update_count = 0
         else:
             if method == 'heap':
-                since_last_update_count = 0  # -(len(incumbent) - len(cur_state.nn_map))
-                incumbent_local_len = len(cur_state.nn_map)
+                since_last_update_count = 0  # -(len(incumbent) - len(cur_state.matching_dict))
+                incumbent_local_len = len(cur_state.matching_dict)
             elif method == 'stack':
                 since_last_update_count += 1
             else:
@@ -870,7 +877,7 @@ class SMRLBacktrack(nn.Module):
         return cur_state, promise, incumbent_local_len, since_last_update_count
 
     def is_better_solution(self, cur_state, incumbent_len):
-        return len(cur_state.nn_map) > incumbent_len
+        return len(cur_state.matching_dict) > incumbent_len
 
     def exit_condition(self, recursion_count, timer, since_last_update_count):
         # exit search if recursion threshold
@@ -886,23 +893,23 @@ class SMRLBacktrack(nn.Module):
 
         # check prune conditions
         empty_action_space = len(action_space_data.natts2bds_unexhausted) == 0
-        bnb_condition = len(cur_state.nn_map) + bound <= len(incumbent)
+        bnb_condition = len(cur_state.matching_dict) + bound <= len(incumbent)
         return empty_action_space or ((not self.no_pruning) and bnb_condition), search_stack
 
-    def post_process(self, forward_mode, cur_id, search_tree, pair, incumbent, incumbent_list,
-                     timer):
+    def post_process(self, search_tree, pair):
         EMBEDDING_SAVER.clear()
         g1, g2 = pair.g1.get_nxgraph(), pair.g2.get_nxgraph()
-        search_tree.assign_v_search_tree(self.reward_calculator.discount)
-        if not self.training and FLAGS.load_model is not None:
-            incumbent_end, recursion_iter_end, time_end = incumbent_list[-1]
-            saver.log_info('=========================')
-            saver.log_info(f'{forward_mode}')
-            saver.log_info(f'curriculum {cur_id}: pair {g1.graph["gid"]},{g2.graph["gid"]}')
-            saver.log_info(f'length of largest incumbent: {len(incumbent_end)}')
-            saver.log_info(f'iteration at end: {recursion_iter_end}')
-            saver.log_info(f'time at end: {time_end}')
-            saver.log_info('=========================')
+        #### Note:discount is 1 now ####
+        search_tree.assign_v_search_tree(1)
+        # if not self.training and FLAGS.load_model is not None:
+        #     incumbent_end, recursion_iter_end, time_end = incumbent_list[-1]
+        #     saver.log_info('=========================')
+        #     saver.log_info(f'{forward_mode}')
+        #     saver.log_info(f'curriculum {cur_id}: pair {g1.graph["gid"]},{g2.graph["gid"]}')
+        #     saver.log_info(f'length of largest incumbent: {len(incumbent_end)}')
+        #     saver.log_info(f'iteration at end: {recursion_iter_end}')
+        #     saver.log_info(f'time at end: {time_end}')
+        #     saver.log_info('=========================')
 
     def search_tree2buffer_entry_list(self, search_tree, pair):
         if self.training:
@@ -925,7 +932,7 @@ class SMRLBacktrack(nn.Module):
     def calc_bound(self, state, exhaust_revisited_nodes=True):
         natts2g2nids = state.natts2g2nids
         natts2bds = state.natts2bds
-        nn_map = state.nn_map
+        nn_map = state.matching_dict
 
         # MUST USE UNFILTERED natts2bds OTHERWISE WILL DROP THE EXHAUSTED NODES!
         natts2g2abd_sg_nids = \
@@ -1080,7 +1087,7 @@ class SMRLBacktrack(nn.Module):
             timer_env = OurTimer()
             timer_env.time_and_clear(f'environment starts')
 
-        nn_map = deepcopy(state.nn_map)
+        nn_map = deepcopy(state.matching_dict)
         exhausted_v, exhausted_w = state.exhausted_v, state.exhausted_w
         if 'mcsp' in self.DQN_mode:
             pruned_actions = state.pruned_actions
@@ -1504,7 +1511,7 @@ class SMRLBacktrack(nn.Module):
                 'buffer size {} ' \
                 'pair_id {}'.format(
                     state.g1.number_of_nodes(), state.g2.number_of_nodes(),
-                    len(state.nn_map), loss.item(), len(self.buffer),
+                    len(state.matching_dict), loss.item(), len(self.buffer),
                     (state.g1.graph['gid'], state.g2.graph['gid']))
             )
 

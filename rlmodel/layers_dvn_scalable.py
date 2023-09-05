@@ -406,8 +406,8 @@ class DVN(nn.Module):
     def get_state_key(self, dqn_input, ext=''):
         hierarchy = f'state_{ext}'
         sub_key = (dqn_input.pair_id,
-                   frozenset(dqn_input.state.nn_map.keys()),
-                   frozenset(dqn_input.state.nn_map.values()))
+                   frozenset(dqn_input.state.matching_dict.keys()),
+                   frozenset(dqn_input.state.matching_dict.values()))
         key = (hierarchy, sub_key)
         return key
 
@@ -429,8 +429,8 @@ class DVN(nn.Module):
 
     def compute_sg(self, embs, dqn_input):
         x1, x2 = embs
-        sgs1 = torch.sum(x1[list(dqn_input.state.nn_map.keys())], dim=0).view(1, -1)
-        sgs2 = torch.sum(x2[list(dqn_input.state.nn_map.values())], dim=0).view(1, -1)
+        sgs1 = torch.sum(x1[list(dqn_input.state.matching_dict.keys())], dim=0).view(1, -1)
+        sgs2 = torch.sum(x2[list(dqn_input.state.matching_dict.values())], dim=0).view(1, -1)
         sgs = (sgs1, sgs2)
         return sgs
 
@@ -448,7 +448,7 @@ class DVN(nn.Module):
             elif emb_mode == 'ubds':
                 natts2g2abd_sg_nids = \
                     get_natts2g2abd_sg_nids(
-                        state.natts2g2nids, state.natts2bds, state.nn_map)
+                        state.natts2g2nids, state.natts2bds, state.matching_dict)
                 bds1_list_raw, bds2_list_raw = [], []
                 for natts, g2nids in state.natts2g2nids.items():
                     # ubd(label = i) = sum(x[g(label = i) - (sum_j abd_j(label = i) + sg(label=i))])
@@ -574,12 +574,12 @@ class DVN(nn.Module):
             x1_in,
             sg1_nid,
             dqn_input.valid_edge_index1,
-            set(dqn_input.state.nn_map.keys()).union({v}))
+            set(dqn_input.state.matching_dict.keys()).union({v}))
         x2_in, edge_index2 = self.collapse_graph(
             x2_in,
             sg2_nid,
             dqn_input.valid_edge_index2,
-            set(dqn_input.state.nn_map.values()).union({w}))
+            set(dqn_input.state.matching_dict.values()).union({w}))
         return x1_in, x2_in, edge_index1, edge_index2
 
     def collapse_graph(self, x_in, sg_nid, edge_index, sg_nodes):
@@ -593,8 +593,8 @@ class DVN(nn.Module):
         return x_in, edge_index
 
     def get_valid_indices(self, x1, x2, state):
-        masked_nodes_l = set(state.nn_map.keys())
-        masked_nodes_r = set(state.nn_map.values())
+        masked_nodes_l = set(state.matching_dict.keys())
+        masked_nodes_r = set(state.matching_dict.values())
         valid_indices1 = set(range(x1.size(0))) - masked_nodes_l
         valid_indices2 = set(range(x2.size(0))) - masked_nodes_r
         return valid_indices1, valid_indices2
