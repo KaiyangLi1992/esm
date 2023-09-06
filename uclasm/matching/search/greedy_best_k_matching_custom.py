@@ -9,7 +9,8 @@ import time
 import networkx as nx
 import time
 from .data_structures_search_tree  import SearchTree, ActionEdge,get_natts_hash,Bidomain
-from .search_utils import *
+from data_structures_search_tree_scalable import State,unroll_bidomains,ActionSpaceData
+from .search_utils import tuple_from_dict,iterate_to_convergence,dict_from_tuple
 from global_cost_bound import *
 from local_cost_bound import *
 from matching_problem import MatchingProblem
@@ -17,6 +18,29 @@ from utils import one_hot
 from heapq import heappush, heappop,heapify
 from collections import defaultdict
 from batch import create_edge_index,create_adj_set
+
+def get_action_space_data_wrapper_custom(tmplt_id,cand_ids,state):
+    # get action space
+    natts2bds_unexhausted = state.get_natts2bds_unexhausted(with_bids=True)
+
+    action_space_size_unexhausted_unpruned = len(cand_ids)
+    bidomains = unroll_bidomains(natts2bds_unexhausted)
+    action_space = [[tmplt_id for i in cand_ids],cand_ids,[0 for i in cand_ids]]
+    natts2bds_pruned = bidomains
+
+
+    
+
+    # put action space into a wrapper
+    action_space_data = \
+        ActionSpaceData(
+            action_space,
+            natts2bds_pruned,
+            action_space_size_unexhausted_unpruned
+        )
+
+    return action_space_data
+
 
 def swap_source_target(graph):
     new_graph = nx.DiGraph()
@@ -89,13 +113,13 @@ def update_bidomains(g1, g2, action, nn_map, nn_map_neighbors, natts2bds, natts2
                 Bidomain(left_1_natts, right_1_natts, natts))
     return natts2bds_new, nn_map_neighbors_new
     
-def get_reward(tmplt_idx,cand_idx,smp,state):
-    tmplt_nx = smp.tmplt
-    cand_nx = smp.world
+def get_reward(tmplt_idx,cand_idx,state,g1,g2,g1_reverse,g2_reverse):
+    tmplt_nx = g1
+    cand_nx = g2
     neighbors = set([n for n in tmplt_nx[tmplt_idx]])
-    tmplt_matched_nodes = set([n for n in state.matching_dict.keys()])
+    tmplt_matched_nodes = set([n for n in state.nn_map.keys()])
     tmplt_node_intersection  = neighbors.intersection(tmplt_matched_nodes)
-    cand_node_intersection = set([state.matching_dict[n] for n in list(tmplt_node_intersection)])
+    cand_node_intersection = set([state.nn_map[n] for n in list(tmplt_node_intersection)])
     neighbors_cand = set([n for n in cand_nx[cand_idx]])
 
     posi_reward = len(list(neighbors_cand.intersection(cand_node_intersection)))
@@ -105,14 +129,14 @@ def get_reward(tmplt_idx,cand_idx,smp,state):
     start_time = time.time()
     # tmplt_nx = nx.from_scipy_sparse_matrix(nx.to_scipy_sparse_matrix(tmplt_nx).T)
     # cand_nx = nx.from_scipy_sparse_matrix(nx.to_scipy_sparse_matrix(cand_nx).T)
-    tmplt_nx = smp.reverse_tmplt 
-    cand_nx = smp.reverse_world 
+    tmplt_nx = g1_reverse
+    cand_nx = g2_reverse
     end_time = time.time()
     execution_time = end_time - start_time
     neighbors = set([n for n in tmplt_nx[tmplt_idx]])
-    tmplt_matched_nodes = set([n for n in state.matching_dict.keys()])
+    tmplt_matched_nodes = set([n for n in state.nn_map.keys()])
     tmplt_node_intersection  = neighbors.intersection(tmplt_matched_nodes)
-    cand_node_intersection = set([state.matching_dict[n] for n in list(tmplt_node_intersection)])
+    cand_node_intersection = set([state.nn_map[n] for n in list(tmplt_node_intersection)])
     neighbors_cand = set([n for n in cand_nx[cand_idx]])
 
     posi_reward = len(list(neighbors_cand.intersection(cand_node_intersection)))
@@ -147,6 +171,8 @@ def greedy_best_k_matching_custom(smp,state_init, k=1, nodewise=True, edgewise=T
 
     g1 = smp.tmplt
     g2 = smp.world
+    g1_reverse = smp.reverse_tmplt
+    g2_reverse = smp.reverse_world
     # natts2g2nids = defaultdict(lambda: defaultdict(set))
     # for nid in range(g1.number_of_nodes()):
     #     natts2g2nids[get_natts_hash(g1.nodes[nid])]['g1'].add(nid)
@@ -159,15 +185,23 @@ def greedy_best_k_matching_custom(smp,state_init, k=1, nodewise=True, edgewise=T
     #             create_adj_set(g1), create_adj_set(g2)
 
     start_state = State(natts2g2nids=state_init.natts2g2nids,g1=smp.tmplt,g2=smp.world,
+                        g1_reverse = smp.reverse_tmplt,g2_reverse=smp.reverse_world,
                         edge_index1=state_init.edge_index1,edge_index2=state_init.edge_index2,
                         adj_list1=state_init.adj_list1,adj_list2=state_init.adj_list2,
-                        ins_g1=state_init.ins_g1,ins_g2=state_init.ins_g2,cur_id=state_init.cur_id)
-    
-    start_state.matching_dict = current_matching
+                        ins_g1=state_init.ins_g1,ins_g2=state_init.ins_g2,cur_id=state_init.cur_id,
+                        nn_map = state_init.nn_map,
+                        natts2bds = state_init.natts2bds,
+                        degree_mat = state_init.degree_mat,
+                        sgw_mat = state_init.sgw_mat,
+                        pca_mat = state_init.pca_mat,
+                        mcsp_vec = state_init.mcsp_vec,
+                        MCS_size_UB = state_init.MCS_size_UB)
+                        
+    start_state.nn_map = current_matching
     start_state.matching = tuple_from_dict(current_matching)
     start_state.cost = smp.global_costs.min()
     matched_nodes = [nodes for nodes in current_matching.keys()]
-    start_state.cum_reward = get_init_reward(matched_nodes,smp.tmplt)
+    start_state.cum_reward = 0
     search_tree = SearchTree(start_state)
     cost_map[start_state.matching] = start_state.cost
 
@@ -184,7 +218,7 @@ def greedy_best_k_matching_custom(smp,state_init, k=1, nodewise=True, edgewise=T
     step = 0
 
     while len(open_list) > 0:
-        print(len(open_list))
+       
         current_state = heappop(open_list)
         # Ignore states whose cost is too high
         if current_state.cost > smp.global_cost_threshold or current_state.cost >= kth_cost:
@@ -209,30 +243,41 @@ def greedy_best_k_matching_custom(smp,state_init, k=1, nodewise=True, edgewise=T
                                edgewise=edgewise)
         end_time = time.time()
         execution_time = end_time - start_time
-        matching_dict = dict_from_tuple(current_state.matching)
+        nn_map = dict_from_tuple(current_state.matching)
         candidates = curr_smp.get_candidates()
         # Identify template node with the least number of candidates
         cand_counts = np.sum(candidates, axis=1)
         # Prevent previously matched template idxs from being chosen
-        cand_counts[list(matching_dict)] = np.max(cand_counts) + 1
+        cand_counts[list(nn_map)] = np.max(cand_counts) + 1
         tmplt_idx = np.argmin(cand_counts)
         cand_idxs = np.argwhere(candidates[tmplt_idx]).flatten()
+        action_space = get_action_space_data_wrapper_custom(tmplt_idx,cand_idxs,current_state)
+        current_state.action_space = action_space
         # if verbose:
         #     print("Choosing candidate for", tmplt_idx,
         #           "with {} possibilities".format(len(cand_idxs)))
 
         # Only push states that have a total cost bound lower than the threshold
         for cand_idx in cand_idxs:
-            new_matching = matching_dict.copy()
+            new_matching = nn_map.copy()
             new_matching[tmplt_idx] = cand_idx
             new_matching_tuple = tuple_from_dict(new_matching)
             if new_matching_tuple not in cost_map:
                 new_state = State(natts2g2nids = state_init.natts2g2nids,g1=smp.tmplt,g2=smp.world,
+                                  g1_reverse=smp.reverse_tmplt,g2_reverse=smp.reverse_world,
                                   edge_index1=current_state.edge_index1,edge_index2=current_state.edge_index2,
                                   adj_list1=current_state.adj_list1,adj_list2=current_state.adj_list2,
                                   ins_g1=current_state.ins_g1,ins_g2=current_state.ins_g2,
-                                  cur_id=current_state.cur_id)
-                new_state.matching_dict = new_matching 
+                                  cur_id=current_state.cur_id,nn_map = current_state.nn_map,
+                                  natts2bds = current_state.natts2bds,
+                                  degree_mat = current_state.degree_mat,
+                                  sgw_mat = current_state.sgw_mat,
+                                  pca_mat = current_state.pca_mat,
+                                  mcsp_vec = current_state.mcsp_vec,
+                                  MCS_size_UB = current_state.MCS_size_UB,
+                                  tree_depth=current_state.tree_depth + 1,
+                                  num_steps=current_state.num_steps + 1)
+                new_state.nn_map = new_matching 
                 new_state.matching = new_matching_tuple
                 new_state.cost = curr_smp.global_costs[tmplt_idx, cand_idx]
                 if new_state.cost > smp.global_cost_threshold or new_state.cost >= kth_cost:
@@ -241,14 +286,14 @@ def greedy_best_k_matching_custom(smp,state_init, k=1, nodewise=True, edgewise=T
                 action = (tmplt_idx,cand_idx)
                 
                 natts2bds, nn_map_neighbors =  update_bidomains(g1, g2, action, 
-                                                                current_state.matching_dict, current_state.nn_map_neighbors, 
+                                                                current_state.nn_map, current_state.nn_map_neighbors, 
                                                                 current_state.natts2bds,
                                                                 current_state.natts2g2nids)
                 new_state.natts2bds = natts2bds
                 new_state.nn_map_neighbors = nn_map_neighbors
 
                 cost_map[new_matching_tuple] = new_state.cost
-                reward = get_reward(tmplt_idx,cand_idx,smp,current_state)
+                reward = get_reward(tmplt_idx,cand_idx,current_state,g1,g2,g1_reverse,g2_reverse)
                 action_edge = ActionEdge((tmplt_idx,cand_idx),reward)
                 search_tree.link_states(
                         current_state, action_edge, new_state, 0, 1)
@@ -263,20 +308,15 @@ def greedy_best_k_matching_custom(smp,state_init, k=1, nodewise=True, edgewise=T
                         kth_cost = max(solutions).cost
                         smp.global_cost_threshold = min(smp.global_cost_threshold,
                                                         kth_cost)
-                        start_time =  time.time()
-                        iterate_to_convergence(smp, reduce_world=False, nodewise=nodewise,
-                                                   edgewise=edgewise)
+                        # start_time =  time.time()
+                        # iterate_to_convergence(smp, reduce_world=False, nodewise=nodewise,
+                        #                            edgewise=edgewise)
                         
                 else:
                     heappush(open_list, new_state)
                    
                     
-                    # end_time = time.time()
-                    # execution_time = end_time - start_time
-                    # new_state.cum_reward = current_state.cum_reward + reward
-                    # print(current_state.matching)
-                    # print((tmplt_idx,cand_idx))
-                    # print(reward)
+                
                     
             else:
                 if verbose:

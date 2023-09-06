@@ -1,7 +1,8 @@
 from batch import create_edge_index, create_adj_set
 from config import FLAGS
 from utils import OurTimer
-
+from matching.search.greedy_best_k_matching_custom import get_reward
+import copy
 from data_structures_search_tree_scalable import Bidomain, StateNode, ActionEdge, SearchTree,ActionSpaceData, unroll_bidomains, get_natts_hash, get_natts2g2abd_sg_nids
 from data_structures_buffer_scalable import BinBuffer
 from data_structures_common_scalable import StackHeap, DoubleDict, DQNInput
@@ -159,12 +160,12 @@ class SMRLBacktrack(nn.Module):
 
         if forward_mode == PRETRAIN_MODE:           
             loss = self._forward_pretrain(forward_mode, ins, batch_data, cur_id)
-        elif forward_mode == IMITATION_MODE:
-            loss = self._forward_imitation(forward_mode, ins, batch_data, cur_id)
-        elif forward_mode == TRAIN_MODE:
-            loss = self._forward_train(forward_mode, ins, batch_data, cur_id)
-        elif forward_mode == TEST_MODE:
-            loss = self._forward_test(forward_mode, ins, batch_data, cur_id)
+        # elif forward_mode == IMITATION_MODE:
+        #     loss = self._forward_imitation(forward_mode, ins, batch_data, cur_id)
+        # elif forward_mode == TRAIN_MODE:
+        #     loss = self._forward_train(forward_mode, ins, batch_data, cur_id)
+        # elif forward_mode == TEST_MODE:
+        #     loss = self._forward_test(forward_mode, ins, batch_data, cur_id)
         else:
             assert False
 
@@ -285,7 +286,7 @@ class SMRLBacktrack(nn.Module):
         #     # update incumbent
         #     if self.is_better_solution(cur_state, len(incumbent)):
         #         # print(f'on iteration {recursion_count}:\t{len(incumbent)}')
-        #         incumbent = deepcopy(cur_state.matching_dict)
+        #         incumbent = deepcopy(cur_state.nn_map)
         #         incumbent_list.append(
         #             [incumbent, recursion_count, timer.get_duration()])
 
@@ -389,7 +390,7 @@ class SMRLBacktrack(nn.Module):
             self.rgrade[w] += min(len(bd.left), len(bd.right))
         # unconnected bidomains: we do this because the unconnected bd is usually too big to fit in memory
         natts2g2abd_sg_nids = \
-            get_natts2g2abd_sg_nids(state.natts2g2nids, state.natts2bds, state.matching_dict)
+            get_natts2g2abd_sg_nids(state.natts2g2nids, state.natts2bds, state.nn_map)
         for natts, g2nids in state.natts2g2nids.items():
             if natts in natts2g2abd_sg_nids:
                 g2abd_sg_nids = natts2g2abd_sg_nids[natts]
@@ -579,7 +580,7 @@ class SMRLBacktrack(nn.Module):
 
                 # get possible node pairs from list of bidomains
                 # all combinations of nodes from bd.left and bd.right for all bds
-                if is_mcsp and len(state.matching_dict) == 0:
+                if is_mcsp and len(state.nn_map) == 0:
                     # bds_pruned_i = invert_bds(natts2bds_pruned, state)
                     action_space = self._get_empty_action_space()
                     break
@@ -804,7 +805,6 @@ class SMRLBacktrack(nn.Module):
             state_init = StateNode(ins_g1,
                                    ins_g2,
                                    nn_map,
-                                   nn_map_neighbors,
                                    natts2bds,
                                    natts2g2nids,
                                    edge_index1,
@@ -864,12 +864,12 @@ class SMRLBacktrack(nn.Module):
         cur_state, promise = search_stack.pop_task(method)
 
         if self.is_better_solution(cur_state, incumbent_local_len):
-            incumbent_local_len = len(cur_state.matching_dict)
+            incumbent_local_len = len(cur_state.nn_map)
             since_last_update_count = 0
         else:
             if method == 'heap':
-                since_last_update_count = 0  # -(len(incumbent) - len(cur_state.matching_dict))
-                incumbent_local_len = len(cur_state.matching_dict)
+                since_last_update_count = 0  # -(len(incumbent) - len(cur_state.nn_map))
+                incumbent_local_len = len(cur_state.nn_map)
             elif method == 'stack':
                 since_last_update_count += 1
             else:
@@ -877,7 +877,7 @@ class SMRLBacktrack(nn.Module):
         return cur_state, promise, incumbent_local_len, since_last_update_count
 
     def is_better_solution(self, cur_state, incumbent_len):
-        return len(cur_state.matching_dict) > incumbent_len
+        return len(cur_state.nn_map) > incumbent_len
 
     def exit_condition(self, recursion_count, timer, since_last_update_count):
         # exit search if recursion threshold
@@ -893,7 +893,7 @@ class SMRLBacktrack(nn.Module):
 
         # check prune conditions
         empty_action_space = len(action_space_data.natts2bds_unexhausted) == 0
-        bnb_condition = len(cur_state.matching_dict) + bound <= len(incumbent)
+        bnb_condition = len(cur_state.nn_map) + bound <= len(incumbent)
         return empty_action_space or ((not self.no_pruning) and bnb_condition), search_stack
 
     def post_process(self, search_tree, pair):
@@ -932,7 +932,7 @@ class SMRLBacktrack(nn.Module):
     def calc_bound(self, state, exhaust_revisited_nodes=True):
         natts2g2nids = state.natts2g2nids
         natts2bds = state.natts2bds
-        nn_map = state.matching_dict
+        nn_map = state.nn_map
 
         # MUST USE UNFILTERED natts2bds OTHERWISE WILL DROP THE EXHAUSTED NODES!
         natts2g2abd_sg_nids = \
@@ -1087,7 +1087,7 @@ class SMRLBacktrack(nn.Module):
             timer_env = OurTimer()
             timer_env.time_and_clear(f'environment starts')
 
-        nn_map = deepcopy(state.matching_dict)
+        nn_map = deepcopy(state.nn_map)
         exhausted_v, exhausted_w = state.exhausted_v, state.exhausted_w
         if 'mcsp' in self.DQN_mode:
             pruned_actions = state.pruned_actions
@@ -1378,8 +1378,9 @@ class SMRLBacktrack(nn.Module):
         next_state = edge.state_next
 
         # compute q pred
-        next_action_space_data = \
-            self.get_action_space_data_wrapper(next_state, is_mcsp=self.get_is_mcsp())
+        # next_action_space_data = \
+        #     self.get_action_space_data_wrapper(next_state, is_mcsp=self.get_is_mcsp())
+        next_action_space_data = next_state.action_space
 
         v, w = edge.action
         action_space_data = self._get_empty_action_space_data(state)
@@ -1398,9 +1399,7 @@ class SMRLBacktrack(nn.Module):
                 ).type(torch.FloatTensor)
         else:
             reward = \
-                torch.tensor(
-                    self.reward_calculator.compute_reward_batch(
-                        action_space_data.action_space, g1, g2, state, next_state),
+                torch.tensor(get_reward(v,w,state,state.g1,state.g2,state.g1_reverse,state.g2_reverse),
                     device=FLAGS.device
                 ).type(torch.cuda.FloatTensor)
 
@@ -1511,7 +1510,7 @@ class SMRLBacktrack(nn.Module):
                 'buffer size {} ' \
                 'pair_id {}'.format(
                     state.g1.number_of_nodes(), state.g2.number_of_nodes(),
-                    len(state.matching_dict), loss.item(), len(self.buffer),
+                    len(state.nn_map), loss.item(), len(self.buffer),
                     (state.g1.graph['gid'], state.g2.graph['gid']))
             )
 

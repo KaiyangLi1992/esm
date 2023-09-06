@@ -1,0 +1,379 @@
+device                     : cuda:0
+layer_num                  : 1
+reward_calculator_mode     : vanilla
+interact_ops               : ['32',
+                           :  '1dconv+max_1',
+                           :  'add']
+emb_mode_list              : ['gs',
+                           :  'sgs',
+                           :  'abds',
+                           :  'ubds']
+load_model                 : None
+model                      : SMRL_backtrack
+dataset                    : cocktail
+logging                    : end
+smarter_bin_sampling       : False
+smart_bin_sampling         : True
+subtract_sg_size           : False
+priority_correction        : False
+debug_loss_threshold       : None
+plot_final_tree            : True
+sample_entire_replay_buffer : False
+no_trivial_pairs           : True
+down_proj_by               : 4
+with_bdgnn                 : False
+with_gnn_per_action        : False
+max_chunk_size             : 64
+a2c_networks               : False
+run_bds_MLP_before_interact : False
+inverse_bd_size_order      : False
+num_bds_max                : 1
+num_nodes_degree_max       : 20
+num_nodes_dqn_max          : -1
+val_every_iter             : 100
+val_debug                  : False
+clipping_val               : -1
+supervised_before          : 1250
+imitation_before           : 3750
+recursion_threshold        : 100
+total_runtime              : -1
+long_running_val_mcsp      : False
+promise_mode               : diverse
+binarize_q_true            : False
+loss_func                  : MSE
+attention_bds              : False
+simplified_sg_emb          : True
+default_emb                : learnable
+normalize_emb              : True
+beam_search                : None
+use_cached_gnn             : False
+batched_logging            : True
+randQ                      : False
+val_method_list            : ['dqn']
+use_mcsp_policy            : False
+exclude_root               : False
+shuffle_input              : False
+dos_pred                   : None
+tvt_strategy               : holdout
+train_test_ratio           : 0.8
+lr                         : 0.0001
+num_epochs                 : None
+retain_graph               : True
+num_iters                  : -1
+validation                 : False
+throw_away                 : 0
+print_every_iters          : 5
+only_iters_for_debug       : None
+time_analysis              : False
+save_model                 : True
+batch_size                 : 1
+no_probability             : False
+positional_encoding        : False
+scalable                   : True
+no_bd_MLPs                 : False
+periodic_save              : 100
+node_feats_for_sm          : ['type']
+layer_1                    : SMRL_backtrack:Q_sampling=canonical_0.000016_0.16_0.01,
+                           : DQN_mode=tgt_q_network,
+                           : Q_BD=True,
+                           : loss_fun=mse,
+                           : q_signal=fitted-tgt-leaf,
+                           : sync_target_frames=100,
+                           : beta_reward=0,
+                           : perc_IL=-1,
+                           : buffer_start_iter=11,
+                           : buffer_size=1024,
+                           : sample_size=32,
+                           : sample_all_edges=False,
+                           : sample_all_edges_thresh=-1,
+                           : eps_testing=False,
+                           : recursion_threshold=1,
+                           : total_runtime=-1,
+                           : save_every_recursion_count=-1,
+                           : save_every_runtime=-1,
+                           : mcsplit_heuristic_on_iter_one=False,
+                           : restore_bidomains=True,
+                           : no_pruning=False,
+                           : regret_iters=3,
+                           : populate_reply_buffer_every_iter=-1,
+                           : encoder_type=abcd,
+                           : embedder_type=abcd,
+                           : interact_type=dvn,
+                           : n_dim=16,
+                           : n_layers=3,
+                           : GNN_mode=GAT,
+                           : learn_embs=True,
+                           : layer_AGG_w_MLP=True,
+                           : Q_mode=8,
+                           : Q_act=elu,
+                           : disentangle_search_tree=False,
+                           : mcsp_before_perc=0.1
+ts                         : 2023-09-05T18-45-50.009985
+
+python /home/kli16/ISM_custom/esm/rlmodel/main.py --a2c_networks=False  --attention_bds=False  --batch_size=1  --batched_logging=True  --beam_search=None  --binarize_q_true=False  --clipping_val=-1  --dataset=cocktail  --debug_loss_threshold=None  --default_emb=learnable  --device=cuda:0  --dos_pred=None  --down_proj_by=4  --emb_mode_list=['gs', 'sgs', 'abds', 'ubds']  --exclude_root=False  --imitation_before=3750  --interact_ops=['32', '1dconv+max_1', 'add']  --inverse_bd_size_order=False  --layer_1=SMRL_backtrack:Q_sampling=canonical_0.000016_0.16_0.01,DQN_mode=tgt_q_network,Q_BD=True,loss_fun=mse,q_signal=fitted-tgt-leaf,sync_target_frames=100,beta_reward=0,perc_IL=-1,buffer_start_iter=11,buffer_size=1024,sample_size=32,sample_all_edges=False,sample_all_edges_thresh=-1,eps_testing=False,recursion_threshold=1,total_runtime=-1,save_every_recursion_count=-1,save_every_runtime=-1,mcsplit_heuristic_on_iter_one=False,restore_bidomains=True,no_pruning=False,regret_iters=3,populate_reply_buffer_every_iter=-1,encoder_type=abcd,embedder_type=abcd,interact_type=dvn,n_dim=16,n_layers=3,GNN_mode=GAT,learn_embs=True,layer_AGG_w_MLP=True,Q_mode=8,Q_act=elu,disentangle_search_tree=False,mcsp_before_perc=0.1  --layer_num=1  --load_model=None  --logging=end  --long_running_val_mcsp=False  --loss_func=MSE  --lr=0.0001  --max_chunk_size=64  --model=SMRL_backtrack  --no_bd_MLPs=False  --no_probability=False  --no_trivial_pairs=True  --node_feats_for_sm=['type']  --normalize_emb=True  --num_bds_max=1  --num_epochs=None  --num_iters=-1  --num_nodes_degree_max=20  --num_nodes_dqn_max=-1  --only_iters_for_debug=None  --periodic_save=100  --plot_final_tree=True  --positional_encoding=False  --print_every_iters=5  --priority_correction=False  --promise_mode=diverse  --randQ=False  --recursion_threshold=100  --retain_graph=True  --reward_calculator_mode=vanilla  --run_bds_MLP_before_interact=False  --sample_entire_replay_buffer=False  --save_model=True  --scalable=True  --shuffle_input=False  --simplified_sg_emb=True  --smart_bin_sampling=True  --smarter_bin_sampling=False  --subtract_sg_size=False  --supervised_before=1250  --throw_away=0  --time_analysis=False  --total_runtime=-1  --train_test_ratio=0.8  --tvt_strategy=holdout  --use_cached_gnn=False  --use_mcsp_policy=False  --val_debug=False  --val_every_iter=100  --val_method_list=['dqn']  --validation=False  --with_bdgnn=False  --with_gnn_per_action=False
+
+Model(
+  (layers): ModuleList(
+    (0): SMRLBacktrack(
+      (dqn): Q_network_v1(
+        (encode): EncoderMLP(
+          (mlp): Linear(in_features=6, out_features=16, bias=True)
+        )
+        (dvn): DVN(
+          (gnn_main): GNNPropagator(
+            (GNNs): ModuleList(
+              (0): GATConv(16, 16, heads=1)
+              (1): GATConv(16, 16, heads=1)
+              (2): GATConv(16, 16, heads=1)
+            )
+            (MLPs): ModuleList(
+              (0): Linear(in_features=16, out_features=16, bias=True)
+              (1): Linear(in_features=16, out_features=16, bias=True)
+              (2): Linear(in_features=16, out_features=16, bias=True)
+            )
+            (act): ReLU()
+          )
+          (gnn_bd): GNNPropagator(
+            (GNNs): ModuleList(
+              (0): GATConvManual(16, 16, heads=1)
+              (1): GATConvManual(16, 16, heads=1)
+              (2): GATConvManual(16, 16, heads=1)
+            )
+            (MLPs): ModuleList(
+              (0): Linear(in_features=16, out_features=16, bias=True)
+              (1): Linear(in_features=16, out_features=16, bias=True)
+              (2): Linear(in_features=16, out_features=16, bias=True)
+            )
+            (act): ReLU()
+          )
+          (interact_weights): ModuleDict(
+            (gs_1dconv+max_1_3): Conv1d(1, 1, kernel_size=(3,), stride=(1,))
+            (gs_1dconv+max_1_16): Conv1d(1, 1, kernel_size=(16,), stride=(1,))
+            (gs_comb_MLP): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=31, out_features=32, bias=True)
+              )
+            )
+            (sgs_1dconv+max_1_3): Conv1d(1, 1, kernel_size=(3,), stride=(1,))
+            (sgs_1dconv+max_1_16): Conv1d(1, 1, kernel_size=(16,), stride=(1,))
+            (sgs_comb_MLP): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=31, out_features=32, bias=True)
+              )
+            )
+            (abds_1dconv+max_1_3): Conv1d(1, 1, kernel_size=(3,), stride=(1,))
+            (abds_1dconv+max_1_16): Conv1d(1, 1, kernel_size=(16,), stride=(1,))
+            (abds_comb_MLP): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=31, out_features=32, bias=True)
+              )
+            )
+            (ubds_1dconv+max_1_3): Conv1d(1, 1, kernel_size=(3,), stride=(1,))
+            (ubds_1dconv+max_1_16): Conv1d(1, 1, kernel_size=(16,), stride=(1,))
+            (ubds_comb_MLP): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=31, out_features=32, bias=True)
+              )
+            )
+          )
+          (MLP_g_big): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=16, out_features=16, bias=True)
+              (1): Linear(in_features=16, out_features=16, bias=True)
+              (2): Linear(in_features=16, out_features=16, bias=True)
+            )
+          )
+          (MLP_sg): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=16, out_features=16, bias=True)
+              (1): Linear(in_features=16, out_features=16, bias=True)
+              (2): Linear(in_features=16, out_features=16, bias=True)
+            )
+          )
+          (MLP_abds_big): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=32, out_features=32, bias=True)
+              (1): Linear(in_features=32, out_features=32, bias=True)
+              (2): Linear(in_features=32, out_features=32, bias=True)
+            )
+          )
+          (MLP_abd_big): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=16, out_features=16, bias=True)
+              (1): Linear(in_features=16, out_features=16, bias=True)
+              (2): Linear(in_features=16, out_features=16, bias=True)
+            )
+          )
+          (MLP_ubds_big): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=32, out_features=32, bias=True)
+              (1): Linear(in_features=32, out_features=32, bias=True)
+              (2): Linear(in_features=32, out_features=32, bias=True)
+            )
+          )
+          (MLP_ubd_big): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=16, out_features=16, bias=True)
+              (1): Linear(in_features=16, out_features=16, bias=True)
+              (2): Linear(in_features=16, out_features=16, bias=True)
+            )
+          )
+          (MLP_final): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=128, out_features=64, bias=True)
+              (1): Linear(in_features=64, out_features=32, bias=True)
+              (2): Linear(in_features=32, out_features=16, bias=True)
+              (3): Linear(in_features=16, out_features=8, bias=True)
+              (4): Linear(in_features=8, out_features=4, bias=True)
+              (5): Linear(in_features=4, out_features=2, bias=True)
+              (6): Linear(in_features=2, out_features=1, bias=True)
+            )
+          )
+          (Q_act): ELU(alpha=1.0)
+          (act): ELU(alpha=1.0)
+        )
+      )
+      (dqn_tgt): Q_network_v1(
+        (encode): EncoderMLP(
+          (mlp): Linear(in_features=6, out_features=16, bias=True)
+        )
+        (dvn): DVN(
+          (gnn_main): GNNPropagator(
+            (GNNs): ModuleList(
+              (0): GATConv(16, 16, heads=1)
+              (1): GATConv(16, 16, heads=1)
+              (2): GATConv(16, 16, heads=1)
+            )
+            (MLPs): ModuleList(
+              (0): Linear(in_features=16, out_features=16, bias=True)
+              (1): Linear(in_features=16, out_features=16, bias=True)
+              (2): Linear(in_features=16, out_features=16, bias=True)
+            )
+            (act): ReLU()
+          )
+          (gnn_bd): GNNPropagator(
+            (GNNs): ModuleList(
+              (0): GATConvManual(16, 16, heads=1)
+              (1): GATConvManual(16, 16, heads=1)
+              (2): GATConvManual(16, 16, heads=1)
+            )
+            (MLPs): ModuleList(
+              (0): Linear(in_features=16, out_features=16, bias=True)
+              (1): Linear(in_features=16, out_features=16, bias=True)
+              (2): Linear(in_features=16, out_features=16, bias=True)
+            )
+            (act): ReLU()
+          )
+          (interact_weights): ModuleDict(
+            (gs_1dconv+max_1_3): Conv1d(1, 1, kernel_size=(3,), stride=(1,))
+            (gs_1dconv+max_1_16): Conv1d(1, 1, kernel_size=(16,), stride=(1,))
+            (gs_comb_MLP): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=31, out_features=32, bias=True)
+              )
+            )
+            (sgs_1dconv+max_1_3): Conv1d(1, 1, kernel_size=(3,), stride=(1,))
+            (sgs_1dconv+max_1_16): Conv1d(1, 1, kernel_size=(16,), stride=(1,))
+            (sgs_comb_MLP): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=31, out_features=32, bias=True)
+              )
+            )
+            (abds_1dconv+max_1_3): Conv1d(1, 1, kernel_size=(3,), stride=(1,))
+            (abds_1dconv+max_1_16): Conv1d(1, 1, kernel_size=(16,), stride=(1,))
+            (abds_comb_MLP): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=31, out_features=32, bias=True)
+              )
+            )
+            (ubds_1dconv+max_1_3): Conv1d(1, 1, kernel_size=(3,), stride=(1,))
+            (ubds_1dconv+max_1_16): Conv1d(1, 1, kernel_size=(16,), stride=(1,))
+            (ubds_comb_MLP): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=31, out_features=32, bias=True)
+              )
+            )
+          )
+          (MLP_g_big): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=16, out_features=16, bias=True)
+              (1): Linear(in_features=16, out_features=16, bias=True)
+              (2): Linear(in_features=16, out_features=16, bias=True)
+            )
+          )
+          (MLP_sg): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=16, out_features=16, bias=True)
+              (1): Linear(in_features=16, out_features=16, bias=True)
+              (2): Linear(in_features=16, out_features=16, bias=True)
+            )
+          )
+          (MLP_abds_big): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=32, out_features=32, bias=True)
+              (1): Linear(in_features=32, out_features=32, bias=True)
+              (2): Linear(in_features=32, out_features=32, bias=True)
+            )
+          )
+          (MLP_abd_big): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=16, out_features=16, bias=True)
+              (1): Linear(in_features=16, out_features=16, bias=True)
+              (2): Linear(in_features=16, out_features=16, bias=True)
+            )
+          )
+          (MLP_ubds_big): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=32, out_features=32, bias=True)
+              (1): Linear(in_features=32, out_features=32, bias=True)
+              (2): Linear(in_features=32, out_features=32, bias=True)
+            )
+          )
+          (MLP_ubd_big): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=16, out_features=16, bias=True)
+              (1): Linear(in_features=16, out_features=16, bias=True)
+              (2): Linear(in_features=16, out_features=16, bias=True)
+            )
+          )
+          (MLP_final): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=128, out_features=64, bias=True)
+              (1): Linear(in_features=64, out_features=32, bias=True)
+              (2): Linear(in_features=32, out_features=16, bias=True)
+              (3): Linear(in_features=16, out_features=8, bias=True)
+              (4): Linear(in_features=8, out_features=4, bias=True)
+              (5): Linear(in_features=4, out_features=2, bias=True)
+              (6): Linear(in_features=2, out_features=1, bias=True)
+            )
+          )
+          (Q_act): ELU(alpha=1.0)
+          (act): ELU(alpha=1.0)
+        )
+      )
+      (loss): MSELoss()
+    )
+  )
+)

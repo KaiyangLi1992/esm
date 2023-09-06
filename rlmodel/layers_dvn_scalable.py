@@ -2,15 +2,51 @@ from torch_scatter import scatter_add
 import torch.nn as nn
 from utils import OurTimer
 import torch
-
+from matching.search.search_utils import tuple_from_dict,iterate_to_convergence,dict_from_tuple
+from matching.search.greedy_best_k_matching_custom import update_bidomains,get_reward
 from config import FLAGS
 from layers_gnn_propagator import GNNPropagator
 from layers_util import MLP, create_act
-from data_structures_search_tree_scalable import unroll_bidomains, get_natts2g2abd_sg_nids
+from data_structures_search_tree_scalable import unroll_bidomains, get_natts2g2abd_sg_nids,State
 import math
 import torch.nn.functional as F
 from collections import defaultdict
 
+def get_next_state_reward(curr_state, action, q_vec_idx):
+    new_matching = curr_state.nn_map.copy()
+    tmplt_idx,cand_idx = action
+    new_matching[tmplt_idx] = cand_idx
+    new_matching_tuple = tuple_from_dict(new_matching)
+            
+    new_state = State(natts2g2nids = curr_state.natts2g2nids,g1=curr_state.g1,g2=curr_state.g2,
+                        g1_reverse=curr_state.g1_reverse,g2_reverse=curr_state.g2_reverse,
+                        edge_index1=curr_state.edge_index1,edge_index2=curr_state.edge_index2,
+                        adj_list1=curr_state.adj_list1,adj_list2=curr_state.adj_list2,
+                        ins_g1=curr_state.ins_g1,ins_g2=curr_state.ins_g2,
+                        cur_id=curr_state.cur_id,nn_map = curr_state.nn_map,
+                        natts2bds = curr_state.natts2bds,
+                        degree_mat = curr_state.degree_mat,
+                        sgw_mat = curr_state.sgw_mat,
+                        pca_mat = curr_state.pca_mat,
+                        mcsp_vec = curr_state.mcsp_vec,
+                        MCS_size_UB = curr_state.MCS_size_UB,
+                        tree_depth=curr_state.tree_depth + 1,
+                        num_steps=curr_state.num_steps + 1)
+    new_state.nn_map = new_matching 
+    new_state.matching = new_matching_tuple
+    action = (tmplt_idx,cand_idx)
+    natts2bds, nn_map_neighbors =  update_bidomains(curr_state.g1, curr_state.g2, action, 
+                                                    curr_state.nn_map, curr_state.nn_map_neighbors, 
+                                                    curr_state.natts2bds,
+                                                    curr_state.natts2g2nids)
+    new_state.natts2bds = natts2bds
+    new_state.nn_map_neighbors = nn_map_neighbors
+
+    reward = get_reward(tmplt_idx,cand_idx,curr_state,curr_state.g1,curr_state.g2,curr_state.g1_reverse,curr_state.g2_reverse)
+    
+
+    return new_state, reward
+    
 
 class DVN(nn.Module):
     def __init__(self, n_dim, n_layers, learn_embs, layer_AGG_w_MLP, Q_mode, Q_act,
@@ -332,11 +368,11 @@ class DVN(nn.Module):
         MLP_time = 0
         temp_time = self.timer.get_duration()
         for q_vec_idx, action in enumerate(zip(v_list, w_list)):
-            _, next_state = self.environment(dqn_input.state, action, q_vec_idx) #si' = env(si,ai)
-            env_time += self.timer.get_duration() - temp_time
-            temp_time = self.timer.get_duration()
-            q_vec[q_vec_idx] += \
-                self.get_ra(dqn_input, action, dqn_input.state, next_state)
+            # _, next_state = self.environment(dqn_input.state, action, q_vec_idx) #si' = env(si,ai)
+            next_state,reward = get_next_state_reward(dqn_input.state, action, q_vec_idx)
+            # q_vec[q_vec_idx] += \
+            #     self.get_ra(dqn_input, action, dqn_input.state, next_state)
+            q_vec[q_vec_idx] += reward
 
             if self.state_is_leaf_node(next_state):
                 continue
@@ -351,8 +387,7 @@ class DVN(nn.Module):
                 ) # bd_emb(si)
 
                 s_raw_q_vec_idx_list.append(q_vec_idx)
-            MLP_time += self.timer.get_duration() - temp_time
-            temp_time = self.timer.get_duration()
+        
 
         if len(s_raw_q_vec_idx_list) > 0:
             g_embs = self.collate_g(g_embs, s_raw_q_vec_idx_list)
@@ -406,8 +441,8 @@ class DVN(nn.Module):
     def get_state_key(self, dqn_input, ext=''):
         hierarchy = f'state_{ext}'
         sub_key = (dqn_input.pair_id,
-                   frozenset(dqn_input.state.matching_dict.keys()),
-                   frozenset(dqn_input.state.matching_dict.values()))
+                   frozenset(dqn_input.state.nn_map.keys()),
+                   frozenset(dqn_input.state.nn_map.values()))
         key = (hierarchy, sub_key)
         return key
 
@@ -429,8 +464,8 @@ class DVN(nn.Module):
 
     def compute_sg(self, embs, dqn_input):
         x1, x2 = embs
-        sgs1 = torch.sum(x1[list(dqn_input.state.matching_dict.keys())], dim=0).view(1, -1)
-        sgs2 = torch.sum(x2[list(dqn_input.state.matching_dict.values())], dim=0).view(1, -1)
+        sgs1 = torch.sum(x1[list(dqn_input.state.nn_map.keys())], dim=0).view(1, -1)
+        sgs2 = torch.sum(x2[list(dqn_input.state.nn_map.values())], dim=0).view(1, -1)
         sgs = (sgs1, sgs2)
         return sgs
 
@@ -448,7 +483,7 @@ class DVN(nn.Module):
             elif emb_mode == 'ubds':
                 natts2g2abd_sg_nids = \
                     get_natts2g2abd_sg_nids(
-                        state.natts2g2nids, state.natts2bds, state.matching_dict)
+                        state.natts2g2nids, state.natts2bds, state.nn_map)
                 bds1_list_raw, bds2_list_raw = [], []
                 for natts, g2nids in state.natts2g2nids.items():
                     # ubd(label = i) = sum(x[g(label = i) - (sum_j abd_j(label = i) + sg(label=i))])
@@ -574,12 +609,12 @@ class DVN(nn.Module):
             x1_in,
             sg1_nid,
             dqn_input.valid_edge_index1,
-            set(dqn_input.state.matching_dict.keys()).union({v}))
+            set(dqn_input.state.nn_map.keys()).union({v}))
         x2_in, edge_index2 = self.collapse_graph(
             x2_in,
             sg2_nid,
             dqn_input.valid_edge_index2,
-            set(dqn_input.state.matching_dict.values()).union({w}))
+            set(dqn_input.state.nn_map.values()).union({w}))
         return x1_in, x2_in, edge_index1, edge_index2
 
     def collapse_graph(self, x_in, sg_nid, edge_index, sg_nodes):
@@ -593,8 +628,8 @@ class DVN(nn.Module):
         return x_in, edge_index
 
     def get_valid_indices(self, x1, x2, state):
-        masked_nodes_l = set(state.matching_dict.keys())
-        masked_nodes_r = set(state.matching_dict.values())
+        masked_nodes_l = set(state.nn_map.keys())
+        masked_nodes_r = set(state.nn_map.values())
         valid_indices1 = set(range(x1.size(0))) - masked_nodes_l
         valid_indices2 = set(range(x2.size(0))) - masked_nodes_r
         return valid_indices1, valid_indices2

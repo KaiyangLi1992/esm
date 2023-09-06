@@ -69,21 +69,18 @@ class ActionSpaceData():
         self.action_space_size_unexhausted_unpruned = action_space_size_unexhausted_unpruned
 
     def filter_action_space_data(self, v, w):
-        for bds in self.natts2bds_unexhausted.values():
-            for bd in bds:
-                if v in bd.left and w in bd.right:
-                    self.action_space = [[v], [w], [bd.bid]]
+        self.action_space = [[v], [w], [0]]
 
 #########################################################################
 # State Nodes
 #########################################################################
 class StateNode(object):
-    def __init__(self, ins_g1, ins_g2, nn_map, nn_map_neighbors, natts2bds,
+    def __init__(self, ins_g1, ins_g2, nn_map,  natts2bds,
                  natts2g2nids, edge_index1, edge_index2, adj_list1, adj_list2,
                  g1, g2, degree_mat, sgw_mat, pca_mat, cur_id, mcsp_vec,
                  MCS_size_UB, explore_n_pairs=None, pruned_actions=None,
                  exhausted_v=None, exhausted_w=None, tree_depth=0, num_steps=0,
-                 cum_reward=0):
+                 cum_reward=0,nn_map_neighbors={'g1': set(), 'g2': set()}):
         self.ins_g1 = ins_g1
         self.ins_g2 = ins_g2
         self.edge_index1 = edge_index1
@@ -270,6 +267,38 @@ class ActionEdge(object):
         self.state_next = next_state
         cur_state.action_next_list.append(self)
         next_state.action_prev = self
+
+
+class State(StateNode):
+    def __init__(self,ins_g1, ins_g2, nn_map,  natts2bds,
+                 natts2g2nids, edge_index1, edge_index2, adj_list1, adj_list2,
+                 g1, g2, degree_mat, sgw_mat, pca_mat, cur_id, mcsp_vec,
+                 MCS_size_UB,g1_reverse,g2_reverse,explore_n_pairs=None, pruned_actions=None,
+                 exhausted_v=None, exhausted_w=None, tree_depth=0, num_steps=0,
+                 cum_reward=0):
+        super().__init__(ins_g1=ins_g1, ins_g2 = ins_g2, nn_map = nn_map, natts2bds=natts2bds,
+                 natts2g2nids=natts2g2nids, edge_index1=edge_index1, edge_index2=edge_index2, 
+                 adj_list1=adj_list1, adj_list2=adj_list2,
+                 g1=g1, g2=g2, degree_mat=degree_mat, sgw_mat=sgw_mat, pca_mat=pca_mat, cur_id=cur_id, mcsp_vec=mcsp_vec,
+                 MCS_size_UB=MCS_size_UB)
+        self.matching = None
+        self.action_next_list = []
+        self.cost = float("inf")
+        self.cum_reward = cum_reward
+        self.num_steps = num_steps
+        self.g1_reverse = g1_reverse
+        self.g2_reverse = g2_reverse
+        self.action_space = None
+        
+    def __lt__(self, other):
+        # TODO: Is this function the source of your sorting related time expenditures?
+        if len(self.matching) != len(other.matching):
+            return len(self.matching) > len(other.matching)
+        return self.cost < other.cost
+
+    def __str__(self):
+        return str(self.matching) + ": " + str(self.cost)
+    
 
 #########################################################################
 # Search Tree

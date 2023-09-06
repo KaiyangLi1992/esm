@@ -1,5 +1,5 @@
 import numpy as np
-
+from matching.search.greedy_best_k_matching_custom import get_reward
 class RewardCalculator():
     def __init__(self, mode, feat_map, calc_bound=None, discount = 1.00):
         if ';' in mode:
@@ -41,7 +41,7 @@ class RewardCalculator():
 
         r = []
         for v,w in zip(v_list,w_list):
-            r.append(self.compute_reward(v,w,g1,g2,state,next_state))
+            r.append(get_reward(v,w,state,state.g1,state.g2,state.g1_reverse,state.g2_reverse))
         return np.array(r)
 
     def compute_reward(self, v, w, g1, g2, state, next_state):
