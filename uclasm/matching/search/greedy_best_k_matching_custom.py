@@ -11,6 +11,7 @@ import time
 from .data_structures_search_tree  import SearchTree, ActionEdge,get_natts_hash,Bidomain
 from data_structures_search_tree_scalable import State,unroll_bidomains,ActionSpaceData
 from .search_utils import tuple_from_dict,iterate_to_convergence,dict_from_tuple
+from data_structures_common_scalable import  DQNInput
 from global_cost_bound import *
 from local_cost_bound import *
 from matching_problem import MatchingProblem
@@ -18,6 +19,18 @@ from utils import one_hot
 from heapq import heappush, heappop,heapify
 from collections import defaultdict
 from batch import create_edge_index,create_adj_set
+
+def Q_network_custom(state, action_space_data, dqn,tgt_network=False, detach_in_chunking_stage=True):
+        # unpack inputs
+  
+        dqn_input = DQNInput(state, action_space_data, False)
+
+        q_vec = dqn(dqn_input, detach_in_chunking_stage)
+
+        return q_vec
+
+
+
 
 def get_action_space_data_wrapper_custom(tmplt_id,cand_ids,state):
     # get action space
@@ -147,7 +160,7 @@ def get_reward(tmplt_idx,cand_idx,state,g1,g2,g1_reverse,g2_reverse):
         cycle_reward = 1
     return reward1+reward2+cycle_reward
 
-def greedy_best_k_matching_custom(smp,state_init, k=1, nodewise=True, edgewise=True,verbose=True):
+def greedy_best_k_matching_custom(smp,state_init, dqn,k=1, nodewise=True, edgewise=True,verbose=True):
     # if smp.global_cost_threshold == float("inf"):
     #     raise Exception("Invalid global cost threshold.")
 
@@ -173,16 +186,7 @@ def greedy_best_k_matching_custom(smp,state_init, k=1, nodewise=True, edgewise=T
     g2 = smp.world
     g1_reverse = smp.reverse_tmplt
     g2_reverse = smp.reverse_world
-    # natts2g2nids = defaultdict(lambda: defaultdict(set))
-    # for nid in range(g1.number_of_nodes()):
-    #     natts2g2nids[get_natts_hash(g1.nodes[nid])]['g1'].add(nid)
-    # for nid in range(g2.number_of_nodes()):
-    #     natts2g2nids[get_natts_hash(g2.nodes[nid])]['g2'].add(nid)
 
-    # edge_index1, edge_index2 = \
-    #             create_edge_index(g1), create_edge_index(g2)
-    # adj_list1, adj_list2 = \
-    #             create_adj_set(g1), create_adj_set(g2)
 
     start_state = State(natts2g2nids=state_init.natts2g2nids,g1=smp.tmplt,g2=smp.world,
                         g1_reverse = smp.reverse_tmplt,g2_reverse=smp.reverse_world,
@@ -196,7 +200,7 @@ def greedy_best_k_matching_custom(smp,state_init, k=1, nodewise=True, edgewise=T
                         pca_mat = state_init.pca_mat,
                         mcsp_vec = state_init.mcsp_vec,
                         MCS_size_UB = state_init.MCS_size_UB)
-                        
+                      
     start_state.nn_map = current_matching
     start_state.matching = tuple_from_dict(current_matching)
     start_state.cost = smp.global_costs.min()
@@ -204,6 +208,7 @@ def greedy_best_k_matching_custom(smp,state_init, k=1, nodewise=True, edgewise=T
     start_state.cum_reward = 0
     search_tree = SearchTree(start_state)
     cost_map[start_state.matching] = start_state.cost
+    
 
     # Handle the case where we start in a solved state
     if len(start_state.matching) == smp.tmplt.number_of_nodes():
@@ -229,11 +234,11 @@ def greedy_best_k_matching_custom(smp,state_init, k=1, nodewise=True, edgewise=T
                       "kth cost:", kth_cost, "max cost", smp.global_cost_threshold, "solutions found:", len(solutions))
             continue
         # if verbose and current_state.cost == kth_cost:
-        if step%100==0:
-            print(step)
-            print("Current state: {} matches".format(len(current_state.matching)),
-                  "{} open states".format(len(open_list)), "current_cost:", current_state.cost,
-                  "kth cost:", kth_cost, "max cost", smp.global_cost_threshold, "solutions found:", len(solutions))
+        # if step%100==0:
+        #     print(step)
+        #     print("Current state: {} matches".format(len(current_state.matching)),
+        #           "{} open states".format(len(open_list)), "current_cost:", current_state.cost,
+        #           "kth cost:", kth_cost, "max cost", smp.global_cost_threshold, "solutions found:", len(solutions))
         step += 1
         curr_smp = smp.copy()
         curr_smp.enforce_matching(current_state.matching)
@@ -253,12 +258,15 @@ def greedy_best_k_matching_custom(smp,state_init, k=1, nodewise=True, edgewise=T
         cand_idxs = np.argwhere(candidates[tmplt_idx]).flatten()
         action_space = get_action_space_data_wrapper_custom(tmplt_idx,cand_idxs,current_state)
         current_state.action_space = action_space
+        q_vec = Q_network_custom(current_state, current_state.action_space, dqn)
+
+
         # if verbose:
         #     print("Choosing candidate for", tmplt_idx,
         #           "with {} possibilities".format(len(cand_idxs)))
 
         # Only push states that have a total cost bound lower than the threshold
-        for cand_idx in cand_idxs:
+        for index,cand_idx in enumerate(cand_idxs):
             new_matching = nn_map.copy()
             new_matching[tmplt_idx] = cand_idx
             new_matching_tuple = tuple_from_dict(new_matching)
@@ -296,16 +304,20 @@ def greedy_best_k_matching_custom(smp,state_init, k=1, nodewise=True, edgewise=T
                 reward = get_reward(tmplt_idx,cand_idx,current_state,g1,g2,g1_reverse,g2_reverse)
                 action_edge = ActionEdge((tmplt_idx,cand_idx),reward)
                 search_tree.link_states(
-                        current_state, action_edge, new_state, 0, 1)
+                        current_state, action_edge, new_state, q_vec[index], 1)
+                new_state.q_pred = q_vec[index]
+                new_state.cum_reward_pred = new_state.q_pred + new_state.cum_reward
 
 
                 if len(new_state.matching) == smp.tmplt.number_of_nodes():
                     solutions.append(new_state)
                     if k > 0 and len(solutions) > k:
-                        solutions.sort()
+                        solutions = sorted(solutions, key=lambda state: state.cost)
+                        # solutions.sort()
                         solutions.pop()
-                        heapify(solutions)
-                        kth_cost = max(solutions).cost
+                        # heapify(solutions)
+                        kth_cost = solutions[-1].cost
+
                         smp.global_cost_threshold = min(smp.global_cost_threshold,
                                                         kth_cost)
                         # start_time =  time.time()
@@ -327,4 +339,5 @@ def greedy_best_k_matching_custom(smp,state_init, k=1, nodewise=True, edgewise=T
         #     for mapping in solution.matching:
         #         solution_ob[smp.tmplt.nodes[mapping[0]]]= smp.world.nodes[mapping[1]]
             print("Final cost: " + str(solution.cost))
+    print("Step: "+str(step))
     return search_tree,None

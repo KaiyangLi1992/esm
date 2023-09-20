@@ -49,6 +49,12 @@ class OurDataset(object):
         self._check_invariants()
         self.stats = self._gen_stats()
 
+    def __len__(self):
+        return len(self.pairs)
+
+    def __getitem__(self, idx):
+        return list(self.pairs.keys())[idx]
+
     def _check_invariants(self):
         self._assert_nonempty_str(self.name)
         assert self.gs and type(self.gs) is list, type(self.gs)

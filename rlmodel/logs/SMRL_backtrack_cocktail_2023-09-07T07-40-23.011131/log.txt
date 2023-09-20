@@ -1,0 +1,563 @@
+Model created: 147.722 msecs
+
+pred: 8.11
+true: 10.00
+g1 size 8 g2 size 10 nn_map size 6 loss_iter 3.559 buffer size 85 pair_id (5, 0)
+
+pred: 8.11
+true: 10.00
+g1 size 8 g2 size 10 nn_map size 6 loss_iter 3.558 buffer size 85 pair_id (5, 0)
+
+pred: 8.11
+true: 10.00
+g1 size 8 g2 size 10 nn_map size 6 loss_iter 3.559 buffer size 85 pair_id (5, 0)
+
+pred: 8.11
+true: 10.00
+g1 size 8 g2 size 10 nn_map size 6 loss_iter 3.559 buffer size 85 pair_id (5, 0)
+
+pred: 3.00
+true: 5.00
+g1 size 8 g2 size 10 nn_map size 6 loss_iter 4.000 buffer size 85 pair_id (5, 0)
+
+pred: 8.11
+true: 10.00
+g1 size 8 g2 size 10 nn_map size 6 loss_iter 3.559 buffer size 85 pair_id (5, 0)
+
+pred: 0.53
+true: 25.00
+g1 size 8 g2 size 10 nn_map size 2 loss_iter 598.852 buffer size 85 pair_id (5, 0)
+
+pred: 0.53
+true: 25.00
+g1 size 8 g2 size 10 nn_map size 2 loss_iter 598.852 buffer size 85 pair_id (5, 0)
+
+pred: 0.53
+true: 25.00
+g1 size 8 g2 size 10 nn_map size 2 loss_iter 598.852 buffer size 85 pair_id (5, 0)
+
+pred: 0.53
+true: 25.00
+g1 size 8 g2 size 10 nn_map size 2 loss_iter 598.852 buffer size 85 pair_id (5, 0)
+
+pred: 0.53
+true: 25.00
+g1 size 8 g2 size 10 nn_map size 2 loss_iter 598.852 buffer size 85 pair_id (5, 0)
+
+pred: 0.53
+true: 25.00
+g1 size 8 g2 size 10 nn_map size 2 loss_iter 598.852 buffer size 85 pair_id (5, 0)
+
+pred: -3.00
+true: 3.00
+g1 size 8 g2 size 10 nn_map size 5 loss_iter 36.000 buffer size 85 pair_id (5, 0)
+
+pred: 4.00
+true: 10.00
+g1 size 8 g2 size 10 nn_map size 5 loss_iter 36.000 buffer size 85 pair_id (5, 0)
+
+pred: 2.00
+true: 8.00
+g1 size 8 g2 size 10 nn_map size 4 loss_iter 36.000 buffer size 85 pair_id (5, 0)
+
+pred: 1.00
+true: 7.00
+g1 size 8 g2 size 10 nn_map size 5 loss_iter 36.000 buffer size 85 pair_id (5, 0)
+
+pred: 3.77
+true: 14.00
+g1 size 8 g2 size 10 nn_map size 5 loss_iter 104.580 buffer size 85 pair_id (5, 0)
+
+pred: 2.09
+true: 12.00
+g1 size 8 g2 size 10 nn_map size 5 loss_iter 98.224 buffer size 85 pair_id (5, 0)
+
+pred: 3.77
+true: 14.00
+g1 size 8 g2 size 10 nn_map size 5 loss_iter 104.580 buffer size 85 pair_id (5, 0)
+
+pred: -3.27
+true: 7.00
+g1 size 8 g2 size 10 nn_map size 4 loss_iter 105.518 buffer size 85 pair_id (5, 0)
+
+pred: -0.32
+true: 25.00
+g1 size 8 g2 size 10 nn_map size 1 loss_iter 641.228 buffer size 85 pair_id (5, 0)
+
+pred: -0.32
+true: 25.00
+g1 size 8 g2 size 10 nn_map size 1 loss_iter 641.228 buffer size 85 pair_id (5, 0)
+
+pred: -0.32
+true: 25.00
+g1 size 8 g2 size 10 nn_map size 1 loss_iter 641.228 buffer size 85 pair_id (5, 0)
+
+pred: -3.00
+true: 4.00
+g1 size 8 g2 size 10 nn_map size 4 loss_iter 49.000 buffer size 85 pair_id (5, 0)
+
+pred: -3.26
+true: 4.00
+g1 size 8 g2 size 10 nn_map size 3 loss_iter 52.677 buffer size 85 pair_id (5, 0)
+
+pred: -3.00
+true: 4.00
+g1 size 8 g2 size 10 nn_map size 4 loss_iter 49.000 buffer size 85 pair_id (5, 0)
+
+pred: 3.59
+true: 18.00
+g1 size 8 g2 size 10 nn_map size 4 loss_iter 207.703 buffer size 85 pair_id (5, 0)
+
+pred: 3.59
+true: 18.00
+g1 size 8 g2 size 10 nn_map size 4 loss_iter 207.703 buffer size 85 pair_id (5, 0)
+
+pred: 1.06
+true: 9.00
+g1 size 8 g2 size 10 nn_map size 5 loss_iter 63.024 buffer size 85 pair_id (5, 0)
+
+pred: 4.00
+true: 4.00
+g1 size 8 g2 size 10 nn_map size 5 loss_iter 0.000 buffer size 85 pair_id (5, 0)
+
+pred: 5.60
+true: 24.00
+g1 size 8 g2 size 10 nn_map size 3 loss_iter 338.545 buffer size 85 pair_id (5, 0)
+
+pred: 5.60
+true: 24.00
+g1 size 8 g2 size 10 nn_map size 3 loss_iter 338.545 buffer size 85 pair_id (5, 0)
+
+pred: 5.95
+true: 31.00
+g1 size 8 g2 size 10 nn_map size 3 loss_iter 627.708 buffer size 84 pair_id (2, 0)
+
+pred: 5.95
+true: 31.00
+g1 size 8 g2 size 10 nn_map size 3 loss_iter 627.708 buffer size 84 pair_id (2, 0)
+
+pred: 5.95
+true: 31.00
+g1 size 8 g2 size 10 nn_map size 3 loss_iter 627.708 buffer size 84 pair_id (2, 0)
+
+pred: 5.95
+true: 31.00
+g1 size 8 g2 size 10 nn_map size 3 loss_iter 627.708 buffer size 84 pair_id (2, 0)
+
+pred: 5.95
+true: 31.00
+g1 size 8 g2 size 10 nn_map size 3 loss_iter 627.708 buffer size 84 pair_id (2, 0)
+
+pred: 8.44
+true: 17.00
+g1 size 8 g2 size 10 nn_map size 6 loss_iter 73.267 buffer size 84 pair_id (2, 0)
+
+pred: 8.44
+true: 17.00
+g1 size 8 g2 size 10 nn_map size 6 loss_iter 73.267 buffer size 84 pair_id (2, 0)
+
+pred: 8.44
+true: 17.00
+g1 size 8 g2 size 10 nn_map size 6 loss_iter 73.267 buffer size 84 pair_id (2, 0)
+
+pred: 8.44
+true: 17.00
+g1 size 8 g2 size 10 nn_map size 6 loss_iter 73.267 buffer size 84 pair_id (2, 0)
+
+pred: 1.23
+true: 33.00
+g1 size 8 g2 size 10 nn_map size 0 loss_iter 1009.093 buffer size 84 pair_id (2, 0)
+
+pred: 1.23
+true: 33.00
+g1 size 8 g2 size 10 nn_map size 0 loss_iter 1009.093 buffer size 84 pair_id (2, 0)
+
+pred: 1.23
+true: 33.00
+g1 size 8 g2 size 10 nn_map size 0 loss_iter 1009.093 buffer size 84 pair_id (2, 0)
+
+pred: 1.23
+true: 33.00
+g1 size 8 g2 size 10 nn_map size 0 loss_iter 1009.093 buffer size 84 pair_id (2, 0)
+
+pred: 0.10
+true: 32.00
+g1 size 8 g2 size 10 nn_map size 1 loss_iter 1017.904 buffer size 84 pair_id (2, 0)
+
+pred: 1.00
+true: 9.00
+g1 size 8 g2 size 10 nn_map size 5 loss_iter 64.000 buffer size 84 pair_id (2, 0)
+
+pred: -1.52
+true: 6.00
+g1 size 8 g2 size 10 nn_map size 3 loss_iter 56.614 buffer size 84 pair_id (2, 0)
+
+pred: 1.00
+true: 9.00
+g1 size 8 g2 size 10 nn_map size 5 loss_iter 64.000 buffer size 84 pair_id (2, 0)
+
+pred: -2.90
+true: 7.00
+g1 size 8 g2 size 10 nn_map size 4 loss_iter 97.976 buffer size 84 pair_id (2, 0)
+	Iter: 005 (5), Loss: 348.4825745		21.843 secs
+Curriculum: 000 , Loss: 232.7713903 (6 iters)		25.065 secs
+	Iter: 010 (10), Loss: 437.9700623		15.440 secs
+Curriculum: 000 , Loss: 263.9594002 (6 iters)		22.545 secs
+	Iter: 015 (15), Loss: 208.4374695		10.411 secs
+Curriculum: 000 , Loss: 273.9657542 (6 iters)		22.800 secs
+	Iter: 020 (20), Loss: 187.0879211		7.042 secs
+Curriculum: 000 , Loss: 241.6193085 (6 iters)		23.354 secs
+	Iter: 025 (25), Loss: 353.6709290		3.404 secs
+	Iter: 030 (30), Loss: 154.2989044		19.543 secs
+Curriculum: 000 , Loss: 283.4322891 (6 iters)		22.947 secs
+	Iter: 035 (35), Loss: 265.9599304		19.729 secs
+Curriculum: 000 , Loss: 244.4056524 (6 iters)		23.074 secs
+	Iter: 040 (40), Loss: 317.4197998		14.662 secs
+Curriculum: 000 , Loss: 235.5864843 (6 iters)		21.780 secs
+	Iter: 045 (45), Loss: 322.5716553		10.121 secs
+Curriculum: 000 , Loss: 303.2954915 (6 iters)		21.952 secs
+	Iter: 050 (50), Loss: 200.9749451		7.136 secs
+Curriculum: 000 , Loss: 273.2157313 (6 iters)		23.418 secs
+	Iter: 055 (55), Loss: 267.4615173		3.728 secs
+	Iter: 060 (60), Loss: 124.5407944		18.093 secs
+Curriculum: 000 , Loss: 265.2311999 (6 iters)		21.822 secs
+	Iter: 065 (65), Loss: 289.2651672		19.305 secs
+Curriculum: 000 , Loss: 253.1425247 (6 iters)		22.869 secs
+	Iter: 070 (70), Loss: 266.8236084		14.686 secs
+Curriculum: 000 , Loss: 240.7962812 (6 iters)		21.929 secs
+	Iter: 075 (75), Loss: 258.9171143		10.748 secs
+Curriculum: 000 , Loss: 299.9743017 (6 iters)		22.675 secs
+	Iter: 080 (80), Loss: 174.2849274		6.571 secs
+Curriculum: 000 , Loss: 246.7447255 (6 iters)		21.925 secs
+	Iter: 085 (85), Loss: 358.5683899		3.866 secs
+	Iter: 090 (90), Loss: 139.0207520		18.175 secs
+Curriculum: 000 , Loss: 249.5760244 (6 iters)		22.042 secs
+	Iter: 095 (95), Loss: 252.3516388		19.385 secs
+Curriculum: 000 , Loss: 232.2662710 (6 iters)		22.458 secs
+	Iter: 100 (100), Loss: 255.9823303		14.808 secs
+Curriculum: 000 , Loss: 187.1920624 (6 iters)		21.251 secs
+	Iter: 105 (105), Loss: 292.0964355		10.788 secs
+Curriculum: 000 , Loss: 237.6909091 (6 iters)		23.369 secs
+	Iter: 110 (110), Loss: 157.5189667		6.990 secs
+Curriculum: 000 , Loss: 207.9708633 (6 iters)		22.474 secs
+	Iter: 115 (115), Loss: 321.7426758		3.519 secs
+	Iter: 120 (120), Loss: 96.4153976		18.643 secs
+Curriculum: 000 , Loss: 291.1061618 (6 iters)		22.162 secs
+	Iter: 125 (125), Loss: 202.4519501		18.337 secs
+Curriculum: 000 , Loss: 253.8506393 (6 iters)		21.267 secs
+	Iter: 130 (130), Loss: 254.2268982		15.477 secs
+Curriculum: 000 , Loss: 225.4538803 (6 iters)		22.957 secs
+	Iter: 135 (135), Loss: 287.6101990		10.871 secs
+Curriculum: 000 , Loss: 255.4257177 (6 iters)		23.190 secs
+	Iter: 140 (140), Loss: 168.6743469		6.958 secs
+Curriculum: 000 , Loss: 265.3177592 (6 iters)		23.218 secs
+	Iter: 145 (145), Loss: 283.4525757		3.743 secs
+	Iter: 150 (150), Loss: 157.7967834		18.314 secs
+Curriculum: 000 , Loss: 265.9232101 (6 iters)		22.060 secs
+	Iter: 155 (155), Loss: 344.8827209		19.487 secs
+Curriculum: 000 , Loss: 250.6677551 (6 iters)		22.487 secs
+	Iter: 160 (160), Loss: 356.3494568		15.631 secs
+Curriculum: 000 , Loss: 254.1193161 (6 iters)		22.753 secs
+	Iter: 165 (165), Loss: 179.3691101		11.201 secs
+Curriculum: 000 , Loss: 251.4621506 (6 iters)		23.734 secs
+	Iter: 170 (170), Loss: 128.3531036		6.892 secs
+Curriculum: 000 , Loss: 229.9093959 (6 iters)		21.836 secs
+	Iter: 175 (175), Loss: 335.4320984		3.154 secs
+	Iter: 180 (180), Loss: 160.3928986		18.580 secs
+Curriculum: 000 , Loss: 259.2232056 (6 iters)		21.735 secs
+	Iter: 185 (185), Loss: 242.2821655		18.850 secs
+Curriculum: 000 , Loss: 244.9107641 (6 iters)		21.865 secs
+	Iter: 190 (190), Loss: 398.7582397		14.648 secs
+Curriculum: 000 , Loss: 245.8560257 (6 iters)		21.622 secs
+	Iter: 195 (195), Loss: 256.2224121		11.394 secs
+Curriculum: 000 , Loss: 250.3981450 (6 iters)		23.390 secs
+	Iter: 200 (200), Loss: 96.9735031		6.540 secs
+Curriculum: 000 , Loss: 180.7045886 (6 iters)		20.841 secs
+	Iter: 205 (205), Loss: 290.8409119		3.459 secs
+	Iter: 210 (210), Loss: 146.2601929		18.855 secs
+Curriculum: 000 , Loss: 226.9017054 (6 iters)		22.314 secs
+	Iter: 215 (215), Loss: 250.8324890		19.696 secs
+Curriculum: 000 , Loss: 263.7471670 (6 iters)		22.806 secs
+	Iter: 220 (220), Loss: 376.2117615		15.105 secs
+Curriculum: 000 , Loss: 270.1224772 (6 iters)		22.965 secs
+	Iter: 225 (225), Loss: 253.8521271		10.288 secs
+Curriculum: 000 , Loss: 242.9305954 (6 iters)		22.923 secs
+	Iter: 230 (230), Loss: 121.2606812		6.844 secs
+Curriculum: 000 , Loss: 253.8877309 (6 iters)		22.444 secs
+	Iter: 235 (235), Loss: 205.0917816		3.370 secs
+	Iter: 240 (240), Loss: 110.7917709		17.705 secs
+Curriculum: 000 , Loss: 200.7544034 (6 iters)		21.075 secs
+	Iter: 245 (245), Loss: 199.2878113		19.352 secs
+Curriculum: 000 , Loss: 224.4955279 (6 iters)		23.314 secs
+	Iter: 250 (250), Loss: 315.6806335		15.300 secs
+Curriculum: 000 , Loss: 245.6349665 (6 iters)		22.562 secs
+	Iter: 255 (255), Loss: 321.1670532		10.742 secs
+Curriculum: 000 , Loss: 259.9858882 (6 iters)		22.329 secs
+	Iter: 260 (260), Loss: 187.7260437		6.818 secs
+Curriculum: 000 , Loss: 246.0946032 (6 iters)		22.539 secs
+	Iter: 265 (265), Loss: 370.0413208		3.485 secs
+	Iter: 270 (270), Loss: 119.9828949		19.749 secs
+Curriculum: 000 , Loss: 228.1664327 (6 iters)		23.234 secs
+	Iter: 275 (275), Loss: 231.0499268		18.993 secs
+Curriculum: 000 , Loss: 250.1436157 (6 iters)		21.817 secs
+	Iter: 280 (280), Loss: 343.0497131		15.192 secs
+Curriculum: 000 , Loss: 244.1694565 (6 iters)		22.767 secs
+	Iter: 285 (285), Loss: 251.2202301		10.366 secs
+Curriculum: 000 , Loss: 236.2882436 (6 iters)		22.233 secs
+	Iter: 290 (290), Loss: 135.8249817		7.084 secs
+Curriculum: 000 , Loss: 238.4314931 (6 iters)		22.450 secs
+	Iter: 295 (295), Loss: 395.5092468		3.303 secs
+	Iter: 300 (300), Loss: 216.5229492		18.606 secs
+Curriculum: 000 , Loss: 269.1023229 (6 iters)		21.909 secs
+	Iter: 305 (305), Loss: 231.2203369		19.934 secs
+Curriculum: 000 , Loss: 157.6330134 (6 iters)		22.992 secs
+	Iter: 310 (310), Loss: 444.6467896		14.994 secs
+Curriculum: 000 , Loss: 273.2093875 (6 iters)		22.173 secs
+	Iter: 315 (315), Loss: 298.2754211		9.229 secs
+Curriculum: 000 , Loss: 239.4966583 (6 iters)		21.290 secs
+	Iter: 320 (320), Loss: 149.0877075		7.207 secs
+Curriculum: 000 , Loss: 245.5313873 (6 iters)		21.944 secs
+	Iter: 325 (325), Loss: 412.8446960		3.145 secs
+	Iter: 330 (330), Loss: 110.6581879		20.229 secs
+Curriculum: 000 , Loss: 277.9427007 (6 iters)		23.374 secs
+	Iter: 335 (335), Loss: 199.4824219		19.706 secs
+Curriculum: 000 , Loss: 263.0170695 (6 iters)		22.799 secs
+	Iter: 340 (340), Loss: 320.7542419		14.190 secs
+Curriculum: 000 , Loss: 231.0293477 (6 iters)		21.476 secs
+	Iter: 345 (345), Loss: 339.1102905		10.840 secs
+Curriculum: 000 , Loss: 232.8114344 (6 iters)		22.339 secs
+	Iter: 350 (350), Loss: 139.0571136		7.516 secs
+Curriculum: 000 , Loss: 198.8937047 (6 iters)		23.452 secs
+	Iter: 355 (355), Loss: 264.5794983		3.904 secs
+	Iter: 360 (360), Loss: 152.7154999		18.647 secs
+Curriculum: 000 , Loss: 245.5377808 (6 iters)		22.551 secs
+	Iter: 365 (365), Loss: 240.0760040		19.385 secs
+Curriculum: 000 , Loss: 235.5297216 (6 iters)		22.422 secs
+	Iter: 370 (370), Loss: 298.8880920		14.888 secs
+Curriculum: 000 , Loss: 242.5382411 (6 iters)		21.683 secs
+	Iter: 375 (375), Loss: 309.4864197		10.131 secs
+Curriculum: 000 , Loss: 260.1352310 (6 iters)		22.527 secs
+	Iter: 380 (380), Loss: 152.1128235		6.801 secs
+Curriculum: 000 , Loss: 230.6347936 (6 iters)		22.681 secs
+	Iter: 385 (385), Loss: 297.6860046		3.189 secs
+	Iter: 390 (390), Loss: 156.5169983		18.189 secs
+Curriculum: 000 , Loss: 237.9405009 (6 iters)		21.378 secs
+	Iter: 395 (395), Loss: 331.4452820		20.056 secs
+Curriculum: 000 , Loss: 268.0922038 (6 iters)		22.996 secs
+	Iter: 400 (400), Loss: 192.3941040		14.306 secs
+Curriculum: 000 , Loss: 181.5926704 (6 iters)		20.958 secs
+	Iter: 405 (405), Loss: 285.2384949		11.015 secs
+Curriculum: 000 , Loss: 241.2296117 (6 iters)		23.156 secs
+	Iter: 410 (410), Loss: 146.7102814		7.305 secs
+Curriculum: 000 , Loss: 268.0109380 (6 iters)		21.740 secs
+	Iter: 415 (415), Loss: 331.4953918		3.548 secs
+	Iter: 420 (420), Loss: 83.7915878		21.028 secs
+Curriculum: 000 , Loss: 256.9860319 (6 iters)		24.576 secs
+	Iter: 425 (425), Loss: 225.8294830		18.184 secs
+Curriculum: 000 , Loss: 258.3003031 (6 iters)		21.067 secs
+	Iter: 430 (430), Loss: 397.7904663		14.369 secs
+Curriculum: 000 , Loss: 209.9225121 (6 iters)		21.749 secs
+	Iter: 435 (435), Loss: 268.2848206		10.709 secs
+Curriculum: 000 , Loss: 235.8794632 (6 iters)		22.605 secs
+	Iter: 440 (440), Loss: 154.9493713		6.176 secs
+Curriculum: 000 , Loss: 224.6766001 (6 iters)		22.226 secs
+	Iter: 445 (445), Loss: 376.9150391		3.335 secs
+	Iter: 450 (450), Loss: 135.4282227		18.360 secs
+Curriculum: 000 , Loss: 259.8905144 (6 iters)		21.695 secs
+	Iter: 455 (455), Loss: 274.2404175		19.214 secs
+Curriculum: 000 , Loss: 222.4379323 (6 iters)		22.257 secs
+	Iter: 460 (460), Loss: 279.7420044		14.719 secs
+Curriculum: 000 , Loss: 216.6972427 (6 iters)		21.690 secs
+	Iter: 465 (465), Loss: 228.8410645		10.473 secs
+Curriculum: 000 , Loss: 215.1927147 (6 iters)		22.017 secs
+	Iter: 470 (470), Loss: 122.5393829		7.555 secs
+Curriculum: 000 , Loss: 218.9392395 (6 iters)		23.188 secs
+	Iter: 475 (475), Loss: 305.5916443		3.242 secs
+	Iter: 480 (480), Loss: 92.1430893		19.577 secs
+Curriculum: 000 , Loss: 241.6772881 (6 iters)		22.819 secs
+	Iter: 485 (485), Loss: 275.2474670		19.460 secs
+Curriculum: 000 , Loss: 264.5092214 (6 iters)		22.465 secs
+	Iter: 490 (490), Loss: 372.4092102		15.362 secs
+Curriculum: 000 , Loss: 232.2605362 (6 iters)		23.153 secs
+	Iter: 495 (495), Loss: 257.9005127		10.679 secs
+Curriculum: 000 , Loss: 246.2238439 (6 iters)		22.324 secs
+	Iter: 500 (500), Loss: 183.7105408		6.706 secs
+Curriculum: 000 , Loss: 259.2609049 (6 iters)		21.750 secs
+	Iter: 505 (505), Loss: 296.9085083		3.482 secs
+	Iter: 510 (510), Loss: 191.0267334		19.186 secs
+Curriculum: 000 , Loss: 219.2499237 (6 iters)		22.668 secs
+	Iter: 515 (515), Loss: 280.6706543		18.330 secs
+Curriculum: 000 , Loss: 227.0852369 (6 iters)		21.506 secs
+	Iter: 520 (520), Loss: 392.1146240		15.629 secs
+Curriculum: 000 , Loss: 274.0714747 (6 iters)		23.337 secs
+	Iter: 525 (525), Loss: 269.2006226		11.009 secs
+Curriculum: 000 , Loss: 218.2987315 (6 iters)		23.406 secs
+	Iter: 530 (530), Loss: 162.9808807		7.024 secs
+Curriculum: 000 , Loss: 247.7004878 (6 iters)		22.715 secs
+	Iter: 535 (535), Loss: 344.7139587		3.077 secs
+	Iter: 540 (540), Loss: 177.0767517		18.155 secs
+Curriculum: 000 , Loss: 254.0934575 (6 iters)		21.232 secs
+	Iter: 545 (545), Loss: 204.5561371		19.530 secs
+Curriculum: 000 , Loss: 230.6579539 (6 iters)		23.068 secs
+	Iter: 550 (550), Loss: 357.6767578		14.199 secs
+Curriculum: 000 , Loss: 238.1832759 (6 iters)		21.360 secs
+	Iter: 555 (555), Loss: 370.8120422		11.176 secs
+Curriculum: 000 , Loss: 279.1524506 (6 iters)		23.559 secs
+	Iter: 560 (560), Loss: 175.0677948		6.532 secs
+Curriculum: 000 , Loss: 232.6459045 (6 iters)		20.795 secs
+	Iter: 565 (565), Loss: 374.8521423		3.370 secs
+	Iter: 570 (570), Loss: 135.0129700		18.889 secs
+Curriculum: 000 , Loss: 253.1970596 (6 iters)		22.261 secs
+	Iter: 575 (575), Loss: 377.7340088		19.736 secs
+Curriculum: 000 , Loss: 237.4161390 (6 iters)		22.656 secs
+	Iter: 580 (580), Loss: 363.7514648		15.239 secs
+Curriculum: 000 , Loss: 235.7779566 (6 iters)		22.666 secs
+	Iter: 585 (585), Loss: 470.4427185		10.254 secs
+Curriculum: 000 , Loss: 283.7392654 (6 iters)		21.607 secs
+	Iter: 590 (590), Loss: 189.6251678		6.712 secs
+Curriculum: 000 , Loss: 260.8008397 (6 iters)		22.398 secs
+	Iter: 595 (595), Loss: 271.2350769		3.284 secs
+	Iter: 600 (600), Loss: 191.7684326		18.572 secs
+Curriculum: 000 , Loss: 251.6369120 (6 iters)		21.856 secs
+	Iter: 605 (605), Loss: 217.7596893		18.531 secs
+Curriculum: 000 , Loss: 187.8425496 (6 iters)		21.459 secs
+	Iter: 610 (610), Loss: 394.6756287		14.344 secs
+Curriculum: 000 , Loss: 247.2403297 (6 iters)		21.354 secs
+	Iter: 615 (615), Loss: 219.3895874		10.790 secs
+Curriculum: 000 , Loss: 224.1271159 (6 iters)		23.279 secs
+	Iter: 620 (620), Loss: 191.1973267		7.230 secs
+Curriculum: 000 , Loss: 269.5571416 (6 iters)		22.949 secs
+	Iter: 625 (625), Loss: 457.5013733		3.257 secs
+	Iter: 630 (630), Loss: 98.6771469		19.248 secs
+Curriculum: 000 , Loss: 265.7612775 (6 iters)		22.505 secs
+	Iter: 635 (635), Loss: 305.3735962		19.668 secs
+Curriculum: 000 , Loss: 249.8827413 (6 iters)		22.970 secs
+	Iter: 640 (640), Loss: 290.5847473		14.747 secs
+Curriculum: 000 , Loss: 254.1495590 (6 iters)		22.356 secs
+	Iter: 645 (645), Loss: 293.4539185		10.816 secs
+Curriculum: 000 , Loss: 235.7321714 (6 iters)		22.903 secs
+	Iter: 650 (650), Loss: 161.4862671		6.362 secs
+Curriculum: 000 , Loss: 245.3497391 (6 iters)		21.978 secs
+	Iter: 655 (655), Loss: 331.0841980		3.216 secs
+	Iter: 660 (660), Loss: 153.2691040		19.499 secs
+Curriculum: 000 , Loss: 245.8183772 (6 iters)		22.715 secs
+	Iter: 665 (665), Loss: 193.3674316		19.554 secs
+Curriculum: 000 , Loss: 234.9841410 (6 iters)		22.679 secs
+	Iter: 670 (670), Loss: 337.5537415		14.559 secs
+Curriculum: 000 , Loss: 249.4740651 (6 iters)		21.612 secs
+	Iter: 675 (675), Loss: 258.0654602		10.339 secs
+Curriculum: 000 , Loss: 273.5489756 (6 iters)		22.424 secs
+	Iter: 680 (680), Loss: 145.7806854		6.878 secs
+Curriculum: 000 , Loss: 249.7613602 (6 iters)		22.932 secs
+	Iter: 685 (685), Loss: 348.3276978		3.546 secs
+	Iter: 690 (690), Loss: 166.2292786		18.308 secs
+Curriculum: 000 , Loss: 259.7122294 (6 iters)		21.854 secs
+	Iter: 695 (695), Loss: 179.3685455		19.258 secs
+Curriculum: 000 , Loss: 188.7313258 (6 iters)		22.281 secs
+	Iter: 700 (700), Loss: 488.3074951		14.573 secs
+Curriculum: 000 , Loss: 248.1038589 (6 iters)		20.642 secs
+	Iter: 705 (705), Loss: 187.0023804		11.385 secs
+Curriculum: 000 , Loss: 178.4233932 (6 iters)		23.868 secs
+	Iter: 710 (710), Loss: 142.1644287		7.375 secs
+Curriculum: 000 , Loss: 239.2979469 (6 iters)		22.123 secs
+	Iter: 715 (715), Loss: 264.7913818		3.272 secs
+	Iter: 720 (720), Loss: 164.0200653		19.165 secs
+Curriculum: 000 , Loss: 230.8073807 (6 iters)		22.438 secs
+	Iter: 725 (725), Loss: 228.6515045		19.205 secs
+Curriculum: 000 , Loss: 276.6164729 (6 iters)		22.623 secs
+	Iter: 730 (730), Loss: 289.7930298		14.960 secs
+Curriculum: 000 , Loss: 231.8793805 (6 iters)		22.565 secs
+	Iter: 735 (735), Loss: 321.0331421		11.395 secs
+Curriculum: 000 , Loss: 223.1813380 (6 iters)		23.584 secs
+	Iter: 740 (740), Loss: 124.4704132		7.048 secs
+Curriculum: 000 , Loss: 263.7418900 (6 iters)		22.372 secs
+	Iter: 745 (745), Loss: 312.3395691		3.468 secs
+	Iter: 750 (750), Loss: 166.8117981		18.846 secs
+Curriculum: 000 , Loss: 208.8730494 (6 iters)		22.314 secs
+	Iter: 755 (755), Loss: 244.0435028		18.900 secs
+Curriculum: 000 , Loss: 243.2359123 (6 iters)		21.740 secs
+	Iter: 760 (760), Loss: 370.4584351		14.911 secs
+Curriculum: 000 , Loss: 230.4305166 (6 iters)		21.831 secs
+	Iter: 765 (765), Loss: 182.3999939		10.583 secs
+Curriculum: 000 , Loss: 243.1406631 (6 iters)		22.136 secs
+	Iter: 770 (770), Loss: 159.9027405		6.982 secs
+Curriculum: 000 , Loss: 227.5197932 (6 iters)		22.496 secs
+	Iter: 775 (775), Loss: 367.0536194		3.323 secs
+	Iter: 780 (780), Loss: 138.2909393		18.409 secs
+Curriculum: 000 , Loss: 246.5365499 (6 iters)		21.732 secs
+	Iter: 785 (785), Loss: 241.5726166		18.923 secs
+Curriculum: 000 , Loss: 220.6911049 (6 iters)		21.736 secs
+	Iter: 790 (790), Loss: 299.7715759		15.085 secs
+Curriculum: 000 , Loss: 283.3449148 (6 iters)		22.400 secs
+	Iter: 795 (795), Loss: 167.1504974		10.825 secs
+Curriculum: 000 , Loss: 253.8812129 (6 iters)		22.655 secs
+	Iter: 800 (800), Loss: 148.5528259		7.193 secs
+Curriculum: 000 , Loss: 213.6198387 (6 iters)		21.194 secs
+	Iter: 805 (805), Loss: 205.7249603		3.532 secs
+	Iter: 810 (810), Loss: 117.2314377		18.641 secs
+Curriculum: 000 , Loss: 229.5548108 (6 iters)		22.173 secs
+	Iter: 815 (815), Loss: 175.1613312		18.749 secs
+Curriculum: 000 , Loss: 222.9761047 (6 iters)		22.390 secs
+	Iter: 820 (820), Loss: 379.5140381		14.531 secs
+Curriculum: 000 , Loss: 233.9050242 (6 iters)		22.165 secs
+	Iter: 825 (825), Loss: 219.8259583		10.692 secs
+Curriculum: 000 , Loss: 214.2790604 (6 iters)		22.670 secs
+	Iter: 830 (830), Loss: 117.0630112		7.300 secs
+Curriculum: 000 , Loss: 228.6510722 (6 iters)		23.304 secs
+	Iter: 835 (835), Loss: 210.5847626		3.212 secs
+	Iter: 840 (840), Loss: 77.7229309		18.321 secs
+Curriculum: 000 , Loss: 191.4841665 (6 iters)		21.533 secs
+	Iter: 845 (845), Loss: 240.2903137		19.489 secs
+Curriculum: 000 , Loss: 211.6862933 (6 iters)		22.605 secs
+	Iter: 850 (850), Loss: 271.0604858		14.736 secs
+Curriculum: 000 , Loss: 204.0693029 (6 iters)		21.760 secs
+	Iter: 855 (855), Loss: 320.3981628		10.621 secs
+Curriculum: 000 , Loss: 242.0449829 (6 iters)		22.401 secs
+	Iter: 860 (860), Loss: 127.5894318		6.949 secs
+Curriculum: 000 , Loss: 215.7693227 (6 iters)		23.087 secs
+	Iter: 865 (865), Loss: 224.3831635		3.245 secs
+	Iter: 870 (870), Loss: 153.0064850		19.944 secs
+Curriculum: 000 , Loss: 232.3552475 (6 iters)		23.189 secs
+	Iter: 875 (875), Loss: 270.4761658		19.361 secs
+Curriculum: 000 , Loss: 237.8437169 (6 iters)		22.345 secs
+	Iter: 880 (880), Loss: 452.1508789		14.923 secs
+Curriculum: 000 , Loss: 222.3052317 (6 iters)		22.423 secs
+	Iter: 885 (885), Loss: 243.3397369		10.541 secs
+Curriculum: 000 , Loss: 242.0757065 (6 iters)		22.235 secs
+	Iter: 890 (890), Loss: 140.0128174		6.646 secs
+Curriculum: 000 , Loss: 182.9757538 (6 iters)		22.451 secs
+	Iter: 895 (895), Loss: 338.5868225		3.256 secs
+	Iter: 900 (900), Loss: 143.9060364		18.321 secs
+Curriculum: 000 , Loss: 231.7698288 (6 iters)		21.577 secs
+	Iter: 905 (905), Loss: 186.2185669		17.804 secs
+Curriculum: 000 , Loss: 176.1232961 (6 iters)		20.795 secs
+	Iter: 910 (910), Loss: 341.7572021		14.866 secs
+Curriculum: 000 , Loss: 237.1213264 (6 iters)		22.214 secs
+	Iter: 915 (915), Loss: 288.0901794		9.974 secs
+Curriculum: 000 , Loss: 230.1188838 (6 iters)		22.694 secs
+	Iter: 920 (920), Loss: 109.8439713		7.059 secs
+Curriculum: 000 , Loss: 251.2389463 (6 iters)		23.322 secs
+	Iter: 925 (925), Loss: 189.4026794		3.329 secs
+	Iter: 930 (930), Loss: 96.3986435		19.395 secs
+Curriculum: 000 , Loss: 200.4247678 (6 iters)		22.725 secs
+	Iter: 935 (935), Loss: 398.8615417		19.366 secs
+Curriculum: 000 , Loss: 268.0162201 (6 iters)		22.388 secs
+	Iter: 940 (940), Loss: 377.1922302		14.603 secs
+Curriculum: 000 , Loss: 238.1100082 (6 iters)		21.657 secs
+	Iter: 945 (945), Loss: 223.6254730		11.096 secs
+Curriculum: 000 , Loss: 190.9633357 (6 iters)		22.774 secs
+	Iter: 950 (950), Loss: 105.0398941		6.946 secs
+Curriculum: 000 , Loss: 238.8595009 (6 iters)		22.784 secs
+	Iter: 955 (955), Loss: 339.9745789		3.439 secs
+	Iter: 960 (960), Loss: 119.1035690		18.771 secs
+Curriculum: 000 , Loss: 218.7141965 (6 iters)		22.211 secs
+	Iter: 965 (965), Loss: 355.9527588		19.078 secs
+Curriculum: 000 , Loss: 235.2576319 (6 iters)		22.617 secs
+	Iter: 970 (970), Loss: 335.9459229		15.660 secs
+Curriculum: 000 , Loss: 255.1101964 (6 iters)		23.083 secs
+	Iter: 975 (975), Loss: 184.9766846		10.471 secs
+Curriculum: 000 , Loss: 219.6156820 (6 iters)		22.677 secs
+	Iter: 980 (980), Loss: 139.7671509		6.904 secs
+Curriculum: 000 , Loss: 211.6939634 (6 iters)		22.311 secs
+	Iter: 985 (985), Loss: 333.6797485		3.444 secs
+	Iter: 990 (990), Loss: 102.4686737		17.795 secs

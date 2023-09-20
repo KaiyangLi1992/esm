@@ -289,12 +289,18 @@ class State(StateNode):
         self.g1_reverse = g1_reverse
         self.g2_reverse = g2_reverse
         self.action_space = None
+        self.q_pred = 0
+        self.total_reward_pred = self.cum_reward + self.q_pred 
         
+    # def __lt__(self, other):
+    #     # TODO: Is this function the source of your sorting related time expenditures?
+    #     if len(self.matching) != len(other.matching):
+    #         return len(self.matching) > len(other.matching)
+    #     return self.cost < other.cost
     def __lt__(self, other):
         # TODO: Is this function the source of your sorting related time expenditures?
-        if len(self.matching) != len(other.matching):
-            return len(self.matching) > len(other.matching)
-        return self.cost < other.cost
+        
+        return self.total_reward_pred > other.total_reward_pred
 
     def __str__(self):
         return str(self.matching) + ": " + str(self.cost)

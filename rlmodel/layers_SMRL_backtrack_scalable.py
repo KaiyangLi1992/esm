@@ -160,14 +160,15 @@ class SMRLBacktrack(nn.Module):
 
         if forward_mode == PRETRAIN_MODE:           
             loss = self._forward_pretrain(forward_mode, ins, batch_data, cur_id)
-        # elif forward_mode == IMITATION_MODE:
-        #     loss = self._forward_imitation(forward_mode, ins, batch_data, cur_id)
-        # elif forward_mode == TRAIN_MODE:
-        #     loss = self._forward_train(forward_mode, ins, batch_data, cur_id)
-        # elif forward_mode == TEST_MODE:
-        #     loss = self._forward_test(forward_mode, ins, batch_data, cur_id)
+        elif forward_mode == IMITATION_MODE:
+            loss = self._forward_imitation(forward_mode, ins, batch_data, cur_id)
+        elif forward_mode == TRAIN_MODE:
+            loss = self._forward_train(forward_mode, ins, batch_data, cur_id)
+        elif forward_mode == TEST_MODE:
+            loss = self._forward_test(forward_mode, ins, batch_data, cur_id)
         else:
             assert False
+        # loss = self._forward_pretrain(forward_mode, ins, batch_data, cur_id)
 
         if self._tgt_net_sync_itr(forward_mode):
             self._sync_tgt_networks()
@@ -248,7 +249,7 @@ class SMRLBacktrack(nn.Module):
         smp.candidates = candidates 
         edgewise_no_attrs(smp)
         from_local_bounds(smp)
-        search_tree,_ = greedy_best_k_matching_custom(smp,state_init,k=1,nodewise=False, verbose=True)
+        search_tree,_ = greedy_best_k_matching_custom(smp,state_init,self.dqn,k=1,nodewise=False, verbose=True)
         self.post_process(search_tree, pair)
         return search_tree,_
 

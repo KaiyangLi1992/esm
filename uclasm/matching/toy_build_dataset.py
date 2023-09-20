@@ -12,7 +12,7 @@ from collections import deque
 from graph_pair import GraphPair
 from dataset import OurDataset
 from graph import RegularGraph
-from node_feat import encode_node_features
+from node_feat import encode_node_features_custom,encode_node_features
 from data_model import OurModelData, OurCocktailData
 import pickle
 import itertools 
@@ -121,18 +121,21 @@ world.graph['gid'] = 0
 
 graph_list = []
 high_density_subgraphs = find_high_density_subgraphs(world, 0.5, 10,1)
-world = high_density_subgraphs[0]
+# world = high_density_subgraphs[0]
+world = world
 world = rename_id(world)
 graph_list.append(RegularGraph(world))
 # graph_list.append(RegularGraph(rename_id(world)))
 pairs = {}
 
-density_threshold = 0.4  # 设定密度阈值
-max_nodes_per_subgraph = 8  # 子图的最大点数
+density_threshold = 0.5  # 设定密度阈值
+max_nodes_per_subgraph = 10  # 子图的最大点数
+# density_threshold = 0.3  # 设定密度阈值
+# max_nodes_per_subgraph = 8  # 子图的最大点数
 
-high_density_subgraphs = find_high_density_subgraphs(world, density_threshold, max_nodes_per_subgraph,100)
+high_density_subgraphs = find_high_density_subgraphs(world, density_threshold, max_nodes_per_subgraph,40)
 
-for i in range(0,10):
+for i in range(0,40):
     # random_seed = random.choice(list(world.nodes()))
     # sampled_subgraph = bfs_sample_subgraph(world, start_node=random_seed, max_depth=1)
     sampled_subgraph = high_density_subgraphs[i]
@@ -152,13 +155,18 @@ our_dataset = OurDataset(name, graph_list, natts, eatts, pairs, tvt, align_metri
                       glabel, None)
 
 dataset_train, num_node_feat_test = \
-            encode_node_features(dataset=our_dataset)
+            encode_node_features_custom(dataset=our_dataset)
+# dataset_train = our_dataset
+# num_node_feat_test = 104
 
-dataset_train = OurModelData(dataset_train, num_node_feat_test)
-dataset_trains = [dataset_train]
-toy_dataset = OurCocktailData(dataset_trains,[num_node_feat_test])
+with open('Email_testset_dens_0.5_n_10.pkl','wb') as f:
+    pickle.dump(dataset_train,f)
 
-with open('toy_dataset_toy.pkl','wb') as f:
-    pickle.dump(toy_dataset,f)
+# dataset_train = OurModelData(dataset_train, num_node_feat_test)
+# dataset_trains = [dataset_train]
+# toy_dataset = OurCocktailData(dataset_trains,[100])
 
-print(num_node_feat_test)
+# with open('toy_dataset.pkl','wb') as f:
+#     pickle.dump(toy_dataset,f)
+
+# print(num_node_feat_test)

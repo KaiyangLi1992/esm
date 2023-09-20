@@ -1,6 +1,6 @@
 from config import FLAGS
 from merged_graph import MergedGraphData
-from node_feat import encode_node_features
+from node_feat import encode_node_features_custom
 from pair_processor import preproc_graph_pair, \
     postproc_graph_pairs_assign_node_embeds
 from torch_geometric.data import Data as PyGSingleGraphData
@@ -80,7 +80,8 @@ class BatchData(object):
             edge_attr=None,
             y=None)  # TODO: add one-hot
         # print('before', data.x.shape)
-        data, nf_dim = encode_node_features(pyg_single_g=data)
+        # data, nf_dim = encode_node_features(pyg_single_g=data)
+        data, nf_dim = encode_node_features_custom(data)
         # assert data.is_undirected()
         assert data.x.shape[1] == nf_dim
         # print('after', data.x.shape)

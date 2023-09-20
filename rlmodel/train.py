@@ -69,6 +69,7 @@ def _run_iter(cur_id, iter, num_iters_total, batch_data, model,
     model.train()
     model.zero_grad()
     loss = model(cur_id, iter, batch_data)
+    print(loss)
     if FLAGS.clipping_val > 0:
         nn.utils.clip_grad_norm_(model.parameters(), FLAGS.clipping_val)
     if loss is None:

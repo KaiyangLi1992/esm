@@ -4,7 +4,7 @@ from torch_geometric.transforms import LocalDegreeProfile
 from sklearn.preprocessing import OneHotEncoder
 import networkx as nx
 import numpy as np
-
+from node2vec import Node2Vec
 
 class NodeFeatureEncoder(object):
     def __init__(self, gs, node_feat_name):
@@ -37,6 +37,53 @@ class NodeFeatureEncoder(object):
 
     def _node_feat_dic(self, g):
         return nx.get_node_attributes(g, self.node_feat_name)
+    
+
+
+def encode_node_features_custom(dataset):
+    attr_list = set()
+    gs = [g.get_nxgraph() for g in dataset.gs]
+    for g in gs:
+        type_values = set(nx.get_node_attributes(g, 'type').values())
+        attr_list.update(type_values) 
+    num_attr = max(list(attr_list))+1
+    for g in gs:
+        x1 = node2vec(g)
+        x2 = onehot_attr(g,num_attr)
+        x = np.concatenate((x1, x2), axis=1)
+        g.init_x = x
+    return dataset,x.shape[1]
+
+#    将type属性值放在一个set中
+   
+
+     
+     
+    
+    
+def node2vec(g):
+    embeddings_matrix = np.zeros((len(g.nodes), 64))
+    node2vec = Node2Vec(g, dimensions=64, walk_length=30, num_walks=200, workers=1)  
+# 训练Node2Vec模型
+    model = node2vec.fit(window=10, min_count=1, batch_words=4)  
+    # 获取每个节点的嵌入
+    for i,node in enumerate(g.nodes):
+        embeddings_matrix[i,:] = model.wv[node]
+    return embeddings_matrix
+
+def get_onehot(type_val,num_attr):
+    onehot = np.zeros(num_attr)  # 创建一个长度为5的零向量，因为有5种类型
+    onehot[type_val - 1] = 1  # 将相应的位置设为1
+    return onehot
+
+def onehot_attr(g,num_attr):
+    nodes = list(g.nodes(data=True))
+    onehot_matrix = np.zeros((len(nodes), num_attr))
+
+    for idx, (_, data) in enumerate(nodes):
+        type_val = data['type']
+        onehot_matrix[idx] = get_onehot(type_val,num_attr)
+    return onehot_matrix
 
 def encode_node_features(dataset=None, pyg_single_g=None):
     if dataset:
@@ -71,10 +118,11 @@ def encode_node_features(dataset=None, pyg_single_g=None):
 def _one_hot_encode(dataset, input_dim):
     gs = [g.get_nxgraph() for g in dataset.gs] # TODO: encode image's complete graph
 
-    # from config import FLAGS
-    # natts = FLAGS.node_feats.split(',')
-    # natts = [] if natts == ['None'] else natts #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    natts = []
+    from config import FLAGS
+    # natts = FLAGS.node_feats_for_sm.split(',')
+    natts = FLAGS.node_feats_for_sm
+    natts = [] if natts == ['None'] else natts #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    # natts = []
 
     # if len(dataset.natts) > 1:
     if len(natts) > 1:
