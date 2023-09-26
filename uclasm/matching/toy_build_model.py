@@ -11,7 +11,7 @@ from config import FLAGS
 from saver import saver
 from utils import slack_notify, get_ts, OurTimer
 
-with open('toy_dataset.pkl','rb') as f:
+with open('toy_dataset_toy.pkl','rb') as f:
     toy_dataset = pickle.load(f)
 tm = OurTimer()
 train_test_data = [toy_dataset]

@@ -6,9 +6,9 @@ import torch
 sys.path.append("/home/kli16/ISM_custom/esm/") 
 sys.path.append("/home/kli16/ISM_custom/esm/rlmodel") 
 sys.path.append("/home/kli16/ISM_custom/esm/uclasm/") 
-
+import numpy as np
 from matching.search.data_structures_search_tree import SearchTree
-from matching.PG_structure import State
+from matching.PG_structure import State,update_state
 from torch.utils.data import DataLoader
 from collections import Counter
 import random
@@ -49,7 +49,16 @@ def get_reward(tmplt_idx,cand_idx,state):
         cycle_reward = 1
     return reward1+reward2+cycle_reward
 
+def shuttle_node_id(G):
+    nodes = list(G.nodes())
+    random.shuffle(nodes)
 
+    # 创建一个映射，将原始节点映射到新的随机节点
+    mapping = {original: new for original, new in zip(G.nodes(), nodes)}
+
+    # 使用映射创建一个新的DiGraph
+    H = nx.relabel_nodes(G, mapping)
+    return H
 
 def get_attr_dict(G):
     type_dict = {}
@@ -114,33 +123,51 @@ def calculate_cost(small_graph, big_graph, mapping):
 class environment:
     def __init__(self,dataset):
         self.dataset = dataset
-        self.data_loader = DataLoader(dataset, batch_size=1, shuffle=False)
+        self.data_loader = DataLoader(dataset, batch_size=1, shuffle=True)
         self.searchtree = None
         self.g1 = None
         self.g2 = None
+        self.threshold = np.inf
         
     def reset(self):
        batch_gids = get_next_item(self.data_loader)
     #    batch_gids = [torch.tensor([1]), torch.tensor([0])]
        self.g1 = self.dataset.look_up_graph_by_gid(batch_gids[0][0].item()).get_nxgraph()
        self.g2 = self.dataset.look_up_graph_by_gid(batch_gids[1][0].item()).get_nxgraph()
+
+       self_loops = [(u, v) for u, v in self.g1.edges() if u == v]
+       self.g1.remove_edges_from(self_loops)
+
+
+    #    self.g1 = shuttle_node_id(self.g1)
+
+
        self.g1.attr_dict =  get_attr_dict(self.g1)
        self.g2.attr_dict =  get_attr_dict(self.g2)
        state_init = State(self.g1,self.g2)
+       self.threshold = np.inf
        return state_init
     
     def step(self,state,action):
         nn_mapping = state.nn_mapping.copy()
         nn_mapping[action[0]] = action[1]
-        new_state = State(state.g1,state.g2,\
-                          nn_mapping=nn_mapping,g1_reverse=state.g1_reverse,g2_reverse=state.g2_reverse)
+        state.pruned_space.append((action[0],action[1]))
+        new_state = State(state.g1,state.g2,
+                          nn_mapping=nn_mapping,
+                          g1_reverse=state.g1_reverse,
+                          g2_reverse=state.g2_reverse,
+                          ori_candidates=state.ori_candidates)
         reward = get_reward(action[0],action[1],state)
         if len(nn_mapping) == len(state.g1.nodes):
-            
-
-            return new_state,reward,True
+            update_state(new_state,self.threshold)
+            cost = new_state.globalcosts.min()
+            if cost < self.threshold:
+                self.threshold = cost
+                return new_state,state,reward,True
+            else: 
+                return new_state,state,reward,False
         else:
-            return new_state,reward,False
+            return new_state,state,reward,False
 
 
 

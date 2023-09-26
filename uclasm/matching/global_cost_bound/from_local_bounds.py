@@ -27,7 +27,8 @@ def from_local_bounds(smp):
         for tmplt_idx, world_idx in smp.prevented_matches:
             smp.local_costs[tmplt_idx, world_idx] = float("inf")
 
-        partial_match_cost = np.sum([smp.local_costs[match]/2 + smp.fixed_costs[match] for match in smp.matching])
+        partial_match_cost = np.sum([smp.local_costs[match]/2 + \
+                                     smp.fixed_costs[match] for match in smp.matching])
         mask = np.ix_(tmplt_idx_mask, world_idx_mask)
         total_match_cost = partial_match_cost
         if np.any(tmplt_idx_mask):

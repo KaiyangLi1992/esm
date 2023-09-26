@@ -1,3 +1,6 @@
+import time
+
+start_time = time.time()
 import pickle
 import sys 
 import random
@@ -9,11 +12,28 @@ import torch.optim as optim
 sys.path.append("/home/kli16/ISM_custom/esm/") 
 sys.path.append("/home/kli16/ISM_custom/esm/rlmodel") 
 sys.path.append("/home/kli16/ISM_custom/esm/uclasm/") 
-from matching.environment import environment,get_init_action
+from matching.environment import environment,get_init_action,calculate_cost
 import torch.nn.functional as F
 from torch.utils.tensorboard import SummaryWriter
 import os
 import shutil
+import networkx as nx
+from matching.PG_structure import update_state
+import random
+
+
+def get_random_element(lst):
+    if not lst:
+        return None
+
+    filtered_lst = [item for item in lst if item != (-1, -1)]
+    
+    if not filtered_lst:
+        return None
+
+    return random.choice(filtered_lst)
+
+
 
 def clear_folder(folder_path):
     for filename in os.listdir(folder_path):
@@ -147,17 +167,13 @@ class policy_network(nn.Module):
 
 
 
-
-
-
-
-with open('Email_trainset_dens_0.5_n_10.pkl','rb') as f:
+with open('Email_testset_dens_0.5_n_10.pkl','rb') as f:
     dataset = pickle.load(f)
 
 
 
-def main():
 
+def main():
     # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     device = torch.device('cuda:0')
     print(f"Using device: {device}")
@@ -173,68 +189,64 @@ def main():
     writer = SummaryWriter('runs/experiment_name')
     gamma = 0.99
     checkpoint_interval = 1000
-    for episode in range(50000):
-        state_init = env.reset()
-        policy.hn = None
-        policy.cn = None
-        action_space = state_init.action_space
-        action = get_init_action(action_space)
-        state,reward,done = env.step(state_init,action)
-        # state = state[0]
-        for t in range(1, 10000):
-            # state = torch.from_numpy(state).float()
-            # probs = random_policy_network(state)
-            probs = policy(state,action,device).to(device)
-            # m = Categorical(torch.tensor(probs))
-            m = Categorical(probs)
-            action_index = m.sample()
-            log_probs.append(m.log_prob(action_index))
-            action = state.action_space[action_index]
-            state, reward, done = env.step(state,action)
-            rewards.append(reward)
-            if done:
-                break
-        R = 0
-        returns = []
-        for r in rewards[::-1]:
-            R = r + gamma * R
-            returns.insert(0, R)
-        returns = torch.tensor(returns).to(device)
-        returns = (returns - returns.mean()) / (returns.std() + 1e-6)
-
-        # loss = -torch.stack(log_probs).sum() * (100+rewards[-1])
-        # loss = -torch.stack(log_probs).sum() * rewards[-1]
-        loss = []
-        for log_prob, R in zip(log_probs, returns):
-            loss.append(-log_prob * R)
-        loss = torch.stack(loss).sum()
-
-        # 打印每一轮的信息
-        if episode % 10 == 0:
-            print(f'Episode {episode}, Total Reward: {sum(rewards)},Loss:{loss}')
-        writer.add_scalar('Reward', sum(rewards), episode)
+    steps=[]
+    for episode in range(50):
         
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+        state_init = env.reset()
+        update_state(state_init,env.threshold)
+        stack = [state_init]
 
-        if episode % checkpoint_interval == 0:
-        # 创建一个检查点每隔几个时期
-            checkpoint = {
-                'epoch': episode,
-                'model_state_dict': policy.state_dict(),
-                'optimizer_state_dict': optimizer.state_dict(),
-                # ... (其他你想保存的元数据)
-            }
-            torch.save(checkpoint, f'checkpoint_{episode}.pth')
+        solution = []
+        step = 0 
+        while stack:
+            state = stack.pop()
+            update_state(state,env.threshold)
+            # state.candidates = state.get_candidates(env.threshold)
+
+            if np.any(np.all(state.candidates == False, axis=1)):
+                continue
+
+
+            state.action_space = state.get_action_space()
+            step += 1
+            action = get_random_element(state.action_space)
+            newstate, state,reward, done = env.step(state,action)
+            stack.append(state)   
+            if step % 100 == 0:
+                print(f'step:{step} threshold:{env.threshold}')  
+            if done:
+                print(calculate_cost(newstate.g1,newstate.g2,newstate.nn_mapping))
+                print(newstate.globalcosts.min())
+                solution.append(newstate)
+            else:
+                stack.append(newstate)        
+        print(f'Step:{step}')
+        steps.append(step)
+    print(sum(steps)/len(steps))
+            
+
+
 
       
+       
 
-        
-        del log_probs[:]
-        del rewards[:]
-        
-    writer.close()
+# def depth_first_search(root, lower_bound):
+#     if root is None:
+#         return
+    
+#     stack = [root]
+#     while stack:
+#         node = stack.pop()
+#         if node:
+#             print(node.value)  # 访问当前节点
+
+#             if node.value < lower_bound:
+#                 print(f"Cutoff at node {node.value}")
+#                 # 如果节点值小于 lower_bound，我们跳过其子节点并继续遍历
+#                 continue
+
+#             stack.append(node.right)  # 将右节点压入栈中
+#             stack.append(node.left)   # 将左节点压入栈中
     
 
 

@@ -47,6 +47,7 @@ class MonotoneArray(np.ndarray):
         value = np.maximum(self[key], value)
         super().__setitem__(key, value)
 
+
 class GlobalCostsArray(MonotoneArray):
     """An array storing the global costs that automatically updates a boolean
     array of candidates based on a global cost threshold.

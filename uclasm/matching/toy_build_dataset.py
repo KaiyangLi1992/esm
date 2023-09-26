@@ -17,6 +17,19 @@ from data_model import OurModelData, OurCocktailData
 import pickle
 import itertools 
 
+def shuttle_node_id(G):
+    nodes = list(G.nodes())
+    random.shuffle(nodes)
+
+    # 创建一个映射，将原始节点映射到新的随机节点
+    mapping = {original: new for original, new in zip(G.nodes(), nodes)}
+
+    # 使用映射创建一个新的DiGraph
+    H = nx.relabel_nodes(G, mapping)
+    return H
+
+
+
 def rename_id(G):
     nodes_list = list(G.nodes())
     node_id_mapping = {node: idx for idx, node in enumerate(nodes_list)}
@@ -61,11 +74,11 @@ def read_txt_file(file_path):
             data.append(elements)
     return data
 # Replace 'edges.csv' with the actual path to your CSV file
-csv_file_path = './tutorial/world_email.csv'
+csv_file_path = '../../tutorial/world_email.csv'
 edges_list = read_csv_edges(csv_file_path)
 world = create_directed_graph(edges_list)
 # Replace 'your_file_path.txt' with the actual path to your txt file
-file_path = "./tutorial/email-Eu-core-department-labels.txt"
+file_path = "../../tutorial/email-Eu-core-department-labels.txt"
 txt_data = read_txt_file(file_path)
 attr_dict ={}
 for line in txt_data:
@@ -73,21 +86,25 @@ for line in txt_data:
 
 nx.set_node_attributes(world , attr_dict)
 
-def find_high_density_subgraphs(g, density_threshold, max_nodes_per_subgraph,n):
-    high_density_subgraphs = []
 
-    # for nodes in g.nodes():
-    #     for k in range(2, max_nodes_per_subgraph + 1):
-    for subset_nodes in itertools.combinations(g.nodes(), max_nodes_per_subgraph):
-        subgraph = g.subgraph(subset_nodes).copy()
-        density = nx.density(subgraph)
-        if density >= density_threshold:
-            if subgraph not in high_density_subgraphs:
-                high_density_subgraphs.append(subgraph)
-        if len(high_density_subgraphs) >= n:
-            break
 
-    return high_density_subgraphs
+
+def get_subgraph_density(g, nodes):
+    """获取给定节点子集的图的密度"""
+    subgraph = g.subgraph(nodes)
+    return nx.density(subgraph)
+
+def random_dense_subgraph(g, size, density_threshold, n):
+    """从图中随机选择n个子图，其中每个子图包含size个节点且密度大于density_threshold"""
+    valid_subgraphs = []
+    
+    while len(valid_subgraphs) < n:
+        nodes = random.sample(g.nodes(), size)
+        if get_subgraph_density(g, nodes) > density_threshold and nx.is_weakly_connected(g.subgraph(nodes)):
+            valid_subgraphs.append(nx.DiGraph(g.subgraph(nodes)))
+            print(len(valid_subgraphs))
+            
+    return valid_subgraphs
 
 
 
@@ -120,27 +137,29 @@ def bfs_sample_subgraph(graph, start_node, max_depth):
 world.graph['gid'] = 0
 
 graph_list = []
-high_density_subgraphs = find_high_density_subgraphs(world, 0.5, 10,1)
+# high_density_subgraphs = random_dense_subgraph(world, 7, 0.3,1)
 # world = high_density_subgraphs[0]
-world = world
+# world = world
 world = rename_id(world)
 graph_list.append(RegularGraph(world))
 # graph_list.append(RegularGraph(rename_id(world)))
 pairs = {}
 
-density_threshold = 0.5  # 设定密度阈值
-max_nodes_per_subgraph = 10  # 子图的最大点数
+density_threshold = 0.2 # 设定密度阈值
+max_nodes_per_subgraph = 8  # 子图的最大点数
+n = 50
 # density_threshold = 0.3  # 设定密度阈值
 # max_nodes_per_subgraph = 8  # 子图的最大点数
 
-high_density_subgraphs = find_high_density_subgraphs(world, density_threshold, max_nodes_per_subgraph,40)
+high_density_subgraphs = random_dense_subgraph(world, max_nodes_per_subgraph,density_threshold,n)
 
-for i in range(0,40):
+for i in range(0,n):
     # random_seed = random.choice(list(world.nodes()))
     # sampled_subgraph = bfs_sample_subgraph(world, start_node=random_seed, max_depth=1)
     sampled_subgraph = high_density_subgraphs[i]
     sampled_subgraph.graph['gid'] = i+1
-    graph_list.append(RegularGraph(rename_id(sampled_subgraph)))
+    sampled_subgraph = rename_id(shuttle_node_id(sampled_subgraph))
+    graph_list.append(RegularGraph(sampled_subgraph))
     pairs[(i+1, 0)] = GraphPair()
 
 name = 'email'
@@ -165,7 +184,6 @@ with open('Email_testset_dens_0.5_n_10.pkl','wb') as f:
 # dataset_train = OurModelData(dataset_train, num_node_feat_test)
 # dataset_trains = [dataset_train]
 # toy_dataset = OurCocktailData(dataset_trains,[100])
-
 # with open('toy_dataset.pkl','wb') as f:
 #     pickle.dump(toy_dataset,f)
 
