@@ -85,6 +85,8 @@ class State(object):
                  ori_candidates=None,g1_reverse=None,g2_reverse=None,nn_mapping={}):
         self.g1 = g1
         self.g2 = g2
+        self.hn = None
+        self.cn = None
         self.nn_mapping = nn_mapping
 
         if g1_reverse == None:
@@ -119,6 +121,37 @@ class State(object):
         # self.action_space = self.get_action_space()
         
         
+    def get_action_heuristic(self):
+
+        matrix = self.candidates
+        exclude_indices = list(self.nn_mapping.keys())
+        if not exclude_indices:
+            filtered_matrix = matrix
+        else:
+            matrix[exclude_indices,:] = False
+            filtered_matrix = matrix
+        result_matrix =  np.where(matrix, self.globalcosts, np.inf)
+
+
+        min_index = np.unravel_index(np.argmin(result_matrix), result_matrix.shape)
+        min_index_tuple = tuple(min_index)
+
+        # 计算每行不是inf的元素数量
+        # valid_counts = np.sum(result_matrix != np.inf, axis=1)
+
+        # 找出不全为inf且数量最小的行的索引
+        # valid_rows = np.where((valid_counts > 0) & (valid_counts == valid_counts[valid_counts > 0].min()))[0]
+
+        # 选择第一个满足条件的行
+        # chosen_row = valid_rows[0]
+
+        # col = np.argmin(result_matrix[chosen_row, :])
+
+        # min_index_tuple = (chosen_row, col)
+
+    
+        return min_index_tuple
+    
     def get_action_space(self):
 
         matrix = self.candidates
@@ -143,17 +176,21 @@ class State(object):
         # 选择第一个满足条件的行
         chosen_row = valid_rows[0]
 
-        # 在选定的行中找到最小值的坐标
-        col = np.argmin(result_matrix[chosen_row, :])
+#以下为我们的方法
+        col_indices = np.where(result_matrix[chosen_row] != np.inf)[0]
 
-        min_index_tuple = (chosen_row, col)
+# 格式化输出
+        result_list = [(chosen_row, col) for col in col_indices]
 
-    # 转换为元组
-        
-        result_list = [min_index_tuple] 
+        # 以下为baseline在选定的行中找到最小值的坐标
+        # col = np.argmin(result_matrix[chosen_row, :])
 
-        while len(result_list) < 500:
-            result_list.append((-1, -1))
+        # min_index_tuple = (chosen_row, col)
+
+        # result_list = [min_index_tuple] 
+
+        # while len(result_list) < 500:
+        #     result_list.append((-1, -1))
 
         # 如果列表长度超过500，随机选择500个元素构成新列表
         if len(result_list) > 500:

@@ -129,7 +129,7 @@ class policy_network(nn.Module):
         self.hn = None
         self.cn = None
     
-    def forward(self, state,action,device):
+    def forward(self, state,new_state,action,device):
         init_x1 = state.g1.init_x
         init_x2 = state.g2.init_x
 
@@ -139,17 +139,17 @@ class policy_network(nn.Module):
         u,v= action
         input_vector = torch.tensor(init_x1[u] +init_x2[v],device=device)
 
-        if self.hn is None:
-            self.hn = torch.randn(1, 1, 64).to(input_vector.device)
-        if self.cn is None:
-            self.cn = torch.randn(1, 1, 64).to(input_vector.device)
+        if state.hn is None:
+            state.hn = torch.randn(1, 1, 64).to(input_vector.device)
+        if state.cn is None:
+            state.cn = torch.randn(1, 1, 64).to(input_vector.device)
 
         input_vector = input_vector.float()
         input_matrix = input_matrix.float()
-        self.hn = self.hn.float()
-        self.cn = self.cn.float()
+        self.hn = state.hn.float()
+        self.cn = state.cn.float()
         # 输入向量经过LSTM得到A向量
-        output, (self.hn, self.cn) = self.lstm(input_vector.unsqueeze(0).unsqueeze(0), (self.hn, self.cn))
+        output, (hn, cn) = self.lstm(input_vector.unsqueeze(0).unsqueeze(0), (state.hn, state.cn))
         A_vector = output.squeeze(0)
 
         transformed_matrix = self.linear(input_matrix)
@@ -162,7 +162,8 @@ class policy_network(nn.Module):
 
         non_zero_indices = [i for i, item in enumerate(action_space) if item != (-1, -1)]
         output_vector = scale_list(output_vector,non_zero_indices)
-        
+        new_state.hn = hn
+        new_state.cn = cn
         return output_vector
 
 

@@ -15,6 +15,7 @@ from torch.utils.tensorboard import SummaryWriter
 import os
 import shutil
 from PG_matching import policy_network
+from PG_structure import update_state
 
 device = torch.device('cuda:0')
 
@@ -31,35 +32,61 @@ def test_checkpoint_model(checkpoint_path, test_dataset):
     
     
     total_rewards = []
-    for episode in range(40):
+    steps = []
+    first_costs = []
+    for episode in range(50):
         state_init = env.reset()
-        action_space = state_init.action_space
-        action = get_init_action(action_space)
-        state, reward, done = env.step(state_init, action)
-        
-        rewards = []
-        for t in range(1, 10000): # 这里的范围可能需要调整
-            probs = policy(state, action,device)
-            m = Categorical(probs)
-            action_index = m.sample()
-            action = state.action_space[action_index]
-            state, reward, done = env.step(state, action)
-            rewards.append(reward)
-            if done:
-                break
+        update_state(state_init,env.threshold)
+        state_init.action_space = state_init.get_action_space()
+        action = get_init_action(state_init.action_space,state_init.globalcosts)
+        new_state, state, reward, done = env.step(state_init, action)
+        stack = [state_init]
+        solution = []
+        costs = []
+        # rewards = []
+        step = 0 
+        while stack:
+            state = stack.pop()
+            update_state(state,env.threshold)
 
-        total_reward = sum(rewards)
-        total_rewards.append(total_reward)
-    Average_reward  = sum(total_rewards)/len(total_rewards)
-    print(f'Total reward for checkpoint {checkpoint_path}: {Average_reward}')
+            if np.any(np.all(state.candidates == False, axis=1)):
+                continue
+            state.action_space = state.get_action_heuristic()
+            step += 1
+            # probs = policy(state, new_state,action,device)
+            # m = Categorical(probs)
+            # action_index = m.sample()
+            # action = state.action_space[action_index]
+            action = state.action_space
+            new_state,state, reward, done = env.step(state, action)
+            # rewards.append(reward)
+            stack.append(state)   
+          
+            if done:
+                print(new_state.globalcosts.min())
+                solution.append(new_state)
+                costs.append(new_state.globalcosts.min())
+                break
+            else:
+                stack.append(new_state)
+                
+        # print(f'Step:{step}') 
+        steps.append(step)
+        first_costs.append(costs[0])
+
+        
 
     # 返回总奖励，以便在后续可能使用
-    return total_rewards
+    print(sum(first_costs)/len(first_costs))
+    return sum(steps)/len(steps)
 
 
 # 使用该函数测试多个检查点
-with open('Email_testset_dens_0.5_n_10_new.pkl','rb') as f:
+with open('/home/kli16/ISM_custom/esm_only_rl/esm/uclasm/matching/Email_testset_dens_0.5_n_10_new.pkl','rb') as f:
     test_dataset = pickle.load(f)
-checkpoints = [f'checkpoint_{i}.pth' for i in range(0, 50000, 1000)]
+checkpoints = [f'/home/kli16/ISM_custom/esm_only_rl/esm/uclasm/matching/checkpoint_{i}.pth' for i in range(18000, 50000, 1000)]
 for checkpoint in checkpoints:
-    test_checkpoint_model(checkpoint, test_dataset)
+    average_step = test_checkpoint_model(checkpoint, test_dataset)
+    print(checkpoint)
+    print(average_step)
+

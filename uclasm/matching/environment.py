@@ -87,25 +87,17 @@ def get_next_item(data_loader):
     return helper()
 
 
-def get_init_action(lst):
-        first_elements = [t[0] for t in lst]
+def get_init_action(coordinates,globalcost):
+        filtered_coordinates = [coord for coord in coordinates if coord != (-1, -1)]
 
-        # 计算每个元素的出现次数
-        element_counts = Counter(first_elements)
+        # 获取坐标及其对应的值
+        coord_values = [(coord, globalcost[coord]) for coord in filtered_coordinates]
 
-        # 找出出现次数最少的元素
-        min_count = min(element_counts.values())
-        min_count_elements = [key for key, value in element_counts.items() if value == min_count]
+        # 根据值排序并取第一个坐标
+        min_coord = min(coord_values, key=lambda x: x[1])[0]
 
-        # 从最少出现的元素中随机选择一个
-        chosen_element = random.choice(min_count_elements)
+        return min_coord
 
-        # 从列表中选择所有元组，其第一个元素是chosen_element
-        valid_tuples = [t for t in lst if t[0] == chosen_element]
-
-        # 从valid_tuples中随机选择一个元组
-        chosen_tuple = random.choice(valid_tuples)
-        return chosen_tuple
 def calculate_cost(small_graph, big_graph, mapping):
     cost = 0
     for edge in small_graph.edges():

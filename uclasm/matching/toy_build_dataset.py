@@ -147,7 +147,7 @@ pairs = {}
 
 density_threshold = 0.2 # 设定密度阈值
 max_nodes_per_subgraph = 8  # 子图的最大点数
-n = 50
+n = 2000
 # density_threshold = 0.3  # 设定密度阈值
 # max_nodes_per_subgraph = 8  # 子图的最大点数
 
@@ -178,7 +178,7 @@ dataset_train, num_node_feat_test = \
 # dataset_train = our_dataset
 # num_node_feat_test = 104
 
-with open('Email_testset_dens_0.5_n_10.pkl','wb') as f:
+with open('Email_trainset_dens_0.5_n_10.pkl','wb') as f:
     pickle.dump(dataset_train,f)
 
 # dataset_train = OurModelData(dataset_train, num_node_feat_test)
