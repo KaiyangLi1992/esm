@@ -6,9 +6,9 @@ import torch.nn as nn
 from torch.distributions import Categorical
 import numpy as np
 import torch.optim as optim
-sys.path.append("/home/kli16/ISM_custom/esm/") 
-sys.path.append("/home/kli16/ISM_custom/esm/rlmodel") 
-sys.path.append("/home/kli16/ISM_custom/esm/uclasm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_only_rl/esm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_only_rl/esm/rlmodel") 
+sys.path.append("/home/kli16/ISM_custom/esm_only_rl/esm/uclasm/") 
 from matching.environment import environment,get_init_action
 import torch.nn.functional as F
 from torch.utils.tensorboard import SummaryWriter

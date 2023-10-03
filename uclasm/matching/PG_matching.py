@@ -6,14 +6,16 @@ import torch.nn as nn
 from torch.distributions import Categorical
 import numpy as np
 import torch.optim as optim
-sys.path.append("/home/kli16/ISM_custom/esm/") 
-sys.path.append("/home/kli16/ISM_custom/esm/rlmodel") 
-sys.path.append("/home/kli16/ISM_custom/esm/uclasm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_only_rl/esm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_only_rl/esm/rlmodel") 
+sys.path.append("/home/kli16/ISM_custom/esm_only_rl/esm/uclasm/") 
 from matching.environment import environment,get_init_action
 import torch.nn.functional as F
 from torch.utils.tensorboard import SummaryWriter
 import os
 import shutil
+import datetime
+timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 
 def clear_folder(folder_path):
     for filename in os.listdir(folder_path):
@@ -62,24 +64,7 @@ def get_action_space_emb(action_space,x1,x2):
     result_matrix = np.vstack(result_vectors)
     return result_matrix
 
-# def scale_list(input_list, index):
-#     # 步骤1：设置index外的元素为0
-#     scaled_list = [input_list[i] if i in index else 0 for i in range(len(input_list))]
 
-#     # 步骤2：计算非零元素的和
-#     sum_of_elements = sum(scaled_list)
-
-#     # 步骤3：找到使总和为1的缩放系数
-#     if sum_of_elements == 0:
-#         scale_factor = 0  # 避免除以零
-#     else:
-#         scale_factor = 1.0 / sum_of_elements
-
-#     # 步骤4：缩放列表中的每个元素
-#     result_list = [x * scale_factor for x in scaled_list]
-    
-
-#     return torch.tensor(result_list, requires_grad=True)
 
 def scale_list(input_list, index):
     # 步骤1：设置index外的元素为0
@@ -120,9 +105,9 @@ class policy_network(nn.Module):
         input_vector = torch.tensor(init_x1[u] +init_x2[v],device=device)
 
         if self.hn is None:
-            self.hn = torch.randn(1, 1, 64).to(input_vector.device)
+            self.hn = torch.zeros(1, 1, 64).to(input_vector.device)
         if self.cn is None:
-            self.cn = torch.randn(1, 1, 64).to(input_vector.device)
+            self.cn = torch.zeros(1, 1, 64).to(input_vector.device)
 
         input_vector = input_vector.float()
         input_matrix = input_matrix.float()
@@ -150,28 +135,25 @@ class policy_network(nn.Module):
 
 
 
-
-with open('Email_trainset_dens_0.5_n_10.pkl','rb') as f:
+with open('/home/kli16/ISM_custom/esm_only_rl/esm/uclasm/matching/Email_trainset_dens_0.2_n_8_num_2000.pkl','rb') as f:
     dataset = pickle.load(f)
 
 
 
 def main():
-
-    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    device = torch.device('cuda:0')
+    device = torch.device('cuda:7')
     print(f"Using device: {device}")
 
     env  = environment(dataset)
     policy = policy_network().to(device) 
-    optimizer = optim.Adam(policy.parameters(), lr=1e-3)
+    optimizer = optim.Adam(policy.parameters(), lr=1e-4)
     
-    # gamma = 0.99
+ 
     log_probs = []
     rewards = []
-    clear_folder("runs")
-    writer = SummaryWriter('runs/experiment_name')
-    gamma = 0.99
+    writer = SummaryWriter(f'runs/smooth/{timestamp}')
+    # gamma = 0.99
+    gamma = 0
     checkpoint_interval = 1000
     for episode in range(50000):
         state_init = env.reset()
@@ -180,10 +162,10 @@ def main():
         action_space = state_init.action_space
         action = get_init_action(action_space)
         state,reward,done = env.step(state_init,action)
-        # state = state[0]
+        # rewards.append(reward)
+        
         for t in range(1, 10000):
-            # state = torch.from_numpy(state).float()
-            # probs = random_policy_network(state)
+    
             probs = policy(state,action,device).to(device)
             # m = Categorical(torch.tensor(probs))
             m = Categorical(probs)
@@ -194,29 +176,40 @@ def main():
             rewards.append(reward)
             if done:
                 break
-        R = 0
+        R = 0.99
         returns = []
         for r in rewards[::-1]:
             R = r + gamma * R
             returns.insert(0, R)
-        returns = torch.tensor(returns).to(device)
-        returns = (returns - returns.mean()) / (returns.std() + 1e-6)
+        
 
-        # loss = -torch.stack(log_probs).sum() * (100+rewards[-1])
-        # loss = -torch.stack(log_probs).sum() * rewards[-1]
-        loss = []
-        for log_prob, R in zip(log_probs, returns):
-            loss.append(-log_prob * R)
-        loss = torch.stack(loss).sum()
+        if episode%3 == 0:
+            returns_smooth = returns
+            log_probs_smooth = log_probs
+        else:
+            pass
+            # returns_smooth.extend(returns)
+            # log_probs_smooth.extend(log_probs)
+        if episode%3 == 2:
+            returns_smooth = torch.tensor(returns_smooth).to(device)
+        # returns = (returns - returns.mean()) 
+            returns_smooth = returns_smooth.float()
+            returns_smooth = (returns_smooth - returns_smooth.mean()) / (returns_smooth.std() + 1e-6)
+            loss = []
+            for log_prob, R in zip(log_probs_smooth, returns_smooth):
+                loss.append(-log_prob * R)
+            loss = torch.stack(loss).sum()
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+        # loss = -torch.stack(log_probs).sum() * sum(rewards)
 
         # 打印每一轮的信息
-        if episode % 10 == 0:
+        if episode % 12 == 2:
             print(f'Episode {episode}, Total Reward: {sum(rewards)},Loss:{loss}')
         writer.add_scalar('Reward', sum(rewards), episode)
         
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+        
 
         if episode % checkpoint_interval == 0:
         # 创建一个检查点每隔几个时期
@@ -226,7 +219,10 @@ def main():
                 'optimizer_state_dict': optimizer.state_dict(),
                 # ... (其他你想保存的元数据)
             }
-            torch.save(checkpoint, f'checkpoint_{episode}.pth')
+            directory_name = f"ckpt_smooth_0927/{timestamp}/"
+            if not os.path.exists(directory_name):
+                os.makedirs(directory_name)
+            torch.save(checkpoint, f'ckpt_smooth_0927/{timestamp}/checkpoint_{episode}.pth')
 
       
 

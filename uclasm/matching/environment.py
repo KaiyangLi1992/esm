@@ -3,9 +3,9 @@ import pickle
 import sys 
 import networkx as nx
 import torch
-sys.path.append("/home/kli16/ISM_custom/esm/") 
-sys.path.append("/home/kli16/ISM_custom/esm/rlmodel") 
-sys.path.append("/home/kli16/ISM_custom/esm/uclasm/") 
+# sys.path.append("/home/kli16/ISM_custom/esm/") 
+# sys.path.append("/home/kli16/ISM_custom/esm/rlmodel") 
+# sys.path.append("/home/kli16/ISM_custom/esm/uclasm/") 
 
 from matching.search.data_structures_search_tree import SearchTree
 from matching.PG_structure import State
@@ -32,6 +32,7 @@ def get_reward(tmplt_idx,cand_idx,state):
     posi_reward = len(list(neighbors_cand.intersection(cand_node_intersection)))
     nega_reward = len(list(tmplt_node_intersection)) - posi_reward 
     reward1 = posi_reward - nega_reward
+    # reward1 = nega_reward
 
     tmplt_nx = g1_reverse
     cand_nx = g2_reverse
@@ -44,9 +45,13 @@ def get_reward(tmplt_idx,cand_idx,state):
     posi_reward = len(list(neighbors_cand.intersection(cand_node_intersection)))
     nega_reward = len(list(tmplt_node_intersection)) - posi_reward 
     reward2 = posi_reward - nega_reward
+    # reward2 = nega_reward
     cycle_reward = 0
     if has_self_loop(tmplt_nx, tmplt_idx) & has_self_loop(cand_nx, cand_idx):
         cycle_reward = 1
+    if has_self_loop(tmplt_nx, tmplt_idx) & ~has_self_loop(cand_nx, cand_idx):
+        # cycle_reward = 1
+        cycle_reward = -1
     return reward1+reward2+cycle_reward
 
 
@@ -68,17 +73,15 @@ def get_attr_dict(G):
 
 def get_next_item(data_loader):
     data_iter = iter(data_loader)
-    def helper():
-        nonlocal data_iter
+    while True:
         try:
-            return next(data_iter)
+            yield next(data_iter)
         except StopIteration:
             data_iter = iter(data_loader)
-            return next(data_iter)
-    return helper()
-
+            yield next(data_iter)
 
 def get_init_action(lst):
+        lst =[item for item in lst if item != (-1, -1)]
         first_elements = [t[0] for t in lst]
 
         # 计算每个元素的出现次数
@@ -118,12 +121,13 @@ class environment:
         self.searchtree = None
         self.g1 = None
         self.g2 = None
+        self.gen = get_next_item(dataset)
         
     def reset(self):
-       batch_gids = get_next_item(self.data_loader)
+       batch_gids = next(self.gen)
     #    batch_gids = [torch.tensor([1]), torch.tensor([0])]
-       self.g1 = self.dataset.look_up_graph_by_gid(batch_gids[0][0].item()).get_nxgraph()
-       self.g2 = self.dataset.look_up_graph_by_gid(batch_gids[1][0].item()).get_nxgraph()
+       self.g1 = self.dataset.look_up_graph_by_gid(batch_gids[0]).get_nxgraph()
+       self.g2 = self.dataset.look_up_graph_by_gid(batch_gids[1]).get_nxgraph()
        self.g1.attr_dict =  get_attr_dict(self.g1)
        self.g2.attr_dict =  get_attr_dict(self.g2)
        state_init = State(self.g1,self.g2)
