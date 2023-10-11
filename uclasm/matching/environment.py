@@ -3,12 +3,12 @@ import pickle
 import sys 
 import networkx as nx
 import torch
-sys.path.append("/home/kli16/ISM_custom/esm/") 
-sys.path.append("/home/kli16/ISM_custom/esm/rlmodel") 
-sys.path.append("/home/kli16/ISM_custom/esm/uclasm/") 
+# sys.path.append("/home/kli16/ISM_custom/esm/") 
+# sys.path.append("/home/kli16/ISM_custom/esm/rlmodel") 
+# sys.path.append("/home/kli16/ISM_custom/esm/uclasm/") 
 import numpy as np
-from matching.search.data_structures_search_tree import SearchTree
-from matching.PG_structure import State,update_state
+# from search.data_structures_search_tree import SearchTree
+from PG_structure import State,update_state
 from torch.utils.data import DataLoader
 from collections import Counter
 import random
@@ -77,15 +77,12 @@ def get_attr_dict(G):
 
 def get_next_item(data_loader):
     data_iter = iter(data_loader)
-    def helper():
-        nonlocal data_iter
+    while True:
         try:
-            return next(data_iter)
+            yield next(data_iter)
         except StopIteration:
             data_iter = iter(data_loader)
-            return next(data_iter)
-    return helper()
-
+            yield next(data_iter)
 
 def get_init_action(coordinates,globalcost):
         filtered_coordinates = [coord for coord in coordinates if coord != (-1, -1)]
@@ -115,20 +112,21 @@ def calculate_cost(small_graph, big_graph, mapping):
 class environment:
     def __init__(self,dataset):
         self.dataset = dataset
-        self.data_loader = DataLoader(dataset, batch_size=1, shuffle=True)
+        self.data_loader = DataLoader(dataset, batch_size=1, shuffle=False)
         self.searchtree = None
         self.g1 = None
         self.g2 = None
         self.threshold = np.inf
+        self.gen = get_next_item(dataset)
         
     def reset(self):
-       batch_gids = get_next_item(self.data_loader)
+       batch_gids = next(self.gen)
     #    batch_gids = [torch.tensor([1]), torch.tensor([0])]
-       self.g1 = self.dataset.look_up_graph_by_gid(batch_gids[0][0].item()).get_nxgraph()
-       self.g2 = self.dataset.look_up_graph_by_gid(batch_gids[1][0].item()).get_nxgraph()
+       self.g1 = self.dataset.look_up_graph_by_gid(batch_gids[0]).get_nxgraph()
+       self.g2 = self.dataset.look_up_graph_by_gid(batch_gids[1]).get_nxgraph()
 
-       self_loops = [(u, v) for u, v in self.g1.edges() if u == v]
-       self.g1.remove_edges_from(self_loops)
+    #    self_loops = [(u, v) for u, v in self.g1.edges() if u == v]
+    #    self.g1.remove_edges_from(self_loops)
 
 
     #    self.g1 = shuttle_node_id(self.g1)

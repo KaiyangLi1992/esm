@@ -3,15 +3,16 @@ import random
 import networkx as nx
 import numpy as np
 from laptools import clap
-from matching.matching_utils import inspect_channels, MonotoneArray
+from matching_utils import inspect_channels, MonotoneArray
 from datetime import datetime
 
 def update_state(state,threshold):
     state.threshold = threshold
     changed_cands = np.ones((len(state.g1.nodes),), dtype=np.bool)
     state.candidates = state.get_candidates()
+                    # 从state_candidates中找出索引不在state_nn_mapping键中的行
     if np.any(np.all(state.candidates == False, axis=1)):
-                return
+        return
     old_candidates = state.candidates.copy()
     state.localcosts[:] = np.maximum(state.localcosts, state.get_localcosts())
     state.globalcosts[:] = np.maximum(state.globalcosts, state.get_globalcosts())
@@ -22,7 +23,7 @@ def update_state(state,threshold):
         state.globalcosts[:] = np.maximum(state.globalcosts, state.get_globalcosts())
         state.candidates = state.get_candidates()
         if np.any(np.all(state.candidates == False, axis=1)):
-                return
+            return
 
         changed_cands = np.any(state.candidates != old_candidates, axis=1)
         if ~np.any(changed_cands):
@@ -210,8 +211,8 @@ class State(object):
     def generate_ori_candidate(self):
         g1 = self.g1
         g2 = self.g2
-        attrs_g1 = np.array([g1.nodes[i]['type'] for i in g1.nodes])
-        attrs_g2 = np.array([g2.nodes[i]['type'] for i in g2.nodes])
+        attrs_g1 = np.array([g1.nodes[i]['type'] for i in sorted(g1.nodes)])
+        attrs_g2 = np.array([g2.nodes[i]['type'] for i in sorted(g2.nodes)])
         
         similarity_matrix = attrs_g1[:, None] == attrs_g2[None, :]
         

@@ -82,7 +82,7 @@ def test_checkpoint_model(checkpoint_path, test_dataset):
 
 
 # 使用该函数测试多个检查点
-with open('/home/kli16/ISM_custom/esm_only_rl/esm/uclasm/matching/Email_testset_dens_0.5_n_10_new.pkl','rb') as f:
+with open('/home/kli16/ISM_custom/esm_only_rl/esm/Email_testset_dens_0.2_n_8_num_50_same_embedding.pkl','rb') as f:
     test_dataset = pickle.load(f)
 checkpoints = [f'/home/kli16/ISM_custom/esm_only_rl/esm/uclasm/matching/checkpoint_{i}.pth' for i in range(18000, 50000, 1000)]
 for checkpoint in checkpoints:
