@@ -1,8 +1,9 @@
 import sys 
 sys.path.extend([
-        "/home/kli16/ISM_custom/esm",
-        "/home/kli16/ISM_custom/esm/rlmodel",
-        "/home/kli16/ISM_custom/esm/uclasm/"
+        "/home/kli16/ISM_custom/esm_NSUBS/esm",
+        # "/home/kli16/ISM_custom/esm_NSUBS/esm/rlmodel",
+        "/home/kli16/ISM_custom/esm_NSUBS/esm/uclasm/",
+        "/home/kli16/ISM_custom/esm_NSUBS/esm/NSUBS/",
     ])
 import networkx as nx
 import random
@@ -20,7 +21,7 @@ CSV_FILE_PATH = './tutorial/world_email.csv'
 TXT_FILE_PATH = "./tutorial/email-Eu-core-department-labels.txt"
 DENSITY_THRESHOLD = 0.2
 MAX_NODES_PER_SUBGRAPH = 8
-N = 50
+N = 100
 
 
 def shuttle_node_id(G):
@@ -56,7 +57,7 @@ def read_csv_edges(file_path):
 
 def create_directed_graph(edges):
     # Create a directed graph
-    graph = nx.DiGraph()
+    graph = nx.Graph()
     # Add edges from the list to the graph
     graph.add_edges_from(edges)
     return graph
@@ -87,8 +88,8 @@ def random_dense_subgraph(g, size, density_threshold, n):
     
     while len(valid_subgraphs) < n:
         nodes = random.sample(g.nodes(), size)
-        if get_subgraph_density(g, nodes) > density_threshold and nx.is_weakly_connected(g.subgraph(nodes)):
-            valid_subgraphs.append(nx.DiGraph(g.subgraph(nodes)))
+        if get_subgraph_density(g, nodes) > density_threshold and nx.is_connected(g.subgraph(nodes)):
+            valid_subgraphs.append(nx.Graph(g.subgraph(nodes)))
             print(len(valid_subgraphs))
             
     return valid_subgraphs
@@ -96,11 +97,7 @@ def random_dense_subgraph(g, size, density_threshold, n):
 
 
 def main():
-    sys.path.extend([
-        "/home/kli16/ISM_custom/esm",
-        "/home/kli16/ISM_custom/esm/rlmodel",
-        "/home/kli16/ISM_custom/esm/uclasm/"
-    ])
+
     
     edges_list = read_csv_edges(CSV_FILE_PATH)
     world = create_directed_graph(edges_list)
@@ -141,9 +138,9 @@ def main():
             assert(g1.nodes[u]['type'] == g2.nodes[v]['type'])
 
     dataset_train, _ = encode_node_features_custom(dataset=our_dataset)
-    with open(f'./data/Email_testset_dens_{DENSITY_THRESHOLD}_n_{MAX_NODES_PER_SUBGRAPH}_num_{N}_10_05.pkl','wb') as f:
+    with open(f'./data/unEmail_testset_dens_{DENSITY_THRESHOLD}_n_{MAX_NODES_PER_SUBGRAPH}_num_{N}_10_05.pkl','wb') as f:
         pickle.dump(dataset_train,f)
-    with open(f'./data/Email_testset_dens_{DENSITY_THRESHOLD}_n_{MAX_NODES_PER_SUBGRAPH}_num_{N}_10_05_matching.pkl','wb') as f:
+    with open(f'./data/unEmail_testset_dens_{DENSITY_THRESHOLD}_n_{MAX_NODES_PER_SUBGRAPH}_num_{N}_10_05_matching.pkl','wb') as f:
         pickle.dump(matchings,f)
 
 

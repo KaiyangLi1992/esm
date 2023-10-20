@@ -3,7 +3,7 @@ import random
 import networkx as nx
 import numpy as np
 from laptools import clap
-from matching_utils import inspect_channels, MonotoneArray
+from matching_utils import MonotoneArray
 from datetime import datetime
 
 def update_state(state,threshold):
@@ -33,12 +33,13 @@ def update_state(state,threshold):
 
 
 def swap_source_target(graph):
-    new_graph = nx.DiGraph()
+    pass
+    # new_graph = nx.DiGraph()
     
-    for source, target in graph.edges():
-        new_graph.add_edge(target, source)  # 交换源节点和目标节点
+    # for source, target in graph.edges():
+    #     new_graph.add_edge(target, source)  # 交换源节点和目标节点
         
-    return new_graph
+    # return new_graph
 cache = {}
 def get_adjacency_matrix_with_cache(graph):
     # 使用图的某种唯一标识符作为缓存键

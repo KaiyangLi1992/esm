@@ -1,0 +1,110 @@
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/0p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_1.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 4 node labels
+gt 40 nodes 75 edges (avg degree 1.8750) 4 node labels
+Merged loader: dense_64 0
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/0p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_1.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 4 node labels
+gt 40 nodes 75 edges (avg degree 1.8750) 4 node labels
+Merged loader: dense_64 0
+Timer log starts **************************************************
+Total duration: 43.132 msecs
+refine                    : 42.522 msecs (98.59%)
+CS                        : 0.065 msecs (0.15%)
+path weights              : 0.016 msecs (0.04%)
+levels2u2v and query tree : 0.529 msecs (1.23%)
+Timer log ends **************************************************
+Saved pair to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/1p.pickle
+CS_cand_set_size
+	#:	10.0000
+	Avg:	7.7000
+	Std:	3.6892
+	Min:	4.0000
+	Max:	16.0000
+	Median:	6.0000
+	Mode:	5.0000
+Saved gp, gq, gt_filtered to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/1p_pqf.pickle
+
+
+--- Query 1/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_2.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 4 node labels
+gt 53 nodes 119 edges (avg degree 2.2453) 4 node labels
+Merged loader: dense_64 1
+Timer log starts **************************************************
+Total duration: 43.936 msecs
+refine                    : 43.711 msecs (99.49%)
+CS                        : 0.039 msecs (0.09%)
+path weights              : 0.008 msecs (0.02%)
+levels2u2v and query tree : 0.179 msecs (0.41%)
+Timer log ends **************************************************
+Saved pair to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/2p.pickle
+CS_cand_set_size
+	#:	10.0000
+	Avg:	3.2000
+	Std:	1.0770
+	Min:	2.0000
+	Max:	5.0000
+	Median:	3.0000
+	Mode:	3.0000
+Saved gp, gq, gt_filtered to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/2p_pqf.pickle
+
+
+--- Query 2/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_3.graph
+gq 10 nodes 11 edges (avg degree 1.1000) 5 node labels
+gt 24 nodes 41 edges (avg degree 1.7083) 5 node labels
+Merged loader: dense_64 2
+Timer log starts **************************************************
+Total duration: 34.447 msecs
+refine                    : 34.247 msecs (99.42%)
+CS                        : 0.033 msecs (0.10%)
+path weights              : 0.007 msecs (0.02%)
+levels2u2v and query tree : 0.161 msecs (0.47%)
+Timer log ends **************************************************
+Saved pair to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/3p.pickle
+CS_cand_set_size
+	#:	10.0000
+	Avg:	4.1000
+	Std:	2.4678
+	Min:	1.0000
+	Max:	10.0000
+	Median:	3.5000
+	Mode:	2.0000
+Saved gp, gq, gt_filtered to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/3p_pqf.pickle
+
+
+--- Query 3/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_4.graph
+gq 10 nodes 11 edges (avg degree 1.1000) 4 node labels
+gt 35 nodes 67 edges (avg degree 1.9143) 4 node labels
+Merged loader: dense_64 3
+Timer log starts **************************************************
+Total duration: 51.376 msecs
+refine                    : 51.122 msecs (99.51%)
+CS                        : 0.041 msecs (0.08%)
+path weights              : 0.010 msecs (0.02%)
+levels2u2v and query tree : 0.203 msecs (0.40%)
+Timer log ends **************************************************
+Saved pair to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/4p.pickle
+CS_cand_set_size
+	#:	10.0000
+	Avg:	2.1000
+	Std:	1.5780
+	Min:	1.0000
+	Max:	6.0000
+	Median:	1.5000
+	Mode:	1.0000
+Saved gp, gq, gt_filtered to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/4p_pqf.pickle
+
+
+--- Query 4/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_5.graph
+gq 10 nodes 11 edges (avg degree 1.1000) 5 node labels
+gt 21 nodes 29 edges (avg degree 1.3810) 5 node labels
+Merged loader: dense_64 4

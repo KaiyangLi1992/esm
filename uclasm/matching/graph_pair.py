@@ -4,7 +4,7 @@ import sys
 sys.path.append("/home/kli16/uclasm/") 
 print(sys.path)
 import uclasm
-from dist_sim_converter import normalize_ds_score, dist_to_sim, sim_to_dist
+# from dist_sim_converter import normalize_ds_score, dist_to_sim, sim_to_dist
 import numpy as np
 from scipy import sparse
 from graph import HierarchicalGraph

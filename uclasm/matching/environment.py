@@ -15,39 +15,64 @@ import random
 def has_self_loop(graph, node):
     return node in graph.successors(node) 
 
-def get_reward(tmplt_idx,cand_idx,state):
+# def get_reward(tmplt_idx,cand_idx,state):
+#     g1 = state.g1
+#     g2 = state.g2
+#     g1_reverse = state.g1_reverse
+#     g2_reverse = state.g2_reverse
+
+#     tmplt_nx = g1
+#     cand_nx = g2
+#     neighbors = set([n for n in tmplt_nx[tmplt_idx]])
+#     tmplt_matched_nodes = set([n for n in state.nn_mapping.keys()])
+#     tmplt_node_intersection  = neighbors.intersection(tmplt_matched_nodes)
+#     cand_node_intersection = set([state.nn_mapping[n] for n in list(tmplt_node_intersection)])
+#     neighbors_cand = set([n for n in cand_nx[cand_idx]])
+
+#     posi_reward = len(list(neighbors_cand.intersection(cand_node_intersection)))
+#     nega_reward = len(list(tmplt_node_intersection)) - posi_reward 
+#     reward1 = posi_reward - nega_reward
+
+#     tmplt_nx = g1_reverse
+#     cand_nx = g2_reverse
+#     neighbors = set([n for n in tmplt_nx[tmplt_idx]])
+#     tmplt_matched_nodes = set([n for n in state.nn_mapping.keys()])
+#     tmplt_node_intersection  = neighbors.intersection(tmplt_matched_nodes)
+#     cand_node_intersection = set([state.nn_mapping[n] for n in list(tmplt_node_intersection)])
+#     neighbors_cand = set([n for n in cand_nx[cand_idx]])
+
+#     posi_reward = len(list(neighbors_cand.intersection(cand_node_intersection)))
+#     nega_reward = len(list(tmplt_node_intersection)) - posi_reward 
+#     reward2 = posi_reward - nega_reward
+#     cycle_reward = 0
+#     if has_self_loop(tmplt_nx, tmplt_idx) & has_self_loop(cand_nx, cand_idx):
+#         cycle_reward = 1
+#     return reward1+reward2+cycle_reward
+def get_reward(tmplt_idx, cand_idx, state):
     g1 = state.g1
     g2 = state.g2
-    g1_reverse = state.g1_reverse
-    g2_reverse = state.g2_reverse
 
-    tmplt_nx = g1
-    cand_nx = g2
-    neighbors = set([n for n in tmplt_nx[tmplt_idx]])
-    tmplt_matched_nodes = set([n for n in state.nn_mapping.keys()])
-    tmplt_node_intersection  = neighbors.intersection(tmplt_matched_nodes)
-    cand_node_intersection = set([state.nn_mapping[n] for n in list(tmplt_node_intersection)])
-    neighbors_cand = set([n for n in cand_nx[cand_idx]])
+    # 计算模板图g1节点tmplt_idx的邻居集合
+    neighbors_tmplt = set(g1[tmplt_idx])
+    # 获取已匹配的模板图节点集合
+    tmplt_matched_nodes = set(state.nn_mapping.keys())
+    # 获取模板图邻居与已匹配节点的交集
+    tmplt_node_intersection = neighbors_tmplt.intersection(tmplt_matched_nodes)
+    # 获取候选图g2节点cand_idx对应于交集的节点
+    cand_node_intersection = set([state.nn_mapping[n] for n in tmplt_node_intersection])
+    # 计算候选图g2节点cand_idx的邻居集合
+    neighbors_cand = set(g2[cand_idx])
 
-    posi_reward = len(list(neighbors_cand.intersection(cand_node_intersection)))
-    nega_reward = len(list(tmplt_node_intersection)) - posi_reward 
-    reward1 = posi_reward - nega_reward
+    posi_reward = len(neighbors_cand.intersection(cand_node_intersection))
+    nega_reward = len(tmplt_node_intersection) - posi_reward
+    reward = posi_reward - nega_reward
 
-    tmplt_nx = g1_reverse
-    cand_nx = g2_reverse
-    neighbors = set([n for n in tmplt_nx[tmplt_idx]])
-    tmplt_matched_nodes = set([n for n in state.nn_mapping.keys()])
-    tmplt_node_intersection  = neighbors.intersection(tmplt_matched_nodes)
-    cand_node_intersection = set([state.nn_mapping[n] for n in list(tmplt_node_intersection)])
-    neighbors_cand = set([n for n in cand_nx[cand_idx]])
-
-    posi_reward = len(list(neighbors_cand.intersection(cand_node_intersection)))
-    nega_reward = len(list(tmplt_node_intersection)) - posi_reward 
-    reward2 = posi_reward - nega_reward
+    # 检查自环并奖励
     cycle_reward = 0
-    if has_self_loop(tmplt_nx, tmplt_idx) & has_self_loop(cand_nx, cand_idx):
+    if g1.has_edge(tmplt_idx, tmplt_idx) and g2.has_edge(cand_idx, cand_idx):
         cycle_reward = 1
-    return reward1+reward2+cycle_reward
+
+    return reward + cycle_reward
 
 def shuttle_node_id(G):
     nodes = list(G.nodes())

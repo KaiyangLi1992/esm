@@ -1,0 +1,362 @@
+Critical! Fix random seed for torch and numpy
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/0p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_1.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 4 node labels
+gt 40 nodes 75 edges (avg degree 1.8750) 4 node labels
+Merged loader: dense_64 0
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/99p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_100.graph
+gq 10 nodes 11 edges (avg degree 1.1000) 5 node labels
+gt 50 nodes 119 edges (avg degree 2.3800) 5 node labels
+num_solutions: 4; num_solutions_unique: 4
+best_size: 10 nodes at iter 33 (/10=1.0000); total iters: 45 (smts.MCTS_iter=0)
+# NN calls: 8; # eps "calls": 25; # cond1 "calls": 25; # cond2 "calls": 0; # cond3 "calls": 25; # cond4 "calls": 25
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 229.611 msecs
+solved_or_not_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	1.0000
+	Avg:	4.0000
+	Std:	0.0000
+	Min:	4.0000
+	Max:	4.0000
+	Median:	4.0000
+	Mode:	4.0000
+num_unique_node_set_solutions_li
+	#:	1.0000
+	Avg:	4.0000
+	Std:	0.0000
+	Min:	4.0000
+	Max:	4.0000
+	Median:	4.0000
+	Mode:	4.0000
+best_size_li
+	#:	1.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	1.0000
+	Avg:	33.0000
+	Std:	0.0000
+	Min:	33.0000
+	Max:	33.0000
+	Median:	33.0000
+	Mode:	33.0000
+total_time_li(in seconds)
+	#:	1.0000
+	Avg:	0.2296
+	Std:	0.0000
+	Min:	0.2296
+	Max:	0.2296
+	Median:	0.2296
+	Mode:	0.2296
+total_iters_li
+	#:	1.0000
+	Avg:	45.0000
+	Std:	0.0000
+	Min:	45.0000
+	Max:	45.0000
+	Median:	45.0000
+	Mode:	45.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/95p_pqf.pickle
+
+
+--- Query 1/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_96.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 36 nodes 58 edges (avg degree 1.6111) 5 node labels
+num_solutions: 2; num_solutions_unique: 2
+best_size: 10 nodes at iter 18 (/10=1.0000); total iters: 28 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 15; # cond1 "calls": 15; # cond2 "calls": 0; # cond3 "calls": 15; # cond4 "calls": 15
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 92.342 msecs
+solved_or_not_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	2.0000
+	Avg:	3.0000
+	Std:	1.0000
+	Min:	2.0000
+	Max:	4.0000
+	Median:	3.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	2.0000
+	Avg:	3.0000
+	Std:	1.0000
+	Min:	2.0000
+	Max:	4.0000
+	Median:	3.0000
+	Mode:	2.0000
+best_size_li
+	#:	2.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	2.0000
+	Avg:	25.5000
+	Std:	7.5000
+	Min:	18.0000
+	Max:	33.0000
+	Median:	25.5000
+	Mode:	18.0000
+total_time_li(in seconds)
+	#:	2.0000
+	Avg:	0.1610
+	Std:	0.0686
+	Min:	0.0923
+	Max:	0.2296
+	Median:	0.1610
+	Mode:	0.0923
+total_iters_li
+	#:	2.0000
+	Avg:	36.5000
+	Std:	8.5000
+	Min:	28.0000
+	Max:	45.0000
+	Median:	36.5000
+	Mode:	28.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/96p_pqf.pickle
+
+
+--- Query 2/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_97.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 5 node labels
+gt 58 nodes 148 edges (avg degree 2.5517) 5 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 51; num_solutions_unique: 51
+best_size: 10 nodes at iter 10 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 87; # eps "calls": 51; # cond1 "calls": 51; # cond2 "calls": 0; # cond3 "calls": 51; # cond4 "calls": 51
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 1.285 secs
+solved_or_not_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	3.0000
+	Avg:	19.0000
+	Std:	22.6421
+	Min:	2.0000
+	Max:	51.0000
+	Median:	4.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	3.0000
+	Avg:	19.0000
+	Std:	22.6421
+	Min:	2.0000
+	Max:	51.0000
+	Median:	4.0000
+	Mode:	2.0000
+best_size_li
+	#:	3.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	3.0000
+	Avg:	20.3333
+	Std:	9.5336
+	Min:	10.0000
+	Max:	33.0000
+	Median:	18.0000
+	Mode:	10.0000
+total_time_li(in seconds)
+	#:	3.0000
+	Avg:	0.5357
+	Std:	0.5328
+	Min:	0.0923
+	Max:	1.2851
+	Median:	0.2296
+	Mode:	0.0923
+total_iters_li
+	#:	3.0000
+	Avg:	91.0000
+	Std:	77.3865
+	Min:	28.0000
+	Max:	200.0000
+	Median:	45.0000
+	Mode:	28.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/97p_pqf.pickle
+
+
+--- Query 3/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_98.graph
+gq 10 nodes 12 edges (avg degree 1.2000) 3 node labels
+gt 40 nodes 79 edges (avg degree 1.9750) 3 node labels
+num_solutions: 1; num_solutions_unique: 1
+best_size: 10 nodes at iter 117 (/10=1.0000); total iters: 146 (smts.MCTS_iter=0)
+# NN calls: 38; # eps "calls": 38; # cond1 "calls": 38; # cond2 "calls": 0; # cond3 "calls": 38; # cond4 "calls": 38
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 563.361 msecs
+solved_or_not_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	4.0000
+	Avg:	14.5000
+	Std:	21.1009
+	Min:	1.0000
+	Max:	51.0000
+	Median:	3.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	4.0000
+	Avg:	14.5000
+	Std:	21.1009
+	Min:	1.0000
+	Max:	51.0000
+	Median:	3.0000
+	Mode:	1.0000
+best_size_li
+	#:	4.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	4.0000
+	Avg:	44.5000
+	Std:	42.6644
+	Min:	10.0000
+	Max:	117.0000
+	Median:	25.5000
+	Mode:	10.0000
+total_time_li(in seconds)
+	#:	4.0000
+	Avg:	0.5426
+	Std:	0.4616
+	Min:	0.0923
+	Max:	1.2851
+	Median:	0.3965
+	Mode:	0.0923
+total_iters_li
+	#:	4.0000
+	Avg:	104.7500
+	Std:	71.1245
+	Min:	28.0000
+	Max:	200.0000
+	Median:	95.5000
+	Mode:	28.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/98p_pqf.pickle
+
+
+--- Query 4/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_99.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 3 node labels
+gt 55 nodes 115 edges (avg degree 2.0909) 3 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 44; num_solutions_unique: 44
+best_size: 10 nodes at iter 10 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 74; # eps "calls": 73; # cond1 "calls": 73; # cond2 "calls": 0; # cond3 "calls": 73; # cond4 "calls": 73
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 1.067 secs
+solved_or_not_li
+	#:	5.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	5.0000
+	Avg:	20.4000
+	Std:	22.2585
+	Min:	1.0000
+	Max:	51.0000
+	Median:	4.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	5.0000
+	Avg:	20.4000
+	Std:	22.2585
+	Min:	1.0000
+	Max:	51.0000
+	Median:	4.0000
+	Mode:	1.0000
+best_size_li
+	#:	5.0000
+	Avg:	10.0000

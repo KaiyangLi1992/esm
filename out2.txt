@@ -1,0 +1,758 @@
+Logging to /home/kli16/ISM_custom/esm_NSUBS/esm/NSUBS/model/OurSGM/logs/our_train_imsm-dblp_unlabeled_list_nn_300_2023-10-17T13-39-49.375948
+main_func                  : here
+filter                     : DPiso
+order                      : GQL
+engine                     : LFTJ
+model                      : our
+do_train                   : True
+do_validation              : False
+do_test                    : False
+num_cs_refinements         : 3
+search_constraints         : isomorphic
+thresh_throwaway_qsa       : 1e-08
+reward_method              : exp_depth
+reward_method_exp_coeff    : 100
+reward_method_normalize    : True
+debug_embeddings_every_k_iters : None
+loss_type                  : mse_bounded
+regularization             : 0.05
+add_gnd_truth              : add_gnd_truth_at_start
+mark_best_as_true          : True
+eps_decay_config           : {'start_eps': 0.0, 'end_eps': 0.0, 'num_iters': 5}
+train_dataset              : imsm-dblp_unlabeled
+val_dataset                : imsm-dblp_unlabeled
+train_sample_size_li       : [None]
+val_sample_size_li         : [None]
+train_subgroup             : list
+train_subgroup_list        : ['dense_64']
+train_path_indices         : [[0, 5], [0, 5], [0, 5], [0, 5], [0, 50], [0, 50], [0, 50]]
+val_subgroup               : dense_64
+val_subgroup_list          : None
+val_path_indices           : [95, 100]
+pretrain                   : False
+imitation                  : False
+show_precision             : False
+buffer_size                : 128
+batch_size                 : 1
+print_buffer_stats         : True
+prune_trivial_rewards      : False
+print_rpreds_stats         : True
+glsearch                   : False
+num_epochs_per_learn       : 128
+num_outer_epoch            : 64
+skip_data_leakage          : False
+load_model                 : None
+append_ldf                 : True
+val_every_games            : 1
+save_every                 : 1000
+matching_order             : nn
+use_is_early_pruning       : False
+MCTS_train                 : True
+MCTS_test                  : False
+MCTS_printQU               : True
+MCTS_num_iters_max         : 120
+MCTS_num_iters_per_action  : 10.0
+MCTS_temp                  : 5.0
+MCTS_temp_inner            : 1.0
+MCTS_cpuct                 : 10.0
+MCTS_eps_in_U              : 1e-08
+MCTS_backup_to_real_root   : True
+d_enc                      : 16
+encoder_type               : mlp
+use_NN_for_u_score         : False
+dvn_config                 : {'preencoder': {'type': 'concat+mlp'}, 'encoder': {'type': 'GNNConsensusEncoder', 'gnn_type': 'OurGMNv2', 'gnn_subtype': 'gatv2', 'hidden_gnn_dims': [16, 16, 16, 16], 'shared_gnn_weights': False, 'shared_encoder': False, 'q2t': True, 't2q': True, 'consensus_cfg_li': None}, 'decoder_dvn': {'type': 'Query', 'simple_decoder': {'mlp_att': [16, 8, 1], 'mlp_val': [16, 16], 'mlp_final': [16, 32, 16, 8, 4, 1]}}, 'decoder_policy': {'type': 'bilinear_custom', 'similarity_decoder': {'mlp_in_dims': [16, 16], 'mlp_out_dims': [32, 32, 16, 8, 1], 'g_emb': 16}}}
+cache_embeddings           : True
+k_sample_cross_graph       : None
+regret_iters_train         : 1
+regret_iters_test          : 1
+use_node_mask_diameter     : False
+num_iters_threshold        : -1
+timeout                    : 300
+time_analysis              : False
+learning_timeout           : 120
+timeout_val                : 120
+num_iters_threshold_val    : 200
+plot_tree                  : False
+plot_solution              : False
+plot_logs                  : False
+save_search                : False
+device                     : cuda:1
+fix_randomness             : True
+random_seed                : 123
+skip_if_action_space_less_than : None
+apply_norm                 : True
+user                       : kli16
+hostname                   : vector.cs.gsu.edu
+ts                         : 2023-10-17T13-39-49.375948
+not using nsm!
+['/home/kli16/ISM_custom/esm_NSUBS/esm/uclasm/matching', '/home/kli16/miniconda3/envs/esm_NSUBS_env/lib/python37.zip', '/home/kli16/miniconda3/envs/esm_NSUBS_env/lib/python3.7', '/home/kli16/miniconda3/envs/esm_NSUBS_env/lib/python3.7/lib-dynload', '/home/kli16/miniconda3/envs/esm_NSUBS_env/lib/python3.7/site-packages', '/home/kli16/ISM_custom/esm_NSUBS/esm/', '/home/kli16/ISM_custom/esm_NSUBS/esm/uclasm/', '/home/kli16/miniconda3/envs/esm_NSUBS_env/lib/python3.7/site-packages/IPython/extensions', '/home/kli16/uclasm/']
+Using device: cuda:1
+model
+DVN_wrapper(
+  (dvn): DVN(
+    (pre_encoder): PreEncoderConcatSelectedOneHotAndMLP(
+      (mlp_q): Linear(in_features=49, out_features=16, bias=True)
+      (mlp_t): Linear(in_features=49, out_features=16, bias=True)
+    )
+    (encoder): GNNConsensusEncoder(
+      (gnn_wrapper_li): ModuleList(
+        (0): GNNWrapper(
+          (gnnm): OurGMNCustomWrapper(
+            (gmn_inter): OurGMNCustomInter(
+              (mlp_att_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_att_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_val_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_val_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_merge_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=32, out_features=16, bias=True)
+                )
+              )
+              (mlp_merge_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=48, out_features=16, bias=True)
+                )
+              )
+            )
+            (gmn_intra): OurGMNCustomIntra(
+              (gnn_t): GATv2Conv(16, 16, heads=1)
+              (gnn_q): GATv2Conv(16, 16, heads=1)
+            )
+          )
+        )
+        (1): GNNWrapper(
+          (gnnm): OurGMNCustomWrapper(
+            (gmn_inter): OurGMNCustomInter(
+              (mlp_att_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_att_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_val_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_val_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_merge_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=32, out_features=16, bias=True)
+                )
+              )
+              (mlp_merge_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=48, out_features=16, bias=True)
+                )
+              )
+            )
+            (gmn_intra): OurGMNCustomIntra(
+              (gnn_t): GATv2Conv(16, 16, heads=1)
+              (gnn_q): GATv2Conv(16, 16, heads=1)
+            )
+          )
+        )
+        (2): GNNWrapper(
+          (gnnm): OurGMNCustomWrapper(
+            (gmn_inter): OurGMNCustomInter(
+              (mlp_att_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_att_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_val_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_val_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_merge_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=32, out_features=16, bias=True)
+                )
+              )
+              (mlp_merge_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=48, out_features=16, bias=True)
+                )
+              )
+            )
+            (gmn_intra): OurGMNCustomIntra(
+              (gnn_t): GATv2Conv(16, 16, heads=1)
+              (gnn_q): GATv2Conv(16, 16, heads=1)
+            )
+          )
+        )
+        (3): GNNWrapper(
+          (gnnm): OurGMNCustomWrapper(
+            (gmn_inter): OurGMNCustomInter(
+              (mlp_att_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_att_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_val_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_val_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=16, out_features=16, bias=True)
+                )
+              )
+              (mlp_merge_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=32, out_features=16, bias=True)
+                )
+              )
+              (mlp_merge_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=48, out_features=16, bias=True)
+                )
+              )
+            )
+            (gmn_intra): OurGMNCustomIntra(
+              (gnn_t): GATv2Conv(16, 16, heads=1)
+              (gnn_q): GATv2Conv(16, 16, heads=1)
+            )
+          )
+        )
+      )
+      (jk): JumpingKnowledge(max)
+    )
+    (decoder_policy): BilinearDecoder(
+      (encoder): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=16, out_features=16, bias=True)
+        )
+      )
+      (decoder): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=48, out_features=32, bias=True)
+          (1): Linear(in_features=32, out_features=16, bias=True)
+          (2): Linear(in_features=16, out_features=8, bias=True)
+          (3): Linear(in_features=8, out_features=1, bias=True)
+        )
+      )
+    )
+    (decoder_value): QueryDecoder(
+      (mlp_att): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=16, out_features=8, bias=True)
+          (1): Linear(in_features=8, out_features=1, bias=True)
+        )
+      )
+      (mlp_val): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=16, out_features=16, bias=True)
+        )
+      )
+      (mlp_final): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=16, out_features=32, bias=True)
+          (1): Linear(in_features=32, out_features=16, bias=True)
+          (2): Linear(in_features=16, out_features=8, bias=True)
+          (3): Linear(in_features=8, out_features=4, bias=True)
+          (4): Linear(in_features=4, out_features=1, bias=True)
+        )
+      )
+      (norm): NormalizeAttention()
+    )
+    (norm_li): ModuleList(
+      (0): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
+      (1): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
+      (2): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
+      (3): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
+    )
+  )
+  (mlp_final): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=64, out_features=32, bias=True)
+      (1): Linear(in_features=32, out_features=16, bias=True)
+      (2): Linear(in_features=16, out_features=8, bias=True)
+      (3): Linear(in_features=8, out_features=4, bias=True)
+      (4): Linear(in_features=4, out_features=1, bias=True)
+    )
+  )
+)
+episode: 0 loss: -5.86620569229126
+episode: 10 loss: -29.859045028686523
+episode: 20 loss: 1.2376627922058105
+episode: 30 loss: -10.166943550109863
+episode: 40 loss: -26.585683822631836
+episode: 50 loss: -4.8695220947265625
+episode: 60 loss: -16.820383071899414
+episode: 70 loss: -7.7584662437438965
+episode: 80 loss: -2.3945088386535645
+episode: 90 loss: -1.0163630247116089
+episode: 100 loss: -2.1664440631866455
+episode: 110 loss: -15.312179565429688
+episode: 120 loss: -15.653326988220215
+episode: 130 loss: -10.143858909606934
+episode: 140 loss: -4.1311726570129395
+episode: 150 loss: -25.33232307434082
+episode: 160 loss: -1.3567330837249756
+episode: 170 loss: -2.2100558280944824
+episode: 180 loss: -18.616886138916016
+episode: 190 loss: -0.5002340078353882
+episode: 200 loss: -10.46513557434082
+episode: 210 loss: -10.574278831481934
+episode: 220 loss: 3.7468976974487305
+episode: 230 loss: -1.1915760040283203
+episode: 240 loss: -18.59364128112793
+episode: 250 loss: -17.353240966796875
+episode: 260 loss: -11.420223236083984
+episode: 270 loss: -21.944807052612305
+episode: 280 loss: -20.437532424926758
+episode: 290 loss: -8.223453521728516
+episode: 300 loss: -9.745697975158691
+episode: 310 loss: -15.960379600524902
+episode: 320 loss: -10.408306121826172
+episode: 330 loss: -13.854736328125
+episode: 340 loss: -0.7532955408096313
+episode: 350 loss: -3.747857093811035
+episode: 360 loss: -8.156320571899414
+episode: 370 loss: 1.3733909130096436
+episode: 380 loss: -0.4781729578971863
+episode: 390 loss: -8.794965744018555
+episode: 400 loss: -12.318341255187988
+episode: 410 loss: -0.10460615158081055
+episode: 420 loss: 5.471617698669434
+episode: 430 loss: -8.570657730102539
+episode: 440 loss: -2.048337697982788
+episode: 450 loss: -11.07584285736084
+episode: 460 loss: -8.057558059692383
+episode: 470 loss: -2.3456435203552246
+episode: 480 loss: 1.1424064636230469
+episode: 490 loss: 1.2019731998443604
+episode: 500 loss: -1.5564939975738525
+episode: 510 loss: 4.549690246582031
+episode: 520 loss: -0.5167834758758545
+episode: 530 loss: 2.7362217903137207
+episode: 540 loss: -0.34697389602661133
+episode: 550 loss: -11.665251731872559
+episode: 560 loss: -10.038893699645996
+episode: 570 loss: -0.43721455335617065
+episode: 580 loss: -0.055957064032554626
+episode: 590 loss: -5.181044578552246
+episode: 600 loss: 1.0306191444396973
+episode: 610 loss: -0.13747480511665344
+episode: 620 loss: 0.09666678309440613
+episode: 630 loss: 2.3506319522857666
+episode: 640 loss: -0.8062995076179504
+episode: 650 loss: -0.000134033543872647
+episode: 660 loss: -0.629943311214447
+episode: 670 loss: -0.6192194223403931
+episode: 680 loss: -1.1660817861557007
+episode: 690 loss: -0.5929861664772034
+episode: 700 loss: -22.43148422241211
+episode: 710 loss: 0.11391636729240417
+episode: 720 loss: -0.0019030272960662842
+episode: 730 loss: -0.9004024267196655
+episode: 740 loss: -1.3632805347442627
+episode: 750 loss: -18.846643447875977
+episode: 760 loss: -2.0152175426483154
+episode: 770 loss: -2.514672040939331
+episode: 780 loss: 3.4923195838928223
+episode: 790 loss: 0.35492321848869324
+episode: 800 loss: -2.9564104080200195
+episode: 810 loss: -3.3227896690368652
+episode: 820 loss: -1.2061126232147217
+episode: 830 loss: -0.09061555564403534
+episode: 840 loss: -3.7671456336975098
+episode: 850 loss: 0.24210256338119507
+episode: 860 loss: -8.743916511535645
+episode: 870 loss: 0.6470226645469666
+episode: 880 loss: -2.0265872478485107
+episode: 890 loss: -3.7476866245269775
+episode: 900 loss: 0.5255618691444397
+episode: 910 loss: -0.8151755332946777
+episode: 920 loss: -0.8455125093460083
+episode: 930 loss: -13.72506046295166
+episode: 940 loss: -0.04651285335421562
+episode: 950 loss: -0.02335556410253048
+episode: 960 loss: -0.7529366612434387
+episode: 970 loss: 0.22065117955207825
+episode: 980 loss: -1.3142205476760864
+episode: 990 loss: -0.9731645584106445
+episode: 1000 loss: 5.830654144287109
+episode: 1010 loss: -11.88914680480957
+episode: 1020 loss: 2.899510383605957
+episode: 1030 loss: 0.6411402225494385
+episode: 1040 loss: 7.298407554626465
+episode: 1050 loss: -14.280475616455078
+episode: 1060 loss: -2.1475067138671875
+episode: 1070 loss: -2.487459182739258
+episode: 1080 loss: 0.6405801773071289
+episode: 1090 loss: -17.993911743164062
+episode: 1100 loss: 0.00931239128112793
+episode: 1110 loss: 0.9419207572937012
+episode: 1120 loss: -2.3257412910461426
+episode: 1130 loss: 0.28094685077667236
+episode: 1140 loss: -1.9578520059585571
+episode: 1150 loss: -6.3495192527771
+episode: 1160 loss: 0.8273846507072449
+episode: 1170 loss: -0.004339151084423065
+episode: 1180 loss: -5.981711387634277
+episode: 1190 loss: -1.3087823390960693
+episode: 1200 loss: -3.3144326210021973
+episode: 1210 loss: -4.384537696838379
+episode: 1220 loss: -0.4664892554283142
+episode: 1230 loss: -1.0112415552139282
+episode: 1240 loss: -2.4150943756103516
+episode: 1250 loss: -0.9616259336471558
+episode: 1260 loss: -1.1824860572814941
+episode: 1270 loss: 4.116313934326172
+episode: 1280 loss: 4.195677280426025
+episode: 1290 loss: -9.976250648498535
+episode: 1300 loss: -7.255247116088867
+episode: 1310 loss: 1.3717925548553467
+episode: 1320 loss: -1.1095576286315918
+episode: 1330 loss: 6.236062049865723
+episode: 1340 loss: -0.993475615978241
+episode: 1350 loss: -0.26078641414642334
+episode: 1360 loss: 2.8533992767333984
+episode: 1370 loss: 0.05666521191596985
+episode: 1380 loss: 0.5498519539833069
+episode: 1390 loss: -0.10822173953056335
+episode: 1400 loss: -0.45942097902297974
+episode: 1410 loss: -4.322569847106934
+episode: 1420 loss: -1.0917396545410156
+episode: 1430 loss: -2.6713509559631348
+episode: 1440 loss: 0.4805032014846802
+episode: 1450 loss: -5.873235702514648
+episode: 1460 loss: -2.2714061737060547
+episode: 1470 loss: 0.7030825614929199
+episode: 1480 loss: 3.7912216186523438
+episode: 1490 loss: -1.4344974756240845
+episode: 1500 loss: -2.706784248352051
+episode: 1510 loss: -3.0005240440368652
+episode: 1520 loss: 0.0011014938354492188
+episode: 1530 loss: 4.845815181732178
+episode: 1540 loss: -0.15914663672447205
+episode: 1550 loss: 0.0009389205370098352
+episode: 1560 loss: -1.660547137260437
+episode: 1570 loss: -2.0977275371551514
+episode: 1580 loss: -0.06732193380594254
+episode: 1590 loss: 0.5722708702087402
+episode: 1600 loss: 0.19214053452014923
+episode: 1610 loss: -0.13026756048202515
+episode: 1620 loss: 0.5000967979431152
+episode: 1630 loss: -0.29537177085876465
+episode: 1640 loss: -0.38433346152305603
+episode: 1650 loss: 0.08712725341320038
+episode: 1660 loss: -0.35455429553985596
+episode: 1670 loss: -1.8570986986160278
+episode: 1680 loss: 5.840792179107666
+episode: 1690 loss: 1.5959757566452026
+episode: 1700 loss: 4.430765628814697
+episode: 1710 loss: 0.00011594253010116518
+episode: 1720 loss: 0.0006645903340540826
+episode: 1730 loss: -0.4339221715927124
+episode: 1740 loss: -1.921261191368103
+episode: 1750 loss: -0.09535424411296844
+episode: 1760 loss: -0.3249107599258423
+episode: 1770 loss: -4.460359573364258
+episode: 1780 loss: -0.14830607175827026
+episode: 1790 loss: -0.13093161582946777
+episode: 1800 loss: -0.000717113958671689
+episode: 1810 loss: -0.48169606924057007
+episode: 1820 loss: -2.8570002541528083e-05
+episode: 1830 loss: 0.6637105345726013
+episode: 1840 loss: -0.0008576157269999385
+episode: 1850 loss: -4.833150863647461
+episode: 1860 loss: -10.579988479614258
+episode: 1870 loss: -0.6351925134658813
+episode: 1880 loss: -0.5492403507232666
+episode: 1890 loss: -5.876856803894043
+episode: 1900 loss: -0.5403233170509338
+episode: 1910 loss: 0.8169970512390137
+episode: 1920 loss: -4.203271865844727
+episode: 1930 loss: -8.752126693725586
+episode: 1940 loss: -7.052883625030518
+episode: 1950 loss: -3.364140033721924
+episode: 1960 loss: -8.600967407226562
+episode: 1970 loss: -4.838572978973389
+episode: 1980 loss: -21.374618530273438
+episode: 1990 loss: 6.183419227600098
+episode: 2000 loss: -0.04320864379405975
+episode: 2010 loss: -0.1289834827184677
+episode: 2020 loss: -0.013589203357696533
+episode: 2030 loss: 0.003441387787461281
+episode: 2040 loss: -0.12975725531578064
+episode: 2050 loss: -0.13180619478225708
+episode: 2060 loss: 1.3362544775009155
+episode: 2070 loss: -0.11845798045396805
+episode: 2080 loss: 4.379236221313477
+episode: 2090 loss: 2.2737367544323206e-13
+episode: 2100 loss: -0.2732357382774353
+episode: 2110 loss: -0.0018832436762750149
+episode: 2120 loss: -0.04141249880194664
+episode: 2130 loss: -2.5722179412841797
+episode: 2140 loss: -0.029413219541311264
+episode: 2150 loss: -0.46230819821357727
+episode: 2160 loss: 0.6926091313362122
+episode: 2170 loss: 0.2358776032924652
+episode: 2180 loss: -0.002450954169034958
+episode: 2190 loss: 0.12600833177566528
+episode: 2200 loss: -0.5862361788749695
+episode: 2210 loss: -0.029394393786787987
+episode: 2220 loss: 0.006870291195809841
+episode: 2230 loss: -7.216598033905029
+episode: 2240 loss: -0.13632573187351227
+episode: 2250 loss: -2.1451704502105713
+episode: 2260 loss: -0.028164654970169067
+episode: 2270 loss: -2.7344818115234375
+episode: 2280 loss: -0.023249955847859383
+episode: 2290 loss: -5.535471791517921e-05
+episode: 2300 loss: -0.6307706832885742
+episode: 2310 loss: 1.7650251388549805
+episode: 2320 loss: -0.23305006325244904
+episode: 2330 loss: -0.11030643433332443
+episode: 2340 loss: 0.09242800623178482
+episode: 2350 loss: 2.23639178276062
+episode: 2360 loss: 2.2515709400177
+episode: 2370 loss: -0.3327098488807678
+episode: 2380 loss: -15.15087890625
+episode: 2390 loss: 1.9771411418914795
+episode: 2400 loss: -0.41141176223754883
+episode: 2410 loss: 0.0012849153717979789
+episode: 2420 loss: -0.0008712546550668776
+episode: 2430 loss: -4.547473508864641e-13
+episode: 2440 loss: 0.0217130184173584
+episode: 2450 loss: 3.149643898010254
+episode: 2460 loss: 0.3231135606765747
+episode: 2470 loss: -0.0027973258402198553
+episode: 2480 loss: -9.803193825064227e-05
+episode: 2490 loss: -0.41105830669403076
+episode: 2500 loss: -0.09140119701623917
+episode: 2510 loss: 0.007440056186169386
+episode: 2520 loss: 0.0
+episode: 2530 loss: 0.140252947807312
+episode: 2540 loss: -0.04031318798661232
+episode: 2550 loss: -0.02909516915678978
+episode: 2560 loss: 33.62727355957031
+episode: 2570 loss: 0.0001674666564213112
+episode: 2580 loss: -1.1368683772161603e-13
+episode: 2590 loss: 0.03395163267850876
+episode: 2600 loss: -0.013811108656227589
+episode: 2610 loss: 1.7053025658242404e-13
+episode: 2620 loss: -0.00988932978361845
+episode: 2630 loss: -2.1718977905038628e-07
+episode: 2640 loss: -1.1368683772161603e-13
+episode: 2650 loss: -0.004086947068572044
+episode: 2660 loss: -4.742871169582941e-06
+episode: 2670 loss: -0.006255283951759338
+episode: 2680 loss: 1.0036359299192554e-07
+episode: 2690 loss: -1.1368683772161603e-13
+episode: 2700 loss: -0.10335271060466766
+episode: 2710 loss: 4.530113983491901e-06
+episode: 2720 loss: -0.024255618453025818
+episode: 2730 loss: -3.1057400703430176
+episode: 2740 loss: 0.022077498957514763
+episode: 2750 loss: -1.1368683772161603e-13
+episode: 2760 loss: -0.013842235319316387
+episode: 2770 loss: -0.008726750500500202
+episode: 2780 loss: 0.05969323217868805
+episode: 2790 loss: -0.0038191713392734528
+episode: 2800 loss: 0.0
+episode: 2810 loss: -0.0062474352307617664
+episode: 2820 loss: -0.029935885220766068
+episode: 2830 loss: 0.001774096628651023
+episode: 2840 loss: -0.007265543565154076
+episode: 2850 loss: 0.06190919876098633
+episode: 2860 loss: 0.0006050292868167162
+episode: 2870 loss: 0.002990531735122204
+episode: 2880 loss: -0.052690085023641586
+episode: 2890 loss: 0.0365791954100132
+episode: 2900 loss: 0.0003369277692399919
+episode: 2910 loss: 0.020375702530145645
+episode: 2920 loss: 0.0008490578038617969
+episode: 2930 loss: 0.030006542801856995
+episode: 2940 loss: -0.001239440287463367
+episode: 2950 loss: -0.6478591561317444
+episode: 2960 loss: -1.9306044123368338e-06
+episode: 2970 loss: 0.0011623331811279058
+episode: 2980 loss: -0.0036310714203864336
+episode: 2990 loss: -4.412673888509744e-07
+episode: 3000 loss: -0.07055505365133286
+episode: 3010 loss: -0.609097421169281
+episode: 3020 loss: -0.002914996352046728
+episode: 3030 loss: -0.09836692363023758
+episode: 3040 loss: -0.43129512667655945
+episode: 3050 loss: -0.004004418384283781
+episode: 3060 loss: 0.00012112060358049348
+episode: 3070 loss: -0.04975427687168121
+episode: 3080 loss: -0.11532952636480331
+episode: 3090 loss: 0.003375251078978181
+episode: 3100 loss: 1.053429126739502
+episode: 3110 loss: -4.7097375954763265e-07
+episode: 3120 loss: 0.005197595339268446
+episode: 3130 loss: 3.974368883064017e-05
+episode: 3140 loss: -4.547473508864641e-13
+episode: 3150 loss: 0.48449400067329407
+episode: 3160 loss: -0.0026874702889472246
+episode: 3170 loss: -0.013011321425437927
+episode: 3180 loss: -0.00536517146974802
+episode: 3190 loss: 0.7348519563674927
+episode: 3200 loss: 0.01952590048313141
+episode: 3210 loss: -0.004017367027699947
+episode: 3220 loss: 0.4982661306858063
+episode: 3230 loss: -0.00014195055700838566
+episode: 3240 loss: -5.1466933655319735e-05
+episode: 3250 loss: -0.04964268580079079
+episode: 3260 loss: 5.684341886080802e-14
+episode: 3270 loss: -1.1368683772161603e-13
+episode: 3280 loss: 0.07525123655796051
+episode: 3290 loss: 0.025531621649861336
+episode: 3300 loss: -0.00042391102761030197
+episode: 3310 loss: 0.05216091871261597
+episode: 3320 loss: -0.026362450793385506
+episode: 3330 loss: 0.12614372372627258
+episode: 3340 loss: 0.2955312430858612
+episode: 3350 loss: 1.1368683772161603e-13
+episode: 3360 loss: -0.018974941223859787
+episode: 3370 loss: -0.025982588529586792
+episode: 3380 loss: -2.3438777923583984
+episode: 3390 loss: -0.01899363473057747
+episode: 3400 loss: 3.1347432136535645
+episode: 3410 loss: -3.649111747741699
+episode: 3420 loss: -13.18912124633789
+episode: 3430 loss: -1.5384597778320312
+episode: 3440 loss: -8.590313911437988
+episode: 3450 loss: -3.9350528717041016
+episode: 3460 loss: -2.139636993408203
+episode: 3470 loss: -2.6941535472869873
+episode: 3480 loss: -7.5223002433776855
+episode: 3490 loss: -0.29937541484832764
+episode: 3500 loss: 9.685098648071289
+episode: 3510 loss: 9.666553497314453
+episode: 3520 loss: 6.1410675048828125
+episode: 3530 loss: -1.947465181350708
+episode: 3540 loss: -13.380908012390137
+episode: 3550 loss: -2.3425302505493164
+episode: 3560 loss: -4.079348087310791
+episode: 3570 loss: 7.156155586242676
+episode: 3580 loss: -0.5276216268539429
+episode: 3590 loss: -3.522817611694336
+episode: 3600 loss: -5.666812419891357
+episode: 3610 loss: -4.690378189086914
+episode: 3620 loss: -0.44437944889068604
+episode: 3630 loss: -3.3398234844207764
+episode: 3640 loss: -6.430008888244629
+episode: 3650 loss: -0.12799134850502014
+episode: 3660 loss: -0.4410240650177002
+episode: 3670 loss: 0.40242254734039307
+episode: 3680 loss: -0.19737347960472107
+episode: 3690 loss: 5.366633415222168
+episode: 3700 loss: 4.716300010681152
+episode: 3710 loss: 3.5329906940460205
+episode: 3720 loss: 0.11583317816257477
+episode: 3730 loss: -2.355764389038086
+episode: 3740 loss: -0.015132698230445385
+episode: 3750 loss: 2.698547601699829
+episode: 3760 loss: -1.6896125078201294
+episode: 3770 loss: 1.3911213874816895
+episode: 3780 loss: -2.005824089050293
+episode: 3790 loss: -4.38088846206665
+episode: 3800 loss: -0.5584838390350342
+episode: 3810 loss: -2.189789056777954
+episode: 3820 loss: -4.498536586761475
+episode: 3830 loss: 5.199585914611816
+episode: 3840 loss: -2.4237186908721924
+episode: 3850 loss: 7.007116794586182
+episode: 3860 loss: -27.876773834228516
+episode: 3870 loss: -3.654188632965088
+episode: 3880 loss: -5.517786979675293
+episode: 3890 loss: -6.457680702209473
+episode: 3900 loss: -2.0905354022979736
+episode: 3910 loss: -2.022930145263672
+episode: 3920 loss: -7.323257923126221
+episode: 3930 loss: 2.919482707977295
+episode: 3940 loss: 1.6430225372314453
+episode: 3950 loss: 2.0616564750671387
+episode: 3960 loss: 2.941741466522217
+episode: 3970 loss: -6.100312232971191
+episode: 3980 loss: 4.798802375793457
+episode: 3990 loss: 0.6819803714752197
+episode: 4000 loss: 1.6795079708099365
+episode: 4010 loss: 0.16759061813354492
+episode: 4020 loss: 6.59003210067749
+episode: 4030 loss: -1.3091416358947754
+episode: 4040 loss: -0.9180234670639038
+episode: 4050 loss: -20.42229652404785
+episode: 4060 loss: -12.478657722473145
+episode: 4070 loss: -0.7113138437271118
+episode: 4080 loss: 9.306139945983887
+episode: 4090 loss: 0.005158529616892338
+episode: 4100 loss: -0.1913081407546997
+episode: 4110 loss: 0.1508197784423828

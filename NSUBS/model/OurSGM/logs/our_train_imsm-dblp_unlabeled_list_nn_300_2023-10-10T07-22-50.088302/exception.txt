@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/home/kli16/NSUBS/model/OurSGM/main.py", line 446, in <module>
+    main()
+  File "/home/kli16/NSUBS/model/OurSGM/main.py", line 410, in main
+    train(model, FLAGS.num_iters_threshold, FLAGS.timeout, logger)
+  File "/home/kli16/NSUBS/model/OurSGM/train.py", line 132, in train
+    cur_best_metric = update_validation_set(model, logger, total_play_id, -1, 0)
+  File "/home/kli16/NSUBS/model/OurSGM/train.py", line 105, in update_validation_set
+    metrics = test(model, FLAGS.num_iters_threshold_val, FLAGS.timeout_val, logger, total_play_id, test_loader=val_loader)
+  File "/home/kli16/NSUBS/model/OurSGM/test.py", line 53, in test
+    for i, gp in enumerate(test_loader):
+  File "/home/kli16/NSUBS/model/OurSGM/data_loader.py", line 112, in data_loader_wrapper
+    for sample_size in sample_size_li:
+TypeError: 'NoneType' object is not iterable
+

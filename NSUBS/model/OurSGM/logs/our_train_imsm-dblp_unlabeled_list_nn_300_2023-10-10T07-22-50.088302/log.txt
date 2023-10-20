@@ -1,0 +1,28 @@
+Critical! Fix random seed for torch and numpy
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/0p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_1.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 4 node labels
+gt 40 nodes 75 edges (avg degree 1.8750) 4 node labels
+Merged loader: dense_64 0
+Traceback (most recent call last):
+  File "/home/kli16/NSUBS/model/OurSGM/main.py", line 446, in <module>
+    main()
+  File "/home/kli16/NSUBS/model/OurSGM/main.py", line 410, in main
+    train(model, FLAGS.num_iters_threshold, FLAGS.timeout, logger)
+  File "/home/kli16/NSUBS/model/OurSGM/train.py", line 132, in train
+    cur_best_metric = update_validation_set(model, logger, total_play_id, -1, 0)
+  File "/home/kli16/NSUBS/model/OurSGM/train.py", line 105, in update_validation_set
+    metrics = test(model, FLAGS.num_iters_threshold_val, FLAGS.timeout_val, logger, total_play_id, test_loader=val_loader)
+  File "/home/kli16/NSUBS/model/OurSGM/test.py", line 53, in test
+    for i, gp in enumerate(test_loader):
+  File "/home/kli16/NSUBS/model/OurSGM/data_loader.py", line 112, in data_loader_wrapper
+    for sample_size in sample_size_li:
+TypeError: 'NoneType' object is not iterable
+
+Total time: 14.975 secs
+/home/kli16/NSUBS/model/OurSGM/logs/our_train_imsm-dblp_unlabeled_list_nn_300_2023-10-10T07-22-50.088302
+our_train_imsm-dblp_unlabeled_list_nn_300_2023-10-10T07-22-50.088302

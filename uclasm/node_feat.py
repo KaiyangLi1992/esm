@@ -1,11 +1,12 @@
-from utils_our import get_flags_with_prefix_as_list
+from NSUBS.model.OurSGM.utils_our import get_flags_with_prefix_as_list
 from torch_geometric.transforms import LocalDegreeProfile
 # from utils import assert_0_based_nids
 from sklearn.preprocessing import OneHotEncoder
 import networkx as nx
 import numpy as np
 from node2vec import Node2Vec
-
+from NSUBS.model.OurSGM.data_loader import _get_enc_X
+import torch
 class NodeFeatureEncoder(object):
     def __init__(self, gs, node_feat_name):
         self.node_feat_name = node_feat_name
@@ -38,21 +39,50 @@ class NodeFeatureEncoder(object):
     def _node_feat_dic(self, g):
         return nx.get_node_attributes(g, self.node_feat_name)
     
+import torch
+from torch_scatter import scatter_min, scatter_max, scatter_mean, scatter_std
+import networkx as nx
 
+def get_ldf(graph: nx.Graph):
+    edge_index = torch.tensor(list(graph.edges())).t().contiguous()
+    row, col = edge_index
+    N = graph.number_of_nodes()
+
+    deg = torch.tensor([val for (node, val) in sorted(graph.degree(), key=lambda pair: pair[0])], dtype=torch.float)
+    deg_col = deg[col]
+
+    min_deg, _ = scatter_min(deg_col, row, dim_size=N)
+    min_deg[min_deg > 10000] = 0
+    max_deg, _ = scatter_max(deg_col, row, dim_size=N)
+    max_deg[max_deg < -10000] = 0
+    mean_deg = scatter_mean(deg_col, row, dim_size=N)
+    std_deg = scatter_std(deg_col, row, dim_size=N)
+
+    X = torch.stack([deg, min_deg, max_deg, mean_deg, std_deg], dim=1)
+
+    return X
 
 def encode_node_features_custom(dataset):
     attr_list = set()
     gs = [g.get_nxgraph() for g in dataset.gs]
+    encoder, X = _get_enc_X(gs[0])
+    X = encoder.transform(X).toarray()
+    # X = torch.tensor(X, dtype=torch.float)
+    # gs[0].init_x = X
     for g in gs:
-        type_values = set(nx.get_node_attributes(g, 'type').values())
-        attr_list.update(type_values) 
-    num_attr = max(list(attr_list))+1
-    for g in gs:
-        x1 = node2vec(g)
-        x2 = onehot_attr(g,num_attr)
-        x = np.concatenate((x1, x2), axis=1)
-        g.init_x = x
-    return dataset,x.shape[1]
+        X = []
+        for node, ndata in sorted(g.nodes(data=True)):
+            X.append([ndata['type']])
+        X = encoder.transform(X).toarray()
+        X = torch.tensor(X, dtype=torch.float)
+        g.init_x = X
+        g.init_x = torch.cat((g.init_x, get_ldf(g)), dim=1)
+
+     
+            # self.x = torch.cat((self.x, self.get_ldf()), dim=1)
+
+
+    return dataset,gs[0].init_x.shape[1]
 
 #    将type属性值放在一个set中
    

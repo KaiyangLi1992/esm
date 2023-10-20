@@ -1,0 +1,3985 @@
+Critical! Fix random seed for torch and numpy
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/0p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_1.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 4 node labels
+gt 40 nodes 75 edges (avg degree 1.8750) 4 node labels
+Merged loader: dense_64 0
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/99p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_100.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 17 nodes 25 edges (avg degree 1.4706) 5 node labels
+num_solutions: 8; num_solutions_unique: 8
+best_size: 10 nodes at iter 9 (/10=1.0000); total iters: 25 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 11; # cond1 "calls": 11; # cond2 "calls": 0; # cond3 "calls": 11; # cond4 "calls": 11
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 1.369 secs
+solved_or_not_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	1.0000
+	Avg:	8.0000
+	Std:	0.0000
+	Min:	8.0000
+	Max:	8.0000
+	Median:	8.0000
+	Mode:	8.0000
+num_unique_node_set_solutions_li
+	#:	1.0000
+	Avg:	8.0000
+	Std:	0.0000
+	Min:	8.0000
+	Max:	8.0000
+	Median:	8.0000
+	Mode:	8.0000
+best_size_li
+	#:	1.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	1.0000
+	Avg:	9.0000
+	Std:	0.0000
+	Min:	9.0000
+	Max:	9.0000
+	Median:	9.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	1.0000
+	Avg:	1.3688
+	Std:	0.0000
+	Min:	1.3688
+	Max:	1.3688
+	Median:	1.3688
+	Mode:	1.3688
+total_iters_li
+	#:	1.0000
+	Avg:	25.0000
+	Std:	0.0000
+	Min:	25.0000
+	Max:	25.0000
+	Median:	25.0000
+	Mode:	25.0000
+Timer log starts **************************************************
+Total duration: 6.069 secs
+refine                    : 6.069 secs (99.99%)
+CS                        : 0.060 msecs (0.00%)
+path weights              : 0.011 msecs (0.00%)
+levels2u2v and query tree : 0.301 msecs (0.00%)
+Timer log ends **************************************************
+Saved pair to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/95p.pickle
+CS_cand_set_size
+	#:	10.0000
+	Avg:	4.4000
+	Std:	2.7276
+	Min:	1.0000
+	Max:	10.0000
+	Median:	3.0000
+	Mode:	3.0000
+Saved gp, gq, gt_filtered to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/95p_pqf.pickle
+
+
+--- Query 1/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_96.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 36 nodes 58 edges (avg degree 1.6111) 5 node labels
+num_solutions: 2; num_solutions_unique: 2
+best_size: 10 nodes at iter 18 (/10=1.0000); total iters: 28 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 15; # cond1 "calls": 15; # cond2 "calls": 0; # cond3 "calls": 15; # cond4 "calls": 15
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 560.240 msecs
+solved_or_not_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	2.0000
+	Avg:	5.0000
+	Std:	3.0000
+	Min:	2.0000
+	Max:	8.0000
+	Median:	5.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	2.0000
+	Avg:	5.0000
+	Std:	3.0000
+	Min:	2.0000
+	Max:	8.0000
+	Median:	5.0000
+	Mode:	2.0000
+best_size_li
+	#:	2.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	2.0000
+	Avg:	13.5000
+	Std:	4.5000
+	Min:	9.0000
+	Max:	18.0000
+	Median:	13.5000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	2.0000
+	Avg:	0.9645
+	Std:	0.4043
+	Min:	0.5602
+	Max:	1.3688
+	Median:	0.9645
+	Mode:	0.5602
+total_iters_li
+	#:	2.0000
+	Avg:	26.5000
+	Std:	1.5000
+	Min:	25.0000
+	Max:	28.0000
+	Median:	26.5000
+	Mode:	25.0000
+Timer log starts **************************************************
+Total duration: 121.690 msecs
+refine                    : 121.234 msecs (99.63%)
+CS                        : 0.068 msecs (0.06%)
+path weights              : 0.018 msecs (0.01%)
+levels2u2v and query tree : 0.371 msecs (0.30%)
+Timer log ends **************************************************
+Saved pair to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/96p.pickle
+CS_cand_set_size
+	#:	10.0000
+	Avg:	9.1000
+	Std:	3.4771
+	Min:	4.0000
+	Max:	15.0000
+	Median:	9.0000
+	Mode:	4.0000
+Saved gp, gq, gt_filtered to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/96p_pqf.pickle
+
+
+--- Query 2/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_97.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 5 node labels
+gt 58 nodes 148 edges (avg degree 2.5517) 5 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 51; num_solutions_unique: 51
+best_size: 10 nodes at iter 10 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 87; # eps "calls": 51; # cond1 "calls": 51; # cond2 "calls": 0; # cond3 "calls": 51; # cond4 "calls": 51
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 2.752 secs
+solved_or_not_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	3.0000
+	Avg:	20.3333
+	Std:	21.8225
+	Min:	2.0000
+	Max:	51.0000
+	Median:	8.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	3.0000
+	Avg:	20.3333
+	Std:	21.8225
+	Min:	2.0000
+	Max:	51.0000
+	Median:	8.0000
+	Mode:	2.0000
+best_size_li
+	#:	3.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	3.0000
+	Avg:	12.3333
+	Std:	4.0277
+	Min:	9.0000
+	Max:	18.0000
+	Median:	10.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	3.0000
+	Avg:	1.5605
+	Std:	0.9052
+	Min:	0.5602
+	Max:	2.7525
+	Median:	1.3688
+	Mode:	0.5602
+total_iters_li
+	#:	3.0000
+	Avg:	84.3333
+	Std:	81.7979
+	Min:	25.0000
+	Max:	200.0000
+	Median:	28.0000
+	Mode:	25.0000
+Timer log starts **************************************************
+Total duration: 129.934 msecs
+refine                    : 129.709 msecs (99.83%)
+CS                        : 0.038 msecs (0.03%)
+path weights              : 0.007 msecs (0.01%)
+levels2u2v and query tree : 0.180 msecs (0.14%)
+Timer log ends **************************************************
+Saved pair to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/97p.pickle
+CS_cand_set_size
+	#:	10.0000
+	Avg:	9.7000
+	Std:	2.5710
+	Min:	7.0000
+	Max:	15.0000
+	Median:	9.0000
+	Mode:	9.0000
+Saved gp, gq, gt_filtered to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/97p_pqf.pickle
+
+
+--- Query 3/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_98.graph
+gq 10 nodes 12 edges (avg degree 1.2000) 3 node labels
+gt 40 nodes 79 edges (avg degree 1.9750) 3 node labels
+num_solutions: 1; num_solutions_unique: 1
+best_size: 10 nodes at iter 117 (/10=1.0000); total iters: 146 (smts.MCTS_iter=0)
+# NN calls: 38; # eps "calls": 38; # cond1 "calls": 38; # cond2 "calls": 0; # cond3 "calls": 38; # cond4 "calls": 38
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 1.469 secs
+solved_or_not_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	4.0000
+	Avg:	15.5000
+	Std:	20.6700
+	Min:	1.0000
+	Max:	51.0000
+	Median:	5.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	4.0000
+	Avg:	15.5000
+	Std:	20.6700
+	Min:	1.0000
+	Max:	51.0000
+	Median:	5.0000
+	Mode:	1.0000
+best_size_li
+	#:	4.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	4.0000
+	Avg:	38.5000
+	Std:	45.4560
+	Min:	9.0000
+	Max:	117.0000
+	Median:	14.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	4.0000
+	Avg:	1.5377
+	Std:	0.7849
+	Min:	0.5602
+	Max:	2.7525
+	Median:	1.4191
+	Mode:	0.5602
+total_iters_li
+	#:	4.0000
+	Avg:	99.7500
+	Std:	75.7046
+	Min:	25.0000
+	Max:	200.0000
+	Median:	87.0000
+	Mode:	25.0000
+Timer log starts **************************************************
+Total duration: 108.861 msecs
+refine                    : 108.556 msecs (99.72%)
+CS                        : 0.046 msecs (0.04%)
+path weights              : 0.009 msecs (0.01%)
+levels2u2v and query tree : 0.249 msecs (0.23%)
+Timer log ends **************************************************
+Saved pair to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/98p.pickle
+CS_cand_set_size
+	#:	10.0000
+	Avg:	12.0000
+	Std:	1.6733
+	Min:	10.0000
+	Max:	15.0000
+	Median:	11.5000
+	Mode:	11.0000
+Saved gp, gq, gt_filtered to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/98p_pqf.pickle
+
+
+--- Query 4/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_99.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 3 node labels
+gt 55 nodes 115 edges (avg degree 2.0909) 3 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 44; num_solutions_unique: 44
+best_size: 10 nodes at iter 10 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 74; # eps "calls": 73; # cond1 "calls": 73; # cond2 "calls": 0; # cond3 "calls": 73; # cond4 "calls": 73
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 1.969 secs
+solved_or_not_li
+	#:	5.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	5.0000
+	Avg:	21.2000
+	Std:	21.7200
+	Min:	1.0000
+	Max:	51.0000
+	Median:	8.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	5.0000
+	Avg:	21.2000
+	Std:	21.7200
+	Min:	1.0000
+	Max:	51.0000
+	Median:	8.0000
+	Mode:	1.0000
+best_size_li
+	#:	5.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	5.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	5.0000
+	Avg:	32.8000
+	Std:	42.2251
+	Min:	9.0000
+	Max:	117.0000
+	Median:	10.0000
+	Mode:	10.0000
+total_time_li(in seconds)
+	#:	5.0000
+	Avg:	1.6240
+	Std:	0.7229
+	Min:	0.5602
+	Max:	2.7525
+	Median:	1.4695
+	Mode:	0.5602
+total_iters_li
+	#:	5.0000
+	Avg:	119.8000
+	Std:	78.6954
+	Min:	25.0000
+	Max:	200.0000
+	Median:	146.0000
+	Mode:	200.0000
+ACCEPTING NEW MODEL: 1.0 >= -1
+validation time: 15.00449800491333s
+Outer epoch 0
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/0p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_1.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 4 node labels
+gt 40 nodes 75 edges (avg degree 1.8750) 4 node labels
+Merged loader: dense_64 0
+Loaded a graph pair 0
+Play the game 0 -- 0 (eps=0.0)
+num_solutions: 8; num_solutions_unique: 4
+best_size: 10 nodes at iter 729 (/10=1.0000); total iters: 1714 (smts.MCTS_iter=43)
+# NN calls: 9; # eps "calls": 22; # cond1 "calls": 22; # cond2 "calls": 0; # cond3 "calls": 22; # cond4 "calls": 22
+MCTS_Qs
+	#:	2397.0000
+	Avg:	0.2858
+	Std:	0.4702
+	Min:	-0.3734
+	Max:	2.0103
+	Median:	0.0232
+	Mode:	-0.0061
+MCTS_Us
+	#:	2397.0000
+	Avg:	1.1453
+	Std:	1.5673
+	Min:	0.0000
+	Max:	10.0000
+	Median:	0.8141
+	Mode:	10.0000
+MCTS_QU(Q winning over U)
+	#:	2397.0000
+	Avg:	0.2236
+	Std:	0.4167
+	Min:	0.0000
+	Max:	1.0000
+	Median:	0.0000
+	Mode:	0.0000
+len(Qsa_li)=9
+r_li_lens
+	#:	9.0000
+	Avg:	2.3333
+	Std:	0.9428
+	Min:	2.0000
+	Max:	5.0000
+	Median:	2.0000
+	Mode:	2.0000
+r_values
+	#:	21.0000
+	Avg:	0.4974
+	Std:	0.3536
+	Min:	0.0152
+	Max:	1.0000
+	Median:	0.6087
+	Mode:	0.3734
+nn_map_sizes
+	#:	9.0000
+	Avg:	5.6667
+	Std:	3.0912
+	Min:	0.0000
+	Max:	9.0000
+	Median:	6.0000
+	Mode:	6.0000
+replay_buffer len: 0
+Learn from buffer of 9
+buffer_size=7.7859e-05gb
+pretrain_obj=0.000284236gb
+[Outer epoch 0 Epoch 1 Iter 0] .normal loss: 0.9515	main/reg: 0.9515/0.0000
+[Outer epoch 0 Epoch 2 Iter 1] .normal loss: 67.8435	main/reg: 67.8435/0.0000
+[Outer epoch 0 Epoch 3 Iter 2] .normal loss: 50.5760	main/reg: 50.5760/0.0000
+[Outer epoch 0 Epoch 4 Iter 3] .normal loss: 80.7770	main/reg: 80.7770/0.0000
+[Outer epoch 0 Epoch 5 Iter 4] .normal loss: 72.6923	main/reg: 72.6923/0.0000
+[Outer epoch 0 Epoch 6 Iter 5] .normal loss: 38.4736	main/reg: 38.4736/0.0000
+[Outer epoch 0 Epoch 7 Iter 6] .normal loss: 80.6944	main/reg: 80.6944/0.0000
+[Outer epoch 0 Epoch 8 Iter 7] .normal loss: 73.1876	main/reg: 73.1876/0.0000
+[Outer epoch 0 Epoch 9 Iter 8] .normal loss: 32.0179	main/reg: 32.0179/0.0000
+[Outer epoch 0 Epoch 10 Iter 9] .normal loss: 0.2044	main/reg: 0.2044/0.0000
+[Outer epoch 0 Epoch 11 Iter 10] .normal loss: 6.1410	main/reg: 6.1410/0.0000
+[Outer epoch 0 Epoch 12 Iter 11] .normal loss: 50.5314	main/reg: 50.5314/0.0000
+[Outer epoch 0 Epoch 13 Iter 12] .normal loss: 28.0375	main/reg: 28.0375/0.0000
+[Outer epoch 0 Epoch 14 Iter 13] .normal loss: 3.5438	main/reg: 3.5438/0.0000
+[Outer epoch 0 Epoch 15 Iter 14] .normal loss: 1.3953	main/reg: 1.3953/0.0000
+[Outer epoch 0 Epoch 16 Iter 15] .normal loss: 25.2482	main/reg: 25.2482/0.0000
+[Outer epoch 0 Epoch 17 Iter 16] .normal loss: 3.5740	main/reg: 3.5740/0.0000
+[Outer epoch 0 Epoch 18 Iter 17] .normal loss: 34.6173	main/reg: 34.6173/0.0000
+[Outer epoch 0 Epoch 19 Iter 18] .normal loss: 1.2013	main/reg: 1.2013/0.0000
+[Outer epoch 0 Epoch 20 Iter 19] .normal loss: 7.8198	main/reg: 7.8198/0.0000
+[Outer epoch 0 Epoch 21 Iter 20] .normal loss: 50.3807	main/reg: 50.3807/0.0000
+[Outer epoch 0 Epoch 22 Iter 21] .normal loss: 18.7026	main/reg: 18.7026/0.0000
+[Outer epoch 0 Epoch 23 Iter 22] .normal loss: 0.7590	main/reg: 0.7590/0.0000
+[Outer epoch 0 Epoch 24 Iter 23] .normal loss: 9.8146	main/reg: 9.8146/0.0000
+[Outer epoch 0 Epoch 25 Iter 24] .normal loss: 38.9168	main/reg: 38.9168/0.0000
+[Outer epoch 0 Epoch 26 Iter 25] .normal loss: 29.9311	main/reg: 29.9311/0.0000
+[Outer epoch 0 Epoch 27 Iter 26] .normal loss: 0.2792	main/reg: 0.2792/0.0000
+[Outer epoch 0 Epoch 28 Iter 27] .normal loss: 8.0604	main/reg: 8.0604/0.0000
+[Outer epoch 0 Epoch 29 Iter 28] .normal loss: 79.8301	main/reg: 79.8301/0.0000
+[Outer epoch 0 Epoch 30 Iter 29] .normal loss: 55.4651	main/reg: 55.4651/0.0000
+[Outer epoch 0 Epoch 31 Iter 30] .normal loss: 57.3919	main/reg: 57.3919/0.0000
+[Outer epoch 0 Epoch 32 Iter 31] .normal loss: 52.0055	main/reg: 52.0055/0.0000
+[Outer epoch 0 Epoch 33 Iter 32] .normal loss: 79.0868	main/reg: 79.0868/0.0000
+[Outer epoch 0 Epoch 34 Iter 33] .normal loss: 57.4467	main/reg: 57.4467/0.0000
+[Outer epoch 0 Epoch 35 Iter 34] .normal loss: 73.1397	main/reg: 73.1397/0.0000
+[Outer epoch 0 Epoch 36 Iter 35] .normal loss: 78.9586	main/reg: 78.9586/0.0000
+[Outer epoch 0 Epoch 37 Iter 36] .normal loss: 3.7967	main/reg: 3.7967/0.0000
+[Outer epoch 0 Epoch 38 Iter 37] .normal loss: 72.3920	main/reg: 72.3920/0.0000
+[Outer epoch 0 Epoch 39 Iter 38] .normal loss: 63.6688	main/reg: 63.6688/0.0000
+[Outer epoch 0 Epoch 40 Iter 39] .normal loss: 57.2096	main/reg: 57.2096/0.0000
+[Outer epoch 0 Epoch 41 Iter 40] .normal loss: 52.1467	main/reg: 52.1467/0.0000
+[Outer epoch 0 Epoch 42 Iter 41] .normal loss: 77.0374	main/reg: 77.0374/0.0000
+[Outer epoch 0 Epoch 43 Iter 42] .normal loss: 57.1367	main/reg: 57.1367/0.0000
+[Outer epoch 0 Epoch 44 Iter 43] .normal loss: 72.9523	main/reg: 72.9523/0.0000
+[Outer epoch 0 Epoch 45 Iter 44] .normal loss: 76.8899	main/reg: 76.8899/0.0000
+[Outer epoch 0 Epoch 46 Iter 45] .normal loss: 0.6453	main/reg: 0.6453/0.0000
+[Outer epoch 0 Epoch 47 Iter 46] .normal loss: 71.5532	main/reg: 71.5532/0.0000
+[Outer epoch 0 Epoch 48 Iter 47] .normal loss: 50.9679	main/reg: 50.9679/0.0000
+[Outer epoch 0 Epoch 49 Iter 48] .normal loss: 57.0509	main/reg: 57.0509/0.0000
+[Outer epoch 0 Epoch 50 Iter 49] .normal loss: 51.8366	main/reg: 51.8366/0.0000
+[Outer epoch 0 Epoch 51 Iter 50] .normal loss: 76.9071	main/reg: 76.9071/0.0000
+[Outer epoch 0 Epoch 52 Iter 51] .normal loss: 56.8492	main/reg: 56.8492/0.0000
+[Outer epoch 0 Epoch 53 Iter 52] .normal loss: 68.5531	main/reg: 68.5531/0.0000
+[Outer epoch 0 Epoch 54 Iter 53] .normal loss: 76.8495	main/reg: 76.8495/0.0000
+[Outer epoch 0 Epoch 55 Iter 54] .normal loss: 0.2177	main/reg: 0.2177/0.0000
+[Outer epoch 0 Epoch 56 Iter 55] .normal loss: 68.9603	main/reg: 68.9603/0.0000
+[Outer epoch 0 Epoch 57 Iter 56] .normal loss: 51.0508	main/reg: 51.0508/0.0000
+[Outer epoch 0 Epoch 58 Iter 57] .normal loss: 56.8088	main/reg: 56.8088/0.0000
+[Outer epoch 0 Epoch 59 Iter 58] .normal loss: 53.2607	main/reg: 53.2607/0.0000
+[Outer epoch 0 Epoch 60 Iter 59] .normal loss: 76.7883	main/reg: 76.7883/0.0000
+[Outer epoch 0 Epoch 61 Iter 60] .normal loss: 56.8294	main/reg: 56.8294/0.0000
+[Outer epoch 0 Epoch 62 Iter 61] .normal loss: 67.5597	main/reg: 67.5597/0.0000
+[Outer epoch 0 Epoch 63 Iter 62] .normal loss: 76.7579	main/reg: 76.7579/0.0000
+[Outer epoch 0 Epoch 64 Iter 63] .normal loss: 0.0225	main/reg: 0.0225/0.0000
+[Outer epoch 0 Epoch 65 Iter 64] .normal loss: 67.6825	main/reg: 67.6825/0.0000
+[Outer epoch 0 Epoch 66 Iter 65] .normal loss: 50.9845	main/reg: 50.9845/0.0000
+[Outer epoch 0 Epoch 67 Iter 66] .normal loss: 58.0296	main/reg: 58.0296/0.0000
+[Outer epoch 0 Epoch 68 Iter 67] .normal loss: 34.6055	main/reg: 34.6055/0.0000
+[Outer epoch 0 Epoch 69 Iter 68] .normal loss: 76.5555	main/reg: 76.5555/0.0000
+[Outer epoch 0 Epoch 70 Iter 69] .normal loss: 0.7871	main/reg: 0.7871/0.0000
+[Outer epoch 0 Epoch 71 Iter 70] .normal loss: 9.5655	main/reg: 9.5655/0.0000
+[Outer epoch 0 Epoch 72 Iter 71] .normal loss: 76.9524	main/reg: 76.9524/0.0000
+[Outer epoch 0 Epoch 73 Iter 72] .normal loss: 85.4632	main/reg: 85.4632/0.0000
+[Outer epoch 0 Epoch 74 Iter 73] .normal loss: 4.5498	main/reg: 4.5498/0.0000
+[Outer epoch 0 Epoch 75 Iter 74] .normal loss: 51.0883	main/reg: 51.0883/0.0000
+[Outer epoch 0 Epoch 76 Iter 75] .normal loss: 20.1742	main/reg: 20.1742/0.0000
+[Outer epoch 0 Epoch 77 Iter 76] .normal loss: 0.0165	main/reg: 0.0165/0.0000
+[Outer epoch 0 Epoch 78 Iter 77] .normal loss: 78.0272	main/reg: 78.0272/0.0000
+[Outer epoch 0 Epoch 79 Iter 78] .normal loss: 56.2891	main/reg: 56.2891/0.0000
+[Outer epoch 0 Epoch 80 Iter 79] .normal loss: 67.9103	main/reg: 67.9103/0.0000
+[Outer epoch 0 Epoch 81 Iter 80] .normal loss: 78.1787	main/reg: 78.1787/0.0000
+[Outer epoch 0 Epoch 82 Iter 81] .normal loss: 0.3412	main/reg: 0.3412/0.0000
+[Outer epoch 0 Epoch 83 Iter 82] .normal loss: 69.7371	main/reg: 69.7371/0.0000
+[Outer epoch 0 Epoch 84 Iter 83] .normal loss: 51.6021	main/reg: 51.6021/0.0000
+[Outer epoch 0 Epoch 85 Iter 84] .normal loss: 57.4376	main/reg: 57.4376/0.0000
+[Outer epoch 0 Epoch 86 Iter 85] .normal loss: 52.2265	main/reg: 52.2265/0.0000
+[Outer epoch 0 Epoch 87 Iter 86] .normal loss: 77.3009	main/reg: 77.3009/0.0000
+[Outer epoch 0 Epoch 88 Iter 87] .normal loss: 57.4448	main/reg: 57.4448/0.0000
+[Outer epoch 0 Epoch 89 Iter 88] .normal loss: 69.2076	main/reg: 69.2076/0.0000
+[Outer epoch 0 Epoch 90 Iter 89] .normal loss: 77.2440	main/reg: 77.2440/0.0000
+[Outer epoch 0 Epoch 91 Iter 90] .normal loss: 0.5652	main/reg: 0.5652/0.0000
+[Outer epoch 0 Epoch 92 Iter 91] .normal loss: 67.7873	main/reg: 67.7873/0.0000
+[Outer epoch 0 Epoch 93 Iter 92] .normal loss: 50.9896	main/reg: 50.9896/0.0000
+[Outer epoch 0 Epoch 94 Iter 93] .normal loss: 57.3188	main/reg: 57.3188/0.0000
+[Outer epoch 0 Epoch 95 Iter 94] .normal loss: 52.3021	main/reg: 52.3021/0.0000
+[Outer epoch 0 Epoch 96 Iter 95] .normal loss: 77.2243	main/reg: 77.2243/0.0000
+[Outer epoch 0 Epoch 97 Iter 96] .normal loss: 57.2993	main/reg: 57.2993/0.0000
+[Outer epoch 0 Epoch 98 Iter 97] .normal loss: 67.7196	main/reg: 67.7196/0.0000
+[Outer epoch 0 Epoch 99 Iter 98] .normal loss: 77.2064	main/reg: 77.2064/0.0000
+[Outer epoch 0 Epoch 100 Iter 99] .normal loss: 0.5746	main/reg: 0.5746/0.0000
+[Outer epoch 0 Epoch 101 Iter 100] .normal loss: 67.0387	main/reg: 67.0387/0.0000
+[Outer epoch 0 Epoch 102 Iter 101] .normal loss: 50.7803	main/reg: 50.7803/0.0000
+[Outer epoch 0 Epoch 103 Iter 102] .normal loss: 57.1303	main/reg: 57.1303/0.0000
+[Outer epoch 0 Epoch 104 Iter 103] .normal loss: 52.1408	main/reg: 52.1408/0.0000
+[Outer epoch 0 Epoch 105 Iter 104] .normal loss: 77.1065	main/reg: 77.1065/0.0000
+[Outer epoch 0 Epoch 106 Iter 105] .normal loss: 57.1070	main/reg: 57.1070/0.0000
+[Outer epoch 0 Epoch 107 Iter 106] .normal loss: 67.7263	main/reg: 67.7263/0.0000
+[Outer epoch 0 Epoch 108 Iter 107] .normal loss: 77.0572	main/reg: 77.0572/0.0000
+[Outer epoch 0 Epoch 109 Iter 108] .normal loss: 0.5250	main/reg: 0.5250/0.0000
+[Outer epoch 0 Epoch 110 Iter 109] .normal loss: 66.8733	main/reg: 66.8733/0.0000
+[Outer epoch 0 Epoch 111 Iter 110] .normal loss: 50.7391	main/reg: 50.7391/0.0000
+[Outer epoch 0 Epoch 112 Iter 111] .normal loss: 57.0130	main/reg: 57.0130/0.0000
+[Outer epoch 0 Epoch 113 Iter 112] .normal loss: 52.0643	main/reg: 52.0643/0.0000
+[Outer epoch 0 Epoch 114 Iter 113] .normal loss: 76.9593	main/reg: 76.9593/0.0000
+[Outer epoch 0 Epoch 115 Iter 114] .normal loss: 56.9238	main/reg: 56.9238/0.0000
+[Outer epoch 0 Epoch 116 Iter 115] .normal loss: 67.5848	main/reg: 67.5848/0.0000
+[Outer epoch 0 Epoch 117 Iter 116] .normal loss: 76.9157	main/reg: 76.9157/0.0000
+[Outer epoch 0 Epoch 118 Iter 117] .normal loss: 0.4963	main/reg: 0.4963/0.0000
+[Outer epoch 0 Epoch 119 Iter 118] .normal loss: 66.7573	main/reg: 66.7573/0.0000
+[Outer epoch 0 Epoch 120 Iter 119] .normal loss: 50.6984	main/reg: 50.6984/0.0000
+[Outer epoch 0 Epoch 121 Iter 120] .normal loss: 56.8269	main/reg: 56.8269/0.0000
+[Outer epoch 0 Epoch 122 Iter 121] .normal loss: 51.9909	main/reg: 51.9909/0.0000
+[Outer epoch 0 Epoch 123 Iter 122] .normal loss: 76.8178	main/reg: 76.8178/0.0000
+[Outer epoch 0 Epoch 124 Iter 123] .normal loss: 56.7838	main/reg: 56.7838/0.0000
+[Outer epoch 0 Epoch 125 Iter 124] .normal loss: 67.4238	main/reg: 67.4238/0.0000
+[Outer epoch 0 Epoch 126 Iter 125] .normal loss: 76.7734	main/reg: 76.7734/0.0000
+[Outer epoch 0 Epoch 127 Iter 126] .normal loss: 0.4462	main/reg: 0.4462/0.0000
+[Outer epoch 0 Epoch 128 Iter 127] .normal loss: 66.6591	main/reg: 66.6591/0.0000
+r_preds_list
+	#:	298.0000
+	Avg:	72.1057
+	Std:	51.3506
+	Min:	18.7705
+	Max:	273.9121
+	Median:	48.4459
+	Mode:	18.7705
+Validation at self-play 0
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/99p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_100.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 17 nodes 25 edges (avg degree 1.4706) 5 node labels
+num_solutions: 8; num_solutions_unique: 8
+best_size: 10 nodes at iter 9 (/10=1.0000); total iters: 25 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 11; # cond1 "calls": 11; # cond2 "calls": 0; # cond3 "calls": 11; # cond4 "calls": 11
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 151.959 msecs
+solved_or_not_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	1.0000
+	Avg:	8.0000
+	Std:	0.0000
+	Min:	8.0000
+	Max:	8.0000
+	Median:	8.0000
+	Mode:	8.0000
+num_unique_node_set_solutions_li
+	#:	1.0000
+	Avg:	8.0000
+	Std:	0.0000
+	Min:	8.0000
+	Max:	8.0000
+	Median:	8.0000
+	Mode:	8.0000
+best_size_li
+	#:	1.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	1.0000
+	Avg:	9.0000
+	Std:	0.0000
+	Min:	9.0000
+	Max:	9.0000
+	Median:	9.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	1.0000
+	Avg:	0.1520
+	Std:	0.0000
+	Min:	0.1520
+	Max:	0.1520
+	Median:	0.1520
+	Mode:	0.1520
+total_iters_li
+	#:	1.0000
+	Avg:	25.0000
+	Std:	0.0000
+	Min:	25.0000
+	Max:	25.0000
+	Median:	25.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/95p_pqf.pickle
+
+
+--- Query 1/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_96.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 36 nodes 58 edges (avg degree 1.6111) 5 node labels
+num_solutions: 2; num_solutions_unique: 2
+best_size: 10 nodes at iter 13 (/10=1.0000); total iters: 28 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 15; # cond1 "calls": 15; # cond2 "calls": 0; # cond3 "calls": 15; # cond4 "calls": 15
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 140.956 msecs
+solved_or_not_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	2.0000
+	Avg:	5.0000
+	Std:	3.0000
+	Min:	2.0000
+	Max:	8.0000
+	Median:	5.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	2.0000
+	Avg:	5.0000
+	Std:	3.0000
+	Min:	2.0000
+	Max:	8.0000
+	Median:	5.0000
+	Mode:	2.0000
+best_size_li
+	#:	2.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	2.0000
+	Avg:	11.0000
+	Std:	2.0000
+	Min:	9.0000
+	Max:	13.0000
+	Median:	11.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	2.0000
+	Avg:	0.1465
+	Std:	0.0055
+	Min:	0.1410
+	Max:	0.1520
+	Median:	0.1465
+	Mode:	0.1410
+total_iters_li
+	#:	2.0000
+	Avg:	26.5000
+	Std:	1.5000
+	Min:	25.0000
+	Max:	28.0000
+	Median:	26.5000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/96p_pqf.pickle
+
+
+--- Query 2/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_97.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 5 node labels
+gt 58 nodes 148 edges (avg degree 2.5517) 5 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 53; num_solutions_unique: 53
+best_size: 10 nodes at iter 9 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 84; # eps "calls": 54; # cond1 "calls": 54; # cond2 "calls": 0; # cond3 "calls": 54; # cond4 "calls": 54
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 1.887 secs
+solved_or_not_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	3.0000
+	Avg:	21.0000
+	Std:	22.7596
+	Min:	2.0000
+	Max:	53.0000
+	Median:	8.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	3.0000
+	Avg:	21.0000
+	Std:	22.7596
+	Min:	2.0000
+	Max:	53.0000
+	Median:	8.0000
+	Mode:	2.0000
+best_size_li
+	#:	3.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	3.0000
+	Avg:	10.3333
+	Std:	1.8856
+	Min:	9.0000
+	Max:	13.0000
+	Median:	9.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	3.0000
+	Avg:	0.7265
+	Std:	0.8203
+	Min:	0.1410
+	Max:	1.8865
+	Median:	0.1520
+	Mode:	0.1410
+total_iters_li
+	#:	3.0000
+	Avg:	84.3333
+	Std:	81.7979
+	Min:	25.0000
+	Max:	200.0000
+	Median:	28.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/97p_pqf.pickle
+
+
+--- Query 3/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_98.graph
+gq 10 nodes 12 edges (avg degree 1.2000) 3 node labels
+gt 40 nodes 79 edges (avg degree 1.9750) 3 node labels
+num_solutions: 1; num_solutions_unique: 1
+best_size: 10 nodes at iter 25 (/10=1.0000); total iters: 146 (smts.MCTS_iter=0)
+# NN calls: 38; # eps "calls": 38; # cond1 "calls": 38; # cond2 "calls": 0; # cond3 "calls": 38; # cond4 "calls": 38
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 847.824 msecs
+solved_or_not_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	4.0000
+	Avg:	16.0000
+	Std:	21.5291
+	Min:	1.0000
+	Max:	53.0000
+	Median:	5.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	4.0000
+	Avg:	16.0000
+	Std:	21.5291
+	Min:	1.0000
+	Max:	53.0000
+	Median:	5.0000
+	Mode:	1.0000
+best_size_li
+	#:	4.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	4.0000
+	Avg:	14.0000
+	Std:	6.5574
+	Min:	9.0000
+	Max:	25.0000
+	Median:	11.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	4.0000
+	Avg:	0.7568
+	Std:	0.7123
+	Min:	0.1410
+	Max:	1.8865
+	Median:	0.4999
+	Mode:	0.1410
+total_iters_li
+	#:	4.0000
+	Avg:	99.7500
+	Std:	75.7046
+	Min:	25.0000
+	Max:	200.0000
+	Median:	87.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/98p_pqf.pickle
+
+
+--- Query 4/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_99.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 3 node labels
+gt 55 nodes 115 edges (avg degree 2.0909) 3 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 48; num_solutions_unique: 48
+best_size: 10 nodes at iter 11 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 76; # eps "calls": 66; # cond1 "calls": 66; # cond2 "calls": 0; # cond3 "calls": 66; # cond4 "calls": 66
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 2.217 secs
+solved_or_not_li
+	#:	5.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	5.0000
+	Avg:	22.4000
+	Std:	23.1223
+	Min:	1.0000
+	Max:	53.0000
+	Median:	8.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	5.0000
+	Avg:	22.4000
+	Std:	23.1223
+	Min:	1.0000
+	Max:	53.0000
+	Median:	8.0000
+	Mode:	1.0000
+best_size_li
+	#:	5.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	5.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	5.0000
+	Avg:	13.4000
+	Std:	5.9867
+	Min:	9.0000
+	Max:	25.0000
+	Median:	11.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	5.0000
+	Avg:	1.0489
+	Std:	0.8644
+	Min:	0.1410
+	Max:	2.2172
+	Median:	0.8478
+	Mode:	0.1410
+total_iters_li
+	#:	5.0000
+	Avg:	119.8000
+	Std:	78.6954
+	Min:	25.0000
+	Max:	200.0000
+	Median:	146.0000
+	Mode:	200.0000
+ACCEPTING NEW MODEL: 1.0 >= 1.0
+validation time: 5.561114549636841s
+Timer log starts **************************************************
+Total duration: 125.943 msecs
+refine                    : 125.264 msecs (99.46%)
+CS                        : 0.094 msecs (0.07%)
+path weights              : 0.025 msecs (0.02%)
+levels2u2v and query tree : 0.560 msecs (0.44%)
+Timer log ends **************************************************
+Saved pair to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/1p.pickle
+CS_cand_set_size
+	#:	10.0000
+	Avg:	7.7000
+	Std:	3.6892
+	Min:	4.0000
+	Max:	16.0000
+	Median:	6.0000
+	Mode:	5.0000
+Saved gp, gq, gt_filtered to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/1p_pqf.pickle
+
+
+--- Query 1/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_2.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 4 node labels
+gt 53 nodes 119 edges (avg degree 2.2453) 4 node labels
+Merged loader: dense_64 1
+Loaded a graph pair 1
+Play the game 0 -- 1 (eps=0.0)
+num_solutions: 241; num_solutions_unique: 241
+best_size: 10 nodes at iter 60 (/10=1.0000); total iters: 25041 (smts.MCTS_iter=556)
+# NN calls: 175; # eps "calls": 127; # cond1 "calls": 127; # cond2 "calls": 0; # cond3 "calls": 127; # cond4 "calls": 127
+MCTS_Qs
+	#:	39637.0000
+	Avg:	0.1734
+	Std:	0.4264
+	Min:	-1.0013
+	Max:	1.3600
+	Median:	0.0000
+	Mode:	0.0000
+MCTS_Us
+	#:	39637.0000
+	Avg:	1.0919
+	Std:	1.3683
+	Min:	0.0000
+	Max:	10.3133
+	Median:	0.9079
+	Mode:	10.0000
+MCTS_QU(Q winning over U)
+	#:	39637.0000
+	Avg:	0.1893
+	Std:	0.3917
+	Min:	0.0000
+	Max:	1.0000
+	Median:	0.0000
+	Mode:	0.0000
+len(Qsa_li)=175
+r_li_lens
+	#:	175.0000
+	Avg:	2.4514
+	Std:	0.7684
+	Min:	2.0000
+	Max:	4.0000
+	Median:	2.0000
+	Mode:	2.0000
+r_values
+	#:	429.0000
+	Avg:	0.5493
+	Std:	0.2275
+	Min:	0.0935
+	Max:	1.0000
+	Median:	0.3734
+	Mode:	0.3734
+nn_map_sizes
+	#:	175.0000
+	Avg:	7.4686
+	Std:	1.9994
+	Min:	0.0000
+	Max:	9.0000
+	Median:	8.0000
+	Mode:	9.0000
+replay_buffer len: 9
+Learn from buffer of 128
+buffer_size=0.000367363gb
+pretrain_obj=0.0030963460000000003gb
+[Outer epoch 0 Epoch 1 Iter 128] .normal loss: 80.8612	main/reg: 80.8612/0.0000
+[Outer epoch 0 Epoch 2 Iter 129] .normal loss: 88.2763	main/reg: 88.2763/0.0000
+[Outer epoch 0 Epoch 3 Iter 130] .normal loss: 66.6874	main/reg: 66.6874/0.0000
+[Outer epoch 0 Epoch 4 Iter 131] .normal loss: 78.1381	main/reg: 78.1381/0.0000
+[Outer epoch 0 Epoch 5 Iter 132] .normal loss: 77.5772	main/reg: 77.5772/0.0000
+[Outer epoch 0 Epoch 6 Iter 133] .normal loss: 66.4981	main/reg: 66.4981/0.0000
+[Outer epoch 0 Epoch 7 Iter 134] .normal loss: 52.9079	main/reg: 52.9079/0.0000
+[Outer epoch 0 Epoch 8 Iter 135] .normal loss: 66.4164	main/reg: 66.4164/0.0000
+[Outer epoch 0 Epoch 9 Iter 136] .normal loss: 80.6675	main/reg: 80.6675/0.0000
+[Outer epoch 0 Epoch 10 Iter 137] .normal loss: 67.9563	main/reg: 67.9563/0.0000
+[Outer epoch 0 Epoch 11 Iter 138] .normal loss: 78.6769	main/reg: 78.6769/0.0000
+[Outer epoch 0 Epoch 12 Iter 139] .normal loss: 60.3002	main/reg: 60.3002/0.0000
+[Outer epoch 0 Epoch 13 Iter 140] .normal loss: 66.3323	main/reg: 66.3323/0.0000
+[Outer epoch 0 Epoch 14 Iter 141] .normal loss: 77.0046	main/reg: 77.0046/0.0000
+[Outer epoch 0 Epoch 15 Iter 142] .normal loss: 51.4307	main/reg: 51.4307/0.0000
+[Outer epoch 0 Epoch 16 Iter 143] .normal loss: 67.1016	main/reg: 67.1016/0.0000
+[Outer epoch 0 Epoch 17 Iter 144] .normal loss: 66.2843	main/reg: 66.2843/0.0000
+[Outer epoch 0 Epoch 18 Iter 145] .normal loss: 78.4307	main/reg: 78.4307/0.0000
+[Outer epoch 0 Epoch 19 Iter 146] .normal loss: 66.0211	main/reg: 66.0211/0.0000
+[Outer epoch 0 Epoch 20 Iter 147] .normal loss: 66.3602	main/reg: 66.3602/0.0000
+[Outer epoch 0 Epoch 21 Iter 148] .normal loss: 58.0778	main/reg: 58.0778/0.0000
+[Outer epoch 0 Epoch 22 Iter 149] .normal loss: 77.3229	main/reg: 77.3229/0.0000
+[Outer epoch 0 Epoch 23 Iter 150] .normal loss: 24.8326	main/reg: 24.8326/0.0000
+[Outer epoch 0 Epoch 24 Iter 151] .normal loss: 13.7145	main/reg: 13.7145/0.0000
+[Outer epoch 0 Epoch 25 Iter 152] .normal loss: 15.3506	main/reg: 15.3506/0.0000
+[Outer epoch 0 Epoch 26 Iter 153] .normal loss: 1.5776	main/reg: 1.5776/0.0000
+[Outer epoch 0 Epoch 27 Iter 154] .normal loss: 2.1564	main/reg: 2.1564/0.0000
+[Outer epoch 0 Epoch 28 Iter 155] .normal loss: 2.1325	main/reg: 2.1325/0.0000
+[Outer epoch 0 Epoch 29 Iter 156] .normal loss: 19.3817	main/reg: 19.3817/0.0000
+[Outer epoch 0 Epoch 30 Iter 157] .normal loss: 3.2912	main/reg: 3.2912/0.0000
+[Outer epoch 0 Epoch 31 Iter 158] .normal loss: 0.4123	main/reg: 0.4123/0.0000
+[Outer epoch 0 Epoch 32 Iter 159] .normal loss: 4.5032	main/reg: 4.5032/0.0000
+[Outer epoch 0 Epoch 33 Iter 160] .normal loss: 75.5844	main/reg: 75.5844/0.0000
+[Outer epoch 0 Epoch 34 Iter 161] .normal loss: 6.0147	main/reg: 6.0147/0.0000
+[Outer epoch 0 Epoch 35 Iter 162] .normal loss: 25.0017	main/reg: 25.0017/0.0000
+[Outer epoch 0 Epoch 36 Iter 163] .normal loss: 1.9496	main/reg: 1.9496/0.0000
+[Outer epoch 0 Epoch 37 Iter 164] .normal loss: 0.0885	main/reg: 0.0885/0.0000
+[Outer epoch 0 Epoch 38 Iter 165] .normal loss: 2.4425	main/reg: 2.4425/0.0000
+[Outer epoch 0 Epoch 39 Iter 166] .normal loss: 6.5664	main/reg: 6.5664/0.0000
+[Outer epoch 0 Epoch 40 Iter 167] .normal loss: 2.3199	main/reg: 2.3199/0.0000
+[Outer epoch 0 Epoch 41 Iter 168] .normal loss: 6.9712	main/reg: 6.9712/0.0000
+[Outer epoch 0 Epoch 42 Iter 169] .normal loss: 1.8978	main/reg: 1.8978/0.0000
+[Outer epoch 0 Epoch 43 Iter 170] .normal loss: 0.4523	main/reg: 0.4523/0.0000
+[Outer epoch 0 Epoch 44 Iter 171] .normal loss: 2.3969	main/reg: 2.3969/0.0000
+[Outer epoch 0 Epoch 45 Iter 172] .normal loss: 0.0085	main/reg: 0.0085/0.0000
+[Outer epoch 0 Epoch 46 Iter 173] .normal loss: 8.3301	main/reg: 8.3301/0.0000
+[Outer epoch 0 Epoch 47 Iter 174] .normal loss: 4.8028	main/reg: 4.8028/0.0000
+[Outer epoch 0 Epoch 48 Iter 175] .normal loss: 5.8692	main/reg: 5.8692/0.0000
+[Outer epoch 0 Epoch 49 Iter 176] .normal loss: 1.6444	main/reg: 1.6444/0.0000
+[Outer epoch 0 Epoch 50 Iter 177] .normal loss: 2.6424	main/reg: 2.6424/0.0000
+[Outer epoch 0 Epoch 51 Iter 178] .normal loss: 1.0923	main/reg: 1.0923/0.0000
+[Outer epoch 0 Epoch 52 Iter 179] .normal loss: 2.7132	main/reg: 2.7132/0.0000
+[Outer epoch 0 Epoch 53 Iter 180] .normal loss: 6.2560	main/reg: 6.2560/0.0000
+[Outer epoch 0 Epoch 54 Iter 181] .normal loss: 0.5564	main/reg: 0.5564/0.0000
+[Outer epoch 0 Epoch 55 Iter 182] .normal loss: 0.7258	main/reg: 0.7258/0.0000
+[Outer epoch 0 Epoch 56 Iter 183] .normal loss: 2.4143	main/reg: 2.4143/0.0000
+[Outer epoch 0 Epoch 57 Iter 184] .normal loss: 3.5885	main/reg: 3.5885/0.0000
+[Outer epoch 0 Epoch 58 Iter 185] .normal loss: 0.7706	main/reg: 0.7706/0.0000
+[Outer epoch 0 Epoch 59 Iter 186] .normal loss: 0.1757	main/reg: 0.1757/0.0000
+[Outer epoch 0 Epoch 60 Iter 187] .normal loss: 2.1822	main/reg: 2.1822/0.0000
+[Outer epoch 0 Epoch 61 Iter 188] .normal loss: 1.0436	main/reg: 1.0436/0.0000
+[Outer epoch 0 Epoch 62 Iter 189] .normal loss: 0.3381	main/reg: 0.3381/0.0000
+[Outer epoch 0 Epoch 63 Iter 190] .normal loss: 0.5085	main/reg: 0.5085/0.0000
+[Outer epoch 0 Epoch 64 Iter 191] .normal loss: 2.1088	main/reg: 2.1088/0.0000
+[Outer epoch 0 Epoch 65 Iter 192] .normal loss: 1.5042	main/reg: 1.5042/0.0000
+[Outer epoch 0 Epoch 66 Iter 193] .normal loss: 0.6384	main/reg: 0.6384/0.0000
+[Outer epoch 0 Epoch 67 Iter 194] .normal loss: 0.1544	main/reg: 0.1544/0.0000
+[Outer epoch 0 Epoch 68 Iter 195] .normal loss: 0.2467	main/reg: 0.2467/0.0000
+[Outer epoch 0 Epoch 69 Iter 196] .normal loss: 1.3365	main/reg: 1.3365/0.0000
+[Outer epoch 0 Epoch 70 Iter 197] .normal loss: 0.4432	main/reg: 0.4432/0.0000
+[Outer epoch 0 Epoch 71 Iter 198] .normal loss: 0.1945	main/reg: 0.1945/0.0000
+[Outer epoch 0 Epoch 72 Iter 199] .normal loss: 1.1820	main/reg: 1.1820/0.0000
+[Outer epoch 0 Epoch 73 Iter 200] .normal loss: 2.3909	main/reg: 2.3909/0.0000
+[Outer epoch 0 Epoch 74 Iter 201] .normal loss: 0.3648	main/reg: 0.3648/0.0000
+[Outer epoch 0 Epoch 75 Iter 202] .normal loss: 1.3504	main/reg: 1.3504/0.0000
+[Outer epoch 0 Epoch 76 Iter 203] .normal loss: 0.0408	main/reg: 0.0408/0.0000
+[Outer epoch 0 Epoch 77 Iter 204] .normal loss: 0.6215	main/reg: 0.6215/0.0000
+[Outer epoch 0 Epoch 78 Iter 205] .normal loss: 3.1047	main/reg: 3.1047/0.0000
+[Outer epoch 0 Epoch 79 Iter 206] .normal loss: 2.9083	main/reg: 2.9083/0.0000
+[Outer epoch 0 Epoch 80 Iter 207] .normal loss: 0.1536	main/reg: 0.1536/0.0000
+[Outer epoch 0 Epoch 81 Iter 208] .normal loss: 0.9661	main/reg: 0.9661/0.0000
+[Outer epoch 0 Epoch 82 Iter 209] .normal loss: 0.4630	main/reg: 0.4630/0.0000
+[Outer epoch 0 Epoch 83 Iter 210] .normal loss: 2.0415	main/reg: 2.0415/0.0000
+[Outer epoch 0 Epoch 84 Iter 211] .normal loss: 0.6835	main/reg: 0.6835/0.0000
+[Outer epoch 0 Epoch 85 Iter 212] .normal loss: 1.1115	main/reg: 1.1115/0.0000
+[Outer epoch 0 Epoch 86 Iter 213] .normal loss: 2.9981	main/reg: 2.9981/0.0000
+[Outer epoch 0 Epoch 87 Iter 214] .normal loss: 0.6398	main/reg: 0.6398/0.0000
+[Outer epoch 0 Epoch 88 Iter 215] .normal loss: 1.7967	main/reg: 1.7967/0.0000
+[Outer epoch 0 Epoch 89 Iter 216] .normal loss: 0.4104	main/reg: 0.4104/0.0000
+[Outer epoch 0 Epoch 90 Iter 217] .normal loss: 0.5228	main/reg: 0.5228/0.0000
+[Outer epoch 0 Epoch 91 Iter 218] .normal loss: 0.5137	main/reg: 0.5137/0.0000
+[Outer epoch 0 Epoch 92 Iter 219] .normal loss: 1.0444	main/reg: 1.0444/0.0000
+[Outer epoch 0 Epoch 93 Iter 220] .normal loss: 1.6492	main/reg: 1.6492/0.0000
+[Outer epoch 0 Epoch 94 Iter 221] .normal loss: 1.4032	main/reg: 1.4032/0.0000
+[Outer epoch 0 Epoch 95 Iter 222] .normal loss: 1.9298	main/reg: 1.9298/0.0000
+[Outer epoch 0 Epoch 96 Iter 223] .normal loss: 1.7323	main/reg: 1.7323/0.0000
+[Outer epoch 0 Epoch 97 Iter 224] .normal loss: 0.1890	main/reg: 0.1890/0.0000
+[Outer epoch 0 Epoch 98 Iter 225] .normal loss: 0.3516	main/reg: 0.3516/0.0000
+[Outer epoch 0 Epoch 99 Iter 226] .normal loss: 1.2356	main/reg: 1.2356/0.0000
+[Outer epoch 0 Epoch 100 Iter 227] .normal loss: 0.3812	main/reg: 0.3812/0.0000
+[Outer epoch 0 Epoch 101 Iter 228] .normal loss: 0.6364	main/reg: 0.6364/0.0000
+[Outer epoch 0 Epoch 102 Iter 229] .normal loss: 0.5008	main/reg: 0.5008/0.0000
+[Outer epoch 0 Epoch 103 Iter 230] .normal loss: 0.3537	main/reg: 0.3537/0.0000
+[Outer epoch 0 Epoch 104 Iter 231] .normal loss: 1.0031	main/reg: 1.0031/0.0000
+[Outer epoch 0 Epoch 105 Iter 232] .normal loss: 1.4556	main/reg: 1.4556/0.0000
+[Outer epoch 0 Epoch 106 Iter 233] .normal loss: 0.8756	main/reg: 0.8756/0.0000
+[Outer epoch 0 Epoch 107 Iter 234] .normal loss: 0.2654	main/reg: 0.2654/0.0000
+[Outer epoch 0 Epoch 108 Iter 235] .normal loss: 1.3216	main/reg: 1.3216/0.0000
+[Outer epoch 0 Epoch 109 Iter 236] .normal loss: 0.1166	main/reg: 0.1166/0.0000
+[Outer epoch 0 Epoch 110 Iter 237] .normal loss: 0.9458	main/reg: 0.9458/0.0000
+[Outer epoch 0 Epoch 111 Iter 238] .normal loss: 1.5131	main/reg: 1.5131/0.0000
+[Outer epoch 0 Epoch 112 Iter 239] .normal loss: 1.0093	main/reg: 1.0093/0.0000
+[Outer epoch 0 Epoch 113 Iter 240] .normal loss: 0.3551	main/reg: 0.3551/0.0000
+[Outer epoch 0 Epoch 114 Iter 241] .normal loss: 1.2025	main/reg: 1.2025/0.0000
+[Outer epoch 0 Epoch 115 Iter 242] .normal loss: 0.2001	main/reg: 0.2001/0.0000
+[Outer epoch 0 Epoch 116 Iter 243] .normal loss: 0.5882	main/reg: 0.5882/0.0000
+[Outer epoch 0 Epoch 117 Iter 244] .normal loss: 0.1642	main/reg: 0.1642/0.0000
+[Outer epoch 0 Epoch 118 Iter 245] .normal loss: 1.4888	main/reg: 1.4888/0.0000
+[Outer epoch 0 Epoch 119 Iter 246] .normal loss: 0.6085	main/reg: 0.6085/0.0000
+[Outer epoch 0 Epoch 120 Iter 247] .normal loss: 0.3726	main/reg: 0.3726/0.0000
+[Outer epoch 0 Epoch 121 Iter 248] .normal loss: 4.6158	main/reg: 4.6158/0.0000
+[Outer epoch 0 Epoch 122 Iter 249] .normal loss: 0.9810	main/reg: 0.9810/0.0000
+[Outer epoch 0 Epoch 123 Iter 250] .normal loss: 0.1581	main/reg: 0.1581/0.0000
+[Outer epoch 0 Epoch 124 Iter 251] .normal loss: 0.1539	main/reg: 0.1539/0.0000
+[Outer epoch 0 Epoch 125 Iter 252] .normal loss: 3.5098	main/reg: 3.5098/0.0000
+[Outer epoch 0 Epoch 126 Iter 253] .normal loss: 0.1741	main/reg: 0.1741/0.0000
+[Outer epoch 0 Epoch 127 Iter 254] .normal loss: 0.2193	main/reg: 0.2193/0.0000
+[Outer epoch 0 Epoch 128 Iter 255] .normal loss: 1.8913	main/reg: 1.8913/0.0000
+r_preds_list
+	#:	311.0000
+	Avg:	60.0886
+	Std:	13.0690
+	Min:	21.7586
+	Max:	97.0196
+	Median:	59.3450
+	Mode:	21.7586
+Validation at self-play 1
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/99p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_100.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 17 nodes 25 edges (avg degree 1.4706) 5 node labels
+num_solutions: 8; num_solutions_unique: 8
+best_size: 10 nodes at iter 13 (/10=1.0000); total iters: 25 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 11; # cond1 "calls": 11; # cond2 "calls": 0; # cond3 "calls": 11; # cond4 "calls": 11
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 163.097 msecs
+solved_or_not_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	1.0000
+	Avg:	8.0000
+	Std:	0.0000
+	Min:	8.0000
+	Max:	8.0000
+	Median:	8.0000
+	Mode:	8.0000
+num_unique_node_set_solutions_li
+	#:	1.0000
+	Avg:	8.0000
+	Std:	0.0000
+	Min:	8.0000
+	Max:	8.0000
+	Median:	8.0000
+	Mode:	8.0000
+best_size_li
+	#:	1.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	1.0000
+	Avg:	13.0000
+	Std:	0.0000
+	Min:	13.0000
+	Max:	13.0000
+	Median:	13.0000
+	Mode:	13.0000
+total_time_li(in seconds)
+	#:	1.0000
+	Avg:	0.1631
+	Std:	0.0000
+	Min:	0.1631
+	Max:	0.1631
+	Median:	0.1631
+	Mode:	0.1631
+total_iters_li
+	#:	1.0000
+	Avg:	25.0000
+	Std:	0.0000
+	Min:	25.0000
+	Max:	25.0000
+	Median:	25.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/95p_pqf.pickle
+
+
+--- Query 1/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_96.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 36 nodes 58 edges (avg degree 1.6111) 5 node labels
+num_solutions: 2; num_solutions_unique: 2
+best_size: 10 nodes at iter 18 (/10=1.0000); total iters: 28 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 15; # cond1 "calls": 15; # cond2 "calls": 0; # cond3 "calls": 15; # cond4 "calls": 15
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 149.351 msecs
+solved_or_not_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	2.0000
+	Avg:	5.0000
+	Std:	3.0000
+	Min:	2.0000
+	Max:	8.0000
+	Median:	5.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	2.0000
+	Avg:	5.0000
+	Std:	3.0000
+	Min:	2.0000
+	Max:	8.0000
+	Median:	5.0000
+	Mode:	2.0000
+best_size_li
+	#:	2.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	2.0000
+	Avg:	15.5000
+	Std:	2.5000
+	Min:	13.0000
+	Max:	18.0000
+	Median:	15.5000
+	Mode:	13.0000
+total_time_li(in seconds)
+	#:	2.0000
+	Avg:	0.1562
+	Std:	0.0069
+	Min:	0.1494
+	Max:	0.1631
+	Median:	0.1562
+	Mode:	0.1494
+total_iters_li
+	#:	2.0000
+	Avg:	26.5000
+	Std:	1.5000
+	Min:	25.0000
+	Max:	28.0000
+	Median:	26.5000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/96p_pqf.pickle
+
+
+--- Query 2/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_97.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 5 node labels
+gt 58 nodes 148 edges (avg degree 2.5517) 5 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 52; num_solutions_unique: 52
+best_size: 10 nodes at iter 9 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 83; # eps "calls": 53; # cond1 "calls": 53; # cond2 "calls": 0; # cond3 "calls": 53; # cond4 "calls": 53
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 1.897 secs
+solved_or_not_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	3.0000
+	Avg:	20.6667
+	Std:	22.2910
+	Min:	2.0000
+	Max:	52.0000
+	Median:	8.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	3.0000
+	Avg:	20.6667
+	Std:	22.2910
+	Min:	2.0000
+	Max:	52.0000
+	Median:	8.0000
+	Mode:	2.0000
+best_size_li
+	#:	3.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	3.0000
+	Avg:	13.3333
+	Std:	3.6818
+	Min:	9.0000
+	Max:	18.0000
+	Median:	13.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	3.0000
+	Avg:	0.7366
+	Std:	0.8208
+	Min:	0.1494
+	Max:	1.8974
+	Median:	0.1631
+	Mode:	0.1494
+total_iters_li
+	#:	3.0000
+	Avg:	84.3333
+	Std:	81.7979
+	Min:	25.0000
+	Max:	200.0000
+	Median:	28.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/97p_pqf.pickle
+
+
+--- Query 3/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_98.graph
+gq 10 nodes 12 edges (avg degree 1.2000) 3 node labels
+gt 40 nodes 79 edges (avg degree 1.9750) 3 node labels
+num_solutions: 1; num_solutions_unique: 1
+best_size: 10 nodes at iter 132 (/10=1.0000); total iters: 146 (smts.MCTS_iter=0)
+# NN calls: 38; # eps "calls": 38; # cond1 "calls": 38; # cond2 "calls": 0; # cond3 "calls": 38; # cond4 "calls": 38
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 881.776 msecs
+solved_or_not_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	4.0000
+	Avg:	15.7500
+	Std:	21.0995
+	Min:	1.0000
+	Max:	52.0000
+	Median:	5.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	4.0000
+	Avg:	15.7500
+	Std:	21.0995
+	Min:	1.0000
+	Max:	52.0000
+	Median:	5.0000
+	Mode:	1.0000
+best_size_li
+	#:	4.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	4.0000
+	Avg:	43.0000
+	Std:	51.4830
+	Min:	9.0000
+	Max:	132.0000
+	Median:	15.5000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	4.0000
+	Avg:	0.7729
+	Std:	0.7136
+	Min:	0.1494
+	Max:	1.8974
+	Median:	0.5224
+	Mode:	0.1494
+total_iters_li
+	#:	4.0000
+	Avg:	99.7500
+	Std:	75.7046
+	Min:	25.0000
+	Max:	200.0000
+	Median:	87.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/98p_pqf.pickle
+
+
+--- Query 4/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_99.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 3 node labels
+gt 55 nodes 115 edges (avg degree 2.0909) 3 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 47; num_solutions_unique: 47
+best_size: 10 nodes at iter 13 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 73; # eps "calls": 72; # cond1 "calls": 72; # cond2 "calls": 0; # cond3 "calls": 72; # cond4 "calls": 72
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 1.664 secs
+solved_or_not_li
+	#:	5.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	5.0000
+	Avg:	22.0000
+	Std:	22.6363
+	Min:	1.0000
+	Max:	52.0000
+	Median:	8.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	5.0000
+	Avg:	22.0000
+	Std:	22.6363
+	Min:	1.0000
+	Max:	52.0000
+	Median:	8.0000
+	Mode:	1.0000
+best_size_li
+	#:	5.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	5.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	5.0000
+	Avg:	37.0000
+	Std:	47.5857
+	Min:	9.0000
+	Max:	132.0000
+	Median:	13.0000
+	Mode:	13.0000
+total_time_li(in seconds)
+	#:	5.0000
+	Avg:	0.9512
+	Std:	0.7312
+	Min:	0.1494
+	Max:	1.8974
+	Median:	0.8818
+	Mode:	0.1494
+total_iters_li
+	#:	5.0000
+	Avg:	119.8000
+	Std:	78.6954
+	Min:	25.0000
+	Max:	200.0000
+	Median:	146.0000
+	Mode:	200.0000
+ACCEPTING NEW MODEL: 1.0 >= 1.0
+validation time: 5.064923048019409s
+Timer log starts **************************************************
+Total duration: 109.955 msecs
+refine                    : 109.465 msecs (99.55%)
+CS                        : 0.068 msecs (0.06%)
+path weights              : 0.019 msecs (0.02%)
+levels2u2v and query tree : 0.403 msecs (0.37%)
+Timer log ends **************************************************
+Saved pair to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/2p.pickle
+CS_cand_set_size
+	#:	10.0000
+	Avg:	3.2000
+	Std:	1.0770
+	Min:	2.0000
+	Max:	5.0000
+	Median:	3.0000
+	Mode:	3.0000
+Saved gp, gq, gt_filtered to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/2p_pqf.pickle
+
+
+--- Query 2/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_3.graph
+gq 10 nodes 11 edges (avg degree 1.1000) 5 node labels
+gt 24 nodes 41 edges (avg degree 1.7083) 5 node labels
+Merged loader: dense_64 2
+Loaded a graph pair 2
+Play the game 0 -- 2 (eps=0.0)
+num_solutions: 12; num_solutions_unique: 12
+best_size: 10 nodes at iter 158 (/10=1.0000); total iters: 1046 (smts.MCTS_iter=31)
+# NN calls: 9; # eps "calls": 9; # cond1 "calls": 9; # cond2 "calls": 0; # cond3 "calls": 9; # cond4 "calls": 9
+MCTS_Qs
+	#:	1482.0000
+	Avg:	0.4859
+	Std:	0.6651
+	Min:	-0.2353
+	Max:	2.7676
+	Median:	0.0000
+	Mode:	0.0000
+MCTS_Us
+	#:	1482.0000
+	Avg:	1.4218
+	Std:	1.6635
+	Min:	0.0000
+	Max:	10.0000
+	Median:	0.8542
+	Mode:	10.0000
+MCTS_QU(Q winning over U)
+	#:	1482.0000
+	Avg:	0.2483
+	Std:	0.4320
+	Min:	0.0000
+	Max:	1.0000
+	Median:	0.0000
+	Mode:	0.0000
+len(Qsa_li)=9
+r_li_lens
+	#:	9.0000
+	Avg:	2.4444
+	Std:	0.4969
+	Min:	2.0000
+	Max:	3.0000
+	Median:	2.0000
+	Mode:	2.0000
+r_values
+	#:	22.0000
+	Avg:	0.5099
+	Std:	0.2725
+	Min:	0.0152
+	Max:	1.0000
+	Median:	0.3734
+	Mode:	0.3734
+nn_map_sizes
+	#:	9.0000
+	Avg:	6.5556
+	Std:	2.9856
+	Min:	0.0000
+	Max:	9.0000
+	Median:	7.0000
+	Mode:	9.0000
+replay_buffer len: 128
+Learn from buffer of 128
+buffer_size=0.00041547800000000005gb
+pretrain_obj=0.00021670800000000003gb
+[Outer epoch 0 Epoch 1 Iter 256] .normal loss: 2.7594	main/reg: 2.7594/0.0000
+[Outer epoch 0 Epoch 2 Iter 257] .normal loss: 0.3767	main/reg: 0.3767/0.0000
+[Outer epoch 0 Epoch 3 Iter 258] .normal loss: 1.1666	main/reg: 1.1666/0.0000
+[Outer epoch 0 Epoch 4 Iter 259] .normal loss: 0.3122	main/reg: 0.3122/0.0000
+[Outer epoch 0 Epoch 5 Iter 260] .normal loss: 0.3294	main/reg: 0.3294/0.0000
+[Outer epoch 0 Epoch 6 Iter 261] .normal loss: 1.7163	main/reg: 1.7163/0.0000
+[Outer epoch 0 Epoch 7 Iter 262] .normal loss: 1.2414	main/reg: 1.2414/0.0000
+[Outer epoch 0 Epoch 8 Iter 263] .normal loss: 1.0078	main/reg: 1.0078/0.0000
+[Outer epoch 0 Epoch 9 Iter 264] .normal loss: 0.3620	main/reg: 0.3620/0.0000
+[Outer epoch 0 Epoch 10 Iter 265] .normal loss: 1.7720	main/reg: 1.7720/0.0000
+[Outer epoch 0 Epoch 11 Iter 266] .normal loss: 0.3557	main/reg: 0.3557/0.0000
+[Outer epoch 0 Epoch 12 Iter 267] .normal loss: 0.1990	main/reg: 0.1990/0.0000
+[Outer epoch 0 Epoch 13 Iter 268] .normal loss: 0.1256	main/reg: 0.1256/0.0000
+[Outer epoch 0 Epoch 14 Iter 269] .normal loss: 0.8933	main/reg: 0.8933/0.0000
+[Outer epoch 0 Epoch 15 Iter 270] .normal loss: 2.0143	main/reg: 2.0143/0.0000
+[Outer epoch 0 Epoch 16 Iter 271] .normal loss: 2.8786	main/reg: 2.8786/0.0000
+[Outer epoch 0 Epoch 17 Iter 272] .normal loss: 0.2747	main/reg: 0.2747/0.0000
+[Outer epoch 0 Epoch 18 Iter 273] .normal loss: 0.2648	main/reg: 0.2648/0.0000
+[Outer epoch 0 Epoch 19 Iter 274] .normal loss: 1.1567	main/reg: 1.1567/0.0000
+[Outer epoch 0 Epoch 20 Iter 275] .normal loss: 0.2203	main/reg: 0.2203/0.0000
+[Outer epoch 0 Epoch 21 Iter 276] .normal loss: 2.0905	main/reg: 2.0905/0.0000
+[Outer epoch 0 Epoch 22 Iter 277] .normal loss: 0.4282	main/reg: 0.4282/0.0000
+[Outer epoch 0 Epoch 23 Iter 278] .normal loss: 0.5126	main/reg: 0.5126/0.0000
+[Outer epoch 0 Epoch 24 Iter 279] .normal loss: 0.1463	main/reg: 0.1463/0.0000
+[Outer epoch 0 Epoch 25 Iter 280] .normal loss: 1.1295	main/reg: 1.1295/0.0000
+[Outer epoch 0 Epoch 26 Iter 281] .normal loss: 1.2798	main/reg: 1.2798/0.0000
+[Outer epoch 0 Epoch 27 Iter 282] .normal loss: 1.1233	main/reg: 1.1233/0.0000
+[Outer epoch 0 Epoch 28 Iter 283] .normal loss: 1.1656	main/reg: 1.1656/0.0000
+[Outer epoch 0 Epoch 29 Iter 284] .normal loss: 1.5321	main/reg: 1.5321/0.0000
+[Outer epoch 0 Epoch 30 Iter 285] .normal loss: 0.4290	main/reg: 0.4290/0.0000
+[Outer epoch 0 Epoch 31 Iter 286] .normal loss: 0.1756	main/reg: 0.1756/0.0000
+[Outer epoch 0 Epoch 32 Iter 287] .normal loss: 0.7117	main/reg: 0.7117/0.0000
+[Outer epoch 0 Epoch 33 Iter 288] .normal loss: 1.6387	main/reg: 1.6387/0.0000
+[Outer epoch 0 Epoch 34 Iter 289] .normal loss: 0.6729	main/reg: 0.6729/0.0000
+[Outer epoch 0 Epoch 35 Iter 290] .normal loss: 0.5289	main/reg: 0.5289/0.0000
+[Outer epoch 0 Epoch 36 Iter 291] .normal loss: 0.8323	main/reg: 0.8323/0.0000
+[Outer epoch 0 Epoch 37 Iter 292] .normal loss: 1.1556	main/reg: 1.1556/0.0000
+[Outer epoch 0 Epoch 38 Iter 293] .normal loss: 0.1741	main/reg: 0.1741/0.0000
+[Outer epoch 0 Epoch 39 Iter 294] .normal loss: 0.2965	main/reg: 0.2965/0.0000
+[Outer epoch 0 Epoch 40 Iter 295] .normal loss: 1.1706	main/reg: 1.1706/0.0000
+[Outer epoch 0 Epoch 41 Iter 296] .normal loss: 0.5249	main/reg: 0.5249/0.0000
+[Outer epoch 0 Epoch 42 Iter 297] .normal loss: 0.9534	main/reg: 0.9534/0.0000
+[Outer epoch 0 Epoch 43 Iter 298] .normal loss: 0.5413	main/reg: 0.5413/0.0000
+[Outer epoch 0 Epoch 44 Iter 299] .normal loss: 1.6998	main/reg: 1.6998/0.0000
+[Outer epoch 0 Epoch 45 Iter 300] .normal loss: 0.2469	main/reg: 0.2469/0.0000
+[Outer epoch 0 Epoch 46 Iter 301] .normal loss: 0.2606	main/reg: 0.2606/0.0000
+[Outer epoch 0 Epoch 47 Iter 302] .normal loss: 0.7804	main/reg: 0.7804/0.0000
+[Outer epoch 0 Epoch 48 Iter 303] .normal loss: 0.3968	main/reg: 0.3968/0.0000
+[Outer epoch 0 Epoch 49 Iter 304] .normal loss: 0.9468	main/reg: 0.9468/0.0000
+[Outer epoch 0 Epoch 50 Iter 305] .normal loss: 0.1551	main/reg: 0.1551/0.0000
+[Outer epoch 0 Epoch 51 Iter 306] .normal loss: 0.4552	main/reg: 0.4552/0.0000
+[Outer epoch 0 Epoch 52 Iter 307] .normal loss: 1.0729	main/reg: 1.0729/0.0000
+[Outer epoch 0 Epoch 53 Iter 308] .normal loss: 1.0328	main/reg: 1.0328/0.0000
+[Outer epoch 0 Epoch 54 Iter 309] .normal loss: 1.7197	main/reg: 1.7197/0.0000
+[Outer epoch 0 Epoch 55 Iter 310] .normal loss: 1.2697	main/reg: 1.2697/0.0000
+[Outer epoch 0 Epoch 56 Iter 311] .normal loss: 0.1729	main/reg: 0.1729/0.0000
+[Outer epoch 0 Epoch 57 Iter 312] .normal loss: 0.2719	main/reg: 0.2719/0.0000
+[Outer epoch 0 Epoch 58 Iter 313] .normal loss: 1.1980	main/reg: 1.1980/0.0000
+[Outer epoch 0 Epoch 59 Iter 314] .normal loss: 0.2611	main/reg: 0.2611/0.0000
+[Outer epoch 0 Epoch 60 Iter 315] .normal loss: 0.9763	main/reg: 0.9763/0.0000
+[Outer epoch 0 Epoch 61 Iter 316] .normal loss: 0.5038	main/reg: 0.5038/0.0000
+[Outer epoch 0 Epoch 62 Iter 317] .normal loss: 2.6257	main/reg: 2.6257/0.0000
+[Outer epoch 0 Epoch 63 Iter 318] .normal loss: 1.1850	main/reg: 1.1850/0.0000
+[Outer epoch 0 Epoch 64 Iter 319] .normal loss: 0.0817	main/reg: 0.0817/0.0000
+[Outer epoch 0 Epoch 65 Iter 320] .normal loss: 0.4910	main/reg: 0.4910/0.0000
+[Outer epoch 0 Epoch 66 Iter 321] .normal loss: 0.6334	main/reg: 0.6334/0.0000
+[Outer epoch 0 Epoch 67 Iter 322] .normal loss: 0.4474	main/reg: 0.4474/0.0000
+[Outer epoch 0 Epoch 68 Iter 323] .normal loss: 0.6187	main/reg: 0.6187/0.0000
+[Outer epoch 0 Epoch 69 Iter 324] .normal loss: 0.5809	main/reg: 0.5809/0.0000
+[Outer epoch 0 Epoch 70 Iter 325] .normal loss: 0.6568	main/reg: 0.6568/0.0000
+[Outer epoch 0 Epoch 71 Iter 326] .normal loss: 1.1283	main/reg: 1.1283/0.0000
+[Outer epoch 0 Epoch 72 Iter 327] .normal loss: 0.6848	main/reg: 0.6848/0.0000
+[Outer epoch 0 Epoch 73 Iter 328] .normal loss: 1.0063	main/reg: 1.0063/0.0000
+[Outer epoch 0 Epoch 74 Iter 329] .normal loss: 0.1465	main/reg: 0.1465/0.0000
+[Outer epoch 0 Epoch 75 Iter 330] .normal loss: 1.1795	main/reg: 1.1795/0.0000
+[Outer epoch 0 Epoch 76 Iter 331] .normal loss: 1.2598	main/reg: 1.2598/0.0000
+[Outer epoch 0 Epoch 77 Iter 332] .normal loss: 1.9778	main/reg: 1.9778/0.0000
+[Outer epoch 0 Epoch 78 Iter 333] .normal loss: 0.3062	main/reg: 0.3062/0.0000
+[Outer epoch 0 Epoch 79 Iter 334] .normal loss: 0.5064	main/reg: 0.5064/0.0000
+[Outer epoch 0 Epoch 80 Iter 335] .normal loss: 0.4444	main/reg: 0.4444/0.0000
+[Outer epoch 0 Epoch 81 Iter 336] .normal loss: 0.5907	main/reg: 0.5907/0.0000
+[Outer epoch 0 Epoch 82 Iter 337] .normal loss: 1.4460	main/reg: 1.4460/0.0000
+[Outer epoch 0 Epoch 83 Iter 338] .normal loss: 0.1939	main/reg: 0.1939/0.0000
+[Outer epoch 0 Epoch 84 Iter 339] .normal loss: 0.1344	main/reg: 0.1344/0.0000
+[Outer epoch 0 Epoch 85 Iter 340] .normal loss: 1.4487	main/reg: 1.4487/0.0000
+[Outer epoch 0 Epoch 86 Iter 341] .normal loss: 0.5390	main/reg: 0.5390/0.0000
+[Outer epoch 0 Epoch 87 Iter 342] .normal loss: 0.0669	main/reg: 0.0669/0.0000
+[Outer epoch 0 Epoch 88 Iter 343] .normal loss: 1.1639	main/reg: 1.1639/0.0000
+[Outer epoch 0 Epoch 89 Iter 344] .normal loss: 0.5950	main/reg: 0.5950/0.0000
+[Outer epoch 0 Epoch 90 Iter 345] .normal loss: 0.6299	main/reg: 0.6299/0.0000
+[Outer epoch 0 Epoch 91 Iter 346] .normal loss: 0.3853	main/reg: 0.3853/0.0000
+[Outer epoch 0 Epoch 92 Iter 347] .normal loss: 0.2522	main/reg: 0.2522/0.0000
+[Outer epoch 0 Epoch 93 Iter 348] .normal loss: 0.6846	main/reg: 0.6846/0.0000
+[Outer epoch 0 Epoch 94 Iter 349] .normal loss: 1.5833	main/reg: 1.5833/0.0000
+[Outer epoch 0 Epoch 95 Iter 350] .normal loss: 0.1341	main/reg: 0.1341/0.0000
+[Outer epoch 0 Epoch 96 Iter 351] .normal loss: 0.5228	main/reg: 0.5228/0.0000
+[Outer epoch 0 Epoch 97 Iter 352] .normal loss: 0.9890	main/reg: 0.9890/0.0000
+[Outer epoch 0 Epoch 98 Iter 353] .normal loss: 2.0885	main/reg: 2.0885/0.0000
+[Outer epoch 0 Epoch 99 Iter 354] .normal loss: 0.1296	main/reg: 0.1296/0.0000
+[Outer epoch 0 Epoch 100 Iter 355] .normal loss: 1.0287	main/reg: 1.0287/0.0000
+[Outer epoch 0 Epoch 101 Iter 356] .normal loss: 1.1828	main/reg: 1.1828/0.0000
+[Outer epoch 0 Epoch 102 Iter 357] .normal loss: 2.2050	main/reg: 2.2050/0.0000
+[Outer epoch 0 Epoch 103 Iter 358] .normal loss: 0.6240	main/reg: 0.6240/0.0000
+[Outer epoch 0 Epoch 104 Iter 359] .normal loss: 2.5784	main/reg: 2.5784/0.0000
+[Outer epoch 0 Epoch 105 Iter 360] .normal loss: 0.2050	main/reg: 0.2050/0.0000
+[Outer epoch 0 Epoch 106 Iter 361] .normal loss: 0.4862	main/reg: 0.4862/0.0000
+[Outer epoch 0 Epoch 107 Iter 362] .normal loss: 0.1903	main/reg: 0.1903/0.0000
+[Outer epoch 0 Epoch 108 Iter 363] .normal loss: 0.3472	main/reg: 0.3472/0.0000
+[Outer epoch 0 Epoch 109 Iter 364] .normal loss: 1.1746	main/reg: 1.1746/0.0000
+[Outer epoch 0 Epoch 110 Iter 365] .normal loss: 1.5769	main/reg: 1.5769/0.0000
+[Outer epoch 0 Epoch 111 Iter 366] .normal loss: 0.6959	main/reg: 0.6959/0.0000
+[Outer epoch 0 Epoch 112 Iter 367] .normal loss: 0.3177	main/reg: 0.3177/0.0000
+[Outer epoch 0 Epoch 113 Iter 368] .normal loss: 1.1742	main/reg: 1.1742/0.0000
+[Outer epoch 0 Epoch 114 Iter 369] .normal loss: 0.2321	main/reg: 0.2321/0.0000
+[Outer epoch 0 Epoch 115 Iter 370] .normal loss: 0.3163	main/reg: 0.3163/0.0000
+[Outer epoch 0 Epoch 116 Iter 371] .normal loss: 1.1573	main/reg: 1.1573/0.0000
+[Outer epoch 0 Epoch 117 Iter 372] .normal loss: 0.0936	main/reg: 0.0936/0.0000
+[Outer epoch 0 Epoch 118 Iter 373] .normal loss: 0.1150	main/reg: 0.1150/0.0000
+[Outer epoch 0 Epoch 119 Iter 374] .normal loss: 0.5928	main/reg: 0.5928/0.0000
+[Outer epoch 0 Epoch 120 Iter 375] .normal loss: 2.0030	main/reg: 2.0030/0.0000
+[Outer epoch 0 Epoch 121 Iter 376] .normal loss: 0.2001	main/reg: 0.2001/0.0000
+[Outer epoch 0 Epoch 122 Iter 377] .normal loss: 0.1099	main/reg: 0.1099/0.0000
+[Outer epoch 0 Epoch 123 Iter 378] .normal loss: 0.1696	main/reg: 0.1696/0.0000
+[Outer epoch 0 Epoch 124 Iter 379] .normal loss: 0.1175	main/reg: 0.1175/0.0000
+[Outer epoch 0 Epoch 125 Iter 380] .normal loss: 0.2894	main/reg: 0.2894/0.0000
+[Outer epoch 0 Epoch 126 Iter 381] .normal loss: 0.3867	main/reg: 0.3867/0.0000
+[Outer epoch 0 Epoch 127 Iter 382] .normal loss: 1.3268	main/reg: 1.3268/0.0000
+[Outer epoch 0 Epoch 128 Iter 383] .normal loss: 1.5429	main/reg: 1.5429/0.0000
+r_preds_list
+	#:	311.0000
+	Avg:	39.3880
+	Std:	3.2334
+	Min:	30.6654
+	Max:	48.9677
+	Median:	39.6443
+	Mode:	30.6654
+Validation at self-play 2
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/99p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_100.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 17 nodes 25 edges (avg degree 1.4706) 5 node labels
+num_solutions: 8; num_solutions_unique: 8
+best_size: 10 nodes at iter 13 (/10=1.0000); total iters: 25 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 11; # cond1 "calls": 11; # cond2 "calls": 0; # cond3 "calls": 11; # cond4 "calls": 11
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 113.818 msecs
+solved_or_not_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	1.0000
+	Avg:	8.0000
+	Std:	0.0000
+	Min:	8.0000
+	Max:	8.0000
+	Median:	8.0000
+	Mode:	8.0000
+num_unique_node_set_solutions_li
+	#:	1.0000
+	Avg:	8.0000
+	Std:	0.0000
+	Min:	8.0000
+	Max:	8.0000
+	Median:	8.0000
+	Mode:	8.0000
+best_size_li
+	#:	1.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	1.0000
+	Avg:	13.0000
+	Std:	0.0000
+	Min:	13.0000
+	Max:	13.0000
+	Median:	13.0000
+	Mode:	13.0000
+total_time_li(in seconds)
+	#:	1.0000
+	Avg:	0.1138
+	Std:	0.0000
+	Min:	0.1138
+	Max:	0.1138
+	Median:	0.1138
+	Mode:	0.1138
+total_iters_li
+	#:	1.0000
+	Avg:	25.0000
+	Std:	0.0000
+	Min:	25.0000
+	Max:	25.0000
+	Median:	25.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/95p_pqf.pickle
+
+
+--- Query 1/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_96.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 36 nodes 58 edges (avg degree 1.6111) 5 node labels
+num_solutions: 2; num_solutions_unique: 2
+best_size: 10 nodes at iter 18 (/10=1.0000); total iters: 28 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 15; # cond1 "calls": 15; # cond2 "calls": 0; # cond3 "calls": 15; # cond4 "calls": 15
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 244.184 msecs
+solved_or_not_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	2.0000
+	Avg:	5.0000
+	Std:	3.0000
+	Min:	2.0000
+	Max:	8.0000
+	Median:	5.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	2.0000
+	Avg:	5.0000
+	Std:	3.0000
+	Min:	2.0000
+	Max:	8.0000
+	Median:	5.0000
+	Mode:	2.0000
+best_size_li
+	#:	2.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	2.0000
+	Avg:	15.5000
+	Std:	2.5000
+	Min:	13.0000
+	Max:	18.0000
+	Median:	15.5000
+	Mode:	13.0000
+total_time_li(in seconds)
+	#:	2.0000
+	Avg:	0.1790
+	Std:	0.0652
+	Min:	0.1138
+	Max:	0.2442
+	Median:	0.1790
+	Mode:	0.1138
+total_iters_li
+	#:	2.0000
+	Avg:	26.5000
+	Std:	1.5000
+	Min:	25.0000
+	Max:	28.0000
+	Median:	26.5000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/96p_pqf.pickle
+
+
+--- Query 2/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_97.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 5 node labels
+gt 58 nodes 148 edges (avg degree 2.5517) 5 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 52; num_solutions_unique: 52
+best_size: 10 nodes at iter 9 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 82; # eps "calls": 56; # cond1 "calls": 56; # cond2 "calls": 0; # cond3 "calls": 56; # cond4 "calls": 56
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 3.002 secs
+solved_or_not_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	3.0000
+	Avg:	20.6667
+	Std:	22.2910
+	Min:	2.0000
+	Max:	52.0000
+	Median:	8.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	3.0000
+	Avg:	20.6667
+	Std:	22.2910
+	Min:	2.0000
+	Max:	52.0000
+	Median:	8.0000
+	Mode:	2.0000
+best_size_li
+	#:	3.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	3.0000
+	Avg:	13.3333
+	Std:	3.6818
+	Min:	9.0000
+	Max:	18.0000
+	Median:	13.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	3.0000
+	Avg:	1.1201
+	Std:	1.3319
+	Min:	0.1138
+	Max:	3.0022
+	Median:	0.2442
+	Mode:	0.1138
+total_iters_li
+	#:	3.0000
+	Avg:	84.3333
+	Std:	81.7979
+	Min:	25.0000
+	Max:	200.0000
+	Median:	28.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/97p_pqf.pickle
+
+
+--- Query 3/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_98.graph
+gq 10 nodes 12 edges (avg degree 1.2000) 3 node labels
+gt 40 nodes 79 edges (avg degree 1.9750) 3 node labels
+num_solutions: 1; num_solutions_unique: 1
+best_size: 10 nodes at iter 132 (/10=1.0000); total iters: 146 (smts.MCTS_iter=0)
+# NN calls: 38; # eps "calls": 38; # cond1 "calls": 38; # cond2 "calls": 0; # cond3 "calls": 38; # cond4 "calls": 38
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 1.390 secs
+solved_or_not_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	4.0000
+	Avg:	15.7500
+	Std:	21.0995
+	Min:	1.0000
+	Max:	52.0000
+	Median:	5.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	4.0000
+	Avg:	15.7500
+	Std:	21.0995
+	Min:	1.0000
+	Max:	52.0000
+	Median:	5.0000
+	Mode:	1.0000
+best_size_li
+	#:	4.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	4.0000
+	Avg:	43.0000
+	Std:	51.4830
+	Min:	9.0000
+	Max:	132.0000
+	Median:	15.5000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	4.0000
+	Avg:	1.1876
+	Std:	1.1594
+	Min:	0.1138
+	Max:	3.0022
+	Median:	0.8172
+	Mode:	0.1138
+total_iters_li
+	#:	4.0000
+	Avg:	99.7500
+	Std:	75.7046
+	Min:	25.0000
+	Max:	200.0000
+	Median:	87.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/98p_pqf.pickle
+
+
+--- Query 4/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_99.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 3 node labels
+gt 55 nodes 115 edges (avg degree 2.0909) 3 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 47; num_solutions_unique: 47
+best_size: 10 nodes at iter 11 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 72; # eps "calls": 73; # cond1 "calls": 73; # cond2 "calls": 0; # cond3 "calls": 73; # cond4 "calls": 73
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 2.113 secs
+solved_or_not_li
+	#:	5.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	5.0000
+	Avg:	22.0000
+	Std:	22.6363
+	Min:	1.0000
+	Max:	52.0000
+	Median:	8.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	5.0000
+	Avg:	22.0000
+	Std:	22.6363
+	Min:	1.0000
+	Max:	52.0000
+	Median:	8.0000
+	Mode:	1.0000
+best_size_li
+	#:	5.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	5.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	5.0000
+	Avg:	36.6000
+	Std:	47.7937
+	Min:	9.0000
+	Max:	132.0000
+	Median:	13.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	5.0000
+	Avg:	1.3726
+	Std:	1.1010
+	Min:	0.1138
+	Max:	3.0022
+	Median:	1.3902
+	Mode:	0.1138
+total_iters_li
+	#:	5.0000
+	Avg:	119.8000
+	Std:	78.6954
+	Min:	25.0000
+	Max:	200.0000
+	Median:	146.0000
+	Mode:	200.0000
+ACCEPTING NEW MODEL: 1.0 >= 1.0
+validation time: 7.193156957626343s
+Timer log starts **************************************************
+Total duration: 127.008 msecs
+refine                    : 126.772 msecs (99.81%)
+CS                        : 0.040 msecs (0.03%)
+path weights              : 0.008 msecs (0.01%)
+levels2u2v and query tree : 0.188 msecs (0.15%)
+Timer log ends **************************************************
+Saved pair to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/3p.pickle
+CS_cand_set_size
+	#:	10.0000
+	Avg:	4.1000
+	Std:	2.4678
+	Min:	1.0000
+	Max:	10.0000
+	Median:	3.5000
+	Mode:	2.0000
+Saved gp, gq, gt_filtered to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/3p_pqf.pickle
+
+
+--- Query 3/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_4.graph
+gq 10 nodes 11 edges (avg degree 1.1000) 4 node labels
+gt 35 nodes 67 edges (avg degree 1.9143) 4 node labels
+Merged loader: dense_64 3
+Loaded a graph pair 3
+Play the game 0 -- 3 (eps=0.0)
+num_solutions: 3; num_solutions_unique: 3
+best_size: 10 nodes at iter 244 (/10=1.0000); total iters: 698 (smts.MCTS_iter=27)
+# NN calls: 5; # eps "calls": 16; # cond1 "calls": 16; # cond2 "calls": 0; # cond3 "calls": 16; # cond4 "calls": 16
+MCTS_Qs
+	#:	805.0000
+	Avg:	0.3327
+	Std:	0.4538
+	Min:	-0.3734
+	Max:	1.8008
+	Median:	0.0429
+	Mode:	0.0000
+MCTS_Us
+	#:	805.0000
+	Avg:	2.2550
+	Std:	1.9629
+	Min:	0.0000
+	Max:	10.0000
+	Median:	1.9712
+	Mode:	10.0000
+MCTS_QU(Q winning over U)
+	#:	805.0000
+	Avg:	0.1876
+	Std:	0.3904
+	Min:	0.0000
+	Max:	1.0000
+	Median:	0.0000
+	Mode:	0.0000
+len(Qsa_li)=5
+r_li_lens
+	#:	5.0000
+	Avg:	2.2000
+	Std:	0.4000
+	Min:	2.0000
+	Max:	3.0000
+	Median:	2.0000
+	Mode:	2.0000
+r_values
+	#:	11.0000
+	Avg:	0.4262
+	Std:	0.2980
+	Min:	0.0533
+	Max:	1.0000
+	Median:	0.3734
+	Mode:	0.0935
+nn_map_sizes
+	#:	5.0000
+	Avg:	5.8000
+	Std:	3.1241
+	Min:	0.0000
+	Max:	9.0000
+	Median:	6.0000
+	Mode:	6.0000
+replay_buffer len: 128
+Learn from buffer of 128
+buffer_size=0.000472137gb
+pretrain_obj=0.000196448gb
+[Outer epoch 0 Epoch 1 Iter 384] .normal loss: 0.9672	main/reg: 0.9672/0.0000
+[Outer epoch 0 Epoch 2 Iter 385] .normal loss: 2.1989	main/reg: 2.1989/0.0000
+[Outer epoch 0 Epoch 3 Iter 386] .normal loss: 0.1234	main/reg: 0.1234/0.0000
+[Outer epoch 0 Epoch 4 Iter 387] .normal loss: 0.3502	main/reg: 0.3502/0.0000
+[Outer epoch 0 Epoch 5 Iter 388] .normal loss: 0.7576	main/reg: 0.7576/0.0000
+[Outer epoch 0 Epoch 6 Iter 389] .normal loss: 1.1794	main/reg: 1.1794/0.0000
+[Outer epoch 0 Epoch 7 Iter 390] .normal loss: 0.7625	main/reg: 0.7625/0.0000
+[Outer epoch 0 Epoch 8 Iter 391] .normal loss: 0.3998	main/reg: 0.3998/0.0000
+[Outer epoch 0 Epoch 9 Iter 392] .normal loss: 0.1839	main/reg: 0.1839/0.0000
+[Outer epoch 0 Epoch 10 Iter 393] .normal loss: 0.6015	main/reg: 0.6015/0.0000
+[Outer epoch 0 Epoch 11 Iter 394] .normal loss: 1.1821	main/reg: 1.1821/0.0000
+[Outer epoch 0 Epoch 12 Iter 395] .normal loss: 0.1491	main/reg: 0.1491/0.0000
+[Outer epoch 0 Epoch 13 Iter 396] .normal loss: 0.6481	main/reg: 0.6481/0.0000
+[Outer epoch 0 Epoch 14 Iter 397] .normal loss: 1.2960	main/reg: 1.2960/0.0000
+[Outer epoch 0 Epoch 15 Iter 398] .normal loss: 8.0857	main/reg: 8.0857/0.0000
+[Outer epoch 0 Epoch 16 Iter 399] .normal loss: 0.1265	main/reg: 0.1265/0.0000
+[Outer epoch 0 Epoch 17 Iter 400] .normal loss: 0.4763	main/reg: 0.4763/0.0000
+[Outer epoch 0 Epoch 18 Iter 401] .normal loss: 0.2391	main/reg: 0.2391/0.0000
+[Outer epoch 0 Epoch 19 Iter 402] .normal loss: 0.2978	main/reg: 0.2978/0.0000
+[Outer epoch 0 Epoch 20 Iter 403] .normal loss: 0.4027	main/reg: 0.4027/0.0000
+[Outer epoch 0 Epoch 21 Iter 404] .normal loss: 1.2629	main/reg: 1.2629/0.0000
+[Outer epoch 0 Epoch 22 Iter 405] .normal loss: 3.9978	main/reg: 3.9978/0.0000
+[Outer epoch 0 Epoch 23 Iter 406] .normal loss: 0.9078	main/reg: 0.9078/0.0000
+[Outer epoch 0 Epoch 24 Iter 407] .normal loss: 0.5311	main/reg: 0.5311/0.0000
+[Outer epoch 0 Epoch 25 Iter 408] .normal loss: 0.1525	main/reg: 0.1525/0.0000
+[Outer epoch 0 Epoch 26 Iter 409] .normal loss: 0.4240	main/reg: 0.4240/0.0000
+[Outer epoch 0 Epoch 27 Iter 410] .normal loss: 0.3263	main/reg: 0.3263/0.0000
+[Outer epoch 0 Epoch 28 Iter 411] .normal loss: 0.0943	main/reg: 0.0943/0.0000
+[Outer epoch 0 Epoch 29 Iter 412] .normal loss: 0.7370	main/reg: 0.7370/0.0000
+[Outer epoch 0 Epoch 30 Iter 413] .normal loss: 0.7643	main/reg: 0.7643/0.0000
+[Outer epoch 0 Epoch 31 Iter 414] .normal loss: 0.6477	main/reg: 0.6477/0.0000
+[Outer epoch 0 Epoch 32 Iter 415] .normal loss: 0.3792	main/reg: 0.3792/0.0000
+[Outer epoch 0 Epoch 33 Iter 416] .normal loss: 1.0106	main/reg: 1.0106/0.0000
+[Outer epoch 0 Epoch 34 Iter 417] .normal loss: 0.2743	main/reg: 0.2743/0.0000
+[Outer epoch 0 Epoch 35 Iter 418] .normal loss: 0.6946	main/reg: 0.6946/0.0000
+[Outer epoch 0 Epoch 36 Iter 419] .normal loss: 1.8241	main/reg: 1.8241/0.0000
+[Outer epoch 0 Epoch 37 Iter 420] .normal loss: 1.3437	main/reg: 1.3437/0.0000
+[Outer epoch 0 Epoch 38 Iter 421] .normal loss: 0.1538	main/reg: 0.1538/0.0000
+[Outer epoch 0 Epoch 39 Iter 422] .normal loss: 1.4695	main/reg: 1.4695/0.0000
+[Outer epoch 0 Epoch 40 Iter 423] .normal loss: 0.7900	main/reg: 0.7900/0.0000
+[Outer epoch 0 Epoch 41 Iter 424] .normal loss: 0.1027	main/reg: 0.1027/0.0000
+[Outer epoch 0 Epoch 42 Iter 425] .normal loss: 0.1595	main/reg: 0.1595/0.0000
+[Outer epoch 0 Epoch 43 Iter 426] .normal loss: 1.0871	main/reg: 1.0871/0.0000
+[Outer epoch 0 Epoch 44 Iter 427] .normal loss: 0.7007	main/reg: 0.7007/0.0000
+[Outer epoch 0 Epoch 45 Iter 428] .normal loss: 0.2755	main/reg: 0.2755/0.0000
+[Outer epoch 0 Epoch 46 Iter 429] .normal loss: 1.1588	main/reg: 1.1588/0.0000
+[Outer epoch 0 Epoch 47 Iter 430] .normal loss: 1.4554	main/reg: 1.4554/0.0000
+[Outer epoch 0 Epoch 48 Iter 431] .normal loss: 0.2671	main/reg: 0.2671/0.0000
+[Outer epoch 0 Epoch 49 Iter 432] .normal loss: 0.5147	main/reg: 0.5147/0.0000
+[Outer epoch 0 Epoch 50 Iter 433] .normal loss: 0.8672	main/reg: 0.8672/0.0000
+[Outer epoch 0 Epoch 51 Iter 434] .normal loss: 0.7088	main/reg: 0.7088/0.0000
+[Outer epoch 0 Epoch 52 Iter 435] .normal loss: 0.8836	main/reg: 0.8836/0.0000
+[Outer epoch 0 Epoch 53 Iter 436] .normal loss: 0.1417	main/reg: 0.1417/0.0000
+[Outer epoch 0 Epoch 54 Iter 437] .normal loss: 0.5076	main/reg: 0.5076/0.0000
+[Outer epoch 0 Epoch 55 Iter 438] .normal loss: 1.1724	main/reg: 1.1724/0.0000
+[Outer epoch 0 Epoch 56 Iter 439] .normal loss: 0.3599	main/reg: 0.3599/0.0000
+[Outer epoch 0 Epoch 57 Iter 440] .normal loss: 0.2130	main/reg: 0.2130/0.0000
+[Outer epoch 0 Epoch 58 Iter 441] .normal loss: 0.2403	main/reg: 0.2403/0.0000
+[Outer epoch 0 Epoch 59 Iter 442] .normal loss: 0.3997	main/reg: 0.3997/0.0000
+[Outer epoch 0 Epoch 60 Iter 443] .normal loss: 1.1557	main/reg: 1.1557/0.0000
+[Outer epoch 0 Epoch 61 Iter 444] .normal loss: 1.8448	main/reg: 1.8448/0.0000
+[Outer epoch 0 Epoch 62 Iter 445] .normal loss: 0.1084	main/reg: 0.1084/0.0000
+[Outer epoch 0 Epoch 63 Iter 446] .normal loss: 0.2822	main/reg: 0.2822/0.0000
+[Outer epoch 0 Epoch 64 Iter 447] .normal loss: 1.2652	main/reg: 1.2652/0.0000
+[Outer epoch 0 Epoch 65 Iter 448] .normal loss: 0.7948	main/reg: 0.7948/0.0000
+[Outer epoch 0 Epoch 66 Iter 449] .normal loss: 0.4476	main/reg: 0.4476/0.0000
+[Outer epoch 0 Epoch 67 Iter 450] .normal loss: 0.3342	main/reg: 0.3342/0.0000
+[Outer epoch 0 Epoch 68 Iter 451] .normal loss: 1.1524	main/reg: 1.1524/0.0000
+[Outer epoch 0 Epoch 69 Iter 452] .normal loss: 0.4127	main/reg: 0.4127/0.0000
+[Outer epoch 0 Epoch 70 Iter 453] .normal loss: 2.0812	main/reg: 2.0812/0.0000
+[Outer epoch 0 Epoch 71 Iter 454] .normal loss: 0.5444	main/reg: 0.5444/0.0000
+[Outer epoch 0 Epoch 72 Iter 455] .normal loss: 1.1998	main/reg: 1.1998/0.0000
+[Outer epoch 0 Epoch 73 Iter 456] .normal loss: 1.3229	main/reg: 1.3229/0.0000
+[Outer epoch 0 Epoch 74 Iter 457] .normal loss: 0.4890	main/reg: 0.4890/0.0000
+[Outer epoch 0 Epoch 75 Iter 458] .normal loss: 0.8665	main/reg: 0.8665/0.0000
+[Outer epoch 0 Epoch 76 Iter 459] .normal loss: 0.6860	main/reg: 0.6860/0.0000
+[Outer epoch 0 Epoch 77 Iter 460] .normal loss: 1.4272	main/reg: 1.4272/0.0000
+[Outer epoch 0 Epoch 78 Iter 461] .normal loss: 1.0818	main/reg: 1.0818/0.0000
+[Outer epoch 0 Epoch 79 Iter 462] .normal loss: 2.7363	main/reg: 2.7363/0.0000
+[Outer epoch 0 Epoch 80 Iter 463] .normal loss: 0.1236	main/reg: 0.1236/0.0000
+[Outer epoch 0 Epoch 81 Iter 464] .normal loss: 0.8997	main/reg: 0.8997/0.0000
+[Outer epoch 0 Epoch 82 Iter 465] .normal loss: 0.0898	main/reg: 0.0898/0.0000
+[Outer epoch 0 Epoch 83 Iter 466] .normal loss: 0.3769	main/reg: 0.3769/0.0000
+[Outer epoch 0 Epoch 84 Iter 467] .normal loss: 0.2010	main/reg: 0.2010/0.0000
+[Outer epoch 0 Epoch 85 Iter 468] .normal loss: 0.0799	main/reg: 0.0799/0.0000
+[Outer epoch 0 Epoch 86 Iter 469] .normal loss: 0.1694	main/reg: 0.1694/0.0000
+[Outer epoch 0 Epoch 87 Iter 470] .normal loss: 1.2534	main/reg: 1.2534/0.0000
+[Outer epoch 0 Epoch 88 Iter 471] .normal loss: 0.9528	main/reg: 0.9528/0.0000
+[Outer epoch 0 Epoch 89 Iter 472] .normal loss: 1.0497	main/reg: 1.0497/0.0000
+[Outer epoch 0 Epoch 90 Iter 473] .normal loss: 0.1162	main/reg: 0.1162/0.0000
+[Outer epoch 0 Epoch 91 Iter 474] .normal loss: 1.2957	main/reg: 1.2957/0.0000
+[Outer epoch 0 Epoch 92 Iter 475] .normal loss: 0.5426	main/reg: 0.5426/0.0000
+[Outer epoch 0 Epoch 93 Iter 476] .normal loss: 0.8335	main/reg: 0.8335/0.0000
+[Outer epoch 0 Epoch 94 Iter 477] .normal loss: 0.1267	main/reg: 0.1267/0.0000
+[Outer epoch 0 Epoch 95 Iter 478] .normal loss: 1.2172	main/reg: 1.2172/0.0000
+[Outer epoch 0 Epoch 96 Iter 479] .normal loss: 0.3792	main/reg: 0.3792/0.0000
+[Outer epoch 0 Epoch 97 Iter 480] .normal loss: 0.5230	main/reg: 0.5230/0.0000
+[Outer epoch 0 Epoch 98 Iter 481] .normal loss: 0.3670	main/reg: 0.3670/0.0000
+[Outer epoch 0 Epoch 99 Iter 482] .normal loss: 0.4881	main/reg: 0.4881/0.0000
+[Outer epoch 0 Epoch 100 Iter 483] .normal loss: 2.1680	main/reg: 2.1680/0.0000
+[Outer epoch 0 Epoch 101 Iter 484] .normal loss: 1.0082	main/reg: 1.0082/0.0000
+[Outer epoch 0 Epoch 102 Iter 485] .normal loss: 0.2513	main/reg: 0.2513/0.0000
+[Outer epoch 0 Epoch 103 Iter 486] .normal loss: 1.0448	main/reg: 1.0448/0.0000
+[Outer epoch 0 Epoch 104 Iter 487] .normal loss: 0.2225	main/reg: 0.2225/0.0000
+[Outer epoch 0 Epoch 105 Iter 488] .normal loss: 0.1358	main/reg: 0.1358/0.0000
+[Outer epoch 0 Epoch 106 Iter 489] .normal loss: 0.1497	main/reg: 0.1497/0.0000
+[Outer epoch 0 Epoch 107 Iter 490] .normal loss: 1.1748	main/reg: 1.1748/0.0000
+[Outer epoch 0 Epoch 108 Iter 491] .normal loss: 1.1797	main/reg: 1.1797/0.0000
+[Outer epoch 0 Epoch 109 Iter 492] .normal loss: 1.9759	main/reg: 1.9759/0.0000
+[Outer epoch 0 Epoch 110 Iter 493] .normal loss: 0.5872	main/reg: 0.5872/0.0000
+[Outer epoch 0 Epoch 111 Iter 494] .normal loss: 0.5447	main/reg: 0.5447/0.0000
+[Outer epoch 0 Epoch 112 Iter 495] .normal loss: 0.1414	main/reg: 0.1414/0.0000
+[Outer epoch 0 Epoch 113 Iter 496] .normal loss: 0.1345	main/reg: 0.1345/0.0000
+[Outer epoch 0 Epoch 114 Iter 497] .normal loss: 0.1260	main/reg: 0.1260/0.0000
+[Outer epoch 0 Epoch 115 Iter 498] .normal loss: 0.3133	main/reg: 0.3133/0.0000
+[Outer epoch 0 Epoch 116 Iter 499] .normal loss: 1.2710	main/reg: 1.2710/0.0000
+[Outer epoch 0 Epoch 117 Iter 500] .normal loss: 1.1419	main/reg: 1.1419/0.0000
+[Outer epoch 0 Epoch 118 Iter 501] .normal loss: 1.8830	main/reg: 1.8830/0.0000
+[Outer epoch 0 Epoch 119 Iter 502] .normal loss: 0.3455	main/reg: 0.3455/0.0000
+[Outer epoch 0 Epoch 120 Iter 503] .normal loss: 0.2833	main/reg: 0.2833/0.0000
+[Outer epoch 0 Epoch 121 Iter 504] .normal loss: 0.8176	main/reg: 0.8176/0.0000
+[Outer epoch 0 Epoch 122 Iter 505] .normal loss: 0.3379	main/reg: 0.3379/0.0000
+[Outer epoch 0 Epoch 123 Iter 506] .normal loss: 1.5488	main/reg: 1.5488/0.0000
+[Outer epoch 0 Epoch 124 Iter 507] .normal loss: 0.8680	main/reg: 0.8680/0.0000
+[Outer epoch 0 Epoch 125 Iter 508] .normal loss: 0.1561	main/reg: 0.1561/0.0000
+[Outer epoch 0 Epoch 126 Iter 509] .normal loss: 0.1522	main/reg: 0.1522/0.0000
+[Outer epoch 0 Epoch 127 Iter 510] .normal loss: 0.0578	main/reg: 0.0578/0.0000
+[Outer epoch 0 Epoch 128 Iter 511] .normal loss: 0.1337	main/reg: 0.1337/0.0000
+r_preds_list
+	#:	312.0000
+	Avg:	37.0007
+	Std:	3.2438
+	Min:	29.0647
+	Max:	46.5678
+	Median:	37.1547
+	Mode:	29.0647
+Validation at self-play 3
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/99p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_100.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 17 nodes 25 edges (avg degree 1.4706) 5 node labels
+num_solutions: 8; num_solutions_unique: 8
+best_size: 10 nodes at iter 13 (/10=1.0000); total iters: 25 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 11; # cond1 "calls": 11; # cond2 "calls": 0; # cond3 "calls": 11; # cond4 "calls": 11
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 160.758 msecs
+solved_or_not_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	1.0000
+	Avg:	8.0000
+	Std:	0.0000
+	Min:	8.0000
+	Max:	8.0000
+	Median:	8.0000
+	Mode:	8.0000
+num_unique_node_set_solutions_li
+	#:	1.0000
+	Avg:	8.0000
+	Std:	0.0000
+	Min:	8.0000
+	Max:	8.0000
+	Median:	8.0000
+	Mode:	8.0000
+best_size_li
+	#:	1.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	1.0000
+	Avg:	13.0000
+	Std:	0.0000
+	Min:	13.0000
+	Max:	13.0000
+	Median:	13.0000
+	Mode:	13.0000
+total_time_li(in seconds)
+	#:	1.0000
+	Avg:	0.1608
+	Std:	0.0000
+	Min:	0.1608
+	Max:	0.1608
+	Median:	0.1608
+	Mode:	0.1608
+total_iters_li
+	#:	1.0000
+	Avg:	25.0000
+	Std:	0.0000
+	Min:	25.0000
+	Max:	25.0000
+	Median:	25.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/95p_pqf.pickle
+
+
+--- Query 1/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_96.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 36 nodes 58 edges (avg degree 1.6111) 5 node labels
+num_solutions: 2; num_solutions_unique: 2
+best_size: 10 nodes at iter 18 (/10=1.0000); total iters: 28 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 15; # cond1 "calls": 15; # cond2 "calls": 0; # cond3 "calls": 15; # cond4 "calls": 15
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 154.408 msecs
+solved_or_not_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	2.0000
+	Avg:	5.0000
+	Std:	3.0000
+	Min:	2.0000
+	Max:	8.0000
+	Median:	5.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	2.0000
+	Avg:	5.0000
+	Std:	3.0000
+	Min:	2.0000
+	Max:	8.0000
+	Median:	5.0000
+	Mode:	2.0000
+best_size_li
+	#:	2.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	2.0000
+	Avg:	15.5000
+	Std:	2.5000
+	Min:	13.0000
+	Max:	18.0000
+	Median:	15.5000
+	Mode:	13.0000
+total_time_li(in seconds)
+	#:	2.0000
+	Avg:	0.1576
+	Std:	0.0032
+	Min:	0.1544
+	Max:	0.1608
+	Median:	0.1576
+	Mode:	0.1544
+total_iters_li
+	#:	2.0000
+	Avg:	26.5000
+	Std:	1.5000
+	Min:	25.0000
+	Max:	28.0000
+	Median:	26.5000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/96p_pqf.pickle
+
+
+--- Query 2/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_97.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 5 node labels
+gt 58 nodes 148 edges (avg degree 2.5517) 5 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 53; num_solutions_unique: 53
+best_size: 10 nodes at iter 9 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 83; # eps "calls": 54; # cond1 "calls": 54; # cond2 "calls": 0; # cond3 "calls": 54; # cond4 "calls": 54
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 1.895 secs
+solved_or_not_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	3.0000
+	Avg:	21.0000
+	Std:	22.7596
+	Min:	2.0000
+	Max:	53.0000
+	Median:	8.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	3.0000
+	Avg:	21.0000
+	Std:	22.7596
+	Min:	2.0000
+	Max:	53.0000
+	Median:	8.0000
+	Mode:	2.0000
+best_size_li
+	#:	3.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	3.0000
+	Avg:	13.3333
+	Std:	3.6818
+	Min:	9.0000
+	Max:	18.0000
+	Median:	13.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	3.0000
+	Avg:	0.7367
+	Std:	0.8191
+	Min:	0.1544
+	Max:	1.8951
+	Median:	0.1608
+	Mode:	0.1544
+total_iters_li
+	#:	3.0000
+	Avg:	84.3333
+	Std:	81.7979
+	Min:	25.0000
+	Max:	200.0000
+	Median:	28.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/97p_pqf.pickle
+
+
+--- Query 3/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_98.graph
+gq 10 nodes 12 edges (avg degree 1.2000) 3 node labels
+gt 40 nodes 79 edges (avg degree 1.9750) 3 node labels
+num_solutions: 1; num_solutions_unique: 1
+best_size: 10 nodes at iter 130 (/10=1.0000); total iters: 146 (smts.MCTS_iter=0)
+# NN calls: 38; # eps "calls": 38; # cond1 "calls": 38; # cond2 "calls": 0; # cond3 "calls": 38; # cond4 "calls": 38
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 849.190 msecs
+solved_or_not_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	4.0000
+	Avg:	16.0000
+	Std:	21.5291
+	Min:	1.0000
+	Max:	53.0000
+	Median:	5.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	4.0000
+	Avg:	16.0000
+	Std:	21.5291
+	Min:	1.0000
+	Max:	53.0000
+	Median:	5.0000
+	Mode:	1.0000
+best_size_li
+	#:	4.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	4.0000
+	Avg:	42.5000
+	Std:	50.6187
+	Min:	9.0000
+	Max:	130.0000
+	Median:	15.5000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	4.0000
+	Avg:	0.7649
+	Std:	0.7110
+	Min:	0.1544
+	Max:	1.8951
+	Median:	0.5050
+	Mode:	0.1544
+total_iters_li
+	#:	4.0000
+	Avg:	99.7500
+	Std:	75.7046
+	Min:	25.0000
+	Max:	200.0000
+	Median:	87.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/98p_pqf.pickle
+
+
+--- Query 4/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_99.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 3 node labels
+gt 55 nodes 115 edges (avg degree 2.0909) 3 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 49; num_solutions_unique: 49
+best_size: 10 nodes at iter 9 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 71; # eps "calls": 72; # cond1 "calls": 72; # cond2 "calls": 0; # cond3 "calls": 72; # cond4 "calls": 72
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 1.665 secs
+solved_or_not_li
+	#:	5.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	5.0000
+	Avg:	22.6000
+	Std:	23.3461
+	Min:	1.0000
+	Max:	53.0000
+	Median:	8.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	5.0000
+	Avg:	22.6000
+	Std:	23.3461
+	Min:	1.0000
+	Max:	53.0000
+	Median:	8.0000
+	Mode:	1.0000
+best_size_li
+	#:	5.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	5.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	5.0000
+	Avg:	35.8000
+	Std:	47.2161
+	Min:	9.0000
+	Max:	130.0000
+	Median:	13.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	5.0000
+	Avg:	0.9448
+	Std:	0.7307
+	Min:	0.1544
+	Max:	1.8951
+	Median:	0.8492
+	Mode:	0.1544
+total_iters_li
+	#:	5.0000
+	Avg:	119.8000
+	Std:	78.6954
+	Min:	25.0000
+	Max:	200.0000
+	Median:	146.0000
+	Mode:	200.0000
+ACCEPTING NEW MODEL: 1.0 >= 1.0
+validation time: 5.036973476409912s
+Timer log starts **************************************************
+Total duration: 108.498 msecs
+refine                    : 108.207 msecs (99.73%)
+CS                        : 0.049 msecs (0.05%)
+path weights              : 0.010 msecs (0.01%)
+levels2u2v and query tree : 0.232 msecs (0.21%)
+Timer log ends **************************************************
+Saved pair to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/4p.pickle
+CS_cand_set_size
+	#:	10.0000
+	Avg:	2.1000
+	Std:	1.5780
+	Min:	1.0000
+	Max:	6.0000
+	Median:	1.5000
+	Mode:	1.0000
+Saved gp, gq, gt_filtered to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/4p_pqf.pickle
+
+
+--- Query 4/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_5.graph
+gq 10 nodes 11 edges (avg degree 1.1000) 5 node labels
+gt 21 nodes 29 edges (avg degree 1.3810) 5 node labels
+Merged loader: dense_64 4
+Loaded a graph pair 4
+Play the game 0 -- 4 (eps=0.0)
+num_solutions: 14; num_solutions_unique: 14
+best_size: 10 nodes at iter 35 (/10=1.0000); total iters: 1338 (smts.MCTS_iter=37)
+# NN calls: 12; # eps "calls": 11; # cond1 "calls": 11; # cond2 "calls": 0; # cond3 "calls": 11; # cond4 "calls": 11
+MCTS_Qs
+	#:	1902.0000
+	Avg:	0.5618
+	Std:	0.7953
+	Min:	-0.3734
+	Max:	2.8494
+	Median:	0.0000
+	Mode:	0.0000
+MCTS_Us
+	#:	1902.0000
+	Avg:	1.5614
+	Std:	1.4277
+	Min:	0.0000
+	Max:	10.0000
+	Median:	1.3242
+	Mode:	10.0000
+MCTS_QU(Q winning over U)
+	#:	1902.0000
+	Avg:	0.1667
+	Std:	0.3727
+	Min:	0.0000
+	Max:	1.0000
+	Median:	0.0000
+	Mode:	0.0000
+len(Qsa_li)=12
+r_li_lens
+	#:	12.0000
+	Avg:	2.1667
+	Std:	0.3727
+	Min:	2.0000
+	Max:	3.0000
+	Median:	2.0000
+	Mode:	2.0000
+r_values
+	#:	26.0000
+	Avg:	0.5687
+	Std:	0.2007
+	Min:	0.0372
+	Max:	0.9467
+	Median:	0.6087
+	Mode:	0.6087
+nn_map_sizes
+	#:	12.0000
+	Avg:	7.6667
+	Std:	1.4337
+	Min:	4.0000
+	Max:	9.0000
+	Median:	8.0000
+	Mode:	8.0000
+replay_buffer len: 128
+Learn from buffer of 128
+buffer_size=0.0005146360000000001gb
+pretrain_obj=0.000240398gb
+[Outer epoch 0 Epoch 1 Iter 512] .normal loss: 0.5268	main/reg: 0.5268/0.0000
+[Outer epoch 0 Epoch 2 Iter 513] .normal loss: 0.1341	main/reg: 0.1341/0.0000
+[Outer epoch 0 Epoch 3 Iter 514] .normal loss: 0.4104	main/reg: 0.4104/0.0000
+[Outer epoch 0 Epoch 4 Iter 515] .normal loss: 0.2894	main/reg: 0.2894/0.0000
+[Outer epoch 0 Epoch 5 Iter 516] .normal loss: 0.4126	main/reg: 0.4126/0.0000
+[Outer epoch 0 Epoch 6 Iter 517] .normal loss: 0.5588	main/reg: 0.5588/0.0000
+[Outer epoch 0 Epoch 7 Iter 518] .normal loss: 0.7453	main/reg: 0.7453/0.0000
+[Outer epoch 0 Epoch 8 Iter 519] .normal loss: 1.3019	main/reg: 1.3019/0.0000
+[Outer epoch 0 Epoch 9 Iter 520] .normal loss: 0.0751	main/reg: 0.0751/0.0000
+[Outer epoch 0 Epoch 10 Iter 521] .normal loss: 0.3119	main/reg: 0.3119/0.0000
+[Outer epoch 0 Epoch 11 Iter 522] .normal loss: 0.2877	main/reg: 0.2877/0.0000
+[Outer epoch 0 Epoch 12 Iter 523] .normal loss: 0.6984	main/reg: 0.6984/0.0000
+[Outer epoch 0 Epoch 13 Iter 524] .normal loss: 0.0522	main/reg: 0.0522/0.0000
+[Outer epoch 0 Epoch 14 Iter 525] .normal loss: 0.1782	main/reg: 0.1782/0.0000
+[Outer epoch 0 Epoch 15 Iter 526] .normal loss: 0.9431	main/reg: 0.9431/0.0000
+[Outer epoch 0 Epoch 16 Iter 527] .normal loss: 0.6653	main/reg: 0.6653/0.0000
+[Outer epoch 0 Epoch 17 Iter 528] .normal loss: 0.4769	main/reg: 0.4769/0.0000
+[Outer epoch 0 Epoch 18 Iter 529] .normal loss: 0.2953	main/reg: 0.2953/0.0000
+[Outer epoch 0 Epoch 19 Iter 530] .normal loss: 0.1860	main/reg: 0.1860/0.0000
+[Outer epoch 0 Epoch 20 Iter 531] .normal loss: 0.2624	main/reg: 0.2624/0.0000
+[Outer epoch 0 Epoch 21 Iter 532] .normal loss: 1.0972	main/reg: 1.0972/0.0000
+[Outer epoch 0 Epoch 22 Iter 533] .normal loss: 0.0845	main/reg: 0.0845/0.0000
+[Outer epoch 0 Epoch 23 Iter 534] .normal loss: 1.0679	main/reg: 1.0679/0.0000
+[Outer epoch 0 Epoch 24 Iter 535] .normal loss: 1.1833	main/reg: 1.1833/0.0000
+[Outer epoch 0 Epoch 25 Iter 536] .normal loss: 0.0727	main/reg: 0.0727/0.0000
+[Outer epoch 0 Epoch 26 Iter 537] .normal loss: 0.3733	main/reg: 0.3733/0.0000
+[Outer epoch 0 Epoch 27 Iter 538] .normal loss: 0.5270	main/reg: 0.5270/0.0000
+[Outer epoch 0 Epoch 28 Iter 539] .normal loss: 1.1122	main/reg: 1.1122/0.0000
+[Outer epoch 0 Epoch 29 Iter 540] .normal loss: 0.1317	main/reg: 0.1317/0.0000
+[Outer epoch 0 Epoch 30 Iter 541] .normal loss: 0.0931	main/reg: 0.0931/0.0000
+[Outer epoch 0 Epoch 31 Iter 542] .normal loss: 0.4698	main/reg: 0.4698/0.0000
+[Outer epoch 0 Epoch 32 Iter 543] .normal loss: 0.9122	main/reg: 0.9122/0.0000
+[Outer epoch 0 Epoch 33 Iter 544] .normal loss: 1.0050	main/reg: 1.0050/0.0000
+[Outer epoch 0 Epoch 34 Iter 545] .normal loss: 0.9738	main/reg: 0.9738/0.0000
+[Outer epoch 0 Epoch 35 Iter 546] .normal loss: 0.6686	main/reg: 0.6686/0.0000
+[Outer epoch 0 Epoch 36 Iter 547] .normal loss: 1.5998	main/reg: 1.5998/0.0000
+[Outer epoch 0 Epoch 37 Iter 548] .normal loss: 0.3760	main/reg: 0.3760/0.0000
+[Outer epoch 0 Epoch 38 Iter 549] .normal loss: 0.2947	main/reg: 0.2947/0.0000
+[Outer epoch 0 Epoch 39 Iter 550] .normal loss: 0.1336	main/reg: 0.1336/0.0000
+[Outer epoch 0 Epoch 40 Iter 551] .normal loss: 1.1480	main/reg: 1.1480/0.0000
+[Outer epoch 0 Epoch 41 Iter 552] .normal loss: 0.1956	main/reg: 0.1956/0.0000
+[Outer epoch 0 Epoch 42 Iter 553] .normal loss: 0.2328	main/reg: 0.2328/0.0000
+[Outer epoch 0 Epoch 43 Iter 554] .normal loss: 1.5211	main/reg: 1.5211/0.0000
+[Outer epoch 0 Epoch 44 Iter 555] .normal loss: 0.1294	main/reg: 0.1294/0.0000
+[Outer epoch 0 Epoch 45 Iter 556] .normal loss: 1.1295	main/reg: 1.1295/0.0000
+[Outer epoch 0 Epoch 46 Iter 557] .normal loss: 0.2302	main/reg: 0.2302/0.0000
+[Outer epoch 0 Epoch 47 Iter 558] .normal loss: 0.1706	main/reg: 0.1706/0.0000
+[Outer epoch 0 Epoch 48 Iter 559] .normal loss: 1.4029	main/reg: 1.4029/0.0000
+[Outer epoch 0 Epoch 49 Iter 560] .normal loss: 0.2501	main/reg: 0.2501/0.0000
+[Outer epoch 0 Epoch 50 Iter 561] .normal loss: 0.8540	main/reg: 0.8540/0.0000
+[Outer epoch 0 Epoch 51 Iter 562] .normal loss: 0.6241	main/reg: 0.6241/0.0000
+[Outer epoch 0 Epoch 52 Iter 563] .normal loss: 1.2340	main/reg: 1.2340/0.0000
+[Outer epoch 0 Epoch 53 Iter 564] .normal loss: 1.1538	main/reg: 1.1538/0.0000
+[Outer epoch 0 Epoch 54 Iter 565] .normal loss: 2.1426	main/reg: 2.1426/0.0000
+[Outer epoch 0 Epoch 55 Iter 566] .normal loss: 0.3987	main/reg: 0.3987/0.0000
+[Outer epoch 0 Epoch 56 Iter 567] .normal loss: 0.3789	main/reg: 0.3789/0.0000
+[Outer epoch 0 Epoch 57 Iter 568] .normal loss: 0.5024	main/reg: 0.5024/0.0000
+[Outer epoch 0 Epoch 58 Iter 569] .normal loss: 0.4878	main/reg: 0.4878/0.0000
+[Outer epoch 0 Epoch 59 Iter 570] .normal loss: 0.6927	main/reg: 0.6927/0.0000
+[Outer epoch 0 Epoch 60 Iter 571] .normal loss: 0.1756	main/reg: 0.1756/0.0000
+[Outer epoch 0 Epoch 61 Iter 572] .normal loss: 1.0691	main/reg: 1.0691/0.0000
+[Outer epoch 0 Epoch 62 Iter 573] .normal loss: 0.2394	main/reg: 0.2394/0.0000
+[Outer epoch 0 Epoch 63 Iter 574] .normal loss: 0.2795	main/reg: 0.2795/0.0000
+[Outer epoch 0 Epoch 64 Iter 575] .normal loss: 1.3246	main/reg: 1.3246/0.0000
+[Outer epoch 0 Epoch 65 Iter 576] .normal loss: 1.0051	main/reg: 1.0051/0.0000
+[Outer epoch 0 Epoch 66 Iter 577] .normal loss: 1.0541	main/reg: 1.0541/0.0000
+[Outer epoch 0 Epoch 67 Iter 578] .normal loss: 0.2723	main/reg: 0.2723/0.0000
+[Outer epoch 0 Epoch 68 Iter 579] .normal loss: 0.2285	main/reg: 0.2285/0.0000
+[Outer epoch 0 Epoch 69 Iter 580] .normal loss: 0.6634	main/reg: 0.6634/0.0000
+[Outer epoch 0 Epoch 70 Iter 581] .normal loss: 0.2382	main/reg: 0.2382/0.0000
+[Outer epoch 0 Epoch 71 Iter 582] .normal loss: 2.0774	main/reg: 2.0774/0.0000
+[Outer epoch 0 Epoch 72 Iter 583] .normal loss: 1.6455	main/reg: 1.6455/0.0000
+[Outer epoch 0 Epoch 73 Iter 584] .normal loss: 1.2293	main/reg: 1.2293/0.0000
+[Outer epoch 0 Epoch 74 Iter 585] .normal loss: 1.0480	main/reg: 1.0480/0.0000
+[Outer epoch 0 Epoch 75 Iter 586] .normal loss: 0.0910	main/reg: 0.0910/0.0000
+[Outer epoch 0 Epoch 76 Iter 587] .normal loss: 0.2259	main/reg: 0.2259/0.0000
+[Outer epoch 0 Epoch 77 Iter 588] .normal loss: 0.9299	main/reg: 0.9299/0.0000
+[Outer epoch 0 Epoch 78 Iter 589] .normal loss: 0.2951	main/reg: 0.2951/0.0000
+[Outer epoch 0 Epoch 79 Iter 590] .normal loss: 0.3268	main/reg: 0.3268/0.0000
+[Outer epoch 0 Epoch 80 Iter 591] .normal loss: 0.0981	main/reg: 0.0981/0.0000
+[Outer epoch 0 Epoch 81 Iter 592] .normal loss: 0.4480	main/reg: 0.4480/0.0000
+[Outer epoch 0 Epoch 82 Iter 593] .normal loss: 0.0455	main/reg: 0.0455/0.0000
+[Outer epoch 0 Epoch 83 Iter 594] .normal loss: 1.0935	main/reg: 1.0935/0.0000
+[Outer epoch 0 Epoch 84 Iter 595] .normal loss: 0.2075	main/reg: 0.2075/0.0000
+[Outer epoch 0 Epoch 85 Iter 596] .normal loss: 0.0312	main/reg: 0.0312/0.0000
+[Outer epoch 0 Epoch 86 Iter 597] .normal loss: 0.0335	main/reg: 0.0335/0.0000
+[Outer epoch 0 Epoch 87 Iter 598] .normal loss: 1.8294	main/reg: 1.8294/0.0000
+[Outer epoch 0 Epoch 88 Iter 599] .normal loss: 0.7230	main/reg: 0.7230/0.0000
+[Outer epoch 0 Epoch 89 Iter 600] .normal loss: 0.1113	main/reg: 0.1113/0.0000
+[Outer epoch 0 Epoch 90 Iter 601] .normal loss: 0.0538	main/reg: 0.0538/0.0000
+[Outer epoch 0 Epoch 91 Iter 602] .normal loss: 0.1413	main/reg: 0.1413/0.0000
+[Outer epoch 0 Epoch 92 Iter 603] .normal loss: 0.4684	main/reg: 0.4684/0.0000
+[Outer epoch 0 Epoch 93 Iter 604] .normal loss: 0.1105	main/reg: 0.1105/0.0000
+[Outer epoch 0 Epoch 94 Iter 605] .normal loss: 1.3515	main/reg: 1.3515/0.0000
+[Outer epoch 0 Epoch 95 Iter 606] .normal loss: 1.1832	main/reg: 1.1832/0.0000
+[Outer epoch 0 Epoch 96 Iter 607] .normal loss: 7.3043	main/reg: 7.3043/0.0000
+[Outer epoch 0 Epoch 97 Iter 608] .normal loss: 2.2083	main/reg: 2.2083/0.0000
+[Outer epoch 0 Epoch 98 Iter 609] .normal loss: 0.6436	main/reg: 0.6436/0.0000
+[Outer epoch 0 Epoch 99 Iter 610] .normal loss: 1.3118	main/reg: 1.3118/0.0000
+[Outer epoch 0 Epoch 100 Iter 611] .normal loss: 0.5863	main/reg: 0.5863/0.0000
+[Outer epoch 0 Epoch 101 Iter 612] .normal loss: 1.7620	main/reg: 1.7620/0.0000
+[Outer epoch 0 Epoch 102 Iter 613] .normal loss: 0.3070	main/reg: 0.3070/0.0000
+[Outer epoch 0 Epoch 103 Iter 614] .normal loss: 0.7174	main/reg: 0.7174/0.0000
+[Outer epoch 0 Epoch 104 Iter 615] .normal loss: 0.0445	main/reg: 0.0445/0.0000
+[Outer epoch 0 Epoch 105 Iter 616] .normal loss: 0.4561	main/reg: 0.4561/0.0000
+[Outer epoch 0 Epoch 106 Iter 617] .normal loss: 1.3211	main/reg: 1.3211/0.0000
+[Outer epoch 0 Epoch 107 Iter 618] .normal loss: 0.8303	main/reg: 0.8303/0.0000
+[Outer epoch 0 Epoch 108 Iter 619] .normal loss: 1.2153	main/reg: 1.2153/0.0000
+[Outer epoch 0 Epoch 109 Iter 620] .normal loss: 0.2103	main/reg: 0.2103/0.0000
+[Outer epoch 0 Epoch 110 Iter 621] .normal loss: 0.0567	main/reg: 0.0567/0.0000
+[Outer epoch 0 Epoch 111 Iter 622] .normal loss: 0.1540	main/reg: 0.1540/0.0000
+[Outer epoch 0 Epoch 112 Iter 623] .normal loss: 1.2447	main/reg: 1.2447/0.0000
+[Outer epoch 0 Epoch 113 Iter 624] .normal loss: 0.7698	main/reg: 0.7698/0.0000
+[Outer epoch 0 Epoch 114 Iter 625] .normal loss: 0.0631	main/reg: 0.0631/0.0000
+[Outer epoch 0 Epoch 115 Iter 626] .normal loss: 0.0597	main/reg: 0.0597/0.0000
+[Outer epoch 0 Epoch 116 Iter 627] .normal loss: 2.7311	main/reg: 2.7311/0.0000
+[Outer epoch 0 Epoch 117 Iter 628] .normal loss: 1.5061	main/reg: 1.5061/0.0000
+[Outer epoch 0 Epoch 118 Iter 629] .normal loss: 0.7470	main/reg: 0.7470/0.0000
+[Outer epoch 0 Epoch 119 Iter 630] .normal loss: 0.2820	main/reg: 0.2820/0.0000
+[Outer epoch 0 Epoch 120 Iter 631] .normal loss: 0.0575	main/reg: 0.0575/0.0000
+[Outer epoch 0 Epoch 121 Iter 632] .normal loss: 0.7022	main/reg: 0.7022/0.0000
+[Outer epoch 0 Epoch 122 Iter 633] .normal loss: 0.3332	main/reg: 0.3332/0.0000
+[Outer epoch 0 Epoch 123 Iter 634] .normal loss: 0.2998	main/reg: 0.2998/0.0000
+[Outer epoch 0 Epoch 124 Iter 635] .normal loss: 0.2809	main/reg: 0.2809/0.0000
+[Outer epoch 0 Epoch 125 Iter 636] .normal loss: 1.7070	main/reg: 1.7070/0.0000
+[Outer epoch 0 Epoch 126 Iter 637] .normal loss: 0.1879	main/reg: 0.1879/0.0000
+[Outer epoch 0 Epoch 127 Iter 638] .normal loss: 0.9136	main/reg: 0.9136/0.0000
+[Outer epoch 0 Epoch 128 Iter 639] .normal loss: 0.2334	main/reg: 0.2334/0.0000
+r_preds_list
+	#:	308.0000
+	Avg:	38.1719
+	Std:	4.7418
+	Min:	22.9765
+	Max:	48.4317
+	Median:	38.4660
+	Mode:	35.1776
+Validation at self-play 4
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/99p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_100.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 17 nodes 25 edges (avg degree 1.4706) 5 node labels
+num_solutions: 8; num_solutions_unique: 8
+best_size: 10 nodes at iter 13 (/10=1.0000); total iters: 25 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 11; # cond1 "calls": 11; # cond2 "calls": 0; # cond3 "calls": 11; # cond4 "calls": 11
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 174.574 msecs
+solved_or_not_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	1.0000
+	Avg:	8.0000
+	Std:	0.0000
+	Min:	8.0000
+	Max:	8.0000
+	Median:	8.0000
+	Mode:	8.0000
+num_unique_node_set_solutions_li
+	#:	1.0000
+	Avg:	8.0000
+	Std:	0.0000
+	Min:	8.0000
+	Max:	8.0000
+	Median:	8.0000
+	Mode:	8.0000
+best_size_li
+	#:	1.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	1.0000
+	Avg:	13.0000
+	Std:	0.0000
+	Min:	13.0000
+	Max:	13.0000
+	Median:	13.0000
+	Mode:	13.0000
+total_time_li(in seconds)
+	#:	1.0000
+	Avg:	0.1746
+	Std:	0.0000
+	Min:	0.1746
+	Max:	0.1746
+	Median:	0.1746
+	Mode:	0.1746
+total_iters_li
+	#:	1.0000
+	Avg:	25.0000
+	Std:	0.0000
+	Min:	25.0000
+	Max:	25.0000
+	Median:	25.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/95p_pqf.pickle
+
+
+--- Query 1/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_96.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 36 nodes 58 edges (avg degree 1.6111) 5 node labels
+num_solutions: 2; num_solutions_unique: 2
+best_size: 10 nodes at iter 18 (/10=1.0000); total iters: 28 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 15; # cond1 "calls": 15; # cond2 "calls": 0; # cond3 "calls": 15; # cond4 "calls": 15
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 182.708 msecs
+solved_or_not_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	2.0000
+	Avg:	5.0000
+	Std:	3.0000
+	Min:	2.0000
+	Max:	8.0000
+	Median:	5.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	2.0000
+	Avg:	5.0000
+	Std:	3.0000
+	Min:	2.0000
+	Max:	8.0000
+	Median:	5.0000
+	Mode:	2.0000
+best_size_li
+	#:	2.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	2.0000
+	Avg:	15.5000
+	Std:	2.5000
+	Min:	13.0000
+	Max:	18.0000
+	Median:	15.5000
+	Mode:	13.0000
+total_time_li(in seconds)
+	#:	2.0000
+	Avg:	0.1786
+	Std:	0.0041
+	Min:	0.1746
+	Max:	0.1827
+	Median:	0.1786
+	Mode:	0.1746
+total_iters_li
+	#:	2.0000
+	Avg:	26.5000
+	Std:	1.5000
+	Min:	25.0000
+	Max:	28.0000
+	Median:	26.5000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/96p_pqf.pickle
+
+
+--- Query 2/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_97.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 5 node labels
+gt 58 nodes 148 edges (avg degree 2.5517) 5 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 54; num_solutions_unique: 54
+best_size: 10 nodes at iter 9 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 83; # eps "calls": 53; # cond1 "calls": 53; # cond2 "calls": 0; # cond3 "calls": 53; # cond4 "calls": 53
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 2.364 secs
+solved_or_not_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	3.0000
+	Avg:	21.3333
+	Std:	23.2283
+	Min:	2.0000
+	Max:	54.0000
+	Median:	8.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	3.0000
+	Avg:	21.3333
+	Std:	23.2283
+	Min:	2.0000
+	Max:	54.0000
+	Median:	8.0000
+	Mode:	2.0000
+best_size_li
+	#:	3.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	3.0000
+	Avg:	13.3333
+	Std:	3.6818
+	Min:	9.0000
+	Max:	18.0000
+	Median:	13.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	3.0000
+	Avg:	0.9072
+	Std:	1.0304
+	Min:	0.1746
+	Max:	2.3644
+	Median:	0.1827
+	Mode:	0.1746
+total_iters_li
+	#:	3.0000
+	Avg:	84.3333
+	Std:	81.7979
+	Min:	25.0000
+	Max:	200.0000
+	Median:	28.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/97p_pqf.pickle
+
+
+--- Query 3/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_98.graph
+gq 10 nodes 12 edges (avg degree 1.2000) 3 node labels
+gt 40 nodes 79 edges (avg degree 1.9750) 3 node labels
+num_solutions: 1; num_solutions_unique: 1
+best_size: 10 nodes at iter 130 (/10=1.0000); total iters: 146 (smts.MCTS_iter=0)
+# NN calls: 38; # eps "calls": 38; # cond1 "calls": 38; # cond2 "calls": 0; # cond3 "calls": 38; # cond4 "calls": 38
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 1.692 secs
+solved_or_not_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	4.0000
+	Avg:	16.2500
+	Std:	21.9588
+	Min:	1.0000
+	Max:	54.0000
+	Median:	5.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	4.0000
+	Avg:	16.2500
+	Std:	21.9588
+	Min:	1.0000
+	Max:	54.0000
+	Median:	5.0000
+	Mode:	1.0000
+best_size_li
+	#:	4.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	4.0000
+	Avg:	42.5000
+	Std:	50.6187
+	Min:	9.0000
+	Max:	130.0000
+	Median:	15.5000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	4.0000
+	Avg:	1.1034
+	Std:	0.9549
+	Min:	0.1746
+	Max:	2.3644
+	Median:	0.9374
+	Mode:	0.1746
+total_iters_li
+	#:	4.0000
+	Avg:	99.7500
+	Std:	75.7046
+	Min:	25.0000
+	Max:	200.0000
+	Median:	87.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/98p_pqf.pickle
+
+
+--- Query 4/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_99.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 3 node labels
+gt 55 nodes 115 edges (avg degree 2.0909) 3 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 49; num_solutions_unique: 49
+best_size: 10 nodes at iter 9 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 72; # eps "calls": 71; # cond1 "calls": 71; # cond2 "calls": 0; # cond3 "calls": 71; # cond4 "calls": 71
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 2.927 secs
+solved_or_not_li
+	#:	5.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	5.0000
+	Avg:	22.8000
+	Std:	23.6085
+	Min:	1.0000
+	Max:	54.0000
+	Median:	8.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	5.0000
+	Avg:	22.8000
+	Std:	23.6085
+	Min:	1.0000
+	Max:	54.0000
+	Median:	8.0000
+	Mode:	1.0000
+best_size_li
+	#:	5.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	5.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	5.0000
+	Avg:	35.8000
+	Std:	47.2161
+	Min:	9.0000
+	Max:	130.0000
+	Median:	13.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	5.0000
+	Avg:	1.4682
+	Std:	1.1232
+	Min:	0.1746
+	Max:	2.9271
+	Median:	1.6921
+	Mode:	0.1746
+total_iters_li
+	#:	5.0000
+	Avg:	119.8000
+	Std:	78.6954
+	Min:	25.0000
+	Max:	200.0000
+	Median:	146.0000
+	Mode:	200.0000
+ACCEPTING NEW MODEL: 1.0 >= 1.0
+validation time: 7.6349687576293945s
+Outer epoch 1
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/0p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_1.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 4 node labels
+gt 40 nodes 75 edges (avg degree 1.8750) 4 node labels
+Merged loader: dense_64 0
+Loaded a graph pair 0
+Play the game 1 -- 0 (eps=0.0)
+num_solutions: 8; num_solutions_unique: 4
+best_size: 10 nodes at iter 220 (/10=1.0000); total iters: 1672 (smts.MCTS_iter=43)
+# NN calls: 9; # eps "calls": 22; # cond1 "calls": 22; # cond2 "calls": 0; # cond3 "calls": 22; # cond4 "calls": 22
+MCTS_Qs
+	#:	2330.0000
+	Avg:	0.4289
+	Std:	0.5364
+	Min:	-0.3734
+	Max:	2.1601
+	Median:	0.2928
+	Mode:	0.0000
+MCTS_Us
+	#:	2330.0000
+	Avg:	1.5318
+	Std:	1.5586
+	Min:	0.0000
+	Max:	10.0000
+	Median:	1.2800
+	Mode:	10.0000
+MCTS_QU(Q winning over U)
+	#:	2330.0000
+	Avg:	0.2064
+	Std:	0.4047
+	Min:	0.0000
+	Max:	1.0000
+	Median:	0.0000
+	Mode:	0.0000
+len(Qsa_li)=9
+r_li_lens
+	#:	9.0000
+	Avg:	2.3333
+	Std:	0.9428
+	Min:	2.0000
+	Max:	5.0000
+	Median:	2.0000
+	Mode:	2.0000
+r_values
+	#:	21.0000
+	Avg:	0.4974
+	Std:	0.3536
+	Min:	0.0152
+	Max:	1.0000
+	Median:	0.6087
+	Mode:	0.3734
+nn_map_sizes
+	#:	9.0000
+	Avg:	5.6667
+	Std:	3.0912
+	Min:	0.0000
+	Max:	9.0000
+	Median:	6.0000
+	Mode:	6.0000
+replay_buffer len: 128
+Learn from buffer of 128
+buffer_size=0.0005778830000000001gb
+pretrain_obj=0.000285401gb
+[Outer epoch 1 Epoch 1 Iter 640] .normal loss: 0.1088	main/reg: 0.1088/0.0000
+[Outer epoch 1 Epoch 2 Iter 641] .normal loss: 0.1447	main/reg: 0.1447/0.0000
+[Outer epoch 1 Epoch 3 Iter 642] .normal loss: 0.5484	main/reg: 0.5484/0.0000
+[Outer epoch 1 Epoch 4 Iter 643] .normal loss: 0.0772	main/reg: 0.0772/0.0000
+[Outer epoch 1 Epoch 5 Iter 644] .normal loss: 0.0708	main/reg: 0.0708/0.0000
+[Outer epoch 1 Epoch 6 Iter 645] .normal loss: 0.7207	main/reg: 0.7207/0.0000
+[Outer epoch 1 Epoch 7 Iter 646] .normal loss: 0.8439	main/reg: 0.8439/0.0000
+[Outer epoch 1 Epoch 8 Iter 647] .normal loss: 0.0537	main/reg: 0.0537/0.0000
+[Outer epoch 1 Epoch 9 Iter 648] .normal loss: 0.1688	main/reg: 0.1688/0.0000
+[Outer epoch 1 Epoch 10 Iter 649] .normal loss: 0.2422	main/reg: 0.2422/0.0000
+[Outer epoch 1 Epoch 11 Iter 650] .normal loss: 0.1877	main/reg: 0.1877/0.0000
+[Outer epoch 1 Epoch 12 Iter 651] .normal loss: 1.3049	main/reg: 1.3049/0.0000
+[Outer epoch 1 Epoch 13 Iter 652] .normal loss: 6.1996	main/reg: 6.1996/0.0000
+[Outer epoch 1 Epoch 14 Iter 653] .normal loss: 0.6480	main/reg: 0.6480/0.0000
+[Outer epoch 1 Epoch 15 Iter 654] .normal loss: 0.4920	main/reg: 0.4920/0.0000
+[Outer epoch 1 Epoch 16 Iter 655] .normal loss: 0.5209	main/reg: 0.5209/0.0000
+[Outer epoch 1 Epoch 17 Iter 656] .normal loss: 0.5607	main/reg: 0.5607/0.0000
+[Outer epoch 1 Epoch 18 Iter 657] .normal loss: 0.6593	main/reg: 0.6593/0.0000
+[Outer epoch 1 Epoch 19 Iter 658] .normal loss: 1.2365	main/reg: 1.2365/0.0000
+[Outer epoch 1 Epoch 20 Iter 659] .normal loss: 0.1948	main/reg: 0.1948/0.0000
+[Outer epoch 1 Epoch 21 Iter 660] .normal loss: 2.1986	main/reg: 2.1986/0.0000
+[Outer epoch 1 Epoch 22 Iter 661] .normal loss: 0.1010	main/reg: 0.1010/0.0000
+[Outer epoch 1 Epoch 23 Iter 662] .normal loss: 0.0633	main/reg: 0.0633/0.0000
+[Outer epoch 1 Epoch 24 Iter 663] .normal loss: 0.2831	main/reg: 0.2831/0.0000
+[Outer epoch 1 Epoch 25 Iter 664] .normal loss: 1.2032	main/reg: 1.2032/0.0000
+[Outer epoch 1 Epoch 26 Iter 665] .normal loss: 0.1292	main/reg: 0.1292/0.0000
+[Outer epoch 1 Epoch 27 Iter 666] .normal loss: 1.1304	main/reg: 1.1304/0.0000
+[Outer epoch 1 Epoch 28 Iter 667] .normal loss: 1.2629	main/reg: 1.2629/0.0000
+[Outer epoch 1 Epoch 29 Iter 668] .normal loss: 1.2088	main/reg: 1.2088/0.0000
+[Outer epoch 1 Epoch 30 Iter 669] .normal loss: 0.2246	main/reg: 0.2246/0.0000
+[Outer epoch 1 Epoch 31 Iter 670] .normal loss: 0.2956	main/reg: 0.2956/0.0000
+[Outer epoch 1 Epoch 32 Iter 671] .normal loss: 0.4240	main/reg: 0.4240/0.0000
+[Outer epoch 1 Epoch 33 Iter 672] .normal loss: 0.5555	main/reg: 0.5555/0.0000
+[Outer epoch 1 Epoch 34 Iter 673] .normal loss: 0.2104	main/reg: 0.2104/0.0000
+[Outer epoch 1 Epoch 35 Iter 674] .normal loss: 0.7105	main/reg: 0.7105/0.0000
+[Outer epoch 1 Epoch 36 Iter 675] .normal loss: 0.0579	main/reg: 0.0579/0.0000
+[Outer epoch 1 Epoch 37 Iter 676] .normal loss: 0.6067	main/reg: 0.6067/0.0000
+[Outer epoch 1 Epoch 38 Iter 677] .normal loss: 1.2624	main/reg: 1.2624/0.0000
+[Outer epoch 1 Epoch 39 Iter 678] .normal loss: 0.6767	main/reg: 0.6767/0.0000
+[Outer epoch 1 Epoch 40 Iter 679] .normal loss: 0.4796	main/reg: 0.4796/0.0000
+[Outer epoch 1 Epoch 41 Iter 680] .normal loss: 1.3424	main/reg: 1.3424/0.0000
+[Outer epoch 1 Epoch 42 Iter 681] .normal loss: 0.6740	main/reg: 0.6740/0.0000
+[Outer epoch 1 Epoch 43 Iter 682] .normal loss: 1.2509	main/reg: 1.2509/0.0000
+[Outer epoch 1 Epoch 44 Iter 683] .normal loss: 0.3534	main/reg: 0.3534/0.0000
+[Outer epoch 1 Epoch 45 Iter 684] .normal loss: 0.2511	main/reg: 0.2511/0.0000
+[Outer epoch 1 Epoch 46 Iter 685] .normal loss: 0.7101	main/reg: 0.7101/0.0000
+[Outer epoch 1 Epoch 47 Iter 686] .normal loss: 0.2202	main/reg: 0.2202/0.0000
+[Outer epoch 1 Epoch 48 Iter 687] .normal loss: 0.2694	main/reg: 0.2694/0.0000
+[Outer epoch 1 Epoch 49 Iter 688] .normal loss: 0.5430	main/reg: 0.5430/0.0000
+[Outer epoch 1 Epoch 50 Iter 689] .normal loss: 0.3446	main/reg: 0.3446/0.0000
+[Outer epoch 1 Epoch 51 Iter 690] .normal loss: 1.6974	main/reg: 1.6974/0.0000
+[Outer epoch 1 Epoch 52 Iter 691] .normal loss: 1.3141	main/reg: 1.3141/0.0000
+[Outer epoch 1 Epoch 53 Iter 692] .normal loss: 0.0639	main/reg: 0.0639/0.0000
+[Outer epoch 1 Epoch 54 Iter 693] .normal loss: 0.0544	main/reg: 0.0544/0.0000
+[Outer epoch 1 Epoch 55 Iter 694] .normal loss: 0.9960	main/reg: 0.9960/0.0000
+[Outer epoch 1 Epoch 56 Iter 695] .normal loss: 0.4980	main/reg: 0.4980/0.0000
+[Outer epoch 1 Epoch 57 Iter 696] .normal loss: 0.1776	main/reg: 0.1776/0.0000
+[Outer epoch 1 Epoch 58 Iter 697] .normal loss: 0.5450	main/reg: 0.5450/0.0000
+[Outer epoch 1 Epoch 59 Iter 698] .normal loss: 0.7867	main/reg: 0.7867/0.0000
+[Outer epoch 1 Epoch 60 Iter 699] .normal loss: 1.2755	main/reg: 1.2755/0.0000
+[Outer epoch 1 Epoch 61 Iter 700] .normal loss: 0.6577	main/reg: 0.6577/0.0000
+[Outer epoch 1 Epoch 62 Iter 701] .normal loss: 0.8206	main/reg: 0.8206/0.0000
+[Outer epoch 1 Epoch 63 Iter 702] .normal loss: 9.0190	main/reg: 9.0190/0.0000
+[Outer epoch 1 Epoch 64 Iter 703] .normal loss: 0.9190	main/reg: 0.9190/0.0000
+[Outer epoch 1 Epoch 65 Iter 704] .normal loss: 0.4583	main/reg: 0.4583/0.0000
+[Outer epoch 1 Epoch 66 Iter 705] .normal loss: 1.6099	main/reg: 1.6099/0.0000
+[Outer epoch 1 Epoch 67 Iter 706] .normal loss: 0.2159	main/reg: 0.2159/0.0000
+[Outer epoch 1 Epoch 68 Iter 707] .normal loss: 1.1149	main/reg: 1.1149/0.0000
+[Outer epoch 1 Epoch 69 Iter 708] .normal loss: 0.6661	main/reg: 0.6661/0.0000
+[Outer epoch 1 Epoch 70 Iter 709] .normal loss: 0.6916	main/reg: 0.6916/0.0000
+[Outer epoch 1 Epoch 71 Iter 710] .normal loss: 0.2041	main/reg: 0.2041/0.0000
+[Outer epoch 1 Epoch 72 Iter 711] .normal loss: 1.2904	main/reg: 1.2904/0.0000
+[Outer epoch 1 Epoch 73 Iter 712] .normal loss: 1.2024	main/reg: 1.2024/0.0000
+[Outer epoch 1 Epoch 74 Iter 713] .normal loss: 0.5968	main/reg: 0.5968/0.0000
+[Outer epoch 1 Epoch 75 Iter 714] .normal loss: 0.2052	main/reg: 0.2052/0.0000
+[Outer epoch 1 Epoch 76 Iter 715] .normal loss: 0.3897	main/reg: 0.3897/0.0000
+[Outer epoch 1 Epoch 77 Iter 716] .normal loss: 1.0536	main/reg: 1.0536/0.0000
+[Outer epoch 1 Epoch 78 Iter 717] .normal loss: 0.0744	main/reg: 0.0744/0.0000
+[Outer epoch 1 Epoch 79 Iter 718] .normal loss: 1.2385	main/reg: 1.2385/0.0000
+[Outer epoch 1 Epoch 80 Iter 719] .normal loss: 1.0232	main/reg: 1.0232/0.0000
+[Outer epoch 1 Epoch 81 Iter 720] .normal loss: 1.3195	main/reg: 1.3195/0.0000
+[Outer epoch 1 Epoch 82 Iter 721] .normal loss: 0.1097	main/reg: 0.1097/0.0000
+[Outer epoch 1 Epoch 83 Iter 722] .normal loss: 1.1213	main/reg: 1.1213/0.0000
+[Outer epoch 1 Epoch 84 Iter 723] .normal loss: 0.2204	main/reg: 0.2204/0.0000
+[Outer epoch 1 Epoch 85 Iter 724] .normal loss: 0.5971	main/reg: 0.5971/0.0000
+[Outer epoch 1 Epoch 86 Iter 725] .normal loss: 0.0814	main/reg: 0.0814/0.0000
+[Outer epoch 1 Epoch 87 Iter 726] .normal loss: 0.1799	main/reg: 0.1799/0.0000
+[Outer epoch 1 Epoch 88 Iter 727] .normal loss: 2.0426	main/reg: 2.0426/0.0000
+[Outer epoch 1 Epoch 89 Iter 728] .normal loss: 0.1949	main/reg: 0.1949/0.0000
+[Outer epoch 1 Epoch 90 Iter 729] .normal loss: 0.1581	main/reg: 0.1581/0.0000
+[Outer epoch 1 Epoch 91 Iter 730] .normal loss: 1.0672	main/reg: 1.0672/0.0000
+[Outer epoch 1 Epoch 92 Iter 731] .normal loss: 0.6699	main/reg: 0.6699/0.0000
+[Outer epoch 1 Epoch 93 Iter 732] .normal loss: 0.2005	main/reg: 0.2005/0.0000
+[Outer epoch 1 Epoch 94 Iter 733] .normal loss: 1.1961	main/reg: 1.1961/0.0000
+[Outer epoch 1 Epoch 95 Iter 734] .normal loss: 0.7244	main/reg: 0.7244/0.0000
+[Outer epoch 1 Epoch 96 Iter 735] .normal loss: 0.0465	main/reg: 0.0465/0.0000
+[Outer epoch 1 Epoch 97 Iter 736] .normal loss: 0.0726	main/reg: 0.0726/0.0000
+[Outer epoch 1 Epoch 98 Iter 737] .normal loss: 0.0975	main/reg: 0.0975/0.0000
+[Outer epoch 1 Epoch 99 Iter 738] .normal loss: 0.8362	main/reg: 0.8362/0.0000
+[Outer epoch 1 Epoch 100 Iter 739] .normal loss: 0.8587	main/reg: 0.8587/0.0000
+[Outer epoch 1 Epoch 101 Iter 740] .normal loss: 0.0885	main/reg: 0.0885/0.0000
+[Outer epoch 1 Epoch 102 Iter 741] .normal loss: 0.1503	main/reg: 0.1503/0.0000
+[Outer epoch 1 Epoch 103 Iter 742] .normal loss: 0.2230	main/reg: 0.2230/0.0000
+[Outer epoch 1 Epoch 104 Iter 743] .normal loss: 0.9977	main/reg: 0.9977/0.0000
+[Outer epoch 1 Epoch 105 Iter 744] .normal loss: 0.1027	main/reg: 0.1027/0.0000
+[Outer epoch 1 Epoch 106 Iter 745] .normal loss: 0.0899	main/reg: 0.0899/0.0000
+[Outer epoch 1 Epoch 107 Iter 746] .normal loss: 1.1072	main/reg: 1.1072/0.0000
+[Outer epoch 1 Epoch 108 Iter 747] .normal loss: 1.2776	main/reg: 1.2776/0.0000
+[Outer epoch 1 Epoch 109 Iter 748] .normal loss: 0.1976	main/reg: 0.1976/0.0000
+[Outer epoch 1 Epoch 110 Iter 749] .normal loss: 0.1648	main/reg: 0.1648/0.0000
+[Outer epoch 1 Epoch 111 Iter 750] .normal loss: 0.7124	main/reg: 0.7124/0.0000
+[Outer epoch 1 Epoch 112 Iter 751] .normal loss: 0.1747	main/reg: 0.1747/0.0000
+[Outer epoch 1 Epoch 113 Iter 752] .normal loss: 1.1875	main/reg: 1.1875/0.0000
+[Outer epoch 1 Epoch 114 Iter 753] .normal loss: 0.9101	main/reg: 0.9101/0.0000
+[Outer epoch 1 Epoch 115 Iter 754] .normal loss: 0.0403	main/reg: 0.0403/0.0000
+[Outer epoch 1 Epoch 116 Iter 755] .normal loss: 2.2052	main/reg: 2.2052/0.0000
+[Outer epoch 1 Epoch 117 Iter 756] .normal loss: 0.7139	main/reg: 0.7139/0.0000
+[Outer epoch 1 Epoch 118 Iter 757] .normal loss: 0.2368	main/reg: 0.2368/0.0000
+[Outer epoch 1 Epoch 119 Iter 758] .normal loss: 0.9579	main/reg: 0.9579/0.0000
+[Outer epoch 1 Epoch 120 Iter 759] .normal loss: 0.5873	main/reg: 0.5873/0.0000
+[Outer epoch 1 Epoch 121 Iter 760] .normal loss: 0.8265	main/reg: 0.8265/0.0000
+[Outer epoch 1 Epoch 122 Iter 761] .normal loss: 0.1406	main/reg: 0.1406/0.0000
+[Outer epoch 1 Epoch 123 Iter 762] .normal loss: 1.1824	main/reg: 1.1824/0.0000
+[Outer epoch 1 Epoch 124 Iter 763] .normal loss: 1.1663	main/reg: 1.1663/0.0000
+[Outer epoch 1 Epoch 125 Iter 764] .normal loss: 0.7129	main/reg: 0.7129/0.0000
+[Outer epoch 1 Epoch 126 Iter 765] .normal loss: 0.3607	main/reg: 0.3607/0.0000
+[Outer epoch 1 Epoch 127 Iter 766] .normal loss: 1.6365	main/reg: 1.6365/0.0000
+[Outer epoch 1 Epoch 128 Iter 767] .normal loss: 0.1411	main/reg: 0.1411/0.0000
+r_preds_list
+	#:	308.0000
+	Avg:	35.3871
+	Std:	3.8887
+	Min:	25.8764
+	Max:	45.5078
+	Median:	35.0192
+	Mode:	33.5937
+Validation at self-play 5
+Take 5 out of 200 query graphs
+Saved target graph (OurGraph) to /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/target.pickle
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/99p_pqf.pickle
+
+
+--- Query 0/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_100.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 17 nodes 25 edges (avg degree 1.4706) 5 node labels
+num_solutions: 8; num_solutions_unique: 8
+best_size: 10 nodes at iter 13 (/10=1.0000); total iters: 25 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 11; # cond1 "calls": 11; # cond2 "calls": 0; # cond3 "calls": 11; # cond4 "calls": 11
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 156.831 msecs
+solved_or_not_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	1.0000
+	Avg:	8.0000
+	Std:	0.0000
+	Min:	8.0000
+	Max:	8.0000
+	Median:	8.0000
+	Mode:	8.0000
+num_unique_node_set_solutions_li
+	#:	1.0000
+	Avg:	8.0000
+	Std:	0.0000
+	Min:	8.0000
+	Max:	8.0000
+	Median:	8.0000
+	Mode:	8.0000
+best_size_li
+	#:	1.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	1.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	1.0000
+	Avg:	13.0000
+	Std:	0.0000
+	Min:	13.0000
+	Max:	13.0000
+	Median:	13.0000
+	Mode:	13.0000
+total_time_li(in seconds)
+	#:	1.0000
+	Avg:	0.1568
+	Std:	0.0000
+	Min:	0.1568
+	Max:	0.1568
+	Median:	0.1568
+	Mode:	0.1568
+total_iters_li
+	#:	1.0000
+	Avg:	25.0000
+	Std:	0.0000
+	Min:	25.0000
+	Max:	25.0000
+	Median:	25.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/95p_pqf.pickle
+
+
+--- Query 1/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_96.graph
+gq 10 nodes 10 edges (avg degree 1.0000) 5 node labels
+gt 36 nodes 58 edges (avg degree 1.6111) 5 node labels
+num_solutions: 2; num_solutions_unique: 2
+best_size: 10 nodes at iter 18 (/10=1.0000); total iters: 28 (smts.MCTS_iter=0)
+# NN calls: 6; # eps "calls": 15; # cond1 "calls": 15; # cond2 "calls": 0; # cond3 "calls": 15; # cond4 "calls": 15
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 154.792 msecs
+solved_or_not_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	2.0000
+	Avg:	5.0000
+	Std:	3.0000
+	Min:	2.0000
+	Max:	8.0000
+	Median:	5.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	2.0000
+	Avg:	5.0000
+	Std:	3.0000
+	Min:	2.0000
+	Max:	8.0000
+	Median:	5.0000
+	Mode:	2.0000
+best_size_li
+	#:	2.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	2.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	2.0000
+	Avg:	15.5000
+	Std:	2.5000
+	Min:	13.0000
+	Max:	18.0000
+	Median:	15.5000
+	Mode:	13.0000
+total_time_li(in seconds)
+	#:	2.0000
+	Avg:	0.1558
+	Std:	0.0010
+	Min:	0.1548
+	Max:	0.1568
+	Median:	0.1558
+	Mode:	0.1548
+total_iters_li
+	#:	2.0000
+	Avg:	26.5000
+	Std:	1.5000
+	Min:	25.0000
+	Max:	28.0000
+	Median:	26.5000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/96p_pqf.pickle
+
+
+--- Query 2/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_97.graph
+gq 10 nodes 9 edges (avg degree 0.9000) 5 node labels
+gt 58 nodes 148 edges (avg degree 2.5517) 5 node labels
+Iterations used up (1)! 200 iters
+num_solutions: 57; num_solutions_unique: 57
+best_size: 10 nodes at iter 9 (/10=1.0000); total iters: 200 (smts.MCTS_iter=0)
+# NN calls: 83; # eps "calls": 54; # cond1 "calls": 54; # cond2 "calls": 0; # cond3 "calls": 54; # cond4 "calls": 54
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 1.985 secs
+solved_or_not_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	3.0000
+	Avg:	22.3333
+	Std:	24.6351
+	Min:	2.0000
+	Max:	57.0000
+	Median:	8.0000
+	Mode:	2.0000
+num_unique_node_set_solutions_li
+	#:	3.0000
+	Avg:	22.3333
+	Std:	24.6351
+	Min:	2.0000
+	Max:	57.0000
+	Median:	8.0000
+	Mode:	2.0000
+best_size_li
+	#:	3.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	3.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+best_iter_if_sol_is_found_li
+	#:	3.0000
+	Avg:	13.3333
+	Std:	3.6818
+	Min:	9.0000
+	Max:	18.0000
+	Median:	13.0000
+	Mode:	9.0000
+total_time_li(in seconds)
+	#:	3.0000
+	Avg:	0.7654
+	Std:	0.8622
+	Min:	0.1548
+	Max:	1.9847
+	Median:	0.1568
+	Mode:	0.1548
+total_iters_li
+	#:	3.0000
+	Avg:	84.3333
+	Std:	81.7979
+	Min:	25.0000
+	Max:	200.0000
+	Median:	28.0000
+	Mode:	25.0000
+Loaded gp, gq, gt_filtered from /home/kli16/NSUBS/model/OurSGM/save/imsm-dblp_unlabeled_dense_64/97p_pqf.pickle
+
+
+--- Query 3/5: /home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_98.graph
+gq 10 nodes 12 edges (avg degree 1.2000) 3 node labels
+gt 40 nodes 79 edges (avg degree 1.9750) 3 node labels
+num_solutions: 1; num_solutions_unique: 1
+best_size: 10 nodes at iter 130 (/10=1.0000); total iters: 146 (smts.MCTS_iter=0)
+# NN calls: 38; # eps "calls": 38; # cond1 "calls": 38; # cond2 "calls": 0; # cond3 "calls": 38; # cond4 "calls": 38
+empty li MCTS_Qs
+empty li MCTS_Us
+empty li MCTS_QU(Q winning over U)
+time: 986.302 msecs
+solved_or_not_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000
+	Min:	1.0000
+	Max:	1.0000
+	Median:	1.0000
+	Mode:	1.0000
+num_solutions_li
+	#:	4.0000
+	Avg:	17.0000
+	Std:	23.2487
+	Min:	1.0000
+	Max:	57.0000
+	Median:	5.0000
+	Mode:	1.0000
+num_unique_node_set_solutions_li
+	#:	4.0000
+	Avg:	17.0000
+	Std:	23.2487
+	Min:	1.0000
+	Max:	57.0000
+	Median:	5.0000
+	Mode:	1.0000
+best_size_li
+	#:	4.0000
+	Avg:	10.0000
+	Std:	0.0000
+	Min:	10.0000
+	Max:	10.0000
+	Median:	10.0000
+	Mode:	10.0000
+best_ratio_li
+	#:	4.0000
+	Avg:	1.0000
+	Std:	0.0000

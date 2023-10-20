@@ -18,7 +18,7 @@ from PG_matching_imitationlearning import update_and_get_position#,
 from PG_structure import update_state
 from PG_matching_mannul_label import update_action_exp
 
-device = torch.device('cuda:0')
+device = torch.device()
 from PG_matching_ImitationLearning_concat import policy_network
 # from PG_matching_imitationlearning import  policy_network
 
