@@ -25,7 +25,7 @@ from PG_matching_ImitationLearning_concat import policy_network
 import os
 import shutil
 
-with open('./data/Email_testset_dens_0.2_n_8_num_50_10_05_matching.pkl','rb') as f:
+with open('./data/unEmail_testset_dens_0.2_n_8_num_50_10_05_matching.pkl','rb') as f:
     matchings = pickle.load(f)
 def update_action_exp(state,action):
     gid = state.g1.graph['gid']

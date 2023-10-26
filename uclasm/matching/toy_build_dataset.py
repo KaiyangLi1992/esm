@@ -15,13 +15,14 @@ from dataset import OurDataset
 from graph import RegularGraph
 from node_feat import encode_node_features_custom,encode_node_features
 import pickle
+import pickle
 
 # Global constants
 CSV_FILE_PATH = './tutorial/world_email.csv'
 TXT_FILE_PATH = "./tutorial/email-Eu-core-department-labels.txt"
 DENSITY_THRESHOLD = 0.2
 MAX_NODES_PER_SUBGRAPH = 8
-N = 100
+N = 50
 
 
 def shuttle_node_id(G):
@@ -138,9 +139,9 @@ def main():
             assert(g1.nodes[u]['type'] == g2.nodes[v]['type'])
 
     dataset_train, _ = encode_node_features_custom(dataset=our_dataset)
-    with open(f'./data/unEmail_testset_dens_{DENSITY_THRESHOLD}_n_{MAX_NODES_PER_SUBGRAPH}_num_{N}_10_05.pkl','wb') as f:
+    with open(f'./data/unEmail_testset_dens_{DENSITY_THRESHOLD}_n_{MAX_NODES_PER_SUBGRAPH}_num_{N}_10_23.pkl','wb') as f:
         pickle.dump(dataset_train,f)
-    with open(f'./data/unEmail_testset_dens_{DENSITY_THRESHOLD}_n_{MAX_NODES_PER_SUBGRAPH}_num_{N}_10_05_matching.pkl','wb') as f:
+    with open(f'./data/unEmail_testset_dens_{DENSITY_THRESHOLD}_n_{MAX_NODES_PER_SUBGRAPH}_num_{N}_10_23_matching.pkl','wb') as f:
         pickle.dump(matchings,f)
 
 

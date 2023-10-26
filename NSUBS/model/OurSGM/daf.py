@@ -4,7 +4,7 @@ import time
 import networkx as nx
 from collections import defaultdict, deque, OrderedDict
 from pprint import pprint
-from config import FLAGS
+from NSUBS.model.OurSGM.config import FLAGS
 from tqdm import tqdm
 from subprocess import Popen, PIPE
 from NSUBS.model.OurSGM.saver import saver

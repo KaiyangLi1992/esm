@@ -138,66 +138,22 @@ class State(object):
         min_index = np.unravel_index(np.argmin(result_matrix), result_matrix.shape)
         min_index_tuple = tuple(min_index)
 
-        # 计算每行不是inf的元素数量
-        # valid_counts = np.sum(result_matrix != np.inf, axis=1)
-
-        # 找出不全为inf且数量最小的行的索引
-        # valid_rows = np.where((valid_counts > 0) & (valid_counts == valid_counts[valid_counts > 0].min()))[0]
-
-        # 选择第一个满足条件的行
-        # chosen_row = valid_rows[0]
-
-        # col = np.argmin(result_matrix[chosen_row, :])
-
-        # min_index_tuple = (chosen_row, col)
-
     
         return min_index_tuple
     
-    def get_action_space(self):
+    def get_action_space(self,action_exp):
 
         matrix = self.candidates
-        exclude_indices = list(self.nn_mapping.keys())
-        if not exclude_indices:
-            filtered_matrix = matrix
-        else:
-            matrix[exclude_indices,:] = False
-            filtered_matrix = matrix
-        result_matrix =  np.where(matrix, self.globalcosts, np.inf)
+        row_index = action_exp[0]
+        row = matrix[row_index]
 
+        # 获取非零元素的列坐标
+        non_zero_columns = np.nonzero(row)[0]
 
-        # min_index = np.unravel_index(np.argmin(result_matrix), result_matrix.shape)
-        # min_index_tuple = tuple(min_index)
-
-        # 计算每行不是inf的元素数量
-        valid_counts = np.sum(result_matrix != np.inf, axis=1)
-
-        # 找出不全为inf且数量最小的行的索引
-        valid_rows = np.where((valid_counts > 0) & (valid_counts == valid_counts[valid_counts > 0].min()))[0]
-
-        # 选择第一个满足条件的行
-        chosen_row = valid_rows[0]
-
-#以下为我们的方法
-        col_indices = np.where(result_matrix[chosen_row] != np.inf)[0]
-
-# 格式化输出
-        result_list = [(chosen_row, col) for col in col_indices]
-
-        # 以下为baseline在选定的行中找到最小值的坐标
-        # col = np.argmin(result_matrix[chosen_row, :])
-
-        # min_index_tuple = (chosen_row, col)
-
-        # result_list = [min_index_tuple] 
-
-        # while len(result_list) < 500:
-        #     result_list.append((-1, -1))
-
-        # 如果列表长度超过500，随机选择500个元素构成新列表
-        if len(result_list) > 500:
-            result_list = random.sample(result_list, 500)
-        return result_list
+        # 转换为 (x, y) 格式的坐标
+        coordinates = [(row_index, col) for col in non_zero_columns]
+        
+        return coordinates
     
     def get_candidates(self):
         candidates =  (self.globalcosts < (self.threshold - 1e-8)).view(np.ndarray)

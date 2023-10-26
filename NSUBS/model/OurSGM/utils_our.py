@@ -1,6 +1,6 @@
 from NSUBS.model.OurSGM.solve_parent_dir import cur_folder
 from NSUBS.src.utils import sorted_nicely, get_ts, load
-from config import FLAGS
+from NSUBS.model.OurSGM.config import FLAGS
 from os.path import join, dirname
 import torch
 from collections import OrderedDict

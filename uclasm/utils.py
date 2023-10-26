@@ -113,7 +113,7 @@ import signal
 import numpy as np
 import scipy.sparse as sp
 import sys
-import ipdb
+# import ipdb
 
 test_module= 1
 def check_nx_version():
@@ -125,7 +125,7 @@ def check_nx_version():
 
 
 # Always check the version first.
-check_nx_version()
+# check_nx_version()
 
 
 def get_root_path():

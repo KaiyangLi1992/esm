@@ -13,7 +13,7 @@ import torch.nn.functional as F
 from torch.utils.tensorboard import SummaryWriter
 import os
 import shutil
-from PG_matching_imitationlearning import update_and_get_position#,
+from PG_matching_imitationlearning import update_and_get_position
 from PG_structure import update_state
 from PG_matching_mannul_label import update_action_exp
 
@@ -37,7 +37,7 @@ import os
 import shutil
 
 model = _create_model(47)
-with open('./data/unEmail_testset_dens_0.2_n_8_num_50_noise_1_10_18_matching.pkl','rb') as f:
+with open('./data/unEmail_testset_dens_0.2_n_8_num_100_10_05_matching.pkl','rb') as f:
     matchings = pickle.load(f)
 def update_action_exp(state,action):
     gid = state.g1.graph['gid']
@@ -78,10 +78,9 @@ def test_checkpoint_model(checkpoint_path, test_dataset):
     for episode in range(50):
         state_init = env.reset()
         update_state(state_init,env.threshold)
-        state_init.action_space = state_init.get_action_space()
-        stack = [state_init]
-        # action = get_init_action(state_init.action_space,state_init.globalcosts)
         action_exp = state_init.get_action_heuristic()
+        state_init.action_space = state_init.get_action_space(action_exp)
+        stack = [state_init]
         action_exp = update_action_exp(state_init,action_exp)
         new_state, state, reward, done = env.step(state_init, action_exp)
         stack.append(new_state)
@@ -95,9 +94,10 @@ def test_checkpoint_model(checkpoint_path, test_dataset):
 
             if np.any(np.all(state.candidates == False, axis=1)):
                 continue
-            state.action_space = state.get_action_space()
-            # step += 1
             action_exp = state.get_action_heuristic()
+            state.action_space = state.get_action_space(action_exp)
+            # step += 1
+            # action_exp = state.get_action_heuristic()
             action_exp = update_action_exp(state,action_exp)
             ind, state.action_space =  update_and_get_position(state.action_space,action_exp)
             # probs = policy(state,action,device).to(device)
@@ -143,19 +143,19 @@ def test_checkpoint_model(checkpoint_path, test_dataset):
     return sum(1 for x, y in zip(labels, predicts) if x == y)/len(labels)
     # return sum(steps)/len(steps)
 
-time = '2023-10-18_22-26-41'
+time = '2023-10-23_01-07-33'
 # 使用该函数测试多个检查点
-with open('./data/unEmail_testset_dens_0.2_n_8_num_50_noise_1_10_18.pkl','rb') as f:
+with open('./data/unEmail_testset_dens_0.2_n_8_num_100_10_05.pkl','rb') as f:
     test_dataset = pickle.load(f)
 # checkpoints = [f'/home/kli16/ISM_custom/esm/ckpt_ImitationLearning/{time}/checkpoint_{i}.pth' for i in
 #  range(18000, 50000, 1000)]
 try:
-    clear_directory(f'/home/kli16/ISM_custom/esm_NSUBS/esm/runs_test_acc/{time}/')
+    clear_directory(f'/home/kli16/ISM_custom/esm_NSUBS/esm/plt_test_imitationlearning/{time}/')
 except:
     pass
-writer = SummaryWriter(f'/home/kli16/ISM_custom/esm_NSUBS/esm/runs_test_acc/{time}/')
-for i in range(0, 50000, 500):
-    checkpoint = f'/home/kli16/ISM_custom/esm_NSUBS/esm/ckpt_ImitationLearning/{time}/checkpoint_{i}.pth'
+writer = SummaryWriter(f'/home/kli16/ISM_custom/esm_NSUBS/esm/plt_test_imitationlearning/{time}/')
+for i in range(0, 100000, 5000):
+    checkpoint = f'/home/kli16/ISM_custom/esm_NSUBS/esm/ckpt_imitationlearning/{time}/checkpoint_{i}.pth'
     average_acc = test_checkpoint_model(checkpoint, test_dataset)
     writer.add_scalar('ACC', average_acc, i)
     print(checkpoint)

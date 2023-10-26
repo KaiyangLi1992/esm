@@ -173,14 +173,9 @@ class environment:
                           g2_reverse=state.g2_reverse,
                           ori_candidates=state.ori_candidates)
         reward = get_reward(action[0],action[1],state)
+        update_state(new_state,self.threshold)
         if len(nn_mapping) == len(state.g1.nodes):
-            update_state(new_state,self.threshold)
-            cost = new_state.globalcosts.min()
-            if cost < self.threshold:
-                self.threshold = cost
-                return new_state,state,reward,True
-            else: 
-                return new_state,state,reward,False
+            return new_state,state,reward,True
         else:
             return new_state,state,reward,False
 

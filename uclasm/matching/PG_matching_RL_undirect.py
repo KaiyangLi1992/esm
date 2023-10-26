@@ -43,9 +43,9 @@ timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 
 
  
-dataset_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_noise_5_10_18.pkl'   # 获取文件名
-matching_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_noise_5_10_18_matching.pkl'   # 获取文件名
-gpu_id = 7     # 获取GPU编号
+dataset_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05.pkl'   # 获取文件名
+matching_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05_matching.pkl'   # 获取文件名
+# gpu_id = 7     # 获取GPU编号
 # device = torch.device(f'cuda:{gpu_id}')
 dim = 47
 
@@ -184,20 +184,20 @@ def main():
     device = torch.device(FLAGS.device)
     print(f"Using device: {device}")
     model = _create_model(dim).to(device)
-    checkpoint_path = '/home/kli16/ISM_custom/esm_NSUBS/esm/ckpt_ImitationLearning/2023-10-18_22-28-17/checkpoint_47500.pth'
+    checkpoint_path = '/home/kli16/ISM_custom/esm_NSUBS/esm/ckpt_imitationlearning/2023-10-23_01-00-36/checkpoint_22000.pth'
     checkpoint = torch.load(checkpoint_path)
     model.load_state_dict(checkpoint['model_state_dict'])
-    writer = SummaryWriter(f'runs/RL/{timestamp}')
+    writer = SummaryWriter(f'plt_RL/{timestamp}')
 
     env  = environment(dataset)
 
     # policy = policy_network().to(device) 
-    optimizer = optim.Adam(model.parameters(), lr=1e-3)
+    optimizer = optim.Adam(model.parameters(), lr=1e-4)
     rewards = []
     # writer = SummaryWriter(f'runs/RL/{timestamp}')
     # checkpoint_interval = 100
     # loss_function = nn.CrossEntropyLoss()
-    for episode in range(10000):
+    for episode in range(100000):
         rewards = 0
         state_init = env.reset()
         update_state(state_init,env.threshold)
@@ -217,14 +217,15 @@ def main():
         saved_log_probs = []
         while stack:
             state = stack.pop()
-            update_state(state,env.threshold)
+            # update_state(state,env.threshold)
             if np.any(np.all(state.candidates == False, axis=1)):
                 continue
 
 
-            state.action_space = state.get_action_space()
+            
             
             action_exp = state.get_action_heuristic()
+            state.action_space = state.get_action_space(action_exp)
             action_exp = update_action_exp(state,action_exp)
             ind,state.action_space = update_and_get_position(state.action_space, action_exp)
           

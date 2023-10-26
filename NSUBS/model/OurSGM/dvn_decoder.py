@@ -18,7 +18,7 @@ def create_decoder_policy():
     assert FLAGS.dvn_config['decoder_policy']['type'] in ['GLSearch', 'bilinear_custom', 'bilinear', 'concat']
     if FLAGS.dvn_config['decoder_policy']['type'] == 'bilinear_custom':
         mlp_in_dims = FLAGS.dvn_config['decoder_policy']['similarity_decoder']['mlp_in_dims']
-        mlp_out_dims = FLAGS.dvn_config['decoder_policy']['similarity_decoder']['mlp_out_dims']
+        mlp_out_dims = FLAGS.dvn_config['decoder_policy']['similarity_decoder']['mlp_out_dims'].copy()
         g_emb_dim = FLAGS.dvn_config['decoder_policy']['similarity_decoder']['g_emb']
         mlp_out_dims[0] += g_emb_dim
         mlp_in = MLP(*get_MLP_args(mlp_in_dims))

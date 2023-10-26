@@ -1,5 +1,5 @@
 """Provide a function for bounding global assignment costs from local costs."""
-from laptools import clap
+# from laptools import clap
 import numpy as np
 
 

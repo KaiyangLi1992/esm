@@ -1,0 +1,2577 @@
+main_func                  : here
+filter                     : DPiso
+order                      : GQL
+engine                     : LFTJ
+model                      : our
+do_train                   : True
+do_validation              : False
+do_test                    : False
+num_cs_refinements         : 3
+search_constraints         : isomorphic
+thresh_throwaway_qsa       : 1e-08
+reward_method              : exp_depth
+reward_method_exp_coeff    : 100
+reward_method_normalize    : True
+debug_embeddings_every_k_iters : None
+loss_type                  : mse_bounded
+regularization             : 0.05
+add_gnd_truth              : add_gnd_truth_at_start
+mark_best_as_true          : True
+eps_decay_config           : {'start_eps': 0.0, 'end_eps': 0.0, 'num_iters': 5}
+train_dataset              : imsm-dblp_unlabeled
+val_dataset                : imsm-dblp_unlabeled
+train_sample_size_li       : [None]
+val_sample_size_li         : [None]
+train_subgroup             : list
+train_subgroup_list        : ['dense_64']
+train_path_indices         : [[0, 5], [0, 5], [0, 5], [0, 5], [0, 50], [0, 50], [0, 50]]
+val_subgroup               : dense_64
+val_subgroup_list          : None
+val_path_indices           : [95, 100]
+pretrain                   : False
+imitation                  : False
+show_precision             : False
+buffer_size                : 128
+batch_size                 : 1
+print_buffer_stats         : True
+prune_trivial_rewards      : False
+print_rpreds_stats         : True
+glsearch                   : False
+num_epochs_per_learn       : 128
+num_outer_epoch            : 64
+skip_data_leakage          : False
+load_model                 : None
+append_ldf                 : True
+val_every_games            : 1
+save_every                 : 1000
+matching_order             : nn
+use_is_early_pruning       : False
+MCTS_train                 : True
+MCTS_test                  : False
+MCTS_printQU               : True
+MCTS_num_iters_max         : 120
+MCTS_num_iters_per_action  : 10.0
+MCTS_temp                  : 5.0
+MCTS_temp_inner            : 1.0
+MCTS_cpuct                 : 10.0
+MCTS_eps_in_U              : 1e-08
+MCTS_backup_to_real_root   : True
+d_enc                      : 512
+encoder_type               : mlp
+use_NN_for_u_score         : False
+dvn_config                 : {'preencoder': {'type': 'concat+mlp'}, 'encoder': {'type': 'GNNConsensusEncoder', 'gnn_type': 'OurGMNv2', 'gnn_subtype': 'gatv2', 'hidden_gnn_dims': [512, 512, 512, 512], 'shared_gnn_weights': False, 'shared_encoder': False, 'q2t': True, 't2q': True, 'consensus_cfg_li': None}, 'decoder_dvn': {'type': 'Query', 'simple_decoder': {'mlp_att': [512, 8, 1], 'mlp_val': [512, 512], 'mlp_final': [512, 32, 16, 8, 4, 1]}}, 'decoder_policy': {'type': 'bilinear_custom', 'similarity_decoder': {'mlp_in_dims': [512, 512], 'mlp_out_dims': [1024, 32, 16, 8, 1], 'g_emb': 512}}}
+cache_embeddings           : True
+k_sample_cross_graph       : None
+regret_iters_train         : 1
+regret_iters_test          : 1
+use_node_mask_diameter     : False
+num_iters_threshold        : -1
+timeout                    : 300
+time_analysis              : False
+learning_timeout           : 120
+timeout_val                : 120
+num_iters_threshold_val    : 200
+plot_tree                  : False
+plot_solution              : False
+plot_logs                  : False
+save_search                : False
+device                     : cuda:1
+fix_randomness             : True
+random_seed                : 123
+skip_if_action_space_less_than : None
+apply_norm                 : True
+user                       : kli16
+hostname                   : vector.cs.gsu.edu
+ts                         : 2023-10-20T12-36-31.082948
+
+python /home/kli16/ISM_custom/esm_NSUBS/esm/NSUBS/model/OurSGM/main.py --MCTS_backup_to_real_root=True  --MCTS_cpuct=10.0  --MCTS_eps_in_U=1e-08  --MCTS_num_iters_max=120  --MCTS_num_iters_per_action=10.0  --MCTS_printQU=True  --MCTS_temp=5.0  --MCTS_temp_inner=1.0  --MCTS_test=False  --MCTS_train=True  --add_gnd_truth=add_gnd_truth_at_start  --append_ldf=True  --apply_norm=True  --batch_size=1  --buffer_size=128  --cache_embeddings=True  --d_enc=512  --debug_embeddings_every_k_iters=None  --device=cuda:1  --do_test=False  --do_train=True  --do_validation=False  --dvn_config={'preencoder': {'type': 'concat+mlp'}, 'encoder': {'type': 'GNNConsensusEncoder', 'gnn_type': 'OurGMNv2', 'gnn_subtype': 'gatv2', 'hidden_gnn_dims': [512, 512, 512, 512], 'shared_gnn_weights': False, 'shared_encoder': False, 'q2t': True, 't2q': True, 'consensus_cfg_li': None}, 'decoder_dvn': {'type': 'Query', 'simple_decoder': {'mlp_att': [512, 8, 1], 'mlp_val': [512, 512], 'mlp_final': [512, 32, 16, 8, 4, 1]}}, 'decoder_policy': {'type': 'bilinear_custom', 'similarity_decoder': {'mlp_in_dims': [512, 512], 'mlp_out_dims': [1024, 32, 16, 8, 1], 'g_emb': 512}}}  --encoder_type=mlp  --engine=LFTJ  --eps_decay_config={'start_eps': 0.0, 'end_eps': 0.0, 'num_iters': 5}  --filter=DPiso  --fix_randomness=True  --glsearch=False  --hostname=vector.cs.gsu.edu  --imitation=False  --k_sample_cross_graph=None  --learning_timeout=120  --load_model=None  --loss_type=mse_bounded  --main_func=here  --mark_best_as_true=True  --matching_order=nn  --model=our  --num_cs_refinements=3  --num_epochs_per_learn=128  --num_iters_threshold=-1  --num_iters_threshold_val=200  --num_outer_epoch=64  --order=GQL  --plot_logs=False  --plot_solution=False  --plot_tree=False  --pretrain=False  --print_buffer_stats=True  --print_rpreds_stats=True  --prune_trivial_rewards=False  --random_seed=123  --regret_iters_test=1  --regret_iters_train=1  --regularization=0.05  --reward_method=exp_depth  --reward_method_exp_coeff=100  --reward_method_normalize=True  --save_every=1000  --save_search=False  --search_constraints=isomorphic  --show_precision=False  --skip_data_leakage=False  --skip_if_action_space_less_than=None  --thresh_throwaway_qsa=1e-08  --time_analysis=False  --timeout=300  --timeout_val=120  --train_dataset=imsm-dblp_unlabeled  --train_path_indices=[[0, 5], [0, 5], [0, 5], [0, 5], [0, 50], [0, 50], [0, 50]]  --train_sample_size_li=[None]  --train_subgroup=list  --train_subgroup_list=['dense_64']  --use_NN_for_u_score=False  --use_is_early_pruning=False  --use_node_mask_diameter=False  --user=kli16  --val_dataset=imsm-dblp_unlabeled  --val_every_games=1  --val_path_indices=[95, 100]  --val_sample_size_li=[None]  --val_subgroup=dense_64  --val_subgroup_list=None
+
+model:
+DVN_wrapper(
+  (dvn): DVN(
+    (pre_encoder): PreEncoderConcatSelectedOneHotAndMLP(
+      (mlp_q): Linear(in_features=49, out_features=512, bias=True)
+      (mlp_t): Linear(in_features=49, out_features=512, bias=True)
+    )
+    (encoder): GNNConsensusEncoder(
+      (gnn_wrapper_li): ModuleList(
+        (0): GNNWrapper(
+          (gnnm): OurGMNCustomWrapper(
+            (gmn_inter): OurGMNCustomInter(
+              (mlp_att_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_att_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1024, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1536, out_features=512, bias=True)
+                )
+              )
+            )
+            (gmn_intra): OurGMNCustomIntra(
+              (gnn_t): GATv2Conv(512, 512, heads=1)
+              (gnn_q): GATv2Conv(512, 512, heads=1)
+            )
+          )
+        )
+        (1): GNNWrapper(
+          (gnnm): OurGMNCustomWrapper(
+            (gmn_inter): OurGMNCustomInter(
+              (mlp_att_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_att_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1024, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1536, out_features=512, bias=True)
+                )
+              )
+            )
+            (gmn_intra): OurGMNCustomIntra(
+              (gnn_t): GATv2Conv(512, 512, heads=1)
+              (gnn_q): GATv2Conv(512, 512, heads=1)
+            )
+          )
+        )
+        (2): GNNWrapper(
+          (gnnm): OurGMNCustomWrapper(
+            (gmn_inter): OurGMNCustomInter(
+              (mlp_att_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_att_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1024, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1536, out_features=512, bias=True)
+                )
+              )
+            )
+            (gmn_intra): OurGMNCustomIntra(
+              (gnn_t): GATv2Conv(512, 512, heads=1)
+              (gnn_q): GATv2Conv(512, 512, heads=1)
+            )
+          )
+        )
+        (3): GNNWrapper(
+          (gnnm): OurGMNCustomWrapper(
+            (gmn_inter): OurGMNCustomInter(
+              (mlp_att_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_att_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1024, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1536, out_features=512, bias=True)
+                )
+              )
+            )
+            (gmn_intra): OurGMNCustomIntra(
+              (gnn_t): GATv2Conv(512, 512, heads=1)
+              (gnn_q): GATv2Conv(512, 512, heads=1)
+            )
+          )
+        )
+      )
+      (jk): JumpingKnowledge(max)
+    )
+    (decoder_policy): BilinearDecoder(
+      (encoder): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (decoder): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=1536, out_features=32, bias=True)
+          (1): Linear(in_features=32, out_features=16, bias=True)
+          (2): Linear(in_features=16, out_features=8, bias=True)
+          (3): Linear(in_features=8, out_features=1, bias=True)
+        )
+      )
+    )
+    (decoder_value): QueryDecoder(
+      (mlp_att): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=8, bias=True)
+          (1): Linear(in_features=8, out_features=1, bias=True)
+        )
+      )
+      (mlp_val): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_final): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=32, bias=True)
+          (1): Linear(in_features=32, out_features=16, bias=True)
+          (2): Linear(in_features=16, out_features=8, bias=True)
+          (3): Linear(in_features=8, out_features=4, bias=True)
+          (4): Linear(in_features=4, out_features=1, bias=True)
+        )
+      )
+      (norm): NormalizeAttention()
+    )
+    (norm_li): ModuleList(
+      (0): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+    )
+  )
+  (mlp_final): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=64, out_features=32, bias=True)
+      (1): Linear(in_features=32, out_features=16, bias=True)
+      (2): Linear(in_features=16, out_features=8, bias=True)
+      (3): Linear(in_features=8, out_features=4, bias=True)
+      (4): Linear(in_features=4, out_features=1, bias=True)
+    )
+  )
+)
+
+
+Details:
+DVN_wrapper(
+  (dvn): DVN(
+    (pre_encoder): PreEncoderConcatSelectedOneHotAndMLP(
+      (mlp_q): Linear(in_features=49, out_features=512, bias=True)
+      (mlp_t): Linear(in_features=49, out_features=512, bias=True)
+    )
+    (encoder): GNNConsensusEncoder(
+      (gnn_wrapper_li): ModuleList(
+        (0): GNNWrapper(
+          (gnnm): OurGMNCustomWrapper(
+            (gmn_inter): OurGMNCustomInter(
+              (mlp_att_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_att_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1024, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1536, out_features=512, bias=True)
+                )
+              )
+            )
+            (gmn_intra): OurGMNCustomIntra(
+              (gnn_t): GATv2Conv(512, 512, heads=1)
+              (gnn_q): GATv2Conv(512, 512, heads=1)
+            )
+          )
+        )
+        (1): GNNWrapper(
+          (gnnm): OurGMNCustomWrapper(
+            (gmn_inter): OurGMNCustomInter(
+              (mlp_att_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_att_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1024, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1536, out_features=512, bias=True)
+                )
+              )
+            )
+            (gmn_intra): OurGMNCustomIntra(
+              (gnn_t): GATv2Conv(512, 512, heads=1)
+              (gnn_q): GATv2Conv(512, 512, heads=1)
+            )
+          )
+        )
+        (2): GNNWrapper(
+          (gnnm): OurGMNCustomWrapper(
+            (gmn_inter): OurGMNCustomInter(
+              (mlp_att_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_att_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1024, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1536, out_features=512, bias=True)
+                )
+              )
+            )
+            (gmn_intra): OurGMNCustomIntra(
+              (gnn_t): GATv2Conv(512, 512, heads=1)
+              (gnn_q): GATv2Conv(512, 512, heads=1)
+            )
+          )
+        )
+        (3): GNNWrapper(
+          (gnnm): OurGMNCustomWrapper(
+            (gmn_inter): OurGMNCustomInter(
+              (mlp_att_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_att_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_val_cross_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=512, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_q): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1024, out_features=512, bias=True)
+                )
+              )
+              (mlp_merge_t): MLP(
+                (activation): ELU(alpha=1.0)
+                (layers): ModuleList(
+                  (0): Linear(in_features=1536, out_features=512, bias=True)
+                )
+              )
+            )
+            (gmn_intra): OurGMNCustomIntra(
+              (gnn_t): GATv2Conv(512, 512, heads=1)
+              (gnn_q): GATv2Conv(512, 512, heads=1)
+            )
+          )
+        )
+      )
+      (jk): JumpingKnowledge(max)
+    )
+    (decoder_policy): BilinearDecoder(
+      (encoder): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (decoder): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=1536, out_features=32, bias=True)
+          (1): Linear(in_features=32, out_features=16, bias=True)
+          (2): Linear(in_features=16, out_features=8, bias=True)
+          (3): Linear(in_features=8, out_features=1, bias=True)
+        )
+      )
+    )
+    (decoder_value): QueryDecoder(
+      (mlp_att): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=8, bias=True)
+          (1): Linear(in_features=8, out_features=1, bias=True)
+        )
+      )
+      (mlp_val): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_final): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=32, bias=True)
+          (1): Linear(in_features=32, out_features=16, bias=True)
+          (2): Linear(in_features=16, out_features=8, bias=True)
+          (3): Linear(in_features=8, out_features=4, bias=True)
+          (4): Linear(in_features=4, out_features=1, bias=True)
+        )
+      )
+      (norm): NormalizeAttention()
+    )
+    (norm_li): ModuleList(
+      (0): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+    )
+  )
+  (mlp_final): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=64, out_features=32, bias=True)
+      (1): Linear(in_features=32, out_features=16, bias=True)
+      (2): Linear(in_features=16, out_features=8, bias=True)
+      (3): Linear(in_features=8, out_features=4, bias=True)
+      (4): Linear(in_features=4, out_features=1, bias=True)
+    )
+  )
+)
+
+dvn
+DVN(
+  (pre_encoder): PreEncoderConcatSelectedOneHotAndMLP(
+    (mlp_q): Linear(in_features=49, out_features=512, bias=True)
+    (mlp_t): Linear(in_features=49, out_features=512, bias=True)
+  )
+  (encoder): GNNConsensusEncoder(
+    (gnn_wrapper_li): ModuleList(
+      (0): GNNWrapper(
+        (gnnm): OurGMNCustomWrapper(
+          (gmn_inter): OurGMNCustomInter(
+            (mlp_att_cross_q): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_att_cross_t): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_val_cross_q): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_val_cross_t): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_merge_q): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=1024, out_features=512, bias=True)
+              )
+            )
+            (mlp_merge_t): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=1536, out_features=512, bias=True)
+              )
+            )
+          )
+          (gmn_intra): OurGMNCustomIntra(
+            (gnn_t): GATv2Conv(512, 512, heads=1)
+            (gnn_q): GATv2Conv(512, 512, heads=1)
+          )
+        )
+      )
+      (1): GNNWrapper(
+        (gnnm): OurGMNCustomWrapper(
+          (gmn_inter): OurGMNCustomInter(
+            (mlp_att_cross_q): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_att_cross_t): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_val_cross_q): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_val_cross_t): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_merge_q): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=1024, out_features=512, bias=True)
+              )
+            )
+            (mlp_merge_t): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=1536, out_features=512, bias=True)
+              )
+            )
+          )
+          (gmn_intra): OurGMNCustomIntra(
+            (gnn_t): GATv2Conv(512, 512, heads=1)
+            (gnn_q): GATv2Conv(512, 512, heads=1)
+          )
+        )
+      )
+      (2): GNNWrapper(
+        (gnnm): OurGMNCustomWrapper(
+          (gmn_inter): OurGMNCustomInter(
+            (mlp_att_cross_q): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_att_cross_t): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_val_cross_q): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_val_cross_t): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_merge_q): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=1024, out_features=512, bias=True)
+              )
+            )
+            (mlp_merge_t): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=1536, out_features=512, bias=True)
+              )
+            )
+          )
+          (gmn_intra): OurGMNCustomIntra(
+            (gnn_t): GATv2Conv(512, 512, heads=1)
+            (gnn_q): GATv2Conv(512, 512, heads=1)
+          )
+        )
+      )
+      (3): GNNWrapper(
+        (gnnm): OurGMNCustomWrapper(
+          (gmn_inter): OurGMNCustomInter(
+            (mlp_att_cross_q): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_att_cross_t): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_val_cross_q): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_val_cross_t): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=512, out_features=512, bias=True)
+              )
+            )
+            (mlp_merge_q): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=1024, out_features=512, bias=True)
+              )
+            )
+            (mlp_merge_t): MLP(
+              (activation): ELU(alpha=1.0)
+              (layers): ModuleList(
+                (0): Linear(in_features=1536, out_features=512, bias=True)
+              )
+            )
+          )
+          (gmn_intra): OurGMNCustomIntra(
+            (gnn_t): GATv2Conv(512, 512, heads=1)
+            (gnn_q): GATv2Conv(512, 512, heads=1)
+          )
+        )
+      )
+    )
+    (jk): JumpingKnowledge(max)
+  )
+  (decoder_policy): BilinearDecoder(
+    (encoder): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (decoder): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=1536, out_features=32, bias=True)
+        (1): Linear(in_features=32, out_features=16, bias=True)
+        (2): Linear(in_features=16, out_features=8, bias=True)
+        (3): Linear(in_features=8, out_features=1, bias=True)
+      )
+    )
+  )
+  (decoder_value): QueryDecoder(
+    (mlp_att): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=8, bias=True)
+        (1): Linear(in_features=8, out_features=1, bias=True)
+      )
+    )
+    (mlp_val): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_final): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=32, bias=True)
+        (1): Linear(in_features=32, out_features=16, bias=True)
+        (2): Linear(in_features=16, out_features=8, bias=True)
+        (3): Linear(in_features=8, out_features=4, bias=True)
+        (4): Linear(in_features=4, out_features=1, bias=True)
+      )
+    )
+    (norm): NormalizeAttention()
+  )
+  (norm_li): ModuleList(
+    (0): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+    (1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+    (2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+    (3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+  )
+)
+
+dvn.pre_encoder
+PreEncoderConcatSelectedOneHotAndMLP(
+  (mlp_q): Linear(in_features=49, out_features=512, bias=True)
+  (mlp_t): Linear(in_features=49, out_features=512, bias=True)
+)
+
+dvn.pre_encoder.mlp_q
+Linear(in_features=49, out_features=512, bias=True)
+
+dvn.pre_encoder.mlp_t
+Linear(in_features=49, out_features=512, bias=True)
+
+dvn.encoder
+GNNConsensusEncoder(
+  (gnn_wrapper_li): ModuleList(
+    (0): GNNWrapper(
+      (gnnm): OurGMNCustomWrapper(
+        (gmn_inter): OurGMNCustomInter(
+          (mlp_att_cross_q): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_att_cross_t): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_val_cross_q): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_val_cross_t): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_merge_q): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=1024, out_features=512, bias=True)
+            )
+          )
+          (mlp_merge_t): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=1536, out_features=512, bias=True)
+            )
+          )
+        )
+        (gmn_intra): OurGMNCustomIntra(
+          (gnn_t): GATv2Conv(512, 512, heads=1)
+          (gnn_q): GATv2Conv(512, 512, heads=1)
+        )
+      )
+    )
+    (1): GNNWrapper(
+      (gnnm): OurGMNCustomWrapper(
+        (gmn_inter): OurGMNCustomInter(
+          (mlp_att_cross_q): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_att_cross_t): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_val_cross_q): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_val_cross_t): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_merge_q): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=1024, out_features=512, bias=True)
+            )
+          )
+          (mlp_merge_t): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=1536, out_features=512, bias=True)
+            )
+          )
+        )
+        (gmn_intra): OurGMNCustomIntra(
+          (gnn_t): GATv2Conv(512, 512, heads=1)
+          (gnn_q): GATv2Conv(512, 512, heads=1)
+        )
+      )
+    )
+    (2): GNNWrapper(
+      (gnnm): OurGMNCustomWrapper(
+        (gmn_inter): OurGMNCustomInter(
+          (mlp_att_cross_q): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_att_cross_t): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_val_cross_q): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_val_cross_t): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_merge_q): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=1024, out_features=512, bias=True)
+            )
+          )
+          (mlp_merge_t): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=1536, out_features=512, bias=True)
+            )
+          )
+        )
+        (gmn_intra): OurGMNCustomIntra(
+          (gnn_t): GATv2Conv(512, 512, heads=1)
+          (gnn_q): GATv2Conv(512, 512, heads=1)
+        )
+      )
+    )
+    (3): GNNWrapper(
+      (gnnm): OurGMNCustomWrapper(
+        (gmn_inter): OurGMNCustomInter(
+          (mlp_att_cross_q): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_att_cross_t): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_val_cross_q): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_val_cross_t): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=512, out_features=512, bias=True)
+            )
+          )
+          (mlp_merge_q): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=1024, out_features=512, bias=True)
+            )
+          )
+          (mlp_merge_t): MLP(
+            (activation): ELU(alpha=1.0)
+            (layers): ModuleList(
+              (0): Linear(in_features=1536, out_features=512, bias=True)
+            )
+          )
+        )
+        (gmn_intra): OurGMNCustomIntra(
+          (gnn_t): GATv2Conv(512, 512, heads=1)
+          (gnn_q): GATv2Conv(512, 512, heads=1)
+        )
+      )
+    )
+  )
+  (jk): JumpingKnowledge(max)
+)
+
+dvn.encoder.gnn_wrapper_li
+ModuleList(
+  (0): GNNWrapper(
+    (gnnm): OurGMNCustomWrapper(
+      (gmn_inter): OurGMNCustomInter(
+        (mlp_att_cross_q): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_att_cross_t): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_val_cross_q): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_val_cross_t): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_merge_q): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=1024, out_features=512, bias=True)
+          )
+        )
+        (mlp_merge_t): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=1536, out_features=512, bias=True)
+          )
+        )
+      )
+      (gmn_intra): OurGMNCustomIntra(
+        (gnn_t): GATv2Conv(512, 512, heads=1)
+        (gnn_q): GATv2Conv(512, 512, heads=1)
+      )
+    )
+  )
+  (1): GNNWrapper(
+    (gnnm): OurGMNCustomWrapper(
+      (gmn_inter): OurGMNCustomInter(
+        (mlp_att_cross_q): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_att_cross_t): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_val_cross_q): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_val_cross_t): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_merge_q): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=1024, out_features=512, bias=True)
+          )
+        )
+        (mlp_merge_t): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=1536, out_features=512, bias=True)
+          )
+        )
+      )
+      (gmn_intra): OurGMNCustomIntra(
+        (gnn_t): GATv2Conv(512, 512, heads=1)
+        (gnn_q): GATv2Conv(512, 512, heads=1)
+      )
+    )
+  )
+  (2): GNNWrapper(
+    (gnnm): OurGMNCustomWrapper(
+      (gmn_inter): OurGMNCustomInter(
+        (mlp_att_cross_q): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_att_cross_t): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_val_cross_q): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_val_cross_t): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_merge_q): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=1024, out_features=512, bias=True)
+          )
+        )
+        (mlp_merge_t): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=1536, out_features=512, bias=True)
+          )
+        )
+      )
+      (gmn_intra): OurGMNCustomIntra(
+        (gnn_t): GATv2Conv(512, 512, heads=1)
+        (gnn_q): GATv2Conv(512, 512, heads=1)
+      )
+    )
+  )
+  (3): GNNWrapper(
+    (gnnm): OurGMNCustomWrapper(
+      (gmn_inter): OurGMNCustomInter(
+        (mlp_att_cross_q): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_att_cross_t): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_val_cross_q): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_val_cross_t): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+          )
+        )
+        (mlp_merge_q): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=1024, out_features=512, bias=True)
+          )
+        )
+        (mlp_merge_t): MLP(
+          (activation): ELU(alpha=1.0)
+          (layers): ModuleList(
+            (0): Linear(in_features=1536, out_features=512, bias=True)
+          )
+        )
+      )
+      (gmn_intra): OurGMNCustomIntra(
+        (gnn_t): GATv2Conv(512, 512, heads=1)
+        (gnn_q): GATv2Conv(512, 512, heads=1)
+      )
+    )
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.0
+GNNWrapper(
+  (gnnm): OurGMNCustomWrapper(
+    (gmn_inter): OurGMNCustomInter(
+      (mlp_att_cross_q): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_att_cross_t): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_val_cross_q): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_val_cross_t): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_merge_q): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=1024, out_features=512, bias=True)
+        )
+      )
+      (mlp_merge_t): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=1536, out_features=512, bias=True)
+        )
+      )
+    )
+    (gmn_intra): OurGMNCustomIntra(
+      (gnn_t): GATv2Conv(512, 512, heads=1)
+      (gnn_q): GATv2Conv(512, 512, heads=1)
+    )
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm
+OurGMNCustomWrapper(
+  (gmn_inter): OurGMNCustomInter(
+    (mlp_att_cross_q): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_att_cross_t): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_val_cross_q): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_val_cross_t): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_merge_q): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=1024, out_features=512, bias=True)
+      )
+    )
+    (mlp_merge_t): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=1536, out_features=512, bias=True)
+      )
+    )
+  )
+  (gmn_intra): OurGMNCustomIntra(
+    (gnn_t): GATv2Conv(512, 512, heads=1)
+    (gnn_q): GATv2Conv(512, 512, heads=1)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter
+OurGMNCustomInter(
+  (mlp_att_cross_q): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_att_cross_t): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_val_cross_q): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_val_cross_t): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_merge_q): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=1024, out_features=512, bias=True)
+    )
+  )
+  (mlp_merge_t): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=1536, out_features=512, bias=True)
+    )
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_att_cross_q
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_att_cross_q.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_att_cross_q.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_att_cross_q.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_att_cross_t
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_att_cross_t.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_att_cross_t.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_att_cross_t.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_val_cross_q
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_val_cross_q.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_val_cross_q.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_val_cross_q.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_val_cross_t
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_val_cross_t.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_val_cross_t.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_val_cross_t.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_merge_q
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=1024, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_merge_q.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_merge_q.layers
+ModuleList(
+  (0): Linear(in_features=1024, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_merge_q.layers.0
+Linear(in_features=1024, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_merge_t
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=1536, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_merge_t.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_merge_t.layers
+ModuleList(
+  (0): Linear(in_features=1536, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_inter.mlp_merge_t.layers.0
+Linear(in_features=1536, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_intra
+OurGMNCustomIntra(
+  (gnn_t): GATv2Conv(512, 512, heads=1)
+  (gnn_q): GATv2Conv(512, 512, heads=1)
+)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_intra.gnn_t
+GATv2Conv(512, 512, heads=1)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_intra.gnn_t.lin_l
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_intra.gnn_t.lin_r
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_intra.gnn_q
+GATv2Conv(512, 512, heads=1)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_intra.gnn_q.lin_l
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.0.gnnm.gmn_intra.gnn_q.lin_r
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.1
+GNNWrapper(
+  (gnnm): OurGMNCustomWrapper(
+    (gmn_inter): OurGMNCustomInter(
+      (mlp_att_cross_q): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_att_cross_t): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_val_cross_q): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_val_cross_t): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_merge_q): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=1024, out_features=512, bias=True)
+        )
+      )
+      (mlp_merge_t): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=1536, out_features=512, bias=True)
+        )
+      )
+    )
+    (gmn_intra): OurGMNCustomIntra(
+      (gnn_t): GATv2Conv(512, 512, heads=1)
+      (gnn_q): GATv2Conv(512, 512, heads=1)
+    )
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm
+OurGMNCustomWrapper(
+  (gmn_inter): OurGMNCustomInter(
+    (mlp_att_cross_q): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_att_cross_t): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_val_cross_q): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_val_cross_t): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_merge_q): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=1024, out_features=512, bias=True)
+      )
+    )
+    (mlp_merge_t): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=1536, out_features=512, bias=True)
+      )
+    )
+  )
+  (gmn_intra): OurGMNCustomIntra(
+    (gnn_t): GATv2Conv(512, 512, heads=1)
+    (gnn_q): GATv2Conv(512, 512, heads=1)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter
+OurGMNCustomInter(
+  (mlp_att_cross_q): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_att_cross_t): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_val_cross_q): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_val_cross_t): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_merge_q): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=1024, out_features=512, bias=True)
+    )
+  )
+  (mlp_merge_t): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=1536, out_features=512, bias=True)
+    )
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_att_cross_q
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_att_cross_q.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_att_cross_q.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_att_cross_q.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_att_cross_t
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_att_cross_t.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_att_cross_t.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_att_cross_t.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_val_cross_q
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_val_cross_q.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_val_cross_q.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_val_cross_q.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_val_cross_t
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_val_cross_t.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_val_cross_t.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_val_cross_t.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_merge_q
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=1024, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_merge_q.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_merge_q.layers
+ModuleList(
+  (0): Linear(in_features=1024, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_merge_q.layers.0
+Linear(in_features=1024, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_merge_t
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=1536, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_merge_t.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_merge_t.layers
+ModuleList(
+  (0): Linear(in_features=1536, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_inter.mlp_merge_t.layers.0
+Linear(in_features=1536, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_intra
+OurGMNCustomIntra(
+  (gnn_t): GATv2Conv(512, 512, heads=1)
+  (gnn_q): GATv2Conv(512, 512, heads=1)
+)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_intra.gnn_t
+GATv2Conv(512, 512, heads=1)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_intra.gnn_t.lin_l
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_intra.gnn_t.lin_r
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_intra.gnn_q
+GATv2Conv(512, 512, heads=1)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_intra.gnn_q.lin_l
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.1.gnnm.gmn_intra.gnn_q.lin_r
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.2
+GNNWrapper(
+  (gnnm): OurGMNCustomWrapper(
+    (gmn_inter): OurGMNCustomInter(
+      (mlp_att_cross_q): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_att_cross_t): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_val_cross_q): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_val_cross_t): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_merge_q): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=1024, out_features=512, bias=True)
+        )
+      )
+      (mlp_merge_t): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=1536, out_features=512, bias=True)
+        )
+      )
+    )
+    (gmn_intra): OurGMNCustomIntra(
+      (gnn_t): GATv2Conv(512, 512, heads=1)
+      (gnn_q): GATv2Conv(512, 512, heads=1)
+    )
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm
+OurGMNCustomWrapper(
+  (gmn_inter): OurGMNCustomInter(
+    (mlp_att_cross_q): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_att_cross_t): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_val_cross_q): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_val_cross_t): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_merge_q): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=1024, out_features=512, bias=True)
+      )
+    )
+    (mlp_merge_t): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=1536, out_features=512, bias=True)
+      )
+    )
+  )
+  (gmn_intra): OurGMNCustomIntra(
+    (gnn_t): GATv2Conv(512, 512, heads=1)
+    (gnn_q): GATv2Conv(512, 512, heads=1)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter
+OurGMNCustomInter(
+  (mlp_att_cross_q): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_att_cross_t): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_val_cross_q): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_val_cross_t): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_merge_q): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=1024, out_features=512, bias=True)
+    )
+  )
+  (mlp_merge_t): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=1536, out_features=512, bias=True)
+    )
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_att_cross_q
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_att_cross_q.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_att_cross_q.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_att_cross_q.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_att_cross_t
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_att_cross_t.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_att_cross_t.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_att_cross_t.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_val_cross_q
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_val_cross_q.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_val_cross_q.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_val_cross_q.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_val_cross_t
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_val_cross_t.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_val_cross_t.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_val_cross_t.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_merge_q
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=1024, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_merge_q.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_merge_q.layers
+ModuleList(
+  (0): Linear(in_features=1024, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_merge_q.layers.0
+Linear(in_features=1024, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_merge_t
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=1536, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_merge_t.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_merge_t.layers
+ModuleList(
+  (0): Linear(in_features=1536, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_inter.mlp_merge_t.layers.0
+Linear(in_features=1536, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_intra
+OurGMNCustomIntra(
+  (gnn_t): GATv2Conv(512, 512, heads=1)
+  (gnn_q): GATv2Conv(512, 512, heads=1)
+)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_intra.gnn_t
+GATv2Conv(512, 512, heads=1)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_intra.gnn_t.lin_l
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_intra.gnn_t.lin_r
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_intra.gnn_q
+GATv2Conv(512, 512, heads=1)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_intra.gnn_q.lin_l
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.2.gnnm.gmn_intra.gnn_q.lin_r
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.3
+GNNWrapper(
+  (gnnm): OurGMNCustomWrapper(
+    (gmn_inter): OurGMNCustomInter(
+      (mlp_att_cross_q): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_att_cross_t): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_val_cross_q): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_val_cross_t): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=512, out_features=512, bias=True)
+        )
+      )
+      (mlp_merge_q): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=1024, out_features=512, bias=True)
+        )
+      )
+      (mlp_merge_t): MLP(
+        (activation): ELU(alpha=1.0)
+        (layers): ModuleList(
+          (0): Linear(in_features=1536, out_features=512, bias=True)
+        )
+      )
+    )
+    (gmn_intra): OurGMNCustomIntra(
+      (gnn_t): GATv2Conv(512, 512, heads=1)
+      (gnn_q): GATv2Conv(512, 512, heads=1)
+    )
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm
+OurGMNCustomWrapper(
+  (gmn_inter): OurGMNCustomInter(
+    (mlp_att_cross_q): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_att_cross_t): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_val_cross_q): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_val_cross_t): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=512, out_features=512, bias=True)
+      )
+    )
+    (mlp_merge_q): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=1024, out_features=512, bias=True)
+      )
+    )
+    (mlp_merge_t): MLP(
+      (activation): ELU(alpha=1.0)
+      (layers): ModuleList(
+        (0): Linear(in_features=1536, out_features=512, bias=True)
+      )
+    )
+  )
+  (gmn_intra): OurGMNCustomIntra(
+    (gnn_t): GATv2Conv(512, 512, heads=1)
+    (gnn_q): GATv2Conv(512, 512, heads=1)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter
+OurGMNCustomInter(
+  (mlp_att_cross_q): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_att_cross_t): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_val_cross_q): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_val_cross_t): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_merge_q): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=1024, out_features=512, bias=True)
+    )
+  )
+  (mlp_merge_t): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=1536, out_features=512, bias=True)
+    )
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_att_cross_q
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_att_cross_q.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_att_cross_q.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_att_cross_q.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_att_cross_t
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_att_cross_t.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_att_cross_t.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_att_cross_t.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_val_cross_q
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_val_cross_q.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_val_cross_q.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_val_cross_q.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_val_cross_t
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_val_cross_t.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_val_cross_t.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_val_cross_t.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_merge_q
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=1024, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_merge_q.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_merge_q.layers
+ModuleList(
+  (0): Linear(in_features=1024, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_merge_q.layers.0
+Linear(in_features=1024, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_merge_t
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=1536, out_features=512, bias=True)
+  )
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_merge_t.activation
+ELU(alpha=1.0)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_merge_t.layers
+ModuleList(
+  (0): Linear(in_features=1536, out_features=512, bias=True)
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_inter.mlp_merge_t.layers.0
+Linear(in_features=1536, out_features=512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_intra
+OurGMNCustomIntra(
+  (gnn_t): GATv2Conv(512, 512, heads=1)
+  (gnn_q): GATv2Conv(512, 512, heads=1)
+)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_intra.gnn_t
+GATv2Conv(512, 512, heads=1)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_intra.gnn_t.lin_l
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_intra.gnn_t.lin_r
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_intra.gnn_q
+GATv2Conv(512, 512, heads=1)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_intra.gnn_q.lin_l
+Linear(512, 512, bias=True)
+
+dvn.encoder.gnn_wrapper_li.3.gnnm.gmn_intra.gnn_q.lin_r
+Linear(512, 512, bias=True)
+
+dvn.encoder.jk
+JumpingKnowledge(max)
+
+dvn.decoder_policy
+BilinearDecoder(
+  (encoder): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (decoder): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=1536, out_features=32, bias=True)
+      (1): Linear(in_features=32, out_features=16, bias=True)
+      (2): Linear(in_features=16, out_features=8, bias=True)
+      (3): Linear(in_features=8, out_features=1, bias=True)
+    )
+  )
+)
+
+dvn.decoder_policy.encoder
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.decoder_policy.encoder.activation
+ELU(alpha=1.0)
+
+dvn.decoder_policy.encoder.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.decoder_policy.encoder.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.decoder_policy.decoder
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=1536, out_features=32, bias=True)
+    (1): Linear(in_features=32, out_features=16, bias=True)
+    (2): Linear(in_features=16, out_features=8, bias=True)
+    (3): Linear(in_features=8, out_features=1, bias=True)
+  )
+)
+
+dvn.decoder_policy.decoder.activation
+ELU(alpha=1.0)
+
+dvn.decoder_policy.decoder.layers
+ModuleList(
+  (0): Linear(in_features=1536, out_features=32, bias=True)
+  (1): Linear(in_features=32, out_features=16, bias=True)
+  (2): Linear(in_features=16, out_features=8, bias=True)
+  (3): Linear(in_features=8, out_features=1, bias=True)
+)
+
+dvn.decoder_policy.decoder.layers.0
+Linear(in_features=1536, out_features=32, bias=True)
+
+dvn.decoder_policy.decoder.layers.1
+Linear(in_features=32, out_features=16, bias=True)
+
+dvn.decoder_policy.decoder.layers.2
+Linear(in_features=16, out_features=8, bias=True)
+
+dvn.decoder_policy.decoder.layers.3
+Linear(in_features=8, out_features=1, bias=True)
+
+dvn.decoder_value
+QueryDecoder(
+  (mlp_att): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=8, bias=True)
+      (1): Linear(in_features=8, out_features=1, bias=True)
+    )
+  )
+  (mlp_val): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=512, bias=True)
+    )
+  )
+  (mlp_final): MLP(
+    (activation): ELU(alpha=1.0)
+    (layers): ModuleList(
+      (0): Linear(in_features=512, out_features=32, bias=True)
+      (1): Linear(in_features=32, out_features=16, bias=True)
+      (2): Linear(in_features=16, out_features=8, bias=True)
+      (3): Linear(in_features=8, out_features=4, bias=True)
+      (4): Linear(in_features=4, out_features=1, bias=True)
+    )
+  )
+  (norm): NormalizeAttention()
+)
+
+dvn.decoder_value.mlp_att
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=8, bias=True)
+    (1): Linear(in_features=8, out_features=1, bias=True)
+  )
+)
+
+dvn.decoder_value.mlp_att.activation
+ELU(alpha=1.0)
+
+dvn.decoder_value.mlp_att.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=8, bias=True)
+  (1): Linear(in_features=8, out_features=1, bias=True)
+)
+
+dvn.decoder_value.mlp_att.layers.0
+Linear(in_features=512, out_features=8, bias=True)
+
+dvn.decoder_value.mlp_att.layers.1
+Linear(in_features=8, out_features=1, bias=True)
+
+dvn.decoder_value.mlp_val
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+
+dvn.decoder_value.mlp_val.activation
+ELU(alpha=1.0)
+
+dvn.decoder_value.mlp_val.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=512, bias=True)
+)
+
+dvn.decoder_value.mlp_val.layers.0
+Linear(in_features=512, out_features=512, bias=True)
+
+dvn.decoder_value.mlp_final
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=512, out_features=32, bias=True)
+    (1): Linear(in_features=32, out_features=16, bias=True)
+    (2): Linear(in_features=16, out_features=8, bias=True)
+    (3): Linear(in_features=8, out_features=4, bias=True)
+    (4): Linear(in_features=4, out_features=1, bias=True)
+  )
+)
+
+dvn.decoder_value.mlp_final.activation
+ELU(alpha=1.0)
+
+dvn.decoder_value.mlp_final.layers
+ModuleList(
+  (0): Linear(in_features=512, out_features=32, bias=True)
+  (1): Linear(in_features=32, out_features=16, bias=True)
+  (2): Linear(in_features=16, out_features=8, bias=True)
+  (3): Linear(in_features=8, out_features=4, bias=True)
+  (4): Linear(in_features=4, out_features=1, bias=True)
+)
+
+dvn.decoder_value.mlp_final.layers.0
+Linear(in_features=512, out_features=32, bias=True)
+
+dvn.decoder_value.mlp_final.layers.1
+Linear(in_features=32, out_features=16, bias=True)
+
+dvn.decoder_value.mlp_final.layers.2
+Linear(in_features=16, out_features=8, bias=True)
+
+dvn.decoder_value.mlp_final.layers.3
+Linear(in_features=8, out_features=4, bias=True)
+
+dvn.decoder_value.mlp_final.layers.4
+Linear(in_features=4, out_features=1, bias=True)
+
+dvn.decoder_value.norm
+NormalizeAttention()
+
+dvn.norm_li
+ModuleList(
+  (0): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+  (1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+  (2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+  (3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+)
+
+dvn.norm_li.0
+LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+
+dvn.norm_li.1
+LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+
+dvn.norm_li.2
+LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+
+dvn.norm_li.3
+LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+
+mlp_final
+MLP(
+  (activation): ELU(alpha=1.0)
+  (layers): ModuleList(
+    (0): Linear(in_features=64, out_features=32, bias=True)
+    (1): Linear(in_features=32, out_features=16, bias=True)
+    (2): Linear(in_features=16, out_features=8, bias=True)
+    (3): Linear(in_features=8, out_features=4, bias=True)
+    (4): Linear(in_features=4, out_features=1, bias=True)
+  )
+)
+
+mlp_final.activation
+ELU(alpha=1.0)
+
+mlp_final.layers
+ModuleList(
+  (0): Linear(in_features=64, out_features=32, bias=True)
+  (1): Linear(in_features=32, out_features=16, bias=True)
+  (2): Linear(in_features=16, out_features=8, bias=True)
+  (3): Linear(in_features=8, out_features=4, bias=True)
+  (4): Linear(in_features=4, out_features=1, bias=True)
+)
+
+mlp_final.layers.0
+Linear(in_features=64, out_features=32, bias=True)
+
+mlp_final.layers.1
+Linear(in_features=32, out_features=16, bias=True)
+
+mlp_final.layers.2
+Linear(in_features=16, out_features=8, bias=True)
+
+mlp_final.layers.3
+Linear(in_features=8, out_features=4, bias=True)
+
+mlp_final.layers.4
+Linear(in_features=4, out_features=1, bias=True)
+

@@ -1,4 +1,4 @@
-from config import FLAGS
+from NSUBS.model.OurSGM.config import FLAGS
 from NSUBS.src.utils import get_ts, create_dir_if_not_exists, save
 from NSUBS.model.OurSGM.utils_our import get_our_dir, get_model_info_as_str, \
     get_model_info_as_command, extract_config_code, plot_scatter_line, plot_dist, get_flag

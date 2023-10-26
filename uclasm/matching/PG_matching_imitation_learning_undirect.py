@@ -41,10 +41,8 @@ import sys
 import argparse
 timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 
-
- 
-dataset_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_noise_5_10_18.pkl'   # 获取文件名
-matching_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_noise_5_10_18_matching.pkl'   # 获取文件名
+dataset_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05.pkl'   # 获取文件名
+matching_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05_matching.pkl'   # 获取文件名
 # gpu_id = 3     # 获取GPU编号
 # device = torch.device(f'cuda:{gpu_id}')
 dim = 47
@@ -184,14 +182,13 @@ def main():
     device = torch.device(FLAGS.device)
     print(f"Using device: {device}")
     model = _create_model(dim).to(device)
-    writer = SummaryWriter(f'runs/ImitationLearning/{timestamp}')
+    writer = SummaryWriter(f'plt_imitationlearning/{timestamp}')
 
     env  = environment(dataset)
 
     # policy = policy_network().to(device) 
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
     rewards = []
-    writer = SummaryWriter(f'runs/ImitationLearning/{timestamp}')
     # checkpoint_interval = 100
     # loss_function = nn.CrossEntropyLoss()
     for episode in range(100000):
@@ -220,9 +217,10 @@ def main():
                 continue
 
 
-            state.action_space = state.get_action_space()
+            
             
             action_exp = state.get_action_heuristic()
+            state.action_space = state.get_action_space(action_exp)
             action_exp = update_action_exp(state,action_exp)
             ind,state.action_space = update_and_get_position(state.action_space, action_exp)
           
@@ -275,7 +273,7 @@ def main():
             print(f"episode: {episode} loss: {loss_batch}")
 
 
-        if episode % 100 == 0:
+        if episode % 1000 == 0:
         # 创建一个检查点每隔几个时期
             checkpoint = {
                 'epoch': episode,
@@ -283,10 +281,10 @@ def main():
                 'optimizer_state_dict': optimizer.state_dict(),
                 # ... (其他你想保存的元数据)
             }
-            directory_name = f"ckpt_ImitationLearning/{timestamp}/"
+            directory_name = f"ckpt_imitationlearning/{timestamp}/"
             if not os.path.exists(directory_name):
                 os.makedirs(directory_name)
-            torch.save(checkpoint, f'ckpt_ImitationLearning/{timestamp}/checkpoint_{episode}.pth')
+            torch.save(checkpoint, f'ckpt_imitationlearning/{timestamp}/checkpoint_{episode}.pth')
     
 
 if __name__ == '__main__':

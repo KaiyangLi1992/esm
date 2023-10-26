@@ -127,3 +127,4 @@ dmypy.json
 
 # Poetry lock file
 poetry.lock
+*.pth

@@ -1,5 +1,5 @@
 import networkx as nx
-from config import FLAGS
+# from config import FLAGS
 #########################################################################
 # Double Dictionary
 #########################################################################
