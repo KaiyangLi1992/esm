@@ -41,7 +41,7 @@ import sys
 import argparse
 timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 
-dataset_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05.pkl'   # 获取文件名
+dataset_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05_RWSE.pkl'   # 获取文件名
 matching_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05_matching.pkl'   # 获取文件名
 # gpu_id = 3     # 获取GPU编号
 # device = torch.device(f'cuda:{gpu_id}')

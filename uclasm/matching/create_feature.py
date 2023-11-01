@@ -18,6 +18,9 @@ from torch_geometric.utils import (get_laplacian, to_scipy_sparse_matrix,
 
 sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/") 
 sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/uclasm/") 
+sys.path.append("/home/kli16/GPSTransformer/GraphGPS") 
+from graphgps.transform.posenc_stats import get_rw_landing_probs
+
 # from GraphGPS.graphgps.transform.posenc_stats import get_rw_landing_probs
 
 # Custom module imports
@@ -92,7 +95,7 @@ def get_rw_landing_probs(ksteps, edge_index, edge_weight=None,
 
 
 
-with open('/home/kli16/ISM_custom/esm_NSUBS/esm/data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05.pkl','rb') as f:
+with open('/home/kli16/ISM_custom/esm_NSUBS/esm/data/unEmail_testset_dens_0.2_n_8_num_100_10_05.pkl','rb') as f:
     dataset = pickle.load(f)
 for graph in dataset.gs:
     nx_graph = graph.nxgraph
@@ -102,5 +105,5 @@ for graph in dataset.gs:
     nx_graph.RWSE = feature
 
 
-with open('/home/kli16/ISM_custom/esm_NSUBS/esm/data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05_RWSE.pkl','wb') as f:
+with open('/home/kli16/ISM_custom/esm_NSUBS/esm/data/unEmail_testset_dens_0.2_n_8_num_100_10_05_RWSE.pkl','wb') as f:
     pickle.dump(dataset,f)

@@ -59,8 +59,9 @@ class DVN_wrapper(torch.nn.Module):
             timer = OurTimer()
 
         # unpack inputs
-        Xq, edge_indexq, Xt, edge_indext = \
-            gq.init_x.to(FLAGS.device), graph_to_edge_tensor(gq).to(FLAGS.device), gt.init_x.to(FLAGS.device), graph_to_edge_tensor(gt).to(FLAGS.device)
+        Xq, edge_indexq, Xt, edge_indext,RWSEq,RWSEt = \
+            gq.init_x.to(FLAGS.device), graph_to_edge_tensor(gq).to(FLAGS.device), gt.init_x.to(FLAGS.device),\
+                  graph_to_edge_tensor(gt).to(FLAGS.device),gq.RWSE.to(FLAGS.device),gt.RWSE.to(FLAGS.device)
         u2v_li = create_u2v_li(nn_map, cs_map, candidate_map)
 
         if FLAGS.time_analysis:
@@ -83,7 +84,7 @@ class DVN_wrapper(torch.nn.Module):
                 gq, gt,
                 nn_map, cs_map, candidate_map,
                 u2v_li, node_mask, cache_embeddings,
-                execute_action, query_tree, u=u, v_li=v_li
+                execute_action, query_tree, RWSEq,RWSEt,u=u, v_li=v_li#,
             )
         if FLAGS.time_analysis:
             timer.time_and_clear(f'fast?')

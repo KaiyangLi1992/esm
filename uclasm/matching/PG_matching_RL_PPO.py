@@ -29,15 +29,15 @@ from NSUBS.model.OurSGM.dvn_wrapper import create_dvn
 from NSUBS.src.utils import OurTimer, save_pickle
 from environment import environment, update_state, calculate_cost
 
-
+from torch.optim.lr_scheduler import StepLR
 # Constants
-dataset_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05.pkl'
+dataset_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05_RWSE.pkl'
 matching_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05_matching.pkl'
 dim = 47
 timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 device = torch.device(FLAGS.device)
 imitationlearning = True
-checkpoint_path = '/home/kli16/ISM_custom/esm_NSUBS/esm/ckpt_imitationlearning/2023-10-25_16-19-25/checkpoint_22000.pth'
+checkpoint_path = '/home/kli16/ISM_custom/esm_NSUBS/esm/ckpt_imitationlearning/2023-10-26_11-48-59/checkpoint_80000.pth'
 checkpoint = torch.load(checkpoint_path)
 
 def _create_model(d_in_raw):
@@ -103,6 +103,7 @@ class PPO:
             self.policy.load_state_dict(checkpoint['model_state_dict'])
 
         self.optimizer = optim.Adam(self.policy.parameters(), self.lr)
+        self.scheduler = StepLR(self.optimizer, step_size=2000, gamma=0.1)
 
         self.policy_old = _create_model(dim).to(device)
         self.policy_old.load_state_dict(self.policy.state_dict())
@@ -311,6 +312,7 @@ def main():
 
         if episode % update_timestep == 0:
             loss = ppo_agent.update()
+        ppo_agent.scheduler.step()
          
 
 

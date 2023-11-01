@@ -48,7 +48,7 @@ def update_action_exp(state,action):
     action = (action[0],action_1)
     return action
 
-device = torch.device('cuda:0')
+device = FLAGS.device
 def clear_directory(folder_path):
     for filename in os.listdir(folder_path):
         file_path = os.path.join(folder_path, filename)
@@ -125,20 +125,21 @@ def test_checkpoint_model(ckpt_pth,test_dataset):
 
 
 # 使用该函数测试多个检查点
-with open('/home/kli16/ISM_custom/esm_NSUBS/esm/data/unEmail_testset_dens_0.2_n_8_num_100_10_05.pkl','rb') as f:
+with open('/home/kli16/ISM_custom/esm_NSUBS/esm/data/unEmail_testset_dens_0.2_n_8_num_100_10_05_RWSE.pkl','rb') as f:
     test_dataset = pickle.load(f)
 # checkpoints = [f'/home/kli16/ISM_custom/esm_NSUBS/esm/uclasm/matching/checkpoint_{i}.pth' for i in range(0, 90000, 500)]
 # for ckpt_pth in checkpoints:
 #     average_cost = test_checkpoint_model(test_dataset,ckpt_pth)
     # print(checkpoint)
 # print(average_cost)
-time = FLAGS.time
+# time = FLAGS.time
+time = '2023-10-27_13-54-47'
 try:
     clear_directory(f'/home/kli16/ISM_custom/esm_NSUBS/esm/runs_RL_test/{time}/')
 except:
     pass
 writer = SummaryWriter(f'/home/kli16/ISM_custom/esm_NSUBS/esm/runs_RL_test/{time}/')
-for i in range(10000, 120000, 300):
+for i in range(30000, 120000, 500):
     checkpoint = f'/home/kli16/ISM_custom/esm_NSUBS/esm/ckpt_RL/{time}/checkpoint_{i}.pth'
     average_cost = test_checkpoint_model(checkpoint, test_dataset)
     writer.add_scalar('Metrics/Cost', average_cost, i)

@@ -22,18 +22,24 @@ class PreEncoderConcatSelectedOneHotAndMLP(torch.nn.Module):
     def __init__(self, dim_in, dim_out):
         super(PreEncoderConcatSelectedOneHotAndMLP, self).__init__()
         if dim_in + 2 != dim_out:
-            self.mlp_q = nn.Linear(dim_in + 2, dim_out)
-            self.mlp_t = nn.Linear(dim_in + 2, dim_out)
+            self.mlp_q = nn.Linear(dim_in + 2, dim_out-64)
+            self.mlp_t = nn.Linear(dim_in + 2, dim_out-64)
+            self.mlp_RWSEq = nn.Linear(20, 64)
+            self.mlp_RWSEt = nn.Linear(20, 64)
         else:
             self.mlp_q = self.mlp_t = lambda x: x
 
-    def forward(self, Xq, Xt, nn_map):
+    def forward(self, Xq, Xt, nn_map,RWSEq,RWSEt):
         selected_one_hot_q = get_one_hot_labelling(Xq.shape[0], list(nn_map.keys()))
         selected_one_hot_t = get_one_hot_labelling(Xt.shape[0], list(nn_map.values()))
         Xq = torch.cat((Xq, selected_one_hot_q), dim=1)
         Xt = torch.cat((Xt, selected_one_hot_t), dim=1)
         Xq = self.mlp_q(Xq)
         Xt = self.mlp_t(Xt)
+        RWSEq = self.mlp_RWSEq(RWSEq)
+        RWSEt = self.mlp_RWSEt(RWSEt)
+        Xq = torch.cat((Xq, RWSEq), dim=1)
+        Xt = torch.cat((Xt, RWSEt), dim=1)
         return Xq, Xt
 
 class PreEncoderMLP(torch.nn.Module):

@@ -8,7 +8,7 @@ from datetime import datetime
 
 def update_state(state,threshold):
     state.threshold = threshold
-    changed_cands = np.ones((len(state.g1.nodes),), dtype=np.bool)
+    changed_cands = np.ones((len(state.g1.nodes),), dtype=np.bool_)
     state.candidates = state.get_candidates()
                     # 从state_candidates中找出索引不在state_nn_mapping键中的行
     if np.any(np.all(state.candidates == False, axis=1)):
@@ -74,7 +74,7 @@ def iter_adj_pairs(g1, g2,g1_reverse,g2_reverse):
 def get_non_matching_mask(state):
         """Gets a boolean mask for the costs array corresponding to all entries
         that would violate the matching."""
-        mask = np.zeros((len(state.g1.nodes),len(state.g2.nodes)), dtype=np.bool)
+        mask = np.zeros((len(state.g1.nodes),len(state.g2.nodes)), dtype=np.bool_)
         matching = [(k, v) for k, v in state.nn_mapping.items()]
         if len(matching) > 0:
             mask[[pair[0] for pair in matching],:] = True
@@ -231,8 +231,8 @@ class State(object):
     def get_globalcosts(self):
         g1 = self.g1
         g2 = self.g2
-        tmplt_idx_mask = np.ones(len(g1.nodes), dtype=np.bool)
-        world_idx_mask = np.ones(len(g2.nodes), dtype=np.bool)
+        tmplt_idx_mask = np.ones(len(g1.nodes), dtype=np.bool_)
+        world_idx_mask = np.ones(len(g2.nodes), dtype=np.bool_)
 
 
         global_costs = np.ones((len(g1.nodes),len(g2.nodes)))
