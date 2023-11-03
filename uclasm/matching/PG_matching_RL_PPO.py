@@ -16,6 +16,7 @@ import time
 
 sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/") 
 sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/uclasm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/GraphGPS")
 
 
 # Custom module imports
@@ -30,6 +31,7 @@ from NSUBS.src.utils import OurTimer, save_pickle
 from environment import environment, update_state, calculate_cost
 
 from torch.optim.lr_scheduler import StepLR
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/GraphGPS")
 # Constants
 dataset_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05_RWSE.pkl'
 matching_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05_matching.pkl'

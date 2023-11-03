@@ -10,7 +10,7 @@ import numpy as np
 import torch.optim as optim
 sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/") 
 sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/uclasm/") 
-
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/GraphGPS")
 
 from NSUBS.model.OurSGM.config import FLAGS
 from NSUBS.model.OurSGM.saver import saver
@@ -23,6 +23,16 @@ from NSUBS.src.utils import OurTimer, save_pickle
 from NSUBS.model.OurSGM.dvn_wrapper import create_dvn
 from NSUBS.model.OurSGM.train import cross_entropy_smooth
 
+
+from torch_geometric.graphgym.config import (cfg, dump_cfg,
+                                             set_cfg, load_cfg,
+                                             makedirs_rm_exist)
+from torch_geometric.utils import from_networkx
+from graphgps.transform.posenc_stats import compute_posenc_stats
+from argparse import Namespace
+from torch_geometric import seed_everything
+from torch_geometric.graphgym.logger import set_printing
+from matching.create_cfg import custom_set_out_dir,custom_set_run_dir
 
 
 import torch.nn.functional as F
@@ -41,7 +51,7 @@ import sys
 import argparse
 timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 
-dataset_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05_RWSE.pkl'   # 获取文件名
+dataset_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05.pkl'   # 获取文件名
 matching_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05_matching.pkl'   # 获取文件名
 # gpu_id = 3     # 获取GPU编号
 # device = torch.device(f'cuda:{gpu_id}')
@@ -136,35 +146,22 @@ def update_action_exp(state,action):
     action = (action[0],action_1)
     return action
 
-# def _get_CS(g1,g2):
-#     result = {}
 
-#     # 遍历 g1 中的每个节点
-#     for node1 in g1.nodes(data=True):
-#         node1_type = node1[1]['type']
-#         for node2 in g2.nodes(data=True):
-#             node2_type = node2[1]['type']
-#             if node1_type == node2_type:
-#                 if node1[0] not in result.keys():
-#                     result[node1[0]] = list()
-#                 result[node1[0]].append(node2[0]) 
-#     return result
 
 def _get_CS(state,g1,g2):
-    # result = {}
-
-    # # 遍历 g1 中的每个节点
-    # for node1 in g1.nodes(data=True):
-    #     node1_type = node1[1]['type']
-    #     for node2 in g2.nodes(data=True):
-    #         node2_type = node2[1]['type']
-    #         if node1_type == node2_type:
-    #             if node1[0] not in result.keys():
-    #                 result[node1[0]] = list()
-    #             result[node1[0]].append(node2[0]) 
     result = {i: np.where(row)[0].tolist() for i, row in enumerate(state.candidates)}
     return result
-
+def create_u2v_li(nn_map, cs_map, candidate_map):
+    u2v_li = {}
+    for u in cs_map.keys():
+        if u in nn_map:
+            v_li = [nn_map[u]]
+        elif u in candidate_map:
+            v_li = candidate_map[u]
+        else:
+            v_li = cs_map[u]
+        u2v_li[u] = v_li
+    return u2v_li
 
 def _preprocess_NSUBS(state):
     g1 = state.g1
@@ -174,7 +171,62 @@ def _preprocess_NSUBS(state):
     CS = _get_CS(state,g1,g2)
     nn_map = state.nn_mapping
     candidate_map = {u:v_li}
-    return (g1,g2,u,v_li,nn_map,CS,candidate_map)
+    u2v_li = reate_u2v_li(nn_map, cs_map, candidate_map)
+    return u2v_li,u,v_li
+
+
+
+
+
+
+args = Namespace(
+    # cfg_file='/home/kli16/ISM_custom/esm_NSUBS/esm/GraphGPS/configs/GPS/email-GPS-ESLapPE.yaml',
+    # cfg_file='/home/kli16/ISM_custom/esm_NSUBS/esm/GraphGPS/configs/GPS/email-GPS-LapPE+RWSE.yaml',
+    cfg_file='/home/kli16/ISM_custom/esm_NSUBS/esm/GraphGPS/configs/GPS/email-GPS+RWSE.yaml',
+    # cfg_file='/home/kli16/ISM_custom/esm_NSUBS/esm/GraphGPS/configs/GPS/email-GPS+SNDS.yaml',
+    # cfg_file='/home/kli16/ISM_custom/esm_NSUBS/esm/GraphGPS/configs/GPS/email-GPS+SNMLP.yaml',
+    repeat=1,
+    mark_done=False,
+    opts=['wandb.use', 'False']
+)
+
+print(args)
+
+
+set_cfg(cfg)
+load_cfg(cfg, args)
+custom_set_out_dir(cfg, args.cfg_file, cfg.name_tag)
+dump_cfg(cfg)
+# Set Pytorch environment
+torch.set_num_threads(cfg.num_threads)
+
+run_id, seed, split_index  = 0,0,0
+# Set configurations for each run
+custom_set_run_dir(cfg, run_id)
+set_printing()
+cfg.dataset.split_index = split_index
+cfg.seed = seed
+cfg.run_id = run_id
+seed_everything(cfg.seed)
+
+pe_enabled_list = []
+for key, pecfg in cfg.items():
+    if key.startswith('posenc_') and pecfg.enable:
+        pe_name = key.split('_', 1)[1]
+        pe_enabled_list.append(pe_name)
+        if hasattr(pecfg, 'kernel'):
+            # Generate kernel times if functional snippet is set.
+            if pecfg.kernel.times_func:
+                pecfg.kernel.times = list(eval(pecfg.kernel.times_func))
+    
+
+for graph in dataset.gs:
+    nx_graph = graph.nxgraph
+    data_of_graph = from_networkx(nx_graph)
+    data_of_graph.init_x = data_of_graph.type.unsqueeze(1)
+    data_of_graph = compute_posenc_stats(data_of_graph , pe_enabled_list, True, cfg)
+    nx_graph.pyg_data = data_of_graph
+
 
 
 

@@ -129,3 +129,4 @@ dmypy.json
 poetry.lock
 *.pth
 *events.out.*
+*.txt

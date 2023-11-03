@@ -15,7 +15,7 @@ class DVN(torch.nn.Module):
 
     def encoder_wrapper(self, Xq, edge_indexq, Xt, edge_indext, gq, gt,
                         nn_map, cs_map, candidate_map, u2v_li, node_mask,
-                        cache_target_embeddings,RWSEq,RWSEt):
+                        cache_target_embeddings,pyg_data_q,pyg_data_t):
         timer = None
         if FLAGS.time_analysis:
             timer = OurTimer()
@@ -27,7 +27,7 @@ class DVN(torch.nn.Module):
             timer.time_and_clear(f'create_norm_vec')
 
         Xq, Xt = \
-            self.pre_encoder(Xq, Xt, nn_map,RWSEq,RWSEt)
+            self.pre_encoder(Xq, Xt, nn_map,pyg_data_q,pyg_data_t)
 
         # Xq = self.norm_li[0](Xq)
         # Xt = self.norm_li[1](Xt)
@@ -57,7 +57,7 @@ class DVN(torch.nn.Module):
 
     def forward(self, Xq, edge_indexq, Xt, edge_indext, gq, gt,
                 nn_map, cs_map, candidate_map, u2v_li, node_mask,
-                cache_embeddings, execute_action, query_tree,RWSEq,RWSEt,
+                cache_embeddings, execute_action, query_tree,pyg_data_q,pyg_data_t,
                 u=None, v_li=None):
 
         timer = None
@@ -69,7 +69,7 @@ class DVN(torch.nn.Module):
             self.encoder_wrapper(
                 Xq, edge_indexq, Xt, edge_indext, gq, gt,
                 nn_map, cs_map, candidate_map, u2v_li,
-                node_mask, cache_embeddings,RWSEq,RWSEt
+                node_mask, cache_embeddings,pyg_data_q,pyg_data_t
             )
 
         if FLAGS.time_analysis:

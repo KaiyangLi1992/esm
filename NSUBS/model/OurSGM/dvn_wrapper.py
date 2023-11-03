@@ -12,6 +12,7 @@ from NSUBS.model.OurSGM.dvn_decoder import create_decoder
 from NSUBS.model.OurSGM.dvn_preencoder import create_preencoder
 from NSUBS.model.OurSGM.dvn import DVN
 from NSUBS.model.OurSGM.utils_nn import MLP, get_MLP_args
+# from graphgps.network.gps_model import FeatureEncoder
 
 def create_u2v_li(nn_map, cs_map, candidate_map):
     u2v_li = {}
@@ -27,6 +28,8 @@ def create_u2v_li(nn_map, cs_map, candidate_map):
 
 def create_dvn(d_in_raw, d_in):
     pre_encoder = create_preencoder(d_in_raw, d_in)
+    # pre_encoder = FeatureEncoder(1)
+
     encoder_gnn_consensus, d_out = create_encoder(d_in)
     decoder_policy, decoder_value = create_decoder()
     mlp_final = MLP(*get_MLP_args([64, 32, 16, 8, 4, 1]))
@@ -59,9 +62,9 @@ class DVN_wrapper(torch.nn.Module):
             timer = OurTimer()
 
         # unpack inputs
-        Xq, edge_indexq, Xt, edge_indext,RWSEq,RWSEt = \
+        Xq, edge_indexq, Xt, edge_indext,pyg_data_q,pyg_data_t = \
             gq.init_x.to(FLAGS.device), graph_to_edge_tensor(gq).to(FLAGS.device), gt.init_x.to(FLAGS.device),\
-                  graph_to_edge_tensor(gt).to(FLAGS.device),gq.RWSE.to(FLAGS.device),gt.RWSE.to(FLAGS.device)
+                  graph_to_edge_tensor(gt).to(FLAGS.device),gq.pyg_data.to(FLAGS.device),gt.pyg_data.to(FLAGS.device)
         u2v_li = create_u2v_li(nn_map, cs_map, candidate_map)
 
         if FLAGS.time_analysis:
@@ -84,7 +87,7 @@ class DVN_wrapper(torch.nn.Module):
                 gq, gt,
                 nn_map, cs_map, candidate_map,
                 u2v_li, node_mask, cache_embeddings,
-                execute_action, query_tree, RWSEq,RWSEt,u=u, v_li=v_li#,
+                execute_action, query_tree, pyg_data_q,pyg_data_t,u=u, v_li=v_li#,
             )
         if FLAGS.time_analysis:
             timer.time_and_clear(f'fast?')
