@@ -1,9 +1,0 @@
-Traceback (most recent call last):
-  File "/home/kli16/NSUBS/model/OurSGM/main.py", line 446, in <module>
-    main()
-  File "/home/kli16/NSUBS/model/OurSGM/main.py", line 410, in main
-    train(model, FLAGS.num_iters_threshold, FLAGS.timeout, logger)
-  File "/home/kli16/NSUBS/model/OurSGM/train.py", line 166, in train
-    gq, gt, f'{outer_epoch_id}_{i}_train', model, CS, daf_path_weights, FLAGS.MCTS_train,
-NameError: name 'gq' is not defined
-
