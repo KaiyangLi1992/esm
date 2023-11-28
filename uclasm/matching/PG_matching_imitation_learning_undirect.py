@@ -8,12 +8,12 @@ import torch.nn as nn
 from torch.distributions import Categorical
 import numpy as np
 import torch.optim as optim
-sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/") 
-sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/uclasm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_debug/esm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_debug/esm/uclasm/") 
 
 
 from NSUBS.model.OurSGM.config import FLAGS
-from NSUBS.model.OurSGM.saver import saver
+from NSUBS.model.OurSGM.saver import saver,ParameterSaver
 from NSUBS.model.OurSGM.data_loader import get_data_loader_wrapper
 from NSUBS.model.OurSGM.train import train
 from NSUBS.model.OurSGM.test import test
@@ -22,6 +22,38 @@ from NSUBS.model.OurSGM.utils_our import load_replace_flags
 from NSUBS.src.utils import OurTimer, save_pickle
 from NSUBS.model.OurSGM.dvn_wrapper import create_dvn
 from NSUBS.model.OurSGM.train import cross_entropy_smooth
+
+
+
+
+import torch.nn.functional as F
+from torch.utils.tensorboard import SummaryWriter
+import os
+import time
+import torch.nn.functional as F
+import pickle
+import sys 
+import random
+import torch
+import torch.nn as nn
+from torch.distributions import Categorical
+import numpy as np
+import torch.optim as optim
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_check/esm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_check/esm/uclasm/") 
+
+
+from NSUBS.model.OurSGM.config import FLAGS
+from NSUBS.model.OurSGM.saver import saver,ParameterSaver
+from NSUBS.model.OurSGM.data_loader import get_data_loader_wrapper
+from NSUBS.model.OurSGM.train import train
+from NSUBS.model.OurSGM.test import test
+from NSUBS.model.OurSGM.model_glsearch import GLS
+from NSUBS.model.OurSGM.utils_our import load_replace_flags
+from NSUBS.src.utils import OurTimer, save_pickle
+from NSUBS.model.OurSGM.dvn_wrapper import create_dvn
+from NSUBS.model.OurSGM.train import cross_entropy_smooth
+
 
 
 
@@ -46,8 +78,14 @@ matching_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05_matchi
 # gpu_id = 3     # 获取GPU编号
 # device = torch.device(f'cuda:{gpu_id}')
 dim = 47
+lr = FLAGS.lr
+
 
 timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+
+
+# checkpoint_path = '/home/kli16/ISM_custom/esm_NSUBS_RWSE_check/esm/ckpt_imitationlearning/2023-11-10_21-23-11/checkpoint_99000.pth'
+# checkpoint = torch.load(checkpoint_path,map_location=torch.device(FLAGS.device))
 
 def _create_model(d_in_raw):
     if FLAGS.matching_order == 'nn':
@@ -136,32 +174,8 @@ def update_action_exp(state,action):
     action = (action[0],action_1)
     return action
 
-# def _get_CS(g1,g2):
-#     result = {}
-
-#     # 遍历 g1 中的每个节点
-#     for node1 in g1.nodes(data=True):
-#         node1_type = node1[1]['type']
-#         for node2 in g2.nodes(data=True):
-#             node2_type = node2[1]['type']
-#             if node1_type == node2_type:
-#                 if node1[0] not in result.keys():
-#                     result[node1[0]] = list()
-#                 result[node1[0]].append(node2[0]) 
-#     return result
 
 def _get_CS(state,g1,g2):
-    # result = {}
-
-    # # 遍历 g1 中的每个节点
-    # for node1 in g1.nodes(data=True):
-    #     node1_type = node1[1]['type']
-    #     for node2 in g2.nodes(data=True):
-    #         node2_type = node2[1]['type']
-    #         if node1_type == node2_type:
-    #             if node1[0] not in result.keys():
-    #                 result[node1[0]] = list()
-    #             result[node1[0]].append(node2[0]) 
     result = {i: np.where(row)[0].tolist() for i, row in enumerate(state.candidates)}
     return result
 
@@ -179,34 +193,39 @@ def _preprocess_NSUBS(state):
 
 
 def main():
+    # 使用示例
+    saver = ParameterSaver()
+    parameters = {
+        'pid': os.getpid(),
+        'file_path':os.path.abspath(__file__),
+        'learning_rate': lr,
+        'd_enc' : FLAGS.d_enc,
+        'encoder_structure':FLAGS.encoder_structure,
+    }
+    saver.save(parameters,file_name=f'{timestamp}.log')
+
+    # checkpoint_path = '/home/kli16/ISM_custom/esm_NSUBS_RWSE_debug/esm/ckpt_imitationlearning/2023-11-19_01-22-18/checkpoint_199000.pth'
+    # checkpoint_loaded = torch.load(checkpoint_path,map_location=torch.device(FLAGS.device))
+
+
     device = torch.device(FLAGS.device)
     print(f"Using device: {device}")
     model = _create_model(dim).to(device)
+    # model.train()
+    # model.load_state_dict(checkpoint_loaded['model_state_dict'])
     writer = SummaryWriter(f'plt_imitationlearning/{timestamp}')
 
     env  = environment(dataset)
-
-    # policy = policy_network().to(device) 
-    optimizer = optim.Adam(model.parameters(), lr=1e-3)
+ 
+    optimizer = optim.Adam(model.parameters(), lr=lr)
     rewards = []
-    # checkpoint_interval = 100
-    # loss_function = nn.CrossEntropyLoss()
-    for episode in range(100000):
+
+    for episode in range(200000):
         rewards = 0
         state_init = env.reset()
         update_state(state_init,env.threshold)
         stack = [state_init]
-        # policy.hn = None
-        # policy.cn = None
-        action_exp = state_init.get_action_heuristic()
-        action_exp = update_action_exp(state_init,action_exp)
-        action = action_exp
-        new_state,state,reward,_= env.step(state_init,action_exp)
-        stack.append(new_state)
         step = 0 
-        rewards+=reward
-        probs_buffer = []
-        probs_exp_buffer = []
         labels = []
         predicts=[]
         buffer=[]
@@ -215,10 +234,6 @@ def main():
             update_state(state,env.threshold)
             if np.any(np.all(state.candidates == False, axis=1)):
                 continue
-
-
-            
-            
             action_exp = state.get_action_heuristic()
             state.action_space = state.get_action_space(action_exp)
             action_exp = update_action_exp(state,action_exp)
@@ -237,22 +252,14 @@ def main():
             pi_true = torch.zeros(len(state.action_space),device=device)
             pi_true[ind] = 1
             buffer.append((out_policy,pi_true))
-            # probs = policy(state,action,device).to(device)
-            # max_index = torch.argmax(probs)
 
-
-            # pad_length = 500 - probs.size(0)
-            # probs = F.pad(probs, (0, pad_length), 'constant', 0)
-            # probs_buffer.append(probs)
-            # probs_exp_buffer.append(probs_exp)
             newstate, state,reward, done = env.step(state,action_exp)
             rewards+=reward
             stack.append(newstate)
 
-            labels.append(ind)
-            # predicts.append(max_index.item())   
+            labels.append(ind) 
             if done:
-                # assert calculate_cost(newstate.g1,newstate.g2,newstate.nn_mapping) == 0
+                model.reset_cache()
                 break
 
         loss_batch = 0
@@ -261,16 +268,16 @@ def main():
             loss_batch += ce_loss
         
         ave_acc = sum(1 for x, y in zip(labels, predicts) if x == y)/len(labels)
-        writer.add_scalar('Loss', loss_batch, episode)
-        writer.add_scalar('ACC', ave_acc, episode)
+       
         optimizer.zero_grad()
         loss_batch.backward()
-        # torch.nn.utils.clip_grad_norm(model.parameters(), 1.0)
         optimizer.step()
         
         
         if episode%10==0:
             print(f"episode: {episode} loss: {loss_batch}")
+            writer.add_scalar('Loss', loss_batch, episode)
+            writer.add_scalar('ACC', ave_acc, episode)
 
 
         if episode % 1000 == 0:
@@ -289,6 +296,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
 

@@ -175,58 +175,98 @@ class State(object):
         
         return similarity_matrix
     
+    # def get_localcosts(self):
+    #     g1 = self.g1
+    #     g2 = self.g2
+    #     g1_reverse = self.g1_reverse
+    #     g2_reverse = self.g2_reverse
+    #     candidates = self.candidates
+    #     local_costs = np.zeros((len(g1.nodes),len(g2.nodes)))
+
+    #     for dst_idx, src_idx in list(nx.Graph(g1).edges()):
+    #         src_is_cand = candidates[src_idx]
+    #         dst_is_cand = candidates[dst_idx]
+    #         supported_edges = None
+
+        
+    #         total_tmplt_edges = 0
+    #         for tmplt_adj, world_adj in iter_adj_pairs(g1, g2,g1_reverse,g2_reverse):
+    #             tmplt_adj_val = tmplt_adj[src_idx, dst_idx]
+    #             total_tmplt_edges += tmplt_adj_val
+
+    #             # if there are no edges in this channel of the template, skip it
+    #             if tmplt_adj_val == 0:
+    #                 continue
+
+    #             # sub adjacency matrix corresponding to edges from the source
+    #             # candidates to the destination candidates
+    #             world_sub_adj = world_adj[:, dst_is_cand][src_is_cand, :]
+
+    #             # Edges are supported up to the number of edges in the template
+    #             if supported_edges is None:
+    #                 supported_edges = world_sub_adj.minimum(tmplt_adj_val)
+    #             else:
+    #                 supported_edges += world_sub_adj.minimum(tmplt_adj_val)
+
+    #         src_support = supported_edges.max(axis=1)
+    #         src_least_cost = total_tmplt_edges - src_support.A
+
+    #         # Different algorithm from REU
+    #         # Main idea: assigning u' to u and v' to v causes cost for u to increase
+    #         # based on minimum between cost of v and missing edges between u and v
+    #         # src_least_cost = np.maximum(total_tmplt_edges - supported_edges.A,
+    #         #                             local_costs[dst_idx][dst_is_cand]).min(axis=1)
+
+    #         src_least_cost = np.array(src_least_cost).flatten()
+    #         # Update the local cost bound
+    #         local_costs[src_idx][src_is_cand] += src_least_cost
+
+    #         if src_idx != dst_idx:
+    #             dst_support = supported_edges.max(axis=0)
+    #             dst_least_cost = total_tmplt_edges - dst_support.A
+    #             dst_least_cost = np.array(dst_least_cost).flatten()
+    #             local_costs[dst_idx][dst_is_cand] += dst_least_cost
+    #     return local_costs
+
     def get_localcosts(self):
         g1 = self.g1
         g2 = self.g2
-        g1_reverse = self.g1_reverse
-        g2_reverse = self.g2_reverse
+        # g1_reverse = self.g1_reverse
+        # g2_reverse = self.g2_reverse
         candidates = self.candidates
-        local_costs = np.zeros((len(g1.nodes),len(g2.nodes)))
 
-        for dst_idx, src_idx in list(nx.Graph(g1).edges()):
-            src_is_cand = candidates[src_idx]
-            dst_is_cand = candidates[dst_idx]
-            supported_edges = None
+        local_costs = np.full(candidates.shape, np.inf)
 
-        
-            total_tmplt_edges = 0
-            for tmplt_adj, world_adj in iter_adj_pairs(g1, g2,g1_reverse,g2_reverse):
-                tmplt_adj_val = tmplt_adj[src_idx, dst_idx]
-                total_tmplt_edges += tmplt_adj_val
+        true_indices = np.argwhere(candidates)
 
-                # if there are no edges in this channel of the template, skip it
-                if tmplt_adj_val == 0:
-                    continue
+        # 将坐标数组转换为元组列表
+        true_indices_list = [tuple(index) for index in true_indices]
+        for src_idx, dst_idx in true_indices_list:
+            localcost = 0 
+            for i in g1.nodes:
+            # 检查 g1 中节点 i 是否与节点 0 有边
+                has_edge_in_g1 = g1.has_edge(i, src_idx) 
 
-                # sub adjacency matrix corresponding to edges from the source
-                # candidates to the destination candidates
-                world_sub_adj = world_adj[:, dst_is_cand][src_is_cand, :]
+                # 在 candidates 中找到与节点 i 匹配的 g2 节点
+                candidate_nodes = np.where(candidates[i])[0]
 
-                # Edges are supported up to the number of edges in the template
-                if supported_edges is None:
-                    supported_edges = world_sub_adj.minimum(tmplt_adj_val)
-                else:
-                    supported_edges += world_sub_adj.minimum(tmplt_adj_val)
+                # 检查这些候选节点是否满足条件
+                condition_met = False
+                for cn in candidate_nodes:
+                    has_edge_in_g2 = g2.has_edge(cn, dst_idx) 
+                    if has_edge_in_g1 == has_edge_in_g2:
+                        condition_met = True
+                        break
 
-            src_support = supported_edges.max(axis=1)
-            src_least_cost = total_tmplt_edges - src_support.A
-
-            # Different algorithm from REU
-            # Main idea: assigning u' to u and v' to v causes cost for u to increase
-            # based on minimum between cost of v and missing edges between u and v
-            # src_least_cost = np.maximum(total_tmplt_edges - supported_edges.A,
-            #                             local_costs[dst_idx][dst_is_cand]).min(axis=1)
-
-            src_least_cost = np.array(src_least_cost).flatten()
-            # Update the local cost bound
-            local_costs[src_idx][src_is_cand] += src_least_cost
-
-            if src_idx != dst_idx:
-                dst_support = supported_edges.max(axis=0)
-                dst_least_cost = total_tmplt_edges - dst_support.A
-                dst_least_cost = np.array(dst_least_cost).flatten()
-                local_costs[dst_idx][dst_is_cand] += dst_least_cost
+                # 如果没有满足条件的候选节点，则增加代价
+                if not condition_met:
+                    localcost += 1
+            local_costs[src_idx,dst_idx] = localcost
         return local_costs
+
+
+
+
         
     def get_globalcosts(self):
         g1 = self.g1

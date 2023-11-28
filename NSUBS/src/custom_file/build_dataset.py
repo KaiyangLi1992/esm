@@ -29,42 +29,8 @@ def extract_subgraphs(main_graph, nodes_list, min_nodes, max_nodes):
             subgraphs.append(subgraph)
     return subgraphs
 
-# 主函数
-# if __name__ == "__main__":
-    # 假设你的nxgraph文件名是'nxgraph.gml'
-    # main_graph = nx.read_gml('nxgraph.gml')
-
-    # nodes_list = read_txt_file('your_txt_file.txt')
-
-    # small_subgraphs = extract_subgraphs(main_graph, nodes_list, 20, 30)
-    # large_subgraphs = extract_subgraphs(main_graph, nodes_list, 30, 60)
-
-    # 确保只获取50个子图
-    # small_subgraphs = small_subgraphs[:50]
-    # large_subgraphs = large_subgraphs[:50]
-
-    print(f"Found {len(small_subgraphs)} small subgraphs and {len(large_subgraphs)} large subgraphs.")
 
 
-# 使用函数
-# filename = "/home/kli16/NSUBS/src/custom_file/raw_data/com-dblp.ungraph.txt"
-# dblp_graph = load_dblp_snap_file(filename)
-# with open('/home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/data_graph/target.pickle','wb') as f:
-#     pickle.dump(dblp_graph,f)
-
-# nodes_list = read_txt_file('/home/kli16/NSUBS/src/custom_file/raw_data/com-dblp.all.cmty.txt')
-# small_subgraphs = extract_subgraphs(dblp_graph, nodes_list, 20, 30)
-# large_subgraphs = extract_subgraphs(dblp_graph, nodes_list, 30, 60)
-# small_subgraphs = small_subgraphs[:50]
-# large_subgraphs = large_subgraphs[:50]
-
-# for i in range(0,50):
-#     with open(f'/home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_{i}.graph','wb') as f:
-#         pickle.dump(small_subgraphs[i],f)
-
-# for i in range(50,100):
-#     with open(f'/home/kli16/NSUBS/model/SubgraphMatching/dataset/dblp_unlabeled/query_graph/query_dense_64_{i}.graph','wb') as f:
-#         pickle.dump(large_subgraphs[i-50],f)
 
 import random
 

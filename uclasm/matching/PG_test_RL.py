@@ -8,8 +8,8 @@ import torch.nn as nn
 from torch.distributions import Categorical
 import numpy as np
 import torch.optim as optim
-sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/") 
-sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/uclasm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_debug/esm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_debug/esm/uclasm/") 
 
 from NSUBS.model.OurSGM.config import FLAGS
 from NSUBS.model.OurSGM.saver import saver
@@ -63,7 +63,7 @@ def clear_directory(folder_path):
 model = _create_model(47)
 def test_checkpoint_model(ckpt_pth,test_dataset):
     
-    checkpoint = torch.load(ckpt_pth)
+    checkpoint = torch.load(ckpt_pth,map_location=torch.device(FLAGS.device))
     model.load_state_dict(checkpoint['model_state_dict'])
 
     env = environment(test_dataset)
@@ -108,6 +108,7 @@ def test_checkpoint_model(ckpt_pth,test_dataset):
             # predicts.append(max_index.item())   
             if done:
                 costs.append(calculate_cost(newstate.g1,newstate.g2,newstate.nn_mapping))
+                model.reset_cache()
                 break
 
 
@@ -133,14 +134,14 @@ with open('/home/kli16/ISM_custom/esm_NSUBS/esm/data/unEmail_testset_dens_0.2_n_
     # print(checkpoint)
 # print(average_cost)
 # time = FLAGS.time
-time = '2023-10-27_13-54-47'
+time = '2023-11-24_16-30-42'
 try:
-    clear_directory(f'/home/kli16/ISM_custom/esm_NSUBS/esm/runs_RL_test/{time}/')
+    clear_directory(f'/home/kli16/ISM_custom/esm_NSUBS_RWSE_debug/esm/runs_RL_test/{time}/')
 except:
     pass
-writer = SummaryWriter(f'/home/kli16/ISM_custom/esm_NSUBS/esm/runs_RL_test/{time}/')
-for i in range(30000, 120000, 500):
-    checkpoint = f'/home/kli16/ISM_custom/esm_NSUBS/esm/ckpt_RL/{time}/checkpoint_{i}.pth'
+writer = SummaryWriter(f'/home/kli16/ISM_custom/esm_NSUBS_RWSE_debug/esm/runs_RL_test/{time}/')
+for i in range(30000, 200000, 500):
+    checkpoint = f'/home/kli16/ISM_custom/esm_NSUBS_RWSE_debug/esm/ckpt_RL/{time}/checkpoint_{i}.pth'
     average_cost = test_checkpoint_model(checkpoint, test_dataset)
     writer.add_scalar('Metrics/Cost', average_cost, i)
     print(checkpoint)

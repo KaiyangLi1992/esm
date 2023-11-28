@@ -179,8 +179,8 @@ def update_action_exp(state,action):
 
 def main():
     # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    device = torch.device('cuda:7')
-    print(f"Using device: {device}")
+    # device = torch.device('cuda:7')
+    # print(f"Using device: {device}")
 
     env  = environment(dataset)
     policy = policy_network().to(device) 

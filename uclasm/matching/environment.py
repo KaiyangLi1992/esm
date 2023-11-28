@@ -15,6 +15,23 @@ import random
 def has_self_loop(graph, node):
     return node in graph.successors(node) 
 
+
+import random
+
+class RandomSelector:
+    def __init__(self, data):
+        self.data = data
+        self.shuffle_data()
+
+    def shuffle_data(self):
+        self.remaining = self.data[:]
+        random.shuffle(self.remaining)
+
+    def get_next_item(self):
+        if not self.remaining:  # 如果列表为空，则重新洗牌
+            self.shuffle_data()
+        return self.remaining.pop()  # 选取并移除最后一个元素
+
 # def get_reward(tmplt_idx,cand_idx,state):
 #     g1 = state.g1
 #     g2 = state.g2
@@ -100,14 +117,16 @@ def get_attr_dict(G):
     return type_dict
 
 
-def get_next_item(data_loader):
-    data_iter = iter(data_loader)
-    while True:
-        try:
-            yield next(data_iter)
-        except StopIteration:
-            data_iter = iter(data_loader)
-            yield next(data_iter)
+# def get_next_item(data_loader):
+#     pair_list = dataset.pairs.keys().copy()
+#     random.shuffle(self.remaining)
+#     data_iter = iter(data_loader)
+#     while True:
+#         try:
+#             yield next(data_iter)
+#         except StopIteration:
+#             data_iter = iter(data_loader)
+#             yield next(data_iter)
 
 def get_init_action(coordinates,globalcost):
         filtered_coordinates = [coord for coord in coordinates if coord != (-1, -1)]
@@ -142,10 +161,12 @@ class environment:
         self.g1 = None
         self.g2 = None
         self.threshold = np.inf
-        self.gen = get_next_item(dataset)
+        pairs_list = list(dataset.pairs.keys())
+        self.selector = RandomSelector(pairs_list)
+        # self.gen = get_next_item(dataset)
         
     def reset(self):
-       batch_gids = next(self.gen)
+       batch_gids = self.selector.get_next_item()
     #    batch_gids = [torch.tensor([1]), torch.tensor([0])]
        self.g1 = self.dataset.look_up_graph_by_gid(batch_gids[0]).get_nxgraph()
        self.g2 = self.dataset.look_up_graph_by_gid(batch_gids[1]).get_nxgraph()
