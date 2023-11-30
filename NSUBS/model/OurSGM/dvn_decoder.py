@@ -311,7 +311,7 @@ class QueryDecoder(torch.nn.Module):
 
     def forward(self, Xq, Xt, gq, gt, nn_map, candidate_map, node_mask, logger):
         Q = torch.sum(self.norm(self.mlp_att(Xq)).view(-1, 1) * self.mlp_val(Xq), dim=0) / Xq.shape[0]
-        V = F.leaky_relu(self.mlp_final(Q)) - get_accum_reward_from_start(len(nn_map), gq.number_of_nodes(), False)
+        V = F.leaky_relu(self.mlp_final(Q)) #- get_accum_reward_from_start(len(nn_map), gq.number_of_nodes(), False)
         return V, Q
 
 class SimpleDecoder(torch.nn.Module):

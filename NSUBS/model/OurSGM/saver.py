@@ -14,6 +14,26 @@ import time
 import pickle
 import matplotlib.pyplot as plt
 from copy import deepcopy
+import os
+
+class ParameterSaver:
+    def __init__(self, log_dir='log'):
+        self.log_dir = log_dir
+        # 创建日志文件夹
+        if not os.path.exists(log_dir):
+            os.makedirs(log_dir)
+
+    def save(self, params, file_name='params.log'):
+        file_path = os.path.join(self.log_dir, file_name)
+        # 写入参数
+        with open(file_path, 'a') as file:
+            for key, value in params.items():
+                file.write(f'{key}: {value}\n')
+            # 添加一个换行符来分隔不同的保存点
+            file.write('\n')
+
+
+
 
 class Saver(object):
     def __init__(self):
@@ -419,18 +439,6 @@ class Saver(object):
         for eid in G.edges:
             G.edges[eid]['action'] = '_'.join([str(nid) for nid in G.edges[eid]['action']])
         nx.write_gexf(G, join(self.tree_dir, f'{label}.gexf'))
-        # for nid in G.nodes:
-        #     if G.nodes[nid]['u'] == -1:
-        #         G.nodes[nid]['u'] = None
-        #     G.nodes[nid]['out_policy'] = \
-        #         [] if G.nodes[nid]['out_policy'] == '' else \
-        #             np.array([float(p) for p in G.nodes[nid]['out_policy'].split('_')])
-        #     G.nodes[nid]['out_value'] = np.array([G.nodes[nid]['out_value']])
-        #     G.nodes[nid]['pi'] = \
-        #         [] if G.nodes[nid]['pi'] == '' else \
-        #             np.array([float(p) for p in G.nodes[nid]['pi'].split('_')])
-        # for eid in G.edges:
-        #     G.edges[eid]['action'] = (int(nid) for nid in G.edges[eid]['action'].split('_'))
 
     def plot_solutions(self, smts, gq, gt, label, true_nn_map, CS=None):
         if not hasattr(self, 'sol_dir'):

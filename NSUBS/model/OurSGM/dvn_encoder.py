@@ -164,51 +164,31 @@ class GNNConsensusEncoder(torch.nn.Module):
         if FLAGS.time_analysis:
             timer = OurTimer()
 
-        if cache_embeddings:
-            Xq_li, Xt_li = [Xq], [Xt]
+        # if cache_embeddings:
+        Xq_li, Xt_li = [Xq], [Xt]
 
-            if self.Xq_Xt_cached_li is None:
-                self.Xq_Xt_cached_li = []
-                for i, (gnn_wrapper, consensus) in \
-                        enumerate(zip(self.gnn_wrapper_li, self.consensus_li)):
-                    assert consensus is None
-                    Xq, Xt = gnn_wrapper(Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, cs_map, node_mask, only_inter=False)
-                    self.Xq_Xt_cached_li.append((Xq, Xt))
-                    if i != len(self.gnn_wrapper_li)-1:
-                        Xq, Xt = F.elu(Xq), F.elu(Xt)
-                    Xt[node_mask, :] = 0
+        for i, (gnn_wrapper) in \
+                enumerate(self.gnn_wrapper_li):
+            # Xq, Xt = Xq_Xt_cached
+            Xq, Xt = gnn_wrapper(Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
+            Xt[node_mask, :] = 0
+            if i != len(self.gnn_wrapper_li)-1:
+                Xq, Xt = F.elu(Xq), F.elu(Xt)
+            Xq_li.append(Xq)
+            Xt_li.append(Xt)
 
-            if FLAGS.time_analysis:
-                timer.time_and_clear(f'gnn_wrapper 1')
-
-            if 'skip_inter' in FLAGS.dvn_config['encoder'] or FLAGS.dvn_config['encoder']['gnn_type'] != 'OurGMNv2':
-                assert False, 'did you really mean to only use intra-graph message passing?'
-                for Xq, Xt in self.Xq_Xt_cached_li:
-                    Xq_li.append(Xq)
-                    Xt_li.append(Xt)
-            else:
-                # Xq_li, Xt_li = [], []
-                for i, (gnn_wrapper, Xq_Xt_cached) in \
-                        enumerate(zip(self.gnn_wrapper_li, self.Xq_Xt_cached_li)):
-                    Xq, Xt = gnn_wrapper(Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
-                    Xt[node_mask, :] = 0
-                    if i != len(self.gnn_wrapper_li)-1:
-                        Xq, Xt = F.elu(Xq), F.elu(Xt)
-                    Xq_li.append(Xq)
-                    Xt_li.append(Xt)
-
-            if FLAGS.time_analysis:
-                timer.time_and_clear(f'gnn_wrapper 2')
+            # if FLAGS.time_analysis:
+            #     timer.time_and_clear(f'gnn_wrapper 2')
 
             Xq = self.jk(Xq_li)
             Xt = self.jk(Xt_li)
 
-            if FLAGS.time_analysis:
-                timer.time_and_clear(f'jk')
+            # if FLAGS.time_analysis:
+            #     timer.time_and_clear(f'jk')
         else:
             Xq_li, Xt_li = [Xq], [Xt]
-            for i, (gnn_wrapper, consensus, Xt_cached) in \
-                    enumerate(zip(self.gnn_wrapper_li, self.consensus_li, self.Xq_Xt_cached_li)):
+            for i, (gnn_wrapper, consensus) in \
+                    enumerate(zip(self.gnn_wrapper_li, self.consensus_li)):
                 Xq, Xt = gnn_wrapper(Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=False)
                 if i != len(self.gnn_wrapper_li)-1:
                     Xq, Xt = F.elu(Xq), F.elu(Xt)

@@ -18,7 +18,7 @@ from torch.utils.tensorboard import SummaryWriter
 import os
 import shutil
 import networkx as nx
-from PG_structure import update_state
+# from PG_structure import update_state
 import random
 import gc
 import datetime
@@ -169,8 +169,8 @@ with open('/home/kli16/ISM_custom/esm_only_rl/esm/Email_trainset_dens_0.2_n_8_nu
 
 def main():
     # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    device = torch.device('cuda:7')
-    print(f"Using device: {device}")
+    # device = torch.device('cuda:7')
+    # print(f"Using device: {device}")
 
     env  = environment(dataset)
     policy = policy_network().to(device) 

@@ -14,20 +14,22 @@ import time
 
 
 
-sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/") 
-sys.path.append("/home/kli16/ISM_custom/esm_NSUBS/esm/uclasm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_reorder/esm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_reorder/esm/uclasm/") 
+
 
 
 # Custom module imports
 from NSUBS.model.OurSGM.config import FLAGS
-from NSUBS.model.OurSGM.saver import saver
+from NSUBS.model.OurSGM.saver import saver,ParameterSaver
 from NSUBS.model.OurSGM.train import train, cross_entropy_smooth
 from NSUBS.model.OurSGM.test import test
+
 from NSUBS.model.OurSGM.model_glsearch import GLS
 from NSUBS.model.OurSGM.utils_our import load_replace_flags
 from NSUBS.model.OurSGM.dvn_wrapper import create_dvn
 from NSUBS.src.utils import OurTimer, save_pickle
-from environment import environment, update_state, calculate_cost
+from environment import environment,  calculate_cost
 
 from torch.optim.lr_scheduler import StepLR
 # Constants
@@ -37,8 +39,14 @@ dim = 47
 timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 device = torch.device(FLAGS.device)
 imitationlearning = True
-checkpoint_path = '/home/kli16/ISM_custom/esm_NSUBS/esm/ckpt_imitationlearning/2023-10-26_11-48-59/checkpoint_80000.pth'
-checkpoint = torch.load(checkpoint_path)
+
+checkpoint_path = '/home/kli16/ISM_custom/esm_NSUBS_RWSE_reorder/esm/ckpt_RL/2023-11-29_11-52-28/checkpoint_3000.pth'
+# checkpoint_path = '/home/kli16/ISM_custom/esm_NSUBS_RWSE_debug/esm/ckpt_imitationlearning/2023-11-28_13-15-54/checkpoint_49000.pth'
+checkpoint = torch.load(checkpoint_path,map_location=torch.device(FLAGS.device))
+lr_decay = False
+T_max = 2e4
+lr = 1e-5
+
 
 def _create_model(d_in_raw):
     model = create_dvn(d_in_raw, FLAGS.d_enc)
@@ -103,7 +111,10 @@ class PPO:
             self.policy.load_state_dict(checkpoint['model_state_dict'])
 
         self.optimizer = optim.Adam(self.policy.parameters(), self.lr)
-        self.scheduler = StepLR(self.optimizer, step_size=2000, gamma=0.1)
+        if imitationlearning is True:
+            self.optimizer.load_state_dict(checkpoint['optimizer_state_dict']) 
+        if lr_decay:
+            self.scheduler = optim.lr_scheduler.CosineAnnealingLR(self.optimizer, T_max=T_max)
 
         self.policy_old = _create_model(dim).to(device)
         self.policy_old.load_state_dict(self.policy.state_dict())
@@ -114,10 +125,10 @@ class PPO:
 
     def select_action(self, state,env):
             with torch.no_grad():
-                update_state(state,env.threshold)
-                assert ~np.any(np.all(state.candidates == False, axis=1))
-                action_exp = state.get_action_heuristic()
-                state.action_space = state.get_action_space(action_exp)
+                # update_state(state,env.threshold)
+                # assert ~np.any(np.all(state.candidates == False, axis=1))
+                # action_exp = state.get_action_heuristic()
+                state.action_space = state.get_action_space(env.order)
                 pre_processed = _preprocess_NSUBS(state)
                 out_policy, out_value, out_other = \
                     self.policy_old(*pre_processed,
@@ -136,12 +147,12 @@ class PPO:
 
             return action
 
-    def policy_evaluate(self,states,actions):
+    def policy_evaluate(self,states,actions,is_terminals):
         action_logprobs_li = []
         dist_entropy_li= []
         state_values_li = []
 
-        for state,action in zip(states,actions):
+        for state,action,is_terminal in zip(states,actions,is_terminals):
             pre_processed = _preprocess_NSUBS(state)
             # start_time = time.time()
             out_policy, out_value, out_other = \
@@ -149,15 +160,15 @@ class PPO:
                     True,
                     graph_filter=None, filter_key=None,
             )
-            # end_time = time.time()
-            # elapsed_time = end_time - start_time
-            # print(f"Execution time: {elapsed_time:.2f} seconds")
             action_prob = F.softmax(out_policy - out_policy.max()) + 1e-10
             ind = state.action_space.index(action)
             dist = Categorical(action_prob)
             action_logprob = dist.log_prob(torch.tensor(ind).to(device))
             # dist_entropy = dist.entropy()
             state_value = out_value
+            if is_terminal:
+                self.policy.reset_cache()
+
 
             action_logprobs_li.append(action_logprob)
             dist_entropy_li.append(dist.entropy())
@@ -196,7 +207,7 @@ class PPO:
 
             # Evaluating old actions and values
             
-            logprobs, state_values, dist_entropy = self.policy_evaluate(old_states, old_actions)
+            logprobs, state_values, dist_entropy = self.policy_evaluate(old_states, old_actions,self.buffer.is_terminals)
      
             # match state_values tensor dimensions with rewards tensor
             state_values = torch.squeeze(state_values)
@@ -240,12 +251,31 @@ class PPO:
 update_timestep = 1 * 4      # update policy every n timesteps
 K_epochs = 10               # update policy for K epochs
 eps_clip = 0.2              # clip parameter for PPO
-gamma = 0.99                # discount factor
+gamma = 0.99         # discount factor
 max_training_episodes = int(1e5) 
-lr = 1e-4
+
 random_seed = 0         # set random seed if required (0 = no random seed)
 
+saverP = ParameterSaver()
+if imitationlearning is True:
+    checkpoint_path_para = checkpoint_path
+else:
+    checkpoint_path_para = None
+if lr_decay is True:
+    T_max_para = T_max
+else:
+    T_max_para = None
 
+parameters = {
+    'pid': os.getpid(),
+    'file_path':os.path.abspath(__file__),
+    'learning_rate': lr,
+    'checkpoint_path': checkpoint_path_para,
+    'T_max' : T_max_para,
+    'gamma':gamma
+
+}
+saverP.save(parameters,file_name=f'{timestamp}.log')
 
 ###################### logging ######################
 #### log files for multiple runs are NOT overwritten
@@ -297,7 +327,7 @@ def main():
 
     for episode in range(max_training_episodes):
         state_init = env.reset()
-        update_state(state_init,env.threshold)
+        # update_state(state_init,env.threshold)
         stack = [state_init]       
         while stack:
             state = stack.pop()
@@ -308,11 +338,13 @@ def main():
             stack.append(newstate)
             if done:
                 cost = calculate_cost(newstate.g1,newstate.g2,newstate.nn_mapping)
+                ppo_agent.policy.reset_cache()
                 break
 
         if episode % update_timestep == 0:
             loss = ppo_agent.update()
-        ppo_agent.scheduler.step()
+        if lr_decay:
+            ppo_agent.scheduler.step()
          
 
 
@@ -324,13 +356,13 @@ def main():
             print(f"Lost:{loss}")
 
 
-        if episode % 100 == 0:
+        if episode % 500 == 0:
 
         # 创建一个检查点每隔几个时期
             checkpoint = {
                 'epoch': episode,
                 'model_state_dict': ppo_agent.policy_old.state_dict(),
-                'optimizer_state_dict': ppo_agent.policy_old.state_dict(),
+                'optimizer_state_dict': ppo_agent.optimizer.state_dict(),
                 # ... (其他你想保存的元数据)
             }
             directory_name = f"ckpt_RL/{timestamp}/"

@@ -22,10 +22,16 @@ class PreEncoderConcatSelectedOneHotAndMLP(torch.nn.Module):
     def __init__(self, dim_in, dim_out):
         super(PreEncoderConcatSelectedOneHotAndMLP, self).__init__()
         if dim_in + 2 != dim_out:
-            self.mlp_q = nn.Linear(dim_in + 2, dim_out-64)
-            self.mlp_t = nn.Linear(dim_in + 2, dim_out-64)
-            self.mlp_RWSEq = nn.Linear(20, 64)
-            self.mlp_RWSEt = nn.Linear(20, 64)
+            if FLAGS.d_enc == 128:
+                self.mlp_q = nn.Linear(dim_in + 2, dim_out-64)
+                self.mlp_t = nn.Linear(dim_in + 2, dim_out-64)
+                self.mlp_RWSEq = nn.Linear(20, 64)
+                self.mlp_RWSEt = nn.Linear(20, 64)
+            if FLAGS.d_enc == 32:
+                self.mlp_q = nn.Linear(dim_in + 2, dim_out-16)
+                self.mlp_t = nn.Linear(dim_in + 2, dim_out-16)
+                self.mlp_RWSEq = nn.Linear(20, 16)
+                self.mlp_RWSEt = nn.Linear(20, 16)
         else:
             self.mlp_q = self.mlp_t = lambda x: x
 

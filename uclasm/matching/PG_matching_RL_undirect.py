@@ -29,7 +29,7 @@ from torch.utils.tensorboard import SummaryWriter
 import os
 import shutil
 import networkx as nx
-from PG_structure import update_state
+# from PG_structure import update_state
 import random
 import gc
 import datetime
@@ -200,7 +200,7 @@ def main():
     for episode in range(100000):
         rewards = 0
         state_init = env.reset()
-        update_state(state_init,env.threshold)
+        # update_state(state_init,env.threshold)
         stack = [state_init]
         # policy.hn = None
         # policy.cn = None
@@ -218,14 +218,14 @@ def main():
         while stack:
             state = stack.pop()
             # update_state(state,env.threshold)
-            if np.any(np.all(state.candidates == False, axis=1)):
-                continue
+            # if np.any(np.all(state.candidates == False, axis=1)):
+            #     continue
 
 
             
             
-            action_exp = state.get_action_heuristic()
-            state.action_space = state.get_action_space(action_exp)
+            # action_exp = state.get_action_heuristic()
+            state.action_space = state.get_action_space()
             action_exp = update_action_exp(state,action_exp)
             ind,state.action_space = update_and_get_position(state.action_space, action_exp)
           

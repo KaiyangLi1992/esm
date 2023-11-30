@@ -6,29 +6,29 @@ from laptools import clap
 from matching_utils import MonotoneArray
 from datetime import datetime
 
-def update_state(state,threshold):
-    state.threshold = threshold
-    changed_cands = np.ones((len(state.g1.nodes),), dtype=np.bool_)
-    state.candidates = state.get_candidates()
-                    # 从state_candidates中找出索引不在state_nn_mapping键中的行
-    if np.any(np.all(state.candidates == False, axis=1)):
-        return
-    old_candidates = state.candidates.copy()
-    state.localcosts[:] = np.maximum(state.localcosts, state.get_localcosts())
-    state.globalcosts[:] = np.maximum(state.globalcosts, state.get_globalcosts())
+# def update_state(state,threshold):
+#     state.threshold = threshold
+#     changed_cands = np.ones((len(state.g1.nodes),), dtype=np.bool_)
+#     state.candidates = state.get_candidates()
+#                     # 从state_candidates中找出索引不在state_nn_mapping键中的行
+#     if np.any(np.all(state.candidates == False, axis=1)):
+#         return
+#     old_candidates = state.candidates.copy()
+#     state.localcosts[:] = np.maximum(state.localcosts, state.get_localcosts())
+#     state.globalcosts[:] = np.maximum(state.globalcosts, state.get_globalcosts())
 
-    # TODO: Does this break if nodewise changes the candidates?
-    while True:
-        state.localcosts[:] = np.maximum(state.localcosts, state.get_localcosts())
-        state.globalcosts[:] = np.maximum(state.globalcosts, state.get_globalcosts())
-        state.candidates = state.get_candidates()
-        if np.any(np.all(state.candidates == False, axis=1)):
-            return
+#     # TODO: Does this break if nodewise changes the candidates?
+#     while True:
+#         state.localcosts[:] = np.maximum(state.localcosts, state.get_localcosts())
+#         state.globalcosts[:] = np.maximum(state.globalcosts, state.get_globalcosts())
+#         state.candidates = state.get_candidates()
+#         if np.any(np.all(state.candidates == False, axis=1)):
+#             return
 
-        changed_cands = np.any(state.candidates != old_candidates, axis=1)
-        if ~np.any(changed_cands):
-            break
-        old_candidates = state.candidates.copy()
+#         changed_cands = np.any(state.candidates != old_candidates, axis=1)
+#         if ~np.any(changed_cands):
+#             break
+#         old_candidates = state.candidates.copy()
 
 
 
@@ -123,28 +123,29 @@ class State(object):
         # self.action_space = self.get_action_space()
         
         
-    def get_action_heuristic(self):
+    # def get_action_heuristic(self):
 
-        matrix = self.candidates
-        exclude_indices = list(self.nn_mapping.keys())
-        if not exclude_indices:
-            filtered_matrix = matrix
-        else:
-            matrix[exclude_indices,:] = False
-            filtered_matrix = matrix
-        result_matrix =  np.where(matrix, self.globalcosts, np.inf)
+    #     matrix = self.candidates
+    #     exclude_indices = list(self.nn_mapping.keys())
+    #     if not exclude_indices:
+    #         filtered_matrix = matrix
+    #     else:
+    #         matrix[exclude_indices,:] = False
+    #         filtered_matrix = matrix
+    #     result_matrix =  np.where(matrix, self.globalcosts, np.inf)
 
 
-        min_index = np.unravel_index(np.argmin(result_matrix), result_matrix.shape)
-        min_index_tuple = tuple(min_index)
+    #     min_index = np.unravel_index(np.argmin(result_matrix), result_matrix.shape)
+    #     min_index_tuple = tuple(min_index)
 
     
-        return min_index_tuple
+    #     return min_index_tuple
     
-    def get_action_space(self,action_exp):
+    def get_action_space(self,order):
 
         matrix = self.candidates
-        row_index = action_exp[0]
+        # row_index = order[len(self.nn_mapping)]
+        row_index = len(self.nn_mapping)
         row = matrix[row_index]
 
         # 获取非零元素的列坐标
@@ -155,13 +156,13 @@ class State(object):
         
         return coordinates
     
-    def get_candidates(self):
-        candidates =  (self.globalcosts < (self.threshold - 1e-8)).view(np.ndarray)
-        candidates = np.logical_and(self.ori_candidates, candidates)
-        rows = [tup[0] for tup in self.pruned_space]
-        cols = [tup[1] for tup in self.pruned_space]
-        candidates[rows, cols] = False
-        return candidates
+    # def get_candidates(self):
+    #     candidates =  (self.globalcosts < (self.threshold - 1e-8)).view(np.ndarray)
+    #     candidates = np.logical_and(self.ori_candidates, candidates)
+    #     rows = [tup[0] for tup in self.pruned_space]
+    #     cols = [tup[1] for tup in self.pruned_space]
+    #     candidates[rows, cols] = False
+    #     return candidates
 
     
         
