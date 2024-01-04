@@ -160,7 +160,8 @@ class State(object):
         candidates = np.logical_and(self.ori_candidates, candidates)
         rows = [tup[0] for tup in self.pruned_space]
         cols = [tup[1] for tup in self.pruned_space]
-        candidates[rows, cols] = False
+        candidates[rows, :] = False
+        candidates[:, cols] = False
         return candidates
 
     

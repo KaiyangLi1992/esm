@@ -12,6 +12,7 @@ from NSUBS.model.OurSGM.dvn_decoder import create_decoder
 from NSUBS.model.OurSGM.dvn_preencoder import create_preencoder
 from NSUBS.model.OurSGM.dvn import DVN
 from NSUBS.model.OurSGM.utils_nn import MLP, get_MLP_args
+from graphgps.encoder.dummy_edge_encoder import DummyEdgeEncoder
 
 def create_u2v_li(nn_map, cs_map, candidate_map):
     u2v_li = {}
@@ -27,6 +28,8 @@ def create_u2v_li(nn_map, cs_map, candidate_map):
 
 def create_dvn(d_in_raw, d_in):
     pre_encoder = create_preencoder(d_in_raw, d_in)
+    gq_edge_encoder = DummyEdgeEncoder(d_in)
+    gt_edge_encoder = DummyEdgeEncoder(d_in)
     encoder_gnn_consensus, d_out = create_encoder(d_in)
     decoder_policy, decoder_value = create_decoder()
     mlp_final = MLP(*get_MLP_args([64, 32, 16, 8, 4, 1]))
@@ -37,7 +40,7 @@ def create_dvn(d_in_raw, d_in):
             torch.nn.LayerNorm(d_out),
             torch.nn.LayerNorm(d_out),
         ])
-    dvn = DVN(pre_encoder, encoder_gnn_consensus, decoder_policy, decoder_value, norm_li)
+    dvn = DVN(pre_encoder, encoder_gnn_consensus,gq_edge_encoder, gt_edge_encoder,decoder_policy, decoder_value, norm_li)
     dvn_wrapper = DVN_wrapper(dvn, mlp_final)
     return dvn_wrapper
 

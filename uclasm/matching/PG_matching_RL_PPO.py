@@ -14,8 +14,9 @@ import time
 
 
 
-sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_debug/esm/") 
-sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_debug/esm/uclasm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_trans/esm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_trans/esm/uclasm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_trans/esm/GraphGPS/") 
 
 
 
@@ -38,11 +39,13 @@ matching_file_name = './data/unEmail_trainset_dens_0.2_n_8_num_2000_10_05_matchi
 dim = 47
 timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 device = torch.device(FLAGS.device)
-imitationlearning = True
+imitationlearning = False
 
-# checkpoint_path = FLAGS.ckpt
-checkpoint_path = '/home/kli16/ISM_custom/esm_NSUBS_RWSE_debug/esm/ckpt_RL/2023-11-24_16-30-42/checkpoint_54000.pth'
+
+checkpoint_path = FLAGS.ckpt
 checkpoint = torch.load(checkpoint_path,map_location=torch.device(FLAGS.device))
+
+
 lr_decay = False
 T_max = 2e4
 lr = FLAGS.lr
@@ -125,6 +128,7 @@ class PPO:
 
     def select_action(self, state,env):
             with torch.no_grad():
+                self.policy_old.train()
                 update_state(state,env.threshold)
                 assert ~np.any(np.all(state.candidates == False, axis=1))
                 action_exp = state.get_action_heuristic()
@@ -151,7 +155,8 @@ class PPO:
         action_logprobs_li = []
         dist_entropy_li= []
         state_values_li = []
-
+        self.policy.reset_cache()
+        self.policy.eval()
         for state,action,is_terminal in zip(states,actions,is_terminals):
             pre_processed = _preprocess_NSUBS(state)
             # start_time = time.time()
@@ -228,6 +233,15 @@ class PPO:
             # take gradient step
             self.optimizer.zero_grad()
             loss.mean().backward()
+            # for name, param in self.policy.named_parameters():
+            #     if param.grad is not None:
+            #         grad = param.grad
+            #         grad_min = torch.min(grad)
+            #         grad_max = torch.max(grad)
+            #         grad_mean = torch.mean(grad)
+
+            #         print(f"Gradients of {name}: min={grad_min}, max={grad_max}, mean={grad_mean}")
+            # torch.nn.utils.clip_grad_norm_(self.policy.parameters(), max_norm=0.01)
             self.optimizer.step()
             # loss.mean().item()
             

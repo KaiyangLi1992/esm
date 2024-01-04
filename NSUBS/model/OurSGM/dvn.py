@@ -1,14 +1,17 @@
 from NSUBS.src.utils import OurTimer
 import torch
 import torch.nn.functional as F
-
+from torch_geometric.data import Data
 from NSUBS.model.OurSGM.config import FLAGS
+# from graphgps.encoder.dummy_edge_encoder import DummyEdgeEncoder
 
 class DVN(torch.nn.Module):
-    def __init__(self, pre_encoder, encoder, decoder_policy, decoder_value, norm_li):
+    def __init__(self, pre_encoder, encoder, gq_egde_encoder,gt_egde_encoder,decoder_policy, decoder_value, norm_li):
         super(DVN, self).__init__()
         self.pre_encoder = pre_encoder
         self.encoder = encoder
+        self.gt_egde_encoder =  gt_egde_encoder
+        self.gq_egde_encoder =  gq_egde_encoder
         self.decoder_policy = decoder_policy
         self.decoder_value = decoder_value
         self.norm_li = norm_li
@@ -28,6 +31,12 @@ class DVN(torch.nn.Module):
 
         Xq, Xt = \
             self.pre_encoder(Xq, Xt, nn_map,RWSEq,RWSEt)
+        
+        pyg_data_q = Data(x=Xq,edge_index=edge_indexq)
+        pyg_data_t = Data(x=Xt,edge_index=edge_indext)
+        
+        pyg_data_q = self.gq_egde_encoder(pyg_data_q)
+        pyg_data_t = self.gt_egde_encoder(pyg_data_t)
 
         # Xq = self.norm_li[0](Xq)
         # Xt = self.norm_li[1](Xt)
@@ -36,7 +45,7 @@ class DVN(torch.nn.Module):
             timer.time_and_clear(f'pre_encoder')
         Xq, Xt = \
             self.encoder(
-                Xq, edge_indexq, Xt, edge_indext,
+                pyg_data_q, pyg_data_t,
                 nn_map, cs_map, candidate_map,
                 norm_q, norm_t, u2v_li, node_mask,
                 cache_target_embeddings

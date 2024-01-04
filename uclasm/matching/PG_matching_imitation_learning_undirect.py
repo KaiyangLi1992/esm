@@ -8,10 +8,11 @@ import torch.nn as nn
 from torch.distributions import Categorical
 import numpy as np
 import torch.optim as optim
-sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_debug/esm/") 
-sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_debug/esm/uclasm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_trans/esm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_trans/esm/uclasm/") 
+sys.path.append("/home/kli16/ISM_custom/esm_NSUBS_RWSE_trans/esm/GraphGPS/") 
 
-
+# import graphgps 
 from NSUBS.model.OurSGM.config import FLAGS
 from NSUBS.model.OurSGM.saver import saver,ParameterSaver
 from NSUBS.model.OurSGM.data_loader import get_data_loader_wrapper
@@ -219,6 +220,7 @@ def main():
  
     optimizer = optim.Adam(model.parameters(), lr=lr)
     rewards = []
+
 
     for episode in range(200000):
         rewards = 0

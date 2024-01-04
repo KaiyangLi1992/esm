@@ -71,6 +71,12 @@ def create_encoder(d_in):
                 GNNWrapper(*get_gnn_pair(din, dout)) \
                 for (din, dout) in zip(gnn_dims, gnn_dims[1:])
             ])
+
+        # gnn_wrapper_li = \
+        #     torch.nn.ModuleList([
+        #         GNNWrapper(*get_gnn_pair(din, dout)) \
+        #         for (din, dout) in zip(gnn_dims, gnn_dims[1:])
+        #     ])
     assert FLAGS.dvn_config['encoder']['consensus_cfg_li'] is None
     consensus_li = [None]*len(gnn_wrapper_li)
     encoder_gnn_consensus = GNNConsensusEncoder(gnn_wrapper_li, consensus_li)
@@ -141,18 +147,18 @@ class GNNWrapper(torch.nn.Module):
         self.gnnq = gnnq
         self.gnnt = gnnt
 
-    def forward(self, Xq,  edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter):
+    def forward(self, pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter):
         assert self.gnnm is not None, f'{self.gnnm} {self.gnnq} {self.gnnt}'
-        if self.gnnm is None:
-            Xq = self.gnnq(Xq, edge_indexq)
-            Xt = self.gnnt(Xt, edge_indext)
-        else:
-            if type(self.gnnm) is OurGATConv:
-                Xq = self.gnnm.forward_gq(Xq, edge_indexq)
-                Xt = self.gnnm.forward_gt(Xt, edge_indext, Xq)
-            else:
-                Xq, Xt = self.gnnm(Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter)
-        return Xq, Xt
+        # if self.gnnm is None:
+        #     Xq = self.gnnq(Xq, edge_indexq)
+        #     Xt = self.gnnt(Xt, edge_indext)
+        # else:
+        #     if type(self.gnnm) is OurGATConv:
+        #         Xq = self.gnnm.forward_gq(Xq, edge_indexq)
+        #         Xt = self.gnnm.forward_gt(Xt, edge_indext, Xq)
+        #     else:
+        pyg_data_q, pyg_data_t = self.gnnm(pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter)
+        return pyg_data_q, pyg_data_t
 
 class GNNConsensusEncoder(torch.nn.Module):
     def __init__(self, gnn_wrapper_li, consensus_li):
@@ -165,7 +171,7 @@ class GNNConsensusEncoder(torch.nn.Module):
     def reset_cache(self):
         self.Xq_Xt_cached_li = None
 
-    def forward(self, Xq, edge_indexq, Xt, edge_indext,
+    def forward(self, pyg_data_q, pyg_data_t,
                 nn_map, cs_map, candidate_map,
                 norm_q, norm_t, u2v_li, node_mask,
                 cache_embeddings):
@@ -176,65 +182,89 @@ class GNNConsensusEncoder(torch.nn.Module):
 
         # assert FLAGS.encoder_structure  in ['encoder1','encoder2','encoder3','encoder4','encoder5','encoder6'] 
 
-        if FLAGS.encoder_structure == 'encoder1':
-            Xq_li, Xt_li = [Xq], [Xt]
+        if FLAGS.encoder_structure == 'encoder0':
+                # self.Xq_Xt_cached_li = []
+            Xq_li, Xt_li = [pyg_data_q.x.clone()], [pyg_data_t.x.clone()]
             for i, (gnn_wrapper, consensus) in \
                     enumerate(zip(self.gnn_wrapper_li, self.consensus_li)):
-                Xq, Xt = gnn_wrapper(Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
+                pyg_data_q, pyg_data_t = gnn_wrapper(pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=False)
                 # Xq, Xt = gnn_wrapper(Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=False)
                 if i != len(self.gnn_wrapper_li)-1:
-                    Xq, Xt = F.elu(Xq), F.elu(Xt)
-                Xq_li.append(Xq)
-                Xt_li.append(Xt)
+                    pyg_data_q.x, pyg_data_t.x = F.elu(pyg_data_q.x), F.elu(pyg_data_t.x)
+                Xq_li.append(pyg_data_q.x.clone())
+                Xt_li.append(pyg_data_t.x.clone())
+            Xq = self.jk(Xq_li)
+            Xt = self.jk(Xt_li)
+            return Xq, Xt
+                # self.Xq_Xt_cached_li.append((Xq,Xt))
+                
+       
+            
+
+
+        
+        if FLAGS.encoder_structure == 'encoder1':
+            Xq_li, Xt_li = [pyg_data_q.x.clone()], [pyg_data_t.x.clone()]
+            for i, (gnn_wrapper, consensus) in \
+                    enumerate(zip(self.gnn_wrapper_li, self.consensus_li)):
+                pyg_data_q, pyg_data_t = gnn_wrapper(pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
+                # Xq, Xt = gnn_wrapper(Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=False)
+                if i != len(self.gnn_wrapper_li)-1:
+                    pyg_data_q.x, pyg_data_t.x = F.elu(pyg_data_q.x), F.elu(pyg_data_t.x)
+                Xq_li.append(pyg_data_q.x.clone())
+                Xt_li.append(pyg_data_t.x.clone())
             Xq = self.jk(Xq_li)
             Xt = self.jk(Xt_li)
             return Xq, Xt
     
         if FLAGS.encoder_structure == 'encoder2':
-            Xq_li, Xt_li = [Xq], [Xt]
+            Xq_li, Xt_li = [pyg_data_q.x.clone()], [pyg_data_t.x.clone()]
             if self.Xq_Xt_cached_li is None:
                 self.Xq_Xt_cached_li = []
                 for i, (gnn_wrapper, consensus) in \
                         enumerate(zip(self.gnn_wrapper_li, self.consensus_li)):
-                    Xq, Xt = gnn_wrapper(Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, cs_map, node_mask, only_inter=False)
-                    self.Xq_Xt_cached_li.append((Xq, Xt))
+                    pyg_data_q, pyg_data_t = gnn_wrapper(pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=False)
+                    self.Xq_Xt_cached_li.append((pyg_data_q.x.clone(), pyg_data_t.x.clone()))
                     if i != len(self.gnn_wrapper_li)-1:
-                        Xq, Xt = F.elu(Xq), F.elu(Xt)
+                        pyg_data_q.x, pyg_data_t.x = F.elu(pyg_data_q.x), F.elu(pyg_data_t.x)
            
             for i, (gnn_wrapper, Xq_Xt_cached) in \
                     enumerate(zip(self.gnn_wrapper_li, self.Xq_Xt_cached_li)):
-                Xq, Xt = gnn_wrapper(Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
+                pyg_data_q, pyg_data_t = gnn_wrapper(pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
                 if i != len(self.gnn_wrapper_li)-1:
-                    Xq, Xt = F.elu(Xq), F.elu(Xt)
-                Xq_li.append(Xq)
-                Xt_li.append(Xt)
+                    pyg_data_q.x, pyg_data_t.x = F.elu(pyg_data_q.x), F.elu(pyg_data_t.x)
+                Xq_li.append(pyg_data_q.x.clone())
+                Xt_li.append(pyg_data_t.x.clone())
             Xq = self.jk(Xq_li)
             Xt = self.jk(Xt_li)
             return Xq, Xt
         
 
         if FLAGS.encoder_structure == 'encoder3':
-            Xq_li, Xt_li = [Xq], [Xt]
+            Xq_li, Xt_li = [pyg_data_q.x.clone()], [pyg_data_t.x.clone()]
             if self.Xq_Xt_cached_li is None:
                 self.Xq_Xt_cached_li = []
                 for i, (gnn_wrapper, consensus) in \
                         enumerate(zip(self.gnn_wrapper_li, self.consensus_li)):
-                    Xq, Xt = gnn_wrapper(Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, cs_map, node_mask, only_inter=False)
-                    self.Xq_Xt_cached_li.append((Xq, Xt))
+                    pyg_data_q, pyg_data_t = gnn_wrapper(pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=False)
+                    self.Xq_Xt_cached_li.append((pyg_data_q.clone(), pyg_data_t.clone()))
                     if i != len(self.gnn_wrapper_li)-1:
-                        Xq, Xt = F.elu(Xq), F.elu(Xt)
+                        pyg_data_q.x, pyg_data_t.x = F.elu(pyg_data_q.x), F.elu(pyg_data_t.x)
            
             for i, (gnn_wrapper, Xq_Xt_cached) in \
                     enumerate(zip(self.gnn_wrapper_li, self.Xq_Xt_cached_li)):
-                Xq, Xt = Xq_Xt_cached
-                Xq, Xt = gnn_wrapper(Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
+                pyg_data_q, pyg_data_t = Xq_Xt_cached
+                pyg_data_q, pyg_data_t = gnn_wrapper(pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
                 if i != len(self.gnn_wrapper_li)-1:
-                    Xq, Xt = F.elu(Xq), F.elu(Xt)
-                Xq_li.append(Xq)
-                Xt_li.append(Xt)
+                    pyg_data_q.x, pyg_data_t.x = F.elu(pyg_data_q.x), F.elu(pyg_data_t.x)
+                Xq_li.append(pyg_data_q.x.clone())
+                Xt_li.append(pyg_data_t.x.clone())
             Xq = self.jk(Xq_li)
             Xt = self.jk(Xt_li)
             return Xq, Xt
+
+
+       
         
         if FLAGS.encoder_structure == 'encoder4':
             Xq_li, Xt_li = [Xq], [Xt]
@@ -296,48 +326,60 @@ class GNNConsensusEncoder(torch.nn.Module):
         
 
         if FLAGS.encoder_structure == 'encoder6':
-            Xq_li, Xt_li = [Xq], [Xt]
+            Xq_li, Xt_li = [pyg_data_q.x.clone()], [pyg_data_t.x.clone()]
             if self.Xq_Xt_cached_li is None:
                 self.Xq_Xt_cached_li = []
-                self.Xq_Xt_cached_li.append((Xq, Xt))
+                self.Xq_Xt_cached_li.append((pyg_data_q.clone(), pyg_data_t.clone()))
                 gnn_wrapper = self.gnn_wrapper_li[0]
-                Xq, Xt = gnn_wrapper(Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, cs_map, node_mask, only_inter=False)
-                self.Xq_Xt_cached_li.append((Xq, Xt))
+                pyg_data_q, pyg_data_t = gnn_wrapper(pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=False)
+                self.Xq_Xt_cached_li.append((pyg_data_q.clone(), pyg_data_t.clone()))
          
-            Xq, Xt = self.Xq_Xt_cached_li[0]
-            Xq, Xt = self.gnn_wrapper_li[0](Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
-            Xq, Xt = F.elu(Xq), F.elu(Xt)
-            Xq_li.append(Xq)
-            Xt_li.append(Xt)
-            Xq, Xt = self.gnn_wrapper_li[1](Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
-            Xq, Xt = F.elu(Xq), F.elu(Xt)
-            Xq_li.append(Xq)
-            Xt_li.append(Xt)
-            Xq, Xt = self.gnn_wrapper_li[2](Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
-            Xq, Xt = F.elu(Xq), F.elu(Xt)
-            Xq_li.append(Xq)
-            Xt_li.append(Xt)
-            Xq, Xt = self.gnn_wrapper_li[3](Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
-            Xq, Xt = F.elu(Xq), F.elu(Xt)
-            Xq_li.append(Xq)
-            Xt_li.append(Xt)
+            pyg_data_q, pyg_data_t = self.Xq_Xt_cached_li[0]
+            pyg_data_q, pyg_data_t = self.gnn_wrapper_li[0](pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
+            pyg_data_q.x, pyg_data_t.x = F.elu(pyg_data_q.x), F.elu(pyg_data_t.x)
+            Xq_li.append(pyg_data_q.x.clone())
+            Xt_li.append(pyg_data_t.x.clone())
 
-            Xq, Xt = self.Xq_Xt_cached_li[1]
-            Xq, Xt = self.gnn_wrapper_li[4](Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
-            Xq, Xt = F.elu(Xq), F.elu(Xt)
-            Xq_li.append(Xq)
-            Xt_li.append(Xt)
-            Xq, Xt = self.gnn_wrapper_li[5](Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
-            Xq, Xt = F.elu(Xq), F.elu(Xt)
-            Xq_li.append(Xq)
-            Xt_li.append(Xt)
-            Xq, Xt = self.gnn_wrapper_li[6](Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
-            Xq, Xt = F.elu(Xq), F.elu(Xt)
-            Xq_li.append(Xq)
-            Xt_li.append(Xt)
-            Xq, Xt = self.gnn_wrapper_li[7](Xq, edge_indexq, Xt, edge_indext, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
-            Xq_li.append(Xq)
-            Xt_li.append(Xt)
+            
+            pyg_data_q, pyg_data_t = self.gnn_wrapper_li[1](pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
+            pyg_data_q.x, pyg_data_t.x = F.elu(pyg_data_q.x), F.elu(pyg_data_t.x)
+            Xq_li.append(pyg_data_q.x.clone())
+            Xt_li.append(pyg_data_t.x.clone())
+
+            pyg_data_q, pyg_data_t = self.gnn_wrapper_li[2](pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
+            pyg_data_q.x, pyg_data_t.x = F.elu(pyg_data_q.x), F.elu(pyg_data_t.x)
+            Xq_li.append(pyg_data_q.x.clone())
+            Xt_li.append(pyg_data_t.x.clone())
+
+            pyg_data_q, pyg_data_t = self.gnn_wrapper_li[3](pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
+            pyg_data_q.x, pyg_data_t.x = F.elu(pyg_data_q.x), F.elu(pyg_data_t.x)
+            Xq_li.append(pyg_data_q.x.clone())
+            Xt_li.append(pyg_data_t.x.clone())
+
+            pyg_data_q, pyg_data_t = self.Xq_Xt_cached_li[1]
+            pyg_data_q, pyg_data_t = self.gnn_wrapper_li[0](pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
+            pyg_data_q.x, pyg_data_t.x = F.elu(pyg_data_q.x), F.elu(pyg_data_t.x)
+            Xq_li.append(pyg_data_q.x.clone())
+            Xt_li.append(pyg_data_t.x.clone())
+
+            
+            pyg_data_q, pyg_data_t = self.gnn_wrapper_li[1](pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
+            pyg_data_q.x, pyg_data_t.x = F.elu(pyg_data_q.x), F.elu(pyg_data_t.x)
+            Xq_li.append(pyg_data_q.x.clone())
+            Xt_li.append(pyg_data_t.x.clone())
+
+            pyg_data_q, pyg_data_t = self.gnn_wrapper_li[2](pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
+            pyg_data_q.x, pyg_data_t.x = F.elu(pyg_data_q.x), F.elu(pyg_data_t.x)
+            Xq_li.append(pyg_data_q.x.clone())
+            Xt_li.append(pyg_data_t.x.clone())
+
+            pyg_data_q, pyg_data_t = self.gnn_wrapper_li[3](pyg_data_q, pyg_data_t, norm_q, norm_t, u2v_li, node_mask, only_inter=True)
+            pyg_data_q.x, pyg_data_t.x = F.elu(pyg_data_q.x), F.elu(pyg_data_t.x)
+            Xq_li.append(pyg_data_q.x.clone())
+            Xt_li.append(pyg_data_t.x.clone())
+
+
+            
 
             Xq = self.jk(Xq_li)
             Xt = self.jk(Xt_li)

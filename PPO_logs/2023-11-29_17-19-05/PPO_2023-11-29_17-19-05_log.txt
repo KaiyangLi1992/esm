@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------------------
+PPO update frequency : 4 timesteps
+PPO K epochs : 10
+PPO epsilon clip : 0.2
+discount factor (gamma) : 0.99
+learning rate : 1e-05
+--------------------------------------------------------------------------------------------
+d_enc : 128
+device : cuda:7
+im_ckpt_path : /home/kli16/ISM_custom/esm_NSUBS_RWSE_trans/esm/ckpt_imitationlearning/2023-11-29_00-01-06/checkpoint_45000.pth
+--------------------------------------------------------------------------------------------

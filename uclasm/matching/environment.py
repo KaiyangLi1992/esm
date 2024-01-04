@@ -65,6 +65,7 @@ class RandomSelector:
 #     if has_self_loop(tmplt_nx, tmplt_idx) & has_self_loop(cand_nx, cand_idx):
 #         cycle_reward = 1
 #     return reward1+reward2+cycle_reward
+
 def get_reward(tmplt_idx, cand_idx, state):
     g1 = state.g1
     g2 = state.g2
@@ -88,8 +89,36 @@ def get_reward(tmplt_idx, cand_idx, state):
     cycle_reward = 0
     if g1.has_edge(tmplt_idx, tmplt_idx) and g2.has_edge(cand_idx, cand_idx):
         cycle_reward = 1
+    if g1.has_edge(tmplt_idx, tmplt_idx) and not g2.has_edge(cand_idx, cand_idx):
+        cycle_reward = -1
 
     return reward + cycle_reward
+
+# def get_reward(tmplt_idx, cand_idx, state):
+#     g1 = state.g1
+#     g2 = state.g2
+
+#     # 计算模板图g1节点tmplt_idx的邻居集合
+#     neighbors_tmplt = set(g1[tmplt_idx])
+#     # 获取已匹配的模板图节点集合
+#     tmplt_matched_nodes = set(state.nn_mapping.keys())
+#     # 获取模板图邻居与已匹配节点的交集
+#     tmplt_node_intersection = neighbors_tmplt.intersection(tmplt_matched_nodes)
+#     # 获取候选图g2节点cand_idx对应于交集的节点
+#     cand_node_intersection = set([state.nn_mapping[n] for n in tmplt_node_intersection])
+#     # 计算候选图g2节点cand_idx的邻居集合
+#     neighbors_cand = set(g2[cand_idx])
+
+#     posi_reward = len(neighbors_cand.intersection(cand_node_intersection))
+#     nega_reward = len(tmplt_node_intersection) - posi_reward
+#     reward = posi_reward - nega_reward
+
+#     # 检查自环并奖励
+#     cycle_reward = 0
+#     if g1.has_edge(tmplt_idx, tmplt_idx) and g2.has_edge(cand_idx, cand_idx):
+#         cycle_reward = 1
+
+#     return reward + cycle_reward
 
 def shuttle_node_id(G):
     nodes = list(G.nodes())

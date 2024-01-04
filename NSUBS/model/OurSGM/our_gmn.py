@@ -7,6 +7,8 @@ from torch_geometric.nn import GATv2Conv, GATConv, GCNConv, TransformerConv
 # from torch_geometric.nn import  GATConv, GCNConv
 from NSUBS.model.OurSGM.config import FLAGS
 from NSUBS.model.OurSGM.utils_nn import MLP, get_MLP_args, NormalizeAttention
+from yacs.config import CfgNode as CN
+from graphgps.layer.gps_layer import GPSLayer
 
 def create_ourgmn_disentangled(dim_in, dim_out, q2t, t2q, gnn_subtype):
     assert q2t and t2q,  'have to implement unidirectional'
@@ -30,6 +32,49 @@ def create_ourgmn_disentangled(dim_in, dim_out, q2t, t2q, gnn_subtype):
     elif gnn_subtype == 'transformer':
         gnn_t = TransformerConv(dim_in, dim_out)
         gnn_q = TransformerConv(dim_in, dim_out)
+    elif gnn_subtype == 'graphgps':
+        with open(FLAGS.graphgps_config_path, 'r') as f:
+            yaml_content = f.read()
+
+        # 使用 load_cfg 方法将 YAML 内容转换为 CfgNode 对象
+        cfg = CN.load_cfg(yaml_content)
+        local_gnn_type, global_model_type = cfg.gt.layer_type.split('+')
+
+
+        gnn_t = GPSLayer(dim_h=cfg.gt.dim_hidden,
+                local_gnn_type=local_gnn_type,
+                global_model_type=global_model_type,
+                num_heads=cfg.gt.n_heads,
+                act=cfg.gnn.act,
+                pna_degrees=cfg.gt.pna_degrees,
+                equivstable_pe=cfg.posenc_EquivStableLapPE.enable,
+                dropout=cfg.gt.dropout,
+                attn_dropout=cfg.gt.attn_dropout,
+                layer_norm=cfg.gt.layer_norm,
+                batch_norm=cfg.gt.batch_norm,
+                bigbird_cfg=cfg.gt.bigbird,
+                log_attn_weights=cfg.train.mode == 'log-attn-weights',
+            )
+        
+        gnn_q = GPSLayer(dim_h=cfg.gt.dim_hidden,
+                local_gnn_type=local_gnn_type,
+                global_model_type=global_model_type,
+                num_heads=cfg.gt.n_heads,
+                act=cfg.gnn.act,
+                pna_degrees=cfg.gt.pna_degrees,
+                equivstable_pe=cfg.posenc_EquivStableLapPE.enable,
+                dropout=cfg.gt.dropout,
+                attn_dropout=cfg.gt.attn_dropout,
+                layer_norm=cfg.gt.layer_norm,
+                batch_norm=cfg.gt.batch_norm,
+                bigbird_cfg=cfg.gt.bigbird,
+                log_attn_weights=cfg.train.mode == 'log-attn-weights',
+            )
+
+
+  
+
+
     gmn_intra = OurGMNCustomIntra(gnn_subtype, gnn_t, gnn_q, mlp_att_t, mlp_value_t, mlp_att_q, mlp_value_q)
 
     mlp_att_cross_q = MLP(*get_MLP_args([dim_out, dim_out]))
@@ -82,13 +127,14 @@ class OurGMNCustomWrapper(torch.nn.Module):
         self.gmn_inter = gmn_inter
         self.gmn_intra = gmn_intra
 
-    def forward(self, Xq, edge_index_q, Xt, edge_index_t,
+    def forward(self, pyg_data_q, pyg_data_t,
                   norm_q, norm_t, u2v_li, node_mask,
                   only_run_inter=True):
         if only_run_inter:
-            return self.gmn_inter(Xq, Xt, u2v_li)
+            pyg_data_q.x, pyg_data_t.x = self.gmn_inter(pyg_data_q.x, pyg_data_t.x, u2v_li)
+            return pyg_data_q,pyg_data_t
         else:
-            return self.gmn_intra(Xq, Xt, edge_index_q, edge_index_t)
+            return self.gmn_intra(pyg_data_q, pyg_data_t)
 
 
 class OurGMNCustomIntra(torch.nn.Module):
@@ -102,29 +148,29 @@ class OurGMNCustomIntra(torch.nn.Module):
         self.mlp_att_q = mlp_att_q
         self.mlp_value_q = mlp_value_q
 
-    def forward(self, Xq, Xt, edge_index_q, edge_index_t):
-        if self.gnn_subtype == 'ours':
-            msg_q = torch.cat((Xq[edge_index_q[0]], Xq[edge_index_q[1]]), dim=1)
-            Xq = \
-                scatter_add(
-                    scatter_softmax(self.mlp_att_q(msg_q), edge_index_q[1], dim=0) * \
-                    self.mlp_value_q(msg_q),
-                    edge_index_q[1],
-                    dim=0, dim_size=Xq.shape[0]
-                )  # / norm_q
+    def forward(self, pyg_data_q, pyg_data_t):
+        # if self.gnn_subtype == 'ours':
+        #     msg_q = torch.cat((Xq[edge_index_q[0]], Xq[edge_index_q[1]]), dim=1)
+        #     Xq = \
+        #         scatter_add(
+        #             scatter_softmax(self.mlp_att_q(msg_q), edge_index_q[1], dim=0) * \
+        #             self.mlp_value_q(msg_q),
+        #             edge_index_q[1],
+        #             dim=0, dim_size=Xq.shape[0]
+        #         )  # / norm_q
 
-            msg_t = torch.cat((Xt[edge_index_t[0]], Xt[edge_index_t[1]]), dim=1)
-            Xt = \
-                scatter_add(
-                    scatter_softmax(self.mlp_att_t(msg_t), edge_index_t[1], dim=0) * \
-                    self.mlp_value_t(msg_t),
-                    edge_index_t[1],
-                    dim=0, dim_size=Xt.shape[0]
-                )  # / norm_t
-        else:
-            Xq = self.gnn_q(Xq, edge_index_q)
-            Xt = self.gnn_t(Xt, edge_index_t)
-        return Xq, Xt
+        #     msg_t = torch.cat((Xt[edge_index_t[0]], Xt[edge_index_t[1]]), dim=1)
+        #     Xt = \
+        #         scatter_add(
+        #             scatter_softmax(self.mlp_att_t(msg_t), edge_index_t[1], dim=0) * \
+        #             self.mlp_value_t(msg_t),
+        #             edge_index_t[1],
+        #             dim=0, dim_size=Xt.shape[0]
+        #         )  # / norm_t
+        # else:
+        pyg_data_q = self.gnn_q(pyg_data_q)
+        pyg_data_t= self.gnn_t(pyg_data_t)
+        return pyg_data_q, pyg_data_t
 
 class OurGMNCustomInter(torch.nn.Module):
     def __init__(self, mlp_att_cross_q, mlp_att_cross_t, mlp_val_cross_q, mlp_val_cross_t,
